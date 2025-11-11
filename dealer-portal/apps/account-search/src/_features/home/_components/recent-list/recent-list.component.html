@@ -1,0 +1,39 @@
+@if (accounts$ | async; as recentAccounts) {
+  @if (isLoading) {
+    <polaris-loader></polaris-loader>
+  }
+  @else {
+    <div class="recent-accounts-table d-flex flex-column">
+      <polaris-table
+        ui-test-id="recent-accounts-listing-table"
+        [data]="recentAccounts"
+        [config]="tableConfig">
+        @for (column of tableConfig.columns; track (column.id)) {
+          @if(column.columnType === 'date') {
+            <polaris-table-date-cell [columnName]="column.id" [key]="column.key" dateFormat="short"></polaris-table-date-cell>
+          } @else {
+            <polaris-table-custom-cell [columnName]="column.id">
+              <ng-template let-recentAccount>
+                @if (column.columnType === 'text') {
+                  <div [innerHTML]="recentAccount[$any(column.key)]"></div>
+                } @else if (column.columnType === 'link') {
+                  @if (column.id === 'impersonate') {
+                    <polaris-href (onClick)="loginAsUser(recentAccount)" ui-test-id="impersonate-user-link">{{'recent-view.login-as-user' | translate }}</polaris-href>
+                    <polaris-icon-button class="delete-account-button" (onClick)="deleteRecent(recentAccount)">
+                      <polaris-icon size="xl" color="primary">delete</polaris-icon>
+                    </polaris-icon-button>
+                  }
+                }
+              </ng-template>
+            </polaris-table-custom-cell>
+          }
+        }
+      </polaris-table>
+    </div>
+  }
+}
+@else {
+  <mat-card appearance="outlined">
+    <mat-card-content>There are no recently viewed accounts.</mat-card-content>
+  </mat-card>
+}

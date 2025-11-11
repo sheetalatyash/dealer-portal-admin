@@ -1,0 +1,13 @@
+:host {
+  .polaris-table {
+    .mat-mdc-header-row {
+      background-color: var(--polaris-primary);
+      color: var(--polaris-white);
+    }
+
+    .mat-mdc-cell {
+      border: var(--polaris-border-width) var(--polaris-border-style) var(--polaris-gray-300);
+    }
+  }
+}
+

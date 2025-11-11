@@ -1,0 +1,51 @@
+.back-link {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  text-transform: uppercase;
+  font-size: var(--polaris-font-size-sm);
+}
+
+.communication {
+  &-title {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 3;
+    line-clamp: 3;
+    overflow: hidden;
+  }
+
+  &-date,
+  &-content {
+    color: var(--polaris-gray-600);
+  }
+
+  &-attachments {
+    font-size: var(--polaris-font-size-sm);
+
+    &-link-button {
+      all: unset;
+      color: rgba(var(--polaris-link-color-rgb), var(--polaris-link-opacity, 1));
+
+      > span {
+        text-decoration: underline;
+      }
+
+      &-xs {
+        font-size: var(--polaris-font-size-xs);
+      }
+
+      &:hover {
+        cursor: pointer;
+      }
+
+      &:focus {
+        outline: revert;
+      }
+    }
+  }
+
+  &-error {
+    color: var(--polaris-danger);
+  }
+}

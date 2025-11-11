@@ -1,0 +1,51 @@
+.polaris-notification {
+  background-color: var(--polaris-white);
+  color: var(--polaris-black);
+
+  &-content {
+
+    &-message {
+      font-size: var(--polaris-font-size-md);
+    }
+
+    &-close-button {
+      position: relative;
+      left: 1rem;
+    }
+  }
+
+  @mixin notification-style($color, $color-subtle) {
+    .polaris-notification-icon {
+      color: $color;
+    }
+
+    ::ng-deep .mdc-linear-progress__bar {
+      color: $color;
+    }
+
+    ::ng-deep .mdc-linear-progress__buffer-bar {
+      background-color: $color-subtle;
+    }
+  }
+
+  &-danger {
+    @include notification-style(var(--polaris-danger), var(--polaris-danger-bg-subtle));
+  }
+
+  &-warning {
+    @include notification-style(var(--polaris-warning), var(--polaris-warning-bg-subtle));
+  }
+
+  &-info {
+    @include notification-style(var(--polaris-info), var(--polaris-info-bg-subtle));
+  }
+
+  &-success {
+    @include notification-style(var(--polaris-success), var(--polaris-success-bg-subtle));
+  }
+}
+
+::ng-deep .mdc-snackbar__label,
+::ng-deep .mdc-snackbar__surface {
+  padding: unset !important;
+}

@@ -1,0 +1,39 @@
+<div
+  class="communication-list-item d-flex align-items-center py-2 ps-2 pe-3 pe-md-4"
+  [ngClass]="{ 'communication-list-item-focused': isSelected && hasFocus }"
+  (focusin)="onFocusChange(true)"
+  (focusout)="onFocusChange(false)"
+>
+  <mat-checkbox [checked]="isSelected" (click)="communicationSelected.emit(communication)"></mat-checkbox>
+  <button role="button"
+          class="communication-list-item-content flex-grow-1 d-flex flex-column flex-md-row align-items-start align-items-md-center gap-md-2 px-3"
+          (click)="communicationClicked.emit(communication)">
+    <span class="communication-list-item-content-title"
+          [ngClass]="{ 'communication-list-item-unread': !communication.isRead }">
+      {{ communication.title }}
+    </span>
+    <comm-communication-badge [badgeType]="communication.groupName"></comm-communication-badge>
+    @if(communication.isArchive){
+    <div class="communication-list-item-content-archived">
+      {{'archived' | translate}}
+    </div>
+    }
+    @if (communication.groupName === CommunicationType.Program && communication.endDate ) {
+    <span class="communication-list-item-content-expiration">
+      {{getExpiredText(communication.endDate)}} {{ communication.endDate | date : dateFormat }}
+    </span>
+    }
+  </button>
+  <div
+    class="communication-list-item-trailing d-flex flex-column-reverse align-items-end justify-content-between flex-md-row align-items-md-center"
+  >
+    <polaris-icon-button [ui-disabled]="isImpersonating" (onClick)="communicationFavorited.emit(communication)">
+      @if(communication.isFavorite) {
+      <polaris-icon size="lg" color="primary" [ui-tooltip]="isImpersonating ? '' : 'unfavorite-tooltip' | translate" [tooltipShowDelay]="5000">favorite-filled</polaris-icon>
+      } @else {
+      <polaris-icon size="lg" [ui-tooltip]="isImpersonating ? '' : 'favorite-tooltip' | translate" [tooltipShowDelay]="5000">favorite-outline</polaris-icon>
+      }
+    </polaris-icon-button>
+    <span [ngClass]="{ 'communication-list-item-unread': !communication.isRead }">{{ communication.startDate | date : dateFormat }}</span>
+  </div>
+</div>

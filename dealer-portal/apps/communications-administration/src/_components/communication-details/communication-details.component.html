@@ -1,0 +1,240 @@
+<polaris-expansion-panel headerHeight="45px" [expanded]="true">
+  <div ngProjectAs="polaris-expansion-panel-title">
+    <span class="communication-expansion-title">{{ 'target-audience-summary' | translate }}</span>
+  </div>
+  <div class="communication-message-content communication-sub-section py-3">
+    <!-- Total Number of Dealers -->
+    <ca-labeled-row label="total-number-of-dealers">
+      {{ communicationSummary?.totalCount }}
+    </ca-labeled-row>
+
+    <!-- Countries -->
+    <ca-labeled-row label="countries">
+      {{ communicationSummary?.countryCodes?.join(', ') }}
+    </ca-labeled-row>
+
+    <!-- Communication Settings -->
+    <div class="row align-items-start py-3 mb-3 ps-4">
+      <div class="col-auto communication-sub-section-title font-size-sm" style="min-width: 220px;">
+        {{ 'communication-settings' | translate }}
+      </div>
+      <div class="col-4">
+        <div class="d-grid gap-3" style="grid-template-columns: 1fr 1fr; grid-template-rows: 1fr 1fr;">
+          <!-- Group -->
+          <div class="d-flex flex-column">
+            <span class="communication-sub-section-title font-size-sm mb-1">
+              {{ 'group' | translate }}
+            </span>
+            <span>
+              {{ communication?.group?.name }}
+            </span>
+          </div>
+          <!-- Sub-group -->
+          <div class="d-flex flex-column">
+            <span class="communication-sub-section-title font-size-sm mb-1">
+              {{ 'sub-group' | translate }}
+            </span>
+            <span>
+              {{ communication?.subGroup?.name ?? ('sub-group-option.none'| translate) }}
+            </span>
+          </div>
+          <!-- Start Date -->
+          <div class="d-flex flex-column">
+            <span class="communication-sub-section-title font-size-sm mb-1">
+              {{ 'start-date' | translate }}
+            </span>
+            <span>
+              {{ displayedStartDate }}
+            </span>
+            <span>
+              {{ displayedTimezone }}
+            </span>
+          </div>
+          <!-- End Date -->
+          <div class="d-flex flex-column">
+            <span class="communication-sub-section-title font-size-sm mb-1">
+              {{ 'end-date' | translate }}
+            </span>
+            <span>
+              {{ displayedEndDate }}
+            </span>
+            <span>
+              {{ displayedTimezone }}
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <polaris-divider ui-class="col-auto mb-4"></polaris-divider>
+
+    <!-- Communication Status -->
+    <ca-labeled-row label="comm-status">
+      {{ getCommunicationStatus() }}
+    </ca-labeled-row>
+  </div>
+</polaris-expansion-panel>
+<!-- Account Targets -->
+<polaris-expansion-panel headerHeight="45px" [expanded]="true">
+  <div ngProjectAs="polaris-expansion-panel-title">
+    <span class="communication-expansion-title">{{ 'form.step.account-targets' | translate }}</span>
+  </div>
+  <div ngProjectAs="polaris-expansion-panel-actions" class="d-flex gap-2 pe-3">
+    <polaris-icon-button [ui-disabled]="disableFormControls" (onClick)="onEditAccountTargets($event)">
+      <polaris-icon size="xl" color="primary">edit</polaris-icon>
+    </polaris-icon-button>
+  </div>
+  <div class="d-flex flex-column gap-3 py-3">
+    @if(displayedPartnerTypes.length > 0) {
+    <ca-labeled-row label="option.partner-type">
+      {{ displayedPartnerTypes.join(', ') }}
+    </ca-labeled-row>
+    }
+    @if(displayedProductLines.length > 0) {
+    <ca-labeled-row label="option.product-lines">
+      {{ displayedProductLines.join(', ') }}
+    </ca-labeled-row>
+    }
+    @if(displayedCustomerClasses.length > 0) {
+    <ca-labeled-row label="option.customer-class">
+      {{ displayedCustomerClasses.join(', ') }}
+    </ca-labeled-row>
+    }
+    @if(displayedCountries.length > 0) {
+    <ca-labeled-row label="option.country">
+      {{ displayedCountries.join(', ') }}
+    </ca-labeled-row>
+    }
+    @if(displayedStatesOrProvinces.length > 0) {
+    <ca-labeled-row label="option.state-province" [showDivider]="false">
+      {{ displayedStatesOrProvinces.join(', ') }}
+    </ca-labeled-row>
+    }
+  </div>
+</polaris-expansion-panel>
+
+<!-- User Targets -->
+@if (isAnyUserTargetSelected) {
+<polaris-expansion-panel headerHeight="45px" [expanded]="true">
+  <div ngProjectAs="polaris-expansion-panel-title">
+    <span class="communication-expansion-title">{{ 'form.step.user-targets' | translate }}</span>
+  </div>
+  <div ngProjectAs="polaris-expansion-panel-actions" class="d-flex gap-2 pe-3">
+    <polaris-icon-button [ui-disabled]="disableFormControls" (onClick)="onEditUserTargets($event)">
+      <polaris-icon size="xl" color="primary">edit</polaris-icon>
+    </polaris-icon-button>
+  </div>
+  <div class="d-flex flex-column gap-3 py-3">
+    @if(displayedDepartments.length > 0) {
+    <ca-labeled-row label="option.department">
+      {{ displayedDepartments.join(', ') }}
+    </ca-labeled-row>
+    }
+    @if(displayedStaffRoles.length > 0) {
+    <ca-labeled-row label="option.role">
+      {{ displayedStaffRoles.join(', ') }}
+    </ca-labeled-row>
+    }
+    @if(displayedServiceStaffRoles.length > 0) {
+    <ca-labeled-row label="option.staff-role">
+      {{ displayedServiceStaffRoles.join(', ') }}
+    </ca-labeled-row>
+    }
+  </div>
+</polaris-expansion-panel>
+}
+<!-- Communication Message (Disabled temporarily per. Aravind's request (7/2/2025)) -->
+<!--<polaris-expansion-panel headerHeight="45px" [expanded]="true">
+  <div ngProjectAs="polaris-expansion-panel-title">
+    <span class="communication-expansion-title">{{ 'communication-message' | translate }}</span>
+  </div>
+  <div ngProjectAs="polaris-expansion-panel-actions" class="d-flex gap-2 pe-3">
+    <polaris-icon-button [ui-disabled]="disableFormControls" (onClick)="onEditMessage($event)">
+      <polaris-icon size="xl" color="primary">edit</polaris-icon>
+    </polaris-icon-button>
+  </div>
+  <div class="col-6 d-flex flex-column gap-3 py-3">
+    <ca-labeled-row label="text-title" [showDivider]="false">
+      {{ communication?.defaultMessage?.title }}
+    </ca-labeled-row>
+    <div class="row align-items-center ps-4 mb-3">
+      <div class="col-auto communication-sub-section-title font-size-sm" style="min-width: 220px;">
+        {{ 'message' | translate }}
+      </div>
+      <div class="col">
+        <ca-rich-text-viewer [content]="communication?.defaultMessage?.messageBody ?? ''">
+        </ca-rich-text-viewer>
+      </div>
+    </div>
+    <ca-labeled-row label="keywords" [showDivider]="false">
+      {{ communication?.defaultMessage?.keywords }}
+    </ca-labeled-row>
+    <ca-labeled-row label="internal-notes" [showDivider]="false">
+      {{ communication?.defaultMessage?.internalNotes }}
+    </ca-labeled-row>
+    <ca-labeled-row label="attachments" [showDivider]="false">-->
+      <!-- TODO: Show Attachments List -->
+    <!--</ca-labeled-row>
+  </div>
+</polaris-expansion-panel>-->
+
+<!-- Translations (Disabled temporarily per. Aravind's request (7/2/2025))-->
+<!--<polaris-expansion-panel headerHeight="45px" [expanded]="false">
+  <div ngProjectAs="polaris-expansion-panel-title">
+    <span class="communication-expansion-title">{{ 'form.step.translation' | translate }}</span>
+  </div>
+
+  <div>
+    @for(translation of displayedTranslations; track translation.cultureCode) {
+    <polaris-expansion-panel headerHeight="45px" [expanded]="false">
+      <div ngProjectAs="polaris-expansion-panel-title">
+        <span class="translation-section-header">{{translation.language}}</span>
+      </div>
+
+      <div ngProjectAs="polaris-expansion-panel-actions" class="d-flex gap-2 pe-3">
+        <polaris-icon-button [ui-disabled]="disableFormControls"
+                             (onClick)="onEditTranslation($event, translation)">
+          <polaris-icon size="xl" color="primary">edit</polaris-icon>
+        </polaris-icon-button>
+        <polaris-icon-button [ui-disabled]="disableFormControls"
+                             (onClick)="onDeleteTranslation($event, translation)">
+          <polaris-icon size="xl" color="primary">delete</polaris-icon>
+        </polaris-icon-button>
+      </div>
+
+      <div class="row">
+        <div class="communication-translation-content col-8">
+          <div class="communication-sub-section-title">
+            {{ 'text-title' | translate }}
+          </div>
+          <div>
+            {{ translation?.title }}
+          </div>
+
+          <div class="communication-sub-section-title">
+            {{ 'message' | translate }}
+          </div>
+          <ca-rich-text-viewer [content]="translation.messageBody">
+          </ca-rich-text-viewer>
+
+          <div class="communication-sub-section-title">
+            {{ 'attachments' | translate }}
+          </div>
+          <div>-->
+            <!-- TODO: Show Attachments List -->
+          <!--</div>
+        </div>
+        <div class="col-4">
+          <span class="communication-section-title">
+            {{ 'translation-settings' | translate }}
+          </span>
+          <div class="p-3">
+            <polaris-radio-group ui-orientation="vertical" [ui-label]="'translation-status' | translate"
+                                 [options]="displayedStatuses">
+            </polaris-radio-group>
+          </div>
+        </div>
+      </div>
+    </polaris-expansion-panel>
+    }
+  </div>
+</polaris-expansion-panel>-->

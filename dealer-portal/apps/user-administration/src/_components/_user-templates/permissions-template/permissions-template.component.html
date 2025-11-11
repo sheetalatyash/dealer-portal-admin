@@ -1,0 +1,161 @@
+@if (!isDetailsView) {
+  <div class="d-flex flex-column mb-3 mb-4">
+    <!-- Permissions Selector -->
+    <ua-permissions-selector></ua-permissions-selector>
+    <polaris-divider></polaris-divider>
+  </div>
+}
+
+<!-- Loader -->
+@if (loadingPermissionsForm()) {
+  <polaris-loader></polaris-loader>
+}
+
+<!-- Permissions Accordion -->
+@if (filteredPermissionsViewModel()) {
+  <polaris-search-bar
+    class="d-block d-md-none pb-3"
+    ui-placeholder="Search permissions…"
+    [ui-form-control]="searchControl">
+  </polaris-search-bar>
+  <div class="utility-bar d-flex justify-content-start gap-2 mb-3">
+
+    <div class="d-flex gap-3 align-items-center">
+      <polaris-search-bar
+        class="d-none d-md-block"
+        ui-placeholder="Search permissions…"
+        [ui-form-control]="searchControl">
+      </polaris-search-bar>
+      <div class="vertical-divider d-none d-md-block"></div>
+      <polaris-accordion-toggle [polarisAccordion]="permissionsAccordion"></polaris-accordion-toggle>
+    </div>
+  </div>
+  <polaris-accordion #permissionsAccordion [showToggle]="false">
+    @for (page of filteredPermissionsViewModel()!.pages; let pageIndex = $index; track page.contentId) {
+      <polaris-expansion-panel [ui-test-id]="expansionPanelTestId + '-' + page.contentId">
+        <polaris-expansion-panel-title>
+          <div class="d-flex align-items-center gap-2">
+            <span>{{ page.menuName }}</span> <polaris-icon color="primary" ui-tooltip="{{ 'tooltips.permission-page' | translate }}" size="xl" class="pt-1">info</polaris-icon>
+          </div>
+        </polaris-expansion-panel-title>
+
+        <div class="d-flex flex-column gap-5">
+          <polaris-accordion class="d-flex flex-column col-12 col-xl-8 mb-4" [showToggle]="false">
+
+            <!-- Label Bar -->
+            <div class="label-bar d-flex justify-content-end gap-2">
+              @for (accessLevel of filteredPermissionsViewModel()!.pageAccessoryCategories; track accessLevel.displayName) {
+                <div class="d-flex justify-content-center" [style.min-width]="radioMinWidth">
+                  <span>{{ accessLevel.displayName }}</span>
+                </div>
+              }
+            </div>
+
+            @if (!isDetailsView) {
+              <div class="page-level-selector d-flex justify-content-between align-items-center">
+                <span class="page-level-selector-title">{{ 'form.instructions.select-all' | translate }}</span>
+                <polaris-radio-group
+                  (click)="$event.stopPropagation()"
+                  [options]="page.accessOptions"
+                  [ui-form-control]="page.accessFormControl"
+                  [ui-readonly]="isDetailsView"
+                  ui-theme="secondary"
+                  [hideIfDisabled]="true"
+                  labelPosition="bottom"
+                  [ui-stack-label]="false">
+                </polaris-radio-group>
+              </div>
+            }
+
+            <!-- Categories -->
+            @for (category of page.children; let categoryIndex = $index; track category.contentId) {
+              <polaris-expansion-panel
+                [ui-test-id]="expansionPanelTestId + '-' + page.contentId + '-' + category.contentId"
+                ui-theme="secondary"
+                togglePosition="before"
+                headerHeight="65px"
+                [expanded]="true"
+                [usePolarisExpansionToggle]="false">
+
+                <polaris-expansion-panel-title>{{ category.menuName }}</polaris-expansion-panel-title>
+                <polaris-expansion-panel-description>
+                  <polaris-radio-group
+                    (click)="$event.stopPropagation()"
+                    [options]="category.accessOptions"
+                    [ui-form-control]="category.accessFormControl"
+                    [ui-readonly]="isDetailsView"
+                    [hideIfDisabled]="true"
+                    labelPosition="bottom"
+                    [ui-stack-label]="false"
+                  >
+                  </polaris-radio-group>
+                </polaris-expansion-panel-description>
+
+                <div class="permissions-list">
+                  <!-- Permissions -->
+                  @for (permission of category.children; let permissionIndex = $index; track permission.contentId) {
+
+                    @if (!permission.claimsFormGroup) {
+                      <div class="permission d-flex justify-content-between align-items-center">
+                        <span>{{ permission.menuName }}</span>
+                        <polaris-radio-group
+                          (click)="$event.stopPropagation()"
+                          [options]="permission.accessOptions"
+                          [ui-readonly]="isDetailsView"
+                          [hideIfDisabled]="true"
+                          [ui-form-control]="permission.accessFormControl">
+                        </polaris-radio-group>
+                      </div>
+                    } @else {
+                      <polaris-expansion-panel
+                        [ui-test-id]="expansionPanelTestId + '-' + page.contentId + '-' + category.contentId + '-' + permission.contentId"
+                        ui-theme="secondary-nested"
+                        togglePosition="before"
+                        headerHeight="50px"
+                        [expanded]="true"
+                        [usePolarisExpansionToggle]="false">
+
+                        <polaris-expansion-panel-title>{{ permission.menuName }}</polaris-expansion-panel-title>
+                        <polaris-expansion-panel-description>
+                          <polaris-radio-group
+                            (click)="$event.stopPropagation()"
+                            [options]="permission.accessOptions"
+                            [ui-readonly]="isDetailsView"
+                            [hideIfDisabled]="true"
+                            [ui-form-control]="permission.accessFormControl">
+                          </polaris-radio-group>
+                        </polaris-expansion-panel-description>
+
+                        <!-- claims checkboxes -->
+                        <div class="permission d-flex row">
+                          <polaris-checkbox-group
+                            ui-class="flex-column align-items-start"
+                            ui-label="{{'claim.claim-label' | translate}} ({{permission.menuName}})"
+                            [ui-id]="'claim-' + permission.contentId"
+                            [ui-show-label]="false"
+                            [ui-form-group]="permission.claimsFormGroup"
+                            [ui-readonly]="isDetailsView"
+                            [displayFalsyValues]="true"
+                            [options]="permission.claimOptions!"
+                            [optionGap]="3"
+                            (onError)="onError({
+                              page: pageName,
+                              category: permission.menuName,
+                              messages: $event,
+                              customSortOrder: pageIndex * 1000 + categoryIndex * 100 + permissionIndex,
+                              })">
+                          </polaris-checkbox-group>
+                        </div>
+                      </polaris-expansion-panel>
+                    }
+                  }
+                </div>
+              </polaris-expansion-panel>
+            }
+          </polaris-accordion>
+        </div>
+      </polaris-expansion-panel>
+    }
+  </polaris-accordion>
+}
+

@@ -1,0 +1,16 @@
+.polaris-paginator {
+  align-items: center;
+  background-color: var(--polaris-secondary-bg);
+  border: var(--polaris-border-width) var(--polaris-border-style) var(--polaris-border-color);
+  border-top: none;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-height: 3.5rem;
+  padding: 0.5rem 0;
+
+  &-count {
+    color: var(--polaris-light-text-emphasis);
+    font-size: var(--polaris-font-size-xs);
+  }
+}

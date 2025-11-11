@@ -1,0 +1,53 @@
+<mat-expansion-panel
+  #expansionPanel
+  class="polaris-expansion-panel"
+  [attr.data-test-id]="testId"
+  [disabled]="disabled"
+  [expanded]="expanded"
+  [hideToggle]="hideToggle"
+  [ngClass]="[customClass, panelThemeClass]"
+  [togglePosition]="togglePosition"
+  (mouseenter)="emitMouseEnterEvent($event)"
+  (mouseleave)="emitMouseLeaveEvent($event)"
+  (afterExpand)="emitAfterExpand()"
+  (afterCollapse)="emitAfterCollapse()"
+  (closed)="emitClosed()"
+  (destroyed)="emitDestroyed()"
+  (opened)="emitOpened()">
+
+  <!-- Expansion Panel Header -->
+  @if (showHeader) {
+    <mat-expansion-panel-header
+      [collapsedHeight]="headerHeightCollapsed"
+      [expandedHeight]="headerHeightExpanded">
+
+      <!-- Expansion Panel Title -->
+      <mat-panel-title>
+        <ng-content select="polaris-expansion-panel-title"></ng-content>
+      </mat-panel-title>
+
+      <!-- Expansion Panel Description -->
+      <mat-panel-description>
+        <ng-content select="polaris-expansion-panel-description"></ng-content>
+
+        <!-- Polaris Expansion Toggle -->
+        @if (usePolarisExpansionToggle) {
+          @if (expansionPanel.expanded) {
+            <polaris-icon size="xxl" color="primary">minus</polaris-icon>
+          } @else {
+            <polaris-icon size="xxl" color="primary">plus</polaris-icon>
+          }
+        }
+
+        <ng-content select="polaris-expansion-panel-actions"></ng-content>
+      </mat-panel-description>
+
+    </mat-expansion-panel-header>
+  }
+
+  <!-- Expansion Panel Content (Lazy Loaded) -->
+  <ng-template matExpansionPanelContent>
+    <ng-content></ng-content>
+  </ng-template>
+
+</mat-expansion-panel>

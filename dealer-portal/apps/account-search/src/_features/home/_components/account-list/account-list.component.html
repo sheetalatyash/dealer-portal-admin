@@ -1,0 +1,175 @@
+@if (accounts$ | async; as accounts) {
+  <div class="account-list">
+    @if (isLoading) {
+      <polaris-loader></polaris-loader>
+    }
+    @else {
+      @for (acct of accounts; track acct) {
+        <mat-card appearance="outlined">
+          <mat-card-header>
+            <div class="account-list-card-header d-flex justify-content-between">
+              <div class="account-list-card-header-titles">
+                <mat-card-title>{{acct.title}}</mat-card-title>
+                <mat-card-subtitle>{{acct.accountStatus}}</mat-card-subtitle>
+              </div>
+
+              <div class="account-list-card-header-actions d-flex flex-column align-items-end">
+                @if (isSalesUser(acct)) {
+                  @if (canImpersonateUser) {
+                    <polaris-href ui-class="text-uppercase" class="content-card-link" (onClick)="loginAsSalesUser(acct)" ui-test-id="login-as-sales-user-href" [underline]="true">{{ 'card.login-as-sales-user' | translate }}</polaris-href>
+                  }
+                }
+                @else {
+                  @if (canImpersonateAccount) {
+                    <polaris-href class="content-card-link" (onClick)="loginToAccount(acct)" ui-test-id="login-to-account-href" [underline]="true">{{ 'card.login-to-account' | translate }}</polaris-href>
+                    <polaris-href class="content-card-link" (onClick)="selectUser(acct)" ui-test-id="select-user-href" [underline]="true">{{ 'card.or-select-user' | translate }}</polaris-href>
+                  }
+                }
+              </div>
+            </div>
+          </mat-card-header>
+
+          <polaris-divider></polaris-divider>
+
+          <mat-card-content>
+            <div class="account-list-card-content d-flex justify-content-between">
+              <div class="account-list-card-content-column d-flex flex-column gap-4">
+
+                  <div class="account-section">
+                    <polaris-icon color="primary" size="xl">dealer</polaris-icon>
+                    <div class="account-section-content">
+                      <div class="account-section-title">{{'card.account-profile' | translate}}</div>
+                      @if (!isSalesUser(acct)) {
+                        <div>{{ acct.primaryAddress?.Address1 }}</div>
+                      }
+                      <div>{{ acct.primaryAddress?.CityStatePostal }}</div>
+                      @if (!isSalesUser(acct)) {
+                        <polaris-href class="pt-2" type="tel">{{ acct.phoneNumber | phoneNumber}}</polaris-href>
+                      }
+                    </div>
+                  </div>
+
+                @if (!isSalesUser(acct)) {
+                  <div class="account-section">
+                    <polaris-icon color="primary" size="xl">location</polaris-icon>
+                    <div class="account-section-content">
+                      <polaris-href (onClick)="openInGoogleMaps(acct)">{{'card.map-and-directions' | translate}}</polaris-href>
+                    </div>
+                  </div>
+                }
+
+                @if (acct.website) {
+                  <div class="account-section">
+                    <polaris-icon color="primary" size="xl">link</polaris-icon>
+                    <div class="account-section-content">
+                      <polaris-href (onClick)="openWebsite(acct)">{{'card.website' | translate}}</polaris-href>
+                    </div>
+                  </div>
+                }
+
+                <div class="account-section">
+                  <polaris-icon color="primary" size="xl">space</polaris-icon>
+                  <div class="account-section-content">
+                    @if ((acct.serviceIdentifiers ?? []).length > 0) {
+                      <div class="account-section-title compact">{{'card.service-identifiers' | translate}}</div>
+                      @for(identifier of acct.serviceIdentifiers ?? []; track identifier) {
+                        <div>{{ identifier.type }}: {{identifier.id}}</div>
+                      }
+                    }
+                  </div>
+                </div>
+              </div>
+
+              <div class="account-list-card-content-column d-flex flex-column gap-3">
+                @if (!isSalesUser(acct)) {
+                  @if (acct?.parentBusinessUnit) {
+                    <div class="account-section">
+                      <div class="account-section-content">
+                        <div class="account-section-title compact">{{'card.owner' | translate}}</div>
+                        <div>{{ acct.parentBusinessUnit }}</div>
+                      </div>
+                    </div>
+                  }
+                  @if (acct?.owningBusinessUnit) {
+                    <div class="account-section">
+                      <div class="account-section-content">
+                        <div class="account-section-title compact">{{'card.operator' | translate}}</div>
+                        <div>{{ acct.owningBusinessUnit }}</div>
+                      </div>
+                    </div>
+                  }
+                  <div class="account-section">
+                    <div class="account-section-content">
+                      <div class="account-section-title compact">{{'card.partner-type' | translate}}</div>
+                      <div>{{ acct?.partnerType || '--' }}</div>
+                    </div>
+                  </div>
+                }
+
+                <div class="account-section">
+                  <div class="account-section-content">
+                    <div class="account-section-title compact">{{'card.customer-class' | translate}}</div>
+                    <div>{{ acct?.classDescription || '--' }}</div>
+                  </div>
+                </div>
+
+                @if (!isSalesUser(acct)) {
+                  <div class="account-section">
+                    <div class="account-section-content">
+                      <div class="account-section-title compact">{{'card.sales-managers' | translate}}</div>
+                      @if (acct.territories; as territories) {
+                        @for(territory of territories  | slice:0:2; track territory) {
+                          <div>{{ territory.salesRole }}: {{territory.polarisManager}}</div>
+                        }
+                      }
+                    </div>
+                  </div>
+                }
+              </div>
+              <div class="account-list-card-content-column d-flex flex-column gap-3">
+                <div class="account-section">
+                  <div class="account-section-content">
+                    <div class="account-section-title compact">{{'card.product-lines' | translate}}</div>
+                      <div class="products-grid">
+                        @if (acct.productLinesBySalesBusinessUnit && acct.productLinesBySalesBusinessUnit.length > 0) {
+                          @for (productFamily of acct.productLinesBySalesBusinessUnit; track productFamily) {
+                            <div class="products-grid-item">{{ productFamily.salesBusinessUnit }}
+                              <ul>
+                                @for (line of productFamily.productLines; track line) {
+                                  <li class="ms-1 products-grid-item-list">{{ line }}</li>
+                                }
+                              </ul>
+                            </div>
+                          }
+                        } @else {
+                          <div class="products-grid-item">None Found</div>
+                        }
+                      </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </mat-card-content>
+        </mat-card>
+        <br>
+      }
+      @empty {
+        <mat-card appearance="outlined">
+          @if (firstSearch) {
+            <mat-card-header>
+              <mat-card-title>{{'card.begin-a-new-search' | translate }}</mat-card-title>
+              <mat-card-subtitle></mat-card-subtitle>
+            </mat-card-header>
+            <mat-card-content>
+              <p>{{'card.start-by-typing' | translate}}</p>
+              <p>{{'card.use-filters' | translate }}</p>
+            </mat-card-content>
+          }
+          @else {
+            <mat-card-content>{{'card.no-accounts-matching' | translate }}</mat-card-content>
+          }
+        </mat-card>
+      }
+    }
+  </div>
+}

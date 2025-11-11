@@ -1,0 +1,34 @@
+:host {
+  .label-bar {
+    padding: 0 1rem 0.5rem 1rem;
+    font-weight: var(--polaris-font-weight-500);
+  }
+
+  .page-level-selector {
+    padding: 0.5rem 1rem 0.5rem 2.5rem;
+    font-weight: var(--polaris-font-weight-500);
+    color: var(--polaris-white);
+    background-color: var(--polaris-primary);
+
+    &-title {
+      text-transform: uppercase;
+    }
+  }
+
+  .utility-bar {
+    .vertical-divider {
+      height: 100%;
+      border-left: 1px solid var(--theme-gray-200);
+    }
+  }
+
+  .permissions-list {
+    .permission {
+      padding: 0.35rem 1rem 0.35rem 2.75rem;
+
+      &:not(:last-child) {
+        border-bottom: 1px solid var(--theme-gray-200);
+      }
+    }
+  }
+}

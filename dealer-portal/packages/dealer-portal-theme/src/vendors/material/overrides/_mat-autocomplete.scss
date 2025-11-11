@@ -1,0 +1,10 @@
+.polaris-search-bar-autocomplete-panel {
+  border: var(--polaris-border-width) var(--polaris-border-style) var(--polaris-gray-500) !important;
+  box-shadow: none !important;
+  max-height: 11rem !important;
+
+  &.polaris-search-bar-autocomplete-panel-chips {
+    max-height: 13rem !important;
+    padding-top: 0px !important;
+  }
+}

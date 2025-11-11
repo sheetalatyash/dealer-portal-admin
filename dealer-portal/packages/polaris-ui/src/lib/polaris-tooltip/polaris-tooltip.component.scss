@@ -1,0 +1,20 @@
+@use '@angular/material' as mat;
+
+:host {
+  pointer-events: none;
+
+  .tooltip-container {
+    @include mat.elevation(4);
+    background-color: var(--polaris-white);
+    color: var(--polaris-black);
+    padding: 1rem;
+    border-radius: var(--polaris-border-radius);
+    max-width: 500px;
+    min-width: 100px;
+    width: max-content;
+    word-wrap: break-word;
+    white-space: normal;
+    position: absolute;
+    z-index: 1000;
+  }
+}

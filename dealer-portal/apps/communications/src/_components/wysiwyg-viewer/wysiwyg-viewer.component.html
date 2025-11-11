@@ -1,0 +1,19 @@
+<div>
+  <div
+    class="wysiwyg-content"
+    [ngClass]="{ truncate: truncateContent }"
+    [ngStyle]="{
+      '-webkit-line-clamp': maxLines > 0 && truncateContent ? maxLines : 'none',
+      'line-clamp': maxLines > 0 && truncateContent ? maxLines : 'none'
+    }"
+    [innerHTML]="content"
+    #contentSpan
+  ></div>
+  <a
+    *ngIf="maxLines > 0 && (isContentTruncated(contentSpan) || !truncateContent)"
+    href="#"
+    (click)="toggleContentTruncation($event)"
+  >
+    Read {{ truncateContent ? 'More' : 'Less' }}...
+  </a>
+</div>

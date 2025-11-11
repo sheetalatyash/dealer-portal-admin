@@ -1,0 +1,19 @@
+arrowParens: always
+bracketSpacing: true
+cursorOffset: -1
+embeddedLanguageFormatting: auto
+endOfLine: lf
+htmlWhitespaceSensitivity: ignore
+insertPragma: false
+printWidth: 120
+proseWrap: preserve
+quoteProps: as-needed
+semi: true
+singleQuote: true
+tabWidth: 2
+trailingComma: es5
+useTabs: false
+overrides:
+  - files: "**/*.html"
+    options:
+      trailingComma: all

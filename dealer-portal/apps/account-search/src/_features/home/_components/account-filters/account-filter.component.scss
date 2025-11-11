@@ -1,0 +1,38 @@
+:host {
+
+  // Filter Panel Vars
+  $filter-panel-border-style: var(--polaris-border-width) var(--polaris-border-style) var(--polaris-border-color) !default;
+  $filter-panel-padding: 0.7rem !default;
+
+  .account-filter {
+    &-search-bar {
+      &-error {
+        color: var(--polaris-danger);
+      }
+    }
+    &-panel {
+      border: $filter-panel-border-style;
+      padding: 0 $filter-panel-padding;
+
+      &-header {
+        padding: $filter-panel-padding 0;
+
+        &-title {
+          font-weight: var(--polaris-font-weight-600);
+        }
+      }
+
+      &-footer {
+        border-top: $filter-panel-border-style;
+        padding: $filter-panel-padding 0;
+      }
+
+      &-common-class-codes {
+        font-size: 0.875rem;
+        border-top: $filter-panel-border-style;
+        margin: 0;
+        padding: $filter-panel-padding 0;
+      }
+    }
+  }
+}

@@ -1,0 +1,65 @@
+:host {
+  .polaris-table-base {
+    .mat-mdc-header-row {
+      font-weight: var(--polaris-font-weight-700);
+      height: auto;
+    }
+
+    .mat-mdc-header-cell {
+      padding: 0.75rem;
+      // Apply half opacity to the sort arrow all the time
+      ::ng-deep .mat-sort-header-arrow {
+        opacity: 0.54 !important;
+        transform: translateY(0) !important;
+      }
+      // Apply full opacity to the sort arrow when the column is sorted
+      &:has(.mat-sort-header-sorted) {
+        ::ng-deep .mat-sort-header-arrow {
+          opacity: 1 !important;
+        }
+      }
+
+      ::ng-deep .mat-sort-header-container {
+        justify-content: space-between;
+        width: 100%;
+      }
+    }
+
+    .mat-mdc-cell {
+      padding: 0.5rem;
+      vertical-align: middle;
+      white-space: nowrap;
+    }
+
+    .mat-mdc-row {
+      height: auto;
+
+      &:hover {
+        background-color: var(--theme-primary-100);
+      }
+    }
+  }
+
+  .header {
+    &-start > .mat-sort-header {
+      display: flex;
+      justify-content: start;
+    }
+
+    &-center > .mat-sort-header {
+      display: flex;
+      justify-content: center;
+    }
+
+    &-end > .mat-sort-header {
+      display: flex;
+      justify-content: end;
+    }
+
+    &-icon-column {
+      max-width: 70px;
+    }
+  }
+}
+
+// TODO: styles for parent/child rows

@@ -1,0 +1,99 @@
+<div class="polaris-connect container-fluid d-flex flex-column gap-4">
+  @if (videoCategoryTabs$ | async; as videoCategoryTabs) {
+
+    <!-- Header -->
+    <div class="d-flex flex-column gap-4">
+
+      <!-- BreadCrumb -->
+      <div class="d-flex">
+        <polaris-href
+          [underline]="false"
+          [routerLink]="Route.Home"
+          ui-test-id="back-to-home-breadcrumb">
+          <polaris-icon leading-icon size="xl">arrow-left</polaris-icon>
+          <span>{{ 'title' | translate }}</span>
+        </polaris-href>
+      </div>
+
+      <!-- Title -->
+      <div class="d-flex gap-3 align-items-center">
+        <polaris-heading h3 ui-test-id="polaris-connect-title">{{ 'widgets.polaris-connect.title' | translate }}</polaris-heading>
+      </div>
+
+      <!-- Tabs -->
+        <polaris-tab-bar [tabs]="videoCategoryTabs" (tabSelected)="changeVideoCategoryTab($event)"></polaris-tab-bar>
+    </div>
+
+    <!-- Content -->
+    @if (communicationVideos$ | async; as communicationVideos) {
+      <div class="polaris-connect-content row d-flex">
+        <div class="d-flex flex-column gap-3 col-12 col-lg-8">
+          <div>{{ 'widgets.polaris-connect.description' | translate }}</div>
+          @if (communication$ | async; as communication) {
+            <div class="polaris-connect-content-video">
+
+              @if (attachmentUrl$ | async; as attachmentUrl) {
+                <video controls controlsList="nodownload" oncontextmenu="return false;">
+                  <source [src]="attachmentUrl" type="video/mp4" />
+                  Your browser does not support the video tag.
+                </video>
+              } @else {
+                @if (loading) {
+                  <polaris-loader></polaris-loader>
+                }
+              }
+
+            </div>
+            <div class="polaris-connect-content-data d-flex flex-column gap-2">
+              <div class="polaris-connect-content-data-title d-flex align-items-center gap-2">
+
+                @if (isNewCommunication(communication.startDate)) {
+                  <polaris-badge [color]="polarisBadgeColor.Warning">{{ 'New' | translate }}</polaris-badge>
+                }
+                <polaris-heading h4>{{ communication.title }}</polaris-heading>
+              </div>
+              <div>{{ communication.startDate | date: 'shortDate'}}</div>
+              <div [innerHTML]="communication.message"></div>
+              <polaris-divider></polaris-divider>
+            </div>
+          } @else {
+            <polaris-loader></polaris-loader> 
+          }
+
+        </div>
+
+        <div class="d-flex col-12 col-lg-4 mt-5 mt-lg-0">
+          <div class="d-flex flex-column">
+            @for (category of videoCategoryTabs; track category.id) {
+              @if (category.id === 'all' && selectedVideoCategory?.id === 'all') {
+                <polaris-heading ui-class="pt-4 pb-2 ps-3" @fadeInOut h6>{{ category.label }}</polaris-heading>
+                <div @fadeInOut class="d-flex flex-column">
+                  @for (video of communicationVideos; track video) {
+                    <comm-video-thumbnail
+                      [videoCommunication]="video"
+                      [active]="isActiveCommunication(video.communicationGuid)"
+                      (thumbnailClicked)="loadVideo(video.communicationGuid)">
+                    </comm-video-thumbnail>
+                  }
+                </div>
+              } @else if (category.id !== 'all' && selectedVideoCategory?.id === category.id) {
+                <polaris-heading ui-class="pt-4 pb-2 ps-3" @fadeInOut h6>{{ category.label }}</polaris-heading>
+                <div @fadeInOut class="d-flex flex-column">
+                  @for (video of communicationVideos; track video) {
+                    @if (isSelectedCategory($any(video.productLines))) {
+                      <comm-video-thumbnail
+                        [videoCommunication]="video"
+                        [active]="isActiveCommunication(video.communicationGuid)"
+                        (thumbnailClicked)="loadVideo(video.communicationGuid)">
+                      </comm-video-thumbnail>
+                    }
+                  }
+                </div>
+              }
+            }
+          </div>
+        </div>
+      </div>
+    }
+  }
+</div>

@@ -1,0 +1,8 @@
+@use '../../../../packages/dealer-portal-theme/src/themes/polaris-base-theme/mixins/breakpoints' as breakpoints;
+
+.app-container {
+  @include breakpoints.media-breakpoint-up(md) {
+    padding-right: 28px !important;
+    padding-left: 28px !important;
+  }
+}

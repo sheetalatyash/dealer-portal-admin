@@ -1,0 +1,18 @@
+<div
+  class="polaris-paginator"
+  [ngClass]="customClass"
+  [attr.data-test-id]="testId"
+  (click)="emitClickEvent($event)"
+  (mouseenter)="emitMouseEnterEvent($event)"
+  (mouseleave)="emitMouseLeaveEvent($event)"
+>
+  <span class="polaris-paginator-count">
+    Displaying {{ displayedElements > 0 ? '1' : '0' }}-{{ displayedElements }} of {{ maxElements }}
+  </span>
+  @if(displayedElements < maxElements) {
+  <polaris-button ui-theme="secondary" ui-class="d-none d-md-block mt-2" (onClick)="onLoadMore()">
+    Load More
+  </polaris-button>
+  <polaris-button ui-theme="tertiary" ui-class="d-md-none" (onClick)="onLoadMore()"> Load More </polaris-button>
+  }
+</div>

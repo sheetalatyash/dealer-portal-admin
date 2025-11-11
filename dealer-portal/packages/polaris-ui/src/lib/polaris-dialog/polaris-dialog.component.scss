@@ -1,0 +1,22 @@
+:host {
+  .polaris-dialog {
+    padding: 1.25rem;
+    gap: 1rem;
+  }
+}
+
+::ng-deep .mdc-dialog__content {
+  min-height: 5rem;
+}
+
+::ng-deep .mdc-dialog__title,
+::ng-deep .mdc-dialog__content,
+::ng-deep .mdc-dialog__actions {
+  padding: unset !important;
+  margin: unset !important;
+
+  &::before {
+    display: none !important;
+    height: unset !important;
+  }
+}

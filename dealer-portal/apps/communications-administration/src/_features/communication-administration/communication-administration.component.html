@@ -1,0 +1,115 @@
+<div class="communications-administration-wrapper">
+  <div class="communications-listing">
+    <div class="communications-listing-header d-flex justify-content-between pb-4 mb-3">
+      <div class="d-flex flex-r gap-2">
+        <polaris-heading h2 ui-test-id="communications-listing-title">
+          {{'title.comm-admin' | translate}}
+        </polaris-heading>
+        <polaris-href ui-class="ms-2" [underline]="false" (onClick)="openHelpDialog()">
+          <polaris-icon trailing-icon size="xxl">info</polaris-icon>
+        </polaris-href>
+
+      </div>
+
+      <div class="communications-listing-header-actions d-flex flex-column align-items-end gap-2">
+        <polaris-button ui-test-id="add-communication" (onClick)="onAddCommunication()">
+          {{'create-new-message' | translate}}
+        </polaris-button>
+      </div>
+    </div>
+  </div>
+
+  <polaris-search-bar ui-class="col-3" ui-placeholder="Search all communications"
+    ui-test-id="communication-listing-search" (onSearch)="onSearch($event)">
+  </polaris-search-bar>
+
+  <polaris-chip-list ui-class="mt-2 mb-4 gap-2" [chips]="filters" (onChipSelect)="onChangeFilter($event)">
+  </polaris-chip-list>
+
+  @if(communications$ | async; as communications) {
+  <polaris-table ui-test-id="communication-listing-table" [data]="communications" [config]="tableConfig"
+                 (onLoadMore)="onLoadMore()">
+    <polaris-table-custom-cell columnName="title">
+      <ng-template let-element>
+        <div class="communications-listing-table-title" [title]="element.title">
+          {{ element.title }}
+        </div>
+      </ng-template>
+    </polaris-table-custom-cell>
+
+    <polaris-table-date-cell columnName="startDate" key="startDate" dateFormat="shortDate"></polaris-table-date-cell>
+    <polaris-table-date-cell columnName="endDate" key="endDate" dateFormat="shortDate"></polaris-table-date-cell>
+
+    <polaris-table-custom-cell columnName="group">
+      <ng-template let-element>
+        {{ element.group?.name }}
+      </ng-template>
+    </polaris-table-custom-cell>
+
+    <polaris-table-custom-cell columnName="subGroup">
+      <ng-template let-element>
+        <span>
+          {{ element.subGroup?.name }}
+        </span>
+      </ng-template>
+    </polaris-table-custom-cell>
+
+    <polaris-table-custom-cell columnName="createdOn">
+      <ng-template let-element>
+        <div class="communications-listing-table-created-on">
+          <div>
+            {{ element.createdDate | date : 'shortDate' }}
+          </div>
+          <div>
+            {{ element.createdDate | date : 'mediumTime' }}
+          </div>
+        </div>
+      </ng-template>
+    </polaris-table-custom-cell>
+
+    <polaris-table-custom-cell columnName="status">
+      <ng-template let-element>{{ element.status }} </ng-template>
+    </polaris-table-custom-cell>
+
+    <polaris-table-custom-cell columnName="translations">
+      <ng-template let-element>
+        <div class="d-flex flex-column">
+
+          @if(element.cultureCodes?.length) {
+          <!-- Add each language as a separate line -->
+          @for(cultureCode of element.cultureCodes; track cultureCode + index; let first = $first, count = $count, last
+          = $last, index = $index) {
+          <!-- Don't show a link for the first language -->
+          @if(first) {
+          {{ cultureCode }}{{ count > 1 ? ',' : '' }}
+          } @else {
+          <polaris-href ui-class="d-inline-block"
+                        [ui-test-id]="'edit-communication-translation-' + element.communicationGuid + '-' + cultureCode"
+                        (onClick)="onEditCommunicationTranslation(element.communicationGuid, cultureCode)">
+            {{ cultureCode }}{{ !last ? ',' : '' }}
+          </polaris-href>
+          }
+          } }
+        </div>
+
+      </ng-template>
+    </polaris-table-custom-cell>
+
+    <polaris-table-custom-cell columnName="actions">
+      <ng-template let-element>
+        <polaris-href [ui-test-id]="'edit-communication-' + element.communicationGuid"
+                      (onClick)="onEditCommunication(element.communicationGuid)">{{'edit' | translate}}</polaris-href>
+      </ng-template>
+    </polaris-table-custom-cell>
+    <polaris-table-custom-cell columnName="delete">
+      <ng-template let-element>
+        @if (element.status === communicationStatusType.Draft) {
+          <polaris-icon-button class="btn btn-danger" (click)="openDeleteDialog(element)">
+            <polaris-icon size="xl" color="dark" [ui-tooltip]="'delete' | translate" [tooltipShowDelay]="1000">delete</polaris-icon>
+          </polaris-icon-button>
+        }
+      </ng-template>
+    </polaris-table-custom-cell>
+  </polaris-table>
+  }
+</div>

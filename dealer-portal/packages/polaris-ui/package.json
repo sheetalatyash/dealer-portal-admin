@@ -1,0 +1,28 @@
+{
+  "name": "@dealer-portal/polaris-ui",
+  "version": "0.0.1",
+  "scripts": {
+    "compodoc": "npx compodoc -p tsconfig.doc.json --hideGenerator --customLogo ../dealer-portal-theme/src/images/logos/polaris-logo.svg --serve"
+  },
+  "peerDependencies": {
+    "@angular/animations": "19.2.4",
+    "@angular/cdk": "19.2.7",
+    "@angular/common": "19.2.4",
+    "@angular/core": "19.2.4",
+    "@angular/forms": "19.2.4",
+    "@angular/material": "19.2.7",
+    "@ngx-translate/core": "^16.0.4",
+    "@angular/router": "19.2.4",
+    "@dealer-portal/polaris-core": "^0.0.1",
+    "@dealer-portal/polaris-shared": "^0.0.1",
+    "@ngneat/until-destroy": "^10.0.0",
+    "@tinymce/tinymce-angular": "^8.0.1",
+    "jsdom": "^26.0.0",
+    "rxjs": "~7.8.0",
+    "tinymce": "^7.4.1"
+  },
+  "sideEffects": false,
+  "publishConfig": {
+    "access": "public"
+  }
+}

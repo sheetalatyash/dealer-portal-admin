@@ -1,0 +1,122 @@
+<div class="polaris-checkbox-group d-flex gap-2"
+     [id]="id"
+     [attr.data-test-id]="testId"
+     [class.disabled]="formGroup.disabled"
+     [ngClass]="[orientationClass, customClass]">
+
+  <!-- Errors -->
+  @if (formGroup.invalid && formGroup.touched) {
+    <polaris-error
+      [visible]="formGroup.invalid && formGroup.touched"
+      [errors]="errors"></polaris-error>
+  }
+
+  <!-- Label -->
+  @if (label && showLabel) {
+    <mat-label>{{ label }}</mat-label>
+  }
+
+  <!-- Instructions -->
+  @if (instructions) {
+    <p class="d-flex gap-2 align-items-center">
+      <i>{{ instructions }}</i>
+      @if (instructionsTooltip) {
+        <polaris-icon size="xl" color="primary" [ui-tooltip]="instructionsTooltip">info</polaris-icon>
+      }
+    </p>
+  }
+
+  <!-- Checkbox Group -->
+  @if (options) {
+    <section
+      class="flex-wrap d-flex gap-{{optionGap}} checkbox-header-{{showSelectAllAsHeader}}"
+      [formGroup]="formGroup"
+      [ngClass]="[orientationClass, checkboxWrapperClass]"
+      (mouseenter)="emitMouseEnterEvent($event)"
+      (mouseleave)="emitMouseLeaveEvent($event)">
+
+      <!-- Select All Checkbox -->
+      @if (showSelectAll) {
+        @if (showSelectAllAsHeader) {
+          <div
+            class="checkbox-header d-flex gap-{{optionGap}} py-2"
+            [ngClass]="[orientationClass, checkboxWrapperClass]">
+            <polaris-checkbox
+              [labelPosition]="labelPosition"
+              [ui-class]="checkboxClass"
+              [ui-form-control]="selectAllFormControl"
+              [ui-test-id]="'select-all-checkbox'"
+              [ui-theme]="'secondary'"
+              [fullWidth]="checkboxFullWidth"
+              [minWidth]="optionMinWidth"
+              [ui-label]="selectAllLabel">
+            </polaris-checkbox>
+          </div>
+        } @else {
+          <polaris-checkbox
+            [labelPosition]="labelPosition"
+            [ui-class]="checkboxClass"
+            [ui-form-control]="selectAllFormControl"
+            [ui-test-id]="'select-all-checkbox'"
+            [fullWidth]="checkboxFullWidth"
+            [minWidth]="optionMinWidth"
+            [ui-label]="selectAllLabel">
+          </polaris-checkbox>
+
+          @if (dividers) {
+            <polaris-divider></polaris-divider>
+          }
+        }
+      }
+
+      <!-- Checkbox -->
+      @for (option of options; let isLast = $last; track option.formControlName) {
+        <!-- Read Only Mode (Show values as (✔) or (✖) icons) -->
+        @if (readonly) {
+          <div class="d-flex align-items-center gap-2">
+            @if (displayReadonlyIcons) {
+              <polaris-icon
+                [style.min-width]="option.minWidth"
+                class="text-center"
+                color="{{option.selected ? 'success' : 'danger'}}"
+              >{{option.selected && displayTruthyValues ? 'check' : displayFalsyValues ? 'close' : ''}}</polaris-icon>
+            }
+
+            @if ((option.selected && displayTruthyValues) || (!option.selected && displayFalsyValues)) {
+              <span>{{ option.label }}</span>
+            }
+          </div>
+
+          <!-- Default Polaris Checkbox -->
+        } @else {
+          <polaris-checkbox
+            [ui-class]="checkboxClass"
+            [ui-form-control]="getFormControl(option.formControlName)"
+            [ui-test-id]="(option.testId || 'polaris-option-unknown') + '-checkbox'"
+            [minWidth]="optionMinWidth"
+            [labelPosition]="labelPosition"
+            [ui-tooltip]="option.tooltip || ''"
+            [ui-label]="option.label"
+            [labelClass]="option.labelClass"
+            [fullWidth]="checkboxFullWidth"
+            [optional]="option.optional">
+          </polaris-checkbox>
+
+          @if (option.customContent) {
+            <div class="checkbox-custom-content mb-3">
+              @if (isTemplateRef(option.customContent)) {
+                <ng-container *ngTemplateOutlet="option.customContent"></ng-container>
+              } @else {
+                <div [innerHTML]="option.customContent"></div>
+              }
+            </div>
+          }
+        }
+
+        @if (dividers && !isLast) {
+          <polaris-divider></polaris-divider>
+        }
+      }
+    </section>
+  }
+</div>

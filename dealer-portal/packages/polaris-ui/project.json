@@ -1,0 +1,95 @@
+{
+  "name": "polaris-ui",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "packages/polaris-ui/src",
+  "prefix": "",
+  "projectType": "library",
+  "tags": [],
+  "targets": {
+    "build": {
+      "executor": "@nx/angular:ng-packagr-lite",
+      "outputs": ["{workspaceRoot}/dist/{projectRoot}"],
+      "options": {
+        "project": "packages/polaris-ui/ng-package.json"
+      },
+      "configurations": {
+        "production": {
+          "tsConfig": "packages/polaris-ui/tsconfig.lib.prod.json"
+        },
+        "local": {
+          "tsConfig": "packages/polaris-ui/tsconfig.lib.json"
+        }
+      },
+      "defaultConfiguration": "production"
+    },
+    "test": {
+      "executor": "@nx/jest:jest",
+      "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
+      "options": {
+        "jestConfig": "packages/polaris-ui/jest.config.ts"
+      }
+    },
+    "lint": {
+      "executor": "@nx/eslint:lint",
+      "options": {
+        "lintFilePatterns": ["packages/polaris-ui/package.json"]
+      }
+    },
+    "storybook": {
+      "executor": "@storybook/angular:start-storybook",
+      "options": {
+        "port": 4400,
+        "configDir": "packages/polaris-ui/.storybook",
+        "browserTarget": "polaris-ui:build-storybook",
+        "compodoc": true,
+        "compodocArgs": ["-e", "json", "-d", "packages/polaris-ui"]
+      },
+      "configurations": {
+        "ci": {
+          "quiet": true
+        }
+      }
+    },
+    "build-storybook": {
+      "executor": "@storybook/angular:build-storybook",
+      "outputs": ["{options.outputDir}"],
+      "options": {
+        "outputDir": "dist/storybook/polaris-ui",
+        "configDir": "packages/polaris-ui/.storybook",
+        "browserTarget": "polaris-ui:build-storybook",
+        "compodoc": true,
+        "compodocArgs": ["-e", "json", "-d", "packages/polaris-ui"]
+      },
+      "configurations": {
+        "ci": {
+          "quiet": true
+        }
+      }
+    },
+    "test-storybook": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "test-storybook -c packages/polaris-ui/.storybook --url=http://localhost:4400"
+      }
+    },
+    "static-storybook": {
+      "executor": "@nx/web:file-server",
+      "options": {
+        "buildTarget": "polaris-ui:build-storybook",
+        "staticFilePath": "dist/storybook/polaris-ui",
+        "spa": true
+      },
+      "configurations": {
+        "ci": {
+          "buildTarget": "polaris-ui:build-storybook:ci"
+        }
+      }
+    },
+    "release": {
+      "executor": "nx-release:build-update-publish",
+      "options": {
+        "libName": "polaris-ui"
+      }
+    }
+  }
+}

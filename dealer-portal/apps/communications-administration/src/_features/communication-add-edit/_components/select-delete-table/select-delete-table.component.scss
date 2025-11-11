@@ -1,0 +1,29 @@
+polaris-table {
+  .error-text {
+    font-weight: var(--polaris-font-weight-600);
+    color: var(--polaris-red);
+  }
+
+  ::ng-deep .actions-row {
+    background-color: var(--polaris-white) !important;
+    border: var(--polaris-border-width) var(--polaris-border-style) var(--polaris-gray-300);
+  }
+
+  .delete-all-button {
+    align-items: center;
+    background-color: var(--polaris-secondary-bg);
+    border: var(--polaris-border-width) var(--polaris-border-style) var(--polaris-border-color);
+    border-top: none;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    min-height: 3.5rem;
+    padding: 0.5rem 0;
+  }
+
+  .status-filters-button {
+    background: none;
+    border: none;
+    padding: 0;
+  }
+}

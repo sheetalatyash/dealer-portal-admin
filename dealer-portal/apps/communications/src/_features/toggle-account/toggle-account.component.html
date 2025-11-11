@@ -1,0 +1,25 @@
+<div class="container-fluid toggle-account">
+  <ng-container>
+    <div class="toggle-account-header d-flex justify-content-between pb-4 mb-3">
+      <div class="d-flex flex-column">
+        <polaris-heading h1 ui-test-id="toggle-account-title">
+          {{ title}}
+        </polaris-heading>
+        <div class="toggle-account-header-link d-flex align-items-center gap-1" (click)="openHelpDialog()">
+          <a data-test-id="help-href">{{'help' | translate}} </a><polaris-icon size="xl">info</polaris-icon>
+        </div>
+      </div>
+    </div>
+    <div >
+      <form [formGroup]="searchForm">
+        <div class="search-term-row d-flex flex-column flex-md-row gap-4 align-items-center">
+          <polaris-search-bar ui-placeholder="{{ 'toggle-account-view.search-placeholder' | translate }}"
+                              ui-test-id="user-search-term"
+                              (onSearch)="applySearch($event)">
+          </polaris-search-bar>
+        </div>
+        <comm-account-table [searchTerm$]="search$" data-test-id="account-table"></comm-account-table>
+      </form>
+    </div>
+  </ng-container>
+</div>

@@ -1,0 +1,166 @@
+@if(isInternalUser) {
+  <div class="communication-list-internal-user d-flex flex-column justify-content-between align-items-center ">
+    <div class="d-flex flex-column justify-content-between align-items-center ">
+      <div class="communication-list-internal-user-primary-message d-flex flex-row justify-content-between align-items-center ">
+        <polaris-icon size="xxl">no-comm</polaris-icon>
+        <div class="communication-list-internal-user-primary-message-message">{{'notification.internal-user-message' | translate}}</div>
+      </div>
+      <div class="communication-list-internal-user-visit">
+        {{'notification.internal-user-redirect' | translate}}
+        <a [href]="redirectUrl">Account Search</a> {{'notification.internal-user-redirect-page' | translate}}.
+      </div>
+    </div>
+  </div>
+  }
+  @else{
+  <!-- List Component Header -->
+  <div class="communication-list-header d-flex justify-content-between align-items-center gap-4 ps-4 pe-3 py-3">
+    <span class="communication-list-header-title">{{'title' | translate}}</span>
+    <polaris-icon-button ui-class="d-md-none" (onClick)="showPanel = !showPanel">
+      @if(showPanel){
+      <polaris-icon size="xxl">arrow-up</polaris-icon>
+      } @else {
+      <polaris-icon size="xxl">arrow-down</polaris-icon>
+      }
+    </polaris-icon-button>
+  </div>
+  <!-- List Component Body -->
+  <div class="communication-list-ctr d-md-block" [ngClass]="{ 'd-none': !showPanel }">
+    <!-- List Filters and Search -->
+    <div class="d-flex flex-column gap-2 gap-sm-2 px-sm-4 pb-sm-3" [class]="!searchSelected ? 'flex-row-reverse-communication': ''">
+      <div class="d-flex flex-row">
+        <div class="communication-list-header-search">
+          <polaris-search-bar ui-class="col-12" [ui-placeholder]="'search' | translate" ui-test-id="communication-listing-search" (onSearch)="onSearch($event)"></polaris-search-bar>
+        </div>
+        <polaris-href ui-class="ms-2" [underline]="false" (onClick)="openHelpDialog()">
+          <polaris-icon trailing-icon size="xxl">info</polaris-icon>
+        </polaris-href>
+      </div>
+      @if(!searchSelected) {
+      <div class="communication-list-header-tabs">
+        <polaris-tab-bar [tabs]="tabs" (tabSelected)="onTabSelected($event)" [ui-class]="'communication-list-header-tabs-selected'"></polaris-tab-bar>
+      </div>
+      }
+    </div>
+    <!-- Action Bar -->
+    <div class="communication-list-action-bar d-flex align-items-center justify-content-between py-2 py-md-3 ps-2 pe-3 pe-md-4">
+      <!-- Action Bar Select Items -->
+      <button class="communication-list-action-bar-select-items" [matMenuTriggerFor]="selectMenu">
+        <mat-checkbox tabindex="-1"
+                      aria-hidden="true"
+                      [indeterminate]="isSelectionIndeterminate"
+                      [checked]="isSelectionChecked"></mat-checkbox>
+        <polaris-icon size="lg">arrow-dropdown</polaris-icon>
+        <mat-menu #selectMenu="matMenu">
+          <ng-template matMenuContent>
+            @for(selectAction of selectActions; track selectAction) {
+            <button mat-menu-item
+                    class="communication-list-menu-item"
+                    (click)="selectAction.action()">
+              {{ selectAction.label }}
+            </button>
+            }
+          </ng-template>
+        </mat-menu>
+      </button>
+      <!-- Action Bar Communication Actions -->
+      @if(hasSelectedItems) {
+      <div class="flex-grow-1 d-flex flex-wrap gap-md-3 px-2">
+        @for(communicationAction of selectedCommunicationsActions; track communicationAction) {
+        <ng-container>
+          @if(communicationAction.display) {
+          <polaris-icon-button [ui-disabled]="communicationAction.isDisabled" (onClick)="communicationAction.action()">
+            <polaris-icon leading-icon size="lg">{{ communicationAction.icon }}</polaris-icon>
+            <span class="d-none d-md-block">{{ communicationAction.label }}</span>
+          </polaris-icon-button>
+          }
+        </ng-container>
+        }
+      </div>
+      }
+      <!-- Action Bar Sort (If we are searching we don't want to sort) -->
+      @if(!searchSelected) {
+        <polaris-icon-button [matMenuTriggerFor]="sortMenu">
+          <span class="communication-list-action-bar-sort">{{'table.sort.title' | translate}}</span>
+          <polaris-icon trailing-icon size="lg">arrow-down</polaris-icon>
+        </polaris-icon-button>
+        <mat-menu #sortMenu="matMenu" xPosition="before">
+          <ng-template matMenuContent>
+            <button mat-menu-item
+                    class="communication-list-menu-item"
+                    [ngClass]="{ 'communication-list-active-menu-item': sortByDateDescending }"
+                    (click)="onSortCommunications(true)">
+              {{'table.sort.new-to-old' | translate}}
+            </button>
+            <button mat-menu-item
+                    class="communication-list-menu-item"
+                    [ngClass]="{ 'communication-list-active-menu-item': !sortByDateDescending }"
+                    (click)="onSortCommunications(false)">
+              {{'table.sort.old-to-new' | translate}}
+            </button>
+          </ng-template>
+        </mat-menu>
+      }
+    </div>
+    <!-- List Component Content -->
+    @if(isLoading) {
+    <polaris-loader [loaderSize]="loaderSize"></polaris-loader>
+    }
+    @else if(displayedCommunications && displayedCommunications.length > 0) {
+    @if(searchSelected) {
+    <div class="communication-list-search-message">{{displayedCommunications.length}} {{ 'filtered-communication-messages' | translate}}</div>
+    }
+    @for(communication of displayedCommunications; track communication.communicationGuid) {
+    <comm-communication-list-item [communication]="communication"
+                                  [isSelected]="selectedCommunications.has(communication)"
+                                  [isImpersonating]="isImpersonating"
+                                  (communicationClicked)="onCommunicationClicked($event)"
+                                  (communicationSelected)="onCommunicationSelected($event)"
+                                  (communicationFavorited)="onToggleFavoriteCommunication($event)">
+    </comm-communication-list-item>
+    }
+    }
+    @else if(displayedCommunications && displayedCommunications.length === 0 && !isLoading) {
+    <!-- Empty List Content -->
+    <div class="communication-list-empty-content d-flex justify-content-center">
+      <polaris-icon class="py-5 communication-list-empty-content-no-data" size="xxl">{{ noDataIcon }}</polaris-icon>
+      <span class="py-5">{{ noDataMessage | translate}}</span>
+    </div>
+    <!-- List Component Footer -->
+    }
+
+    <div class="communication-list-footer d-flex flex-column align-items-center justify-content-center py-2">
+      <span class="communication-list-footer-count">
+        {{
+ 'table.paging.displaying' | translate:
+        {
+          '0': displayedCommunications.length > 0 ? '1' : '0',
+          '1': displayedCommunications.length,
+          '2': totalFilteredRecords,
+        }
+        }}
+      </span>
+      @if(hasMorePages) {
+      <polaris-button ui-theme="secondary"
+                      ui-class="d-none d-md-block mt-2"
+                      (onClick)="onLoadMore()">
+        {{'table.paging.load-more' | translate}}
+      </polaris-button>
+      <polaris-button ui-theme="tertiary" ui-class="d-md-none" (onClick)="onLoadMore()">
+        {{'table.paging.load-more' | translate}}
+      </polaris-button>
+      }
+
+      @if(communicationFilter === communicationListTab.Alerts || communicationFilter === communicationListTab.Programs) {
+      <polaris-button ui-theme="secondary"
+                      ui-class="d-none d-md-block mt-2"
+                      (onClick)="onLoadPastCommunications()">
+        {{viewPastCommunicationsTranslationKey | translate}}
+      </polaris-button>
+      <polaris-button ui-theme="tertiary" ui-class="d-md-none" (onClick)="onLoadPastCommunications()">
+        {{viewPastCommunicationsTranslationKey | translate}}
+      </polaris-button>
+      }
+    </div>
+  </div>
+  }

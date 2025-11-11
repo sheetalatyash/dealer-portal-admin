@@ -1,0 +1,145 @@
+<div class="container-fluid user-page d-flex flex-column">
+
+  <div class="user-page-header sticky-top d-flex flex-column ">
+    <!-- User Page Header -->
+    <div class="d-flex justify-content-between">
+      <!-- Heading -->
+      <polaris-heading h3 ui-test-id="user-profile-title">
+        <span>{{ pageHeader }}</span>
+        @if (userFullName() !== '') {
+          <span> - {{ userFullName() }}</span>
+        }
+      </polaris-heading>
+
+      <!-- Actions -->
+      <div class="user-page-header-actions d-none d-md-flex">
+        @for (button of userPageActionButtons(); track button) {
+          @if (button.visible) {
+            <polaris-button
+              *accessControl="accessControlLevel.ReadWrite"
+              ui-test-id="user-admin-{{ button.label }}-button"
+              [ui-theme]="button.theme"
+              (onClick)="startUserPageAction(button)">
+              {{ button.label }}
+            </polaris-button>
+          }
+        }
+      </div>
+    </div>
+
+    <div class="d-flex flex-column gap-2">
+      @if (userPageNavigationTabs(); as navigationTabs) {
+        <polaris-tab-bar [tabs]="navigationTabs" (tabSelected)="changeNavigationTab($event)"></polaris-tab-bar>
+      }
+
+      @if (!isDetailsView && errorPayloads().length > 0) {
+        <ua-error-list></ua-error-list>
+      }
+    </div>
+  </div>
+  @if (showLoader()) {
+     <polaris-loader></polaris-loader>
+  } @else {
+    @if (userDetails(); as userDetails) {
+      <div class="user-page-content">
+        @if (userDetails) {
+          <!-- Content goes here -->
+
+            <!-- Profile (Default) Tab View -->
+            <div [hidden]="tabId !== 'profile'">
+              <polaris-accordion #userPageAccordion class="d-flex flex-column">
+
+                <!-- Contact Info Panel -->
+                <polaris-expansion-panel ui-test-id="user-contact-info">
+                  <polaris-expansion-panel-title>{{ 'form.title.contact-info' | translate }}</polaris-expansion-panel-title>
+                  <ua-contact-info-template
+                    [isAddView]="isAddView"
+                    [isDetailsView]="isDetailsView">
+                  </ua-contact-info-template>
+                </polaris-expansion-panel>
+
+                <!-- Activity Panel -->
+                <polaris-expansion-panel ui-test-id="user-activity">
+                  <polaris-expansion-panel-title>{{ 'form.title.activity' | translate }}</polaris-expansion-panel-title>
+                  <ua-activity-template
+                    [isAddView]="isAddView"
+                    [isDetailsView]="isDetailsView">
+                  </ua-activity-template>
+                </polaris-expansion-panel>
+
+                <!-- Departments Panel -->
+                <polaris-expansion-panel ui-test-id="user-departments">
+                  <polaris-expansion-panel-title>{{ 'title.departments' | translate }}</polaris-expansion-panel-title>
+                  <ua-departments-template
+                    [isAddView]="isAddView"
+                    [isDetailsView]="isDetailsView">
+                  </ua-departments-template>
+                </polaris-expansion-panel>
+
+                <!-- Roles Panel -->
+                <polaris-expansion-panel ui-test-id="user-role">
+                  <polaris-expansion-panel-title>{{ 'role' | translate }}</polaris-expansion-panel-title>
+                  <ua-roles-template
+                    [isAddView]="isAddView"
+                    [isDetailsView]="isDetailsView">
+                  </ua-roles-template>
+                </polaris-expansion-panel>
+
+                <!-- Service Staff Roles Panel -->
+                @if (showServiceStaffRolePanel()) {
+                  <polaris-expansion-panel ui-test-id="user-service-staff-roles">
+                    <polaris-expansion-panel-title>{{'service-staff-roles' | translate}}</polaris-expansion-panel-title>
+                    <ua-staff-roles-template
+                      [isAddView]="isAddView"
+                      [isDetailsView]="isDetailsView">
+                    </ua-staff-roles-template>
+                  </polaris-expansion-panel>
+                }
+
+                <!-- Product Lines Panel -->
+                @if (showProductLinesPanel()) {
+                  <polaris-expansion-panel ui-test-id="user-product-lines">
+                    <polaris-expansion-panel-title>{{'form.title.product-lines-covered' | translate}}</polaris-expansion-panel-title>
+                    <ua-product-lines-template
+                      [isAddView]="isAddView"
+                      [isDetailsView]="isDetailsView">
+                    </ua-product-lines-template>
+                  </polaris-expansion-panel>
+                }
+              </polaris-accordion>
+            </div>
+
+            <!-- Permissions Tab View -->
+            <ua-permissions-template
+              expansionPanelTestId="user-permissions"
+              [hidden]="tabId !== 'permissions'"
+              [isDetailsView]="isDetailsView">
+            </ua-permissions-template>
+
+            <!-- Communications Tab View -->
+            <ua-communications-template
+              expansionPanelTestId="user-communication"
+              [hidden]="tabId !== 'communications'"
+              [isDetailsView]="isDetailsView"
+              [isAddCommunicationsView]="isAddCommunicationsView">
+            </ua-communications-template>
+        }
+      </div>
+
+      <div class="user-page-footer">
+        <div class="user-page-footer-actions d-flex d-md-none justify-content-center">
+          @for (button of userPageActionButtons(); track button) {
+            @if (button.visible) {
+              <polaris-button
+                ui-test-id="user-{{button.label}}-button"
+                [ui-theme]="button.theme"
+                (onClick)="startUserPageAction(button)">
+                {{ button.label }}
+              </polaris-button>
+            }
+          }
+        </div>
+      </div>
+    }
+  }
+</div>

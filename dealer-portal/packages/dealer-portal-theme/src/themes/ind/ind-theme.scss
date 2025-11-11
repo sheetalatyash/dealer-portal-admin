@@ -1,0 +1,23 @@
+@charset "UTF-8";
+
+@use 'theme-variables' as theme;
+
+@use '../polaris-base-theme/variables/base-variables' with (
+  // Complete Theme Variable Maps
+  $font-family-sans-serif:  theme.$font-family-sans-serif,
+  $theme-primary-colors:    theme.$theme-primary-colors,
+  $theme-secondary-colors:  theme.$theme-secondary-colors,
+  $theme-tertiary-colors:   theme.$theme-tertiary-colors,
+  $theme-gray-colors:       theme.$theme-gray-colors,
+  $theme-button-colors:     theme.$theme-button-colors,
+
+  // Individual Theme Colors
+  $secondary:               theme.$secondary,
+  $light:                   theme.$light,
+  $dark:                    theme.$dark,
+);
+
+@use 'theme-fonts' as theme-fonts;
+@use '../polaris-base-theme/vendor';
+@use '../../vendors/material';
+

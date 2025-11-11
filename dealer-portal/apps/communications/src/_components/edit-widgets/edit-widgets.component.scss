@@ -1,0 +1,118 @@
+@use '../../../../../packages/dealer-portal-theme/src/themes/polaris-base-theme/mixins/breakpoints' as breakpoints;
+@use '@angular/material' as mat;
+
+// widget vars
+$widget-transition: transform 250ms cubic-bezier(0, 0, 0.2, 1) !default;
+$widget-icon-width: 26px !default;
+$widget-list-item-min-height: 50px !default;
+$widget-list-item-padding: 0.75rem 0.5rem !default;
+$widget-border: var(--polaris-border-style) var(--polaris-border-width) var(--polaris-border-color) !default;
+$widget-border-empty: dashed 2px var(--polaris-border-color) !default;
+
+:host {
+  color: var(--polaris-body-color) !important;
+
+  .edit-widgets {
+
+    &-content {
+      &-description {
+        font-size: var(--polaris-font-size-md);
+      }
+    }
+
+    .widget-container {
+      max-width: 100%;
+      min-width: 450px;
+      display: inline-block;
+      vertical-align: top;
+
+      @include breakpoints.media-breakpoint-down(md) {
+        min-width: unset;
+      }
+
+      .widget-list {
+        width: calc(100% - $widget-icon-width);
+        border: $widget-border;
+        min-height: $widget-list-item-min-height;
+        display: block;
+        text-align: center;
+        background: var(--polaris-white);
+
+        &-item {
+          padding: $widget-list-item-padding;
+          min-height: $widget-list-item-min-height;
+          border-bottom: $widget-border;
+          gap: 1rem;
+          display: flex;
+          align-items: center;
+          box-sizing: border-box;
+          cursor: move;
+          position: relative;
+          background: var(--polaris-white);
+
+          .widget-icon {
+            position: absolute;
+            right: -$widget-icon-width;
+            cursor: pointer;
+          }
+
+          &-placeholder {
+            background: var(--polaris-gray-300);
+            border: 2px dashed var(--polaris-gray-400);
+            min-height: $widget-list-item-min-height;
+            transition: $widget-transition;
+          }
+        }
+
+        &-empty {
+          color: var(--polaris-gray-400);
+          padding: 1rem;
+        }
+
+        &.empty {
+          border: $widget-border-empty;
+        }
+      }
+    }
+
+  }
+}
+
+.cdk-drag-preview {
+  box-sizing: border-box;
+  background-color: var(--polaris-white);
+  align-items: center;
+  display: flex;
+  position: relative;
+  gap: 1rem;
+  min-height: $widget-list-item-min-height;
+  padding: $widget-list-item-padding;
+  border: $widget-border;
+  @include mat.elevation(10);
+
+  polaris-icon.widget-icon {
+    visibility: hidden;
+  }
+
+  &::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 3px;
+    background-color: var(--theme-primary-500);
+  }
+}
+
+.cdk-drag-animating {
+  transition: $widget-transition;
+}
+
+.widget-list.cdk-drop-list-dragging .widget-list-item:not(.cdk-drag-placeholder) {
+  transition: $widget-transition;
+}
+
+::ng-deep .app-content {
+  background: var(--polaris-white) !important;
+}

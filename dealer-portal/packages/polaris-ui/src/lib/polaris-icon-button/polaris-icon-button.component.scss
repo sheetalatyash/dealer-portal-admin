@@ -1,0 +1,22 @@
+.polaris-icon-button {
+  align-items: center;
+  background-color: transparent;
+  border: none;
+  border-radius: var(--polaris-border-radius-xl);
+  cursor: pointer;
+  display: flex;
+
+  &:disabled {
+    cursor: default;
+    pointer-events: none;
+    opacity: 0.5;
+  }
+
+  &:hover:not(:disabled) {
+    background-color: var(--polaris-secondary-bg-subtle);
+  }
+
+  &:active:not(:disabled) {
+    background-color: var(--polaris-dark-bg-subtle);
+  }
+}

@@ -1,0 +1,130 @@
+@if (accounts$ | async; as accounts) {
+  @if (isImpersonating) {
+    <polaris-loader></polaris-loader>
+  }
+  @else {
+    <div class="result-count">{{ accounts.length }} {{ 'toggle-account-view.search-results' | translate }}</div>
+    <table mat-table class="toggle-account-table" [dataSource]="accounts" multiTemplateDataRows>
+
+      <ng-container matColumnDef="expand">
+        <th mat-header-cell *matHeaderCellDef></th>
+        <td mat-cell class="expand-column" [ngClass]="{ 'expand-column-owner': account.isOwner, 'expand-column-operator': account.isOperator }" *matCellDef="let account">
+          @if(account.details.length > 0) {
+            <button mat-icon-button >
+              @if (isExpanded) {
+                <polaris-icon size="xl" color="primary">arrow-up</polaris-icon>
+              } @else {
+                <polaris-icon size="xl" color="primary">arrow-down</polaris-icon>
+              }
+            </button>
+          }
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="accountName">
+        <th mat-header-cell *matHeaderCellDef>{{'toggle-account-view.table-column.account-name' | translate}}</th>
+        <td mat-cell class="account-name-column" [ngClass]="{ 'account-name-column-owner': account.isOwner, 'account-name-column-operator': account.isOperator }" *matCellDef="let account">{{account['accountName']}}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="accountNumber"> <!-- use systemId -->
+        <th mat-header-cell *matHeaderCellDef>{{'toggle-account-view.table-column.account-number' | translate}}</th>
+        <td mat-cell class="account-number-column" [ngClass]="{ 'account-number-column-owner': account.isOwner, 'account-number-column-operator': account.isOperator }" *matCellDef="let account">{{account['systemId']}}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="accountType">
+        <th mat-header-cell *matHeaderCellDef>{{'toggle-account-view.table-column.account-type' | translate}}</th>
+        <td mat-cell class="account-type-column" [ngClass]="{ 'account-type-column-owner': account.isOwner, 'account-type-column-operator': account.isOperator }" *matCellDef="let account">{{account['accountType']}}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="city">
+        <th mat-header-cell *matHeaderCellDef>{{'toggle-account-view.table-column.city' | translate}}</th>
+        <td mat-cell class="city-column" [ngClass]="{ 'city-column-owner': account.isOwner, 'city-column-operator': account.isOperator }" *matCellDef="let account">{{account['city']}}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="state">
+        <th mat-header-cell *matHeaderCellDef>{{'toggle-account-view.table-column.state' | translate}}</th>
+        <td mat-cell class="state-column" [ngClass]="{ 'state-column-owner': account.isOwner, 'state-column-operator': account.isOperator }" *matCellDef="let account">{{account['state']}}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="toggle">
+        <th mat-header-cell *matHeaderCellDef>{{'toggle-account-view.table-column.toggle' | translate}}</th>
+        <td mat-cell class="toggle-column" [ngClass]="{ 'toggle-column-owner': account.isOwner, 'toggle-column-operator': account.isOperator }" *matCellDef="let account">
+            @if (activeAccountNumber === account.accountNumber) {
+              <div class="switch-account">
+                <polaris-status-icon [condition]="activeAccountNumber === account.accountNumber" [hideIconIfFalsyCondition]="true" size="xl"></polaris-status-icon>
+                <span>{{ 'toggle-account-view.table-column.active-account' | translate }}</span>
+              </div>
+            }
+            @else {
+              <polaris-href (onClick)="switchAccount(account)" ui-test-id="impersonate-user-link">{{ 'toggle-account-view.table-column.switch-account' | translate }}</polaris-href>
+            }
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="expandedDetail">
+        <td mat-cell class="expansion-row-cell" *matCellDef="let account" [attr.colspan]="columnsToDisplayWithExpand.length">
+            <div class="expansion-row-wrapper" [class.expansion-row-wrapper-expanded]="isExpanded">
+
+            <!-- child table in expansion row -->
+            <table mat-table class="toggle-account-table" [dataSource]="account.details">
+
+              <ng-container matColumnDef="expand">
+                <th mat-header-cell *matHeaderCellDef></th>
+                <td mat-cell [ngClass]="{ 'expand-column-operator': account.isOperator, 'expand-column-dealer': account.isDealer  }" *matCellDef="let account"></td>
+              </ng-container>
+
+              <ng-container matColumnDef="accountName">
+                <th mat-header-cell *matHeaderCellDef>{{'toggle-account-view.table-column.account-name' | translate}}</th>
+                <td mat-cell class="account-name-column" [ngClass]="{ 'account-name-column-operator-child': account.isOperator, 'account-name-column-dealer-child': account.isDealer  }" *matCellDef="let account">{{account['accountName']}}</td>
+              </ng-container>
+
+              <ng-container matColumnDef="accountNumber"> <!-- use systemId -->
+                <th mat-header-cell *matHeaderCellDef>{{'toggle-account-view.table-column.account-number' | translate}}</th>
+                <td mat-cell class="account-number-column" [ngClass]="{ 'account-number-column-operator': account.isOperator, 'account-number-column-dealer': account.isDealer  }" *matCellDef="let account">{{account['systemId']}}</td>
+              </ng-container>
+
+              <ng-container matColumnDef="accountType">
+                <th mat-header-cell *matHeaderCellDef>{{'toggle-account-view.table-column.account-type' | translate}}</th>
+                <td mat-cell class="account-type-column"  [ngClass]="{ 'account-type-column-operator': account.isOperator, 'account-type-column-dealer': account.isDealer  }" *matCellDef="let account">{{account['accountType']}}</td>
+              </ng-container>
+
+              <ng-container matColumnDef="city">
+                <th mat-header-cell *matHeaderCellDef>{{'toggle-account-view.table-column.city' | translate}}</th>
+                <td mat-cell class="city-column" [ngClass]="{ 'city-column-operator': account.isOperator, 'city-column-dealer': account.isDealer  }" *matCellDef="let account">{{account['city']}}</td>
+              </ng-container>
+
+              <ng-container matColumnDef="state">
+                <th mat-header-cell *matHeaderCellDef>{{'toggle-account-view.table-column.state' | translate}}</th>
+                <td mat-cell class="state-column" [ngClass]="{ 'state-column-operator': account.isOperator, 'state-column-dealer': account.isDealer  }" *matCellDef="let account">{{account['state']}}</td>
+              </ng-container>
+
+              <ng-container matColumnDef="toggle">
+                <th mat-header-cell *matHeaderCellDef>{{'toggle-account-view.table-column.toggle' | translate}}</th>
+                <td mat-cell class="toggle-column" [ngClass]="{ 'toggle-column-operator': account.isOperator, 'toggle-column-dealer': account.isDealer  }" *matCellDef="let account">
+                  @if (activeAccountNumber === account.accountNumber) {
+                    <div class="switch-account">
+                      <polaris-status-icon [condition]="activeAccountNumber === account.accountNumber" [hideIconIfFalsyCondition]="true" size="xl"></polaris-status-icon>
+                      <span>{{ 'toggle-account-view.table-column.active-account' | translate }}</span>
+                    </div>
+                  }
+                  @else {
+                    <polaris-href (onClick)="switchAccount(account)" ui-test-id="impersonate-user-link">{{ 'toggle-account-view.table-column.switch-account' | translate }}</polaris-href>
+                  }
+                </td>
+              </ng-container>
+
+              <tr mat-row *matRowDef="let row; columns: columnsToDisplayWithExpand;"></tr>
+            </table>
+          </div>
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="columnsToDisplayWithExpand"></tr>
+      <tr mat-row *matRowDef="let row; columns: columnsToDisplayWithExpand;" (click)="toggleExpansion(row)"></tr>
+      <tr mat-row *matRowDef="let row; columns: ['expandedDetail']" class="expansion-row"></tr>
+    </table>
+  }
+}
+@else {
+  <polaris-loader></polaris-loader>
+}

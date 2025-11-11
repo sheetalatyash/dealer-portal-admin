@@ -1,0 +1,26 @@
+<div class="polaris-dialog d-flex flex-column">
+  <!-- Polaris Dialog Header -->
+  <div mat-dialog-title class="polaris-dialog-header d-flex justify-content-between align-items-start">
+    <polaris-heading h4>
+      <ng-content select="polaris-dialog-title"></ng-content>
+    </polaris-heading>
+
+    @if(!hideCloseButton) {
+    <polaris-icon-button mat-dialog-close (onClick)="closeButtonClicked()" aria-label="Close">
+      <polaris-icon color="dark">close</polaris-icon>
+    </polaris-icon-button>
+    }
+  </div>
+
+  <!-- Polaris Dialog Content -->
+  <mat-dialog-content>
+    <ng-content></ng-content>
+  </mat-dialog-content>
+
+  <!-- Polaris Dialog Actions -->
+  @if(!hideActions) {
+  <mat-dialog-actions align="center" autofocus>
+    <ng-content select="polaris-dialog-actions"></ng-content>
+  </mat-dialog-actions>
+  }
+</div>

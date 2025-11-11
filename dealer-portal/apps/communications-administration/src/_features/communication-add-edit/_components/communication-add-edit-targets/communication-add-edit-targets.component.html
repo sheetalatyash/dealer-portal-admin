@@ -1,0 +1,81 @@
+<div class="container-fluid">
+  <div class="form-header col-10">
+    <div class="form-header-title">{{ stepTitle | translate }}</div>
+    <div class="form-content-info-text gap-4">
+      <span>
+        {{ stepDescription | translate }}
+      </span>
+      <span> {{ 'filters-help-text' | translate }} </span>
+    </div>
+  </div>
+
+  @if(!isLoading) {
+  <div class="form-content mb-5">
+    <div class="row row-gap-4">
+      <!-- TODO: This is now only used for User Targets component. Once that component is updated to no longer use these slots, remove these -->
+      @if(!isSpecificTargetsSelected) {
+      <ng-content select="[partnerTypeSelection]"></ng-content>
+      <ng-content select="[productLineSelection]"></ng-content>
+      <ng-content select="[customerClassSelection]"></ng-content>
+      <ng-content select="[salesTerritoryOrRegionSelection]"></ng-content>
+      <ng-content select="[countrySelection]"></ng-content>
+      <ng-content select="[stateOrProvinceSelection]"></ng-content>
+      }
+
+      <ng-content select="[generalTargets]"></ng-content>
+      <!-- Render only if no other options are selected -->
+      @if (!isAnyOptionalGeneralTargetSelected) {
+      <div [ngClass]="[isSpecificTargetsSelected ? 'col-12' : 'col-12 col-md-6 col-lg-4']">
+        <polaris-checkbox-group [ui-form-group]="specificTargetsFormGroup" [options]="specificAccountsSelection">
+        </polaris-checkbox-group>
+        @if (isSpecificTargetsSelected) {
+        <div class="form-specific-accounts row">
+          <div class="form-specific-accounts-instructions col-3 d-flex flex-column">
+            <span class="form-specific-accounts-instructions-title">
+              {{ 'specific-accounts.download-target-template' | translate }}
+            </span>
+            <polaris-button
+              ui-theme="tertiary"
+              class="download-template-button d-inline-flex align-items-center px-1"
+              (onClick)="onDownloadTemplate()"
+            >
+              <polaris-icon color="primary" class="d-inline-flex me-3 align-middle" size="xxl">download</polaris-icon>
+              <a class="download-template-link link-button-sm text-center small">
+                {{ 'specific-accounts.download-template' | translate }}
+              </a>
+            </polaris-button>
+            <ng-content select="[specificAccountsInstructions]"></ng-content>
+          </div>
+          <div class="col-9 mt-2">
+            <polaris-file-picker
+              [ui-form-control]="filePickerFormControl"
+              [uploadFiles]="uploadFiles ?? []"
+              [allowConsecutive]="true"
+              [allowedFileTypes]="allowedFileTypes"
+              [maximumFileSize]="maximumFileSize"
+              (onAddFiles)="onFileSelected($event)"
+              (onCancelFile)="onCancelFile($event)"
+              (onDeleteFile)="onCancelFile($event)"
+            >
+            </polaris-file-picker>
+          </div>
+        </div>
+        @if(uploadFiles?.[0]?.status === PolarisFilePickerStatus.Success || ((tableData$ | async) ?? []).length > 0) {
+        <div class="mt-5">
+          <h5 class="display-h5">{{ 'specific-accounts.uploaded-data' | translate }}</h5>
+          <p>{{ 'specific-accounts.review-failed-entries' | translate }}</p>
+          <ca-select-delete-table
+            [data$]="tableData$"
+            [columns]="tableColumns"
+            [filters]="AccountStatusFilters"
+            (rowsDeleted)="onRowsDeleted($event)"
+          >
+          </ca-select-delete-table>
+        </div>
+        } }
+      </div>
+      }
+    </div>
+  </div>
+  } @else { <polaris-loader></polaris-loader> }
+</div>

@@ -1,0 +1,27 @@
+<a
+  [attr.href]="href"
+  [attr.target]="computedTarget"
+  [attr.rel]="computedRel"
+  [attr.download]="download || null"
+  tabindex="0"
+  [attr.role]="isButtonLike ? 'button' : null"
+  [attr.aria-disabled]="disabled ? 'true' : null"
+  class="polaris-href d-flex align-items-center gap-1"
+  [ngClass]="[customClass, disabled ? 'disabled' : '']"
+  [attr.data-test-id]="testId"
+  (click)="emitClickEvent($event)"
+  (mouseenter)="emitMouseEnterEvent($event)"
+  (mouseleave)="emitMouseLeaveEvent($event)"
+  (keydown)="handleKeyDown($event)"
+>
+  <!-- Icon before value -->
+  <ng-content select="[leading-icon]"></ng-content>
+
+  <!-- Value -->
+  <span class="underline-{{ underline }}">
+    <ng-content></ng-content>
+  </span>
+
+  <!-- Icon after value -->
+  <ng-content select="[trailing-icon]"></ng-content>
+</a>

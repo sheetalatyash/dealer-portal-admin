@@ -1,0 +1,70 @@
+.form {
+  &-header {
+    border-bottom: var(--polaris-border-width) var(--polaris-border-style) var(--polaris-border-color);
+    border-top: var(--polaris-border-width) var(--polaris-border-style) var(--polaris-border-color);
+    padding-bottom: 1rem;
+
+    &-title {
+      color: var(--polaris-primary);
+      font-size: var(--polaris-font-size-md);
+      font-weight: var(--polaris-font-weight-600);
+      margin-bottom: 0.5rem;
+      margin-top: 0.75rem;
+      text-transform: uppercase;
+    }
+  }
+
+  &-column {
+    &-title {
+      font-weight: var(--polaris-font-weight-500);
+    }
+
+    &-content {
+      padding-top: 1rem;
+    }
+  }
+
+  &-error-message {
+    color: var(--polaris-danger);
+    font-size: var(--polaris-font-size-sm);
+  }
+
+  &-translations-review {
+    ::ng-deep &-header {
+      color: var(--polaris-primary);
+    }
+
+    &-translation-details {
+      display: grid;
+      grid-template-columns: auto 1fr;
+      grid-template-rows: auto 1fr auto;
+      row-gap: 2rem;
+      column-gap: 3rem;
+
+      &-header {
+        font-weight: var(--polaris-font-weight-600);
+      }
+    }
+  }
+}
+
+.default-message-container {
+  border-right: var(--polaris-border-width) var(--polaris-border-style) var(--polaris-border-color);
+  display: flex;
+  flex-direction: column;
+  gap: 2.5rem;
+  padding-right: 2rem;
+}
+
+.translation-form-container {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  padding-left: 2rem;
+}
+
+.editing-text {
+  color: var(--polaris-black);
+  font-weight: var(--polaris-font-weight-600);
+  font-style: italic;
+}

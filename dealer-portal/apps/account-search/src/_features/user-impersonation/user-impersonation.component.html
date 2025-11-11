@@ -1,0 +1,37 @@
+<div class="container-fluid user-impersonation">
+  <ng-container>
+    <div class="user-impersonation-header d-flex justify-content-between pb-4 mb-3">
+      <div class="d-flex flex-column">
+        <polaris-heading h1 ui-test-id="user-impersonation-title">
+          {{ title}}
+        </polaris-heading>
+        <div class="user-impersonation-header-link d-flex align-items-center gap-1" (click)="openHelpDialog()">
+          <a data-test-id="help-href">{{'help' | translate}} </a><polaris-icon size="xl">info</polaris-icon>
+        </div>
+      </div>
+    </div>
+    <div class="search-term d-flex flex-column gap-4  mt-8">
+      <polaris-href
+        class="back-to-account-link"
+        (onClick)="backToAccounts()"
+        ui-test-id="back-to-accounts-href"
+        [underline]="false"> &lt; {{ 'back-to-account-search' | translate }}
+      </polaris-href>
+      <form [formGroup]="searchForm">
+        <div class="search-term-row d-flex flex-column flex-md-row gap-4 align-items-center">
+          <polaris-search-bar ui-placeholder="{{ 'search-any-column' | translate }}"
+                              ui-test-id="user-search-term"
+                              (onSearch)="applySearch($event)">
+          </polaris-search-bar>
+        </div>
+        <as-user-table
+          [accountNumber]="account"
+          [accountName]="accountName"
+          [cityState]="accountCityState"
+          [searchTerm$]="search$"
+          data-test-id="user-table">
+        </as-user-table>
+      </form>
+    </div>
+  </ng-container>
+</div>

@@ -1,0 +1,2863 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>@dealer-portal/polaris-ui documentation</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	   <link rel="stylesheet" href="../styles/style.css">
+        <link rel="stylesheet" href="../styles/dark.css">
+    </head>
+    <body>
+          <script>
+               // Blocking script to avoid flickering dark mode
+               // Dark mode toggle button
+               var useDark = window.matchMedia('(prefers-color-scheme: dark)');
+               var darkModeState = useDark.matches;
+               var $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               var $darkModeToggles = document.querySelectorAll('.dark-mode-switch');
+               var darkModeStateLocal = localStorage.getItem('compodoc_darkmode-state');
+
+               function checkToggle(check) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].checked = check;
+                    }
+               }
+
+               function toggleDarkMode(state) {
+                    if (window.localStorage) {
+                         localStorage.setItem('compodoc_darkmode-state', state);
+                    }
+
+                    checkToggle(state);
+
+                    const hasClass = document.body.classList.contains('dark');
+
+                    if (state) {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.add('dark');
+                         }
+                         if (!hasClass) {
+                              document.body.classList.add('dark');
+                         }
+                    } else {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.remove('dark');
+                         }
+                         if (hasClass) {
+                              document.body.classList.remove('dark');
+                         }
+                    }
+               }
+
+               useDark.addEventListener('change', function (evt) {
+                    toggleDarkMode(evt.matches);
+               });
+               if (darkModeStateLocal) {
+                    darkModeState = darkModeStateLocal === 'true';
+               }
+               toggleDarkMode(darkModeState);
+          </script>
+
+        <div class="navbar navbar-default navbar-fixed-top d-md-none p-0">
+               <div class="d-flex">
+                    <a href="../" class="navbar-brand">@dealer-portal/polaris-ui documentation</a>
+                    <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+               </div>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="d-none d-md-block menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content component">
+                   <div class="content-data">
+
+
+
+
+<ol class="breadcrumb">
+  <li class="breadcrumb-item">Components</li>
+  <li class="breadcrumb-item"
+  >
+  PolarisTimePicker</li>
+</ol>
+
+<ul class="nav nav-tabs" role="tablist">
+        <li class="nav-item">
+            <a href="#info" class="nav-link active"
+                role="tab" id="info-tab" data-bs-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li class="nav-item">
+            <a href="#source" class="nav-link"
+                role="tab" id="source-tab" data-bs-toggle="tab" data-link="source">Source</a>
+        </li>
+        <li class="nav-item">
+            <a href="#templateData" class="nav-link"
+                role="tab" id="templateData-tab" data-bs-toggle="tab" data-link="template">Template</a>
+        </li>
+        <li class="nav-item">
+            <a href="#tree" class="nav-link"
+                role="tab" id="tree-tab" data-bs-toggle="tab" data-link="dom-tree">DOM Tree</a>
+        </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="info"><p class="comment">
+    <h3>File</h3>
+</p>
+<p class="comment">
+    <code>src/lib/polaris-time-picker/polaris-time-picker.component.ts</code>
+</p>
+
+
+
+    <p class="comment">
+        <h3>Extends</h3>
+    </p>
+    <p class="comment">
+                    <code><a href="../components/PolarisUiFormBase.html" target="_self" >PolarisUiFormBase</a></code>
+    </p>
+
+    <p class="comment">
+        <h3>Implements</h3>
+    </p>
+    <p class="comment">
+                <code>OnInit</code>
+    </p>
+
+
+<section data-compodoc="block-metadata">
+    <h3>Metadata</h3>
+    <table class="table table-sm table-hover metadata">
+        <tbody>
+
+
+
+
+
+
+
+
+
+
+            <tr>
+                <td class="col-md-3">providers</td>
+                <td class="col-md-9">
+                            <code>DatePipe</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-3">selector</td>
+                <td class="col-md-9"><code>polaris-time-picker</code></td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-3">imports</td>
+                <td class="col-md-9">
+                            <code>CommonModule</code>
+                                <code><a href="../components/PolarisIcon.html" target="_self" >PolarisIcon</a></code>
+                                <code><a href="../components/PolarisIconButton.html" target="_self" >PolarisIconButton</a></code>
+                            <code>MatInputModule</code>
+                            <code>ReactiveFormsModule</code>
+                            <code>OverlayModule</code>
+                                <code><a href="../components/$PolarisTimePickerDialog.html" target="_self" >$PolarisTimePickerDialog</a></code>
+                </td>
+            </tr>
+
+
+
+
+            <tr>
+                <td class="col-md-3">templateUrl</td>
+                <td class="col-md-9"><code>./polaris-time-picker.component.html</code></td>
+            </tr>
+
+
+
+            <tr>
+                <td class="col-md-3">styleUrl</td>
+                <td class="col-md-9"><code>./polaris-time-picker.component.scss</code></td>
+            </tr>
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section data-compodoc="block-index">
+    <h3 id="index">Index</h3>
+    <table class="table table-sm table-bordered index-table">
+        <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Properties</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#displayedTimeFormControl" >displayedTimeFormControl</a>
+                            </li>
+                            <li>
+                                <a href="#isTimePickerOpen" >isTimePickerOpen</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Optional</span>
+                                <a href="#lastValidTime" >lastValidTime</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Public</span>
+                                <a href="#errorMessages" >errorMessages</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Methods</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                    <span class="modifier">Public</span>
+                                <a href="#closeTimePicker" >closeTimePicker</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Public</span>
+                                    <span class="modifier"></span>
+                                <a href="#ngOnInit" >ngOnInit</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Public</span>
+                                <a href="#onSelectDate" >onSelectDate</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Public</span>
+                                <a href="#openTimePicker" >openTimePicker</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Public</span>
+                                <a href="#validateAndParseTime" >validateAndParseTime</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#_removeConfirmPrefix" >_removeConfirmPrefix</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#_setFormControl" >_setFormControl</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Public</span>
+                                <a href="#formatInput" >formatInput</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Public</span>
+                                <a href="#getErrorMessages" >getErrorMessages</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Public</span>
+                                <a href="#trimOuterSpace" >trimOuterSpace</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Public</span>
+                                <a href="#emitClickEvent" >emitClickEvent</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Public</span>
+                                <a href="#emitMouseEnterEvent" >emitMouseEnterEvent</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Public</span>
+                                <a href="#emitMouseLeaveEvent" >emitMouseLeaveEvent</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Inputs</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#ui-errors" >ui-errors</a>
+                            </li>
+                            <li>
+                                <a href="#ui-form-control" >ui-form-control</a>
+                            </li>
+                            <li>
+                                <a href="#ui-form-control-name" >ui-form-control-name</a>
+                            </li>
+                            <li>
+                                <a href="#ui-form-group" >ui-form-group</a>
+                            </li>
+                            <li>
+                                <a href="#ui-form-group-name" >ui-form-group-name</a>
+                            </li>
+                            <li>
+                                <a href="#ui-instructions" >ui-instructions</a>
+                            </li>
+                            <li>
+                                <a href="#ui-instructions-tooltip" >ui-instructions-tooltip</a>
+                            </li>
+                            <li>
+                                <a href="#ui-max-length" >ui-max-length</a>
+                            </li>
+                            <li>
+                                <a href="#ui-outline-color" >ui-outline-color</a>
+                            </li>
+                            <li>
+                                <a href="#ui-placeholder" >ui-placeholder</a>
+                            </li>
+                            <li>
+                                <a href="#ui-readonly" >ui-readonly</a>
+                            </li>
+                            <li>
+                                <a href="#ui-stack-label" >ui-stack-label</a>
+                            </li>
+                            <li>
+                                <a href="#ui-type" >ui-type</a>
+                            </li>
+                            <li>
+                                <a href="#ui-class" >ui-class</a>
+                            </li>
+                            <li>
+                                <a href="#ui-disabled" >ui-disabled</a>
+                            </li>
+                            <li>
+                                <a href="#ui-label" >ui-label</a>
+                            </li>
+                            <li>
+                                <a href="#ui-orientation" >ui-orientation</a>
+                            </li>
+                            <li>
+                                <a href="#ui-show-label" >ui-show-label</a>
+                            </li>
+                            <li>
+                                <a href="#ui-test-id" >ui-test-id</a>
+                            </li>
+                            <li>
+                                <a href="#ui-theme" >ui-theme</a>
+                            </li>
+                            <li>
+                                <a href="#ui-tooltip" >ui-tooltip</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Outputs</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#onClick" >onClick</a>
+                            </li>
+                            <li>
+                                <a href="#onMouseEnter" >onMouseEnter</a>
+                            </li>
+                            <li>
+                                <a href="#onMouseLeave" >onMouseLeave</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section data-compodoc="block-constructor">
+    <h3 id="constructor">Constructor</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+<code>constructor(_datePipe: DatePipe, _datetimeService: DatetimeService, formGroupDirective: FormGroupDirective, _validationService: ValidationService)</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="43" class="link-to-prism">src/lib/polaris-time-picker/polaris-time-picker.component.ts:43</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                            <div>
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                    <td>Type</td>
+                                                <td>Optional</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>_datePipe</td>
+                                                  
+                                                        <td>
+                                                                    <code>DatePipe</code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>_datetimeService</td>
+                                                  
+                                                        <td>
+                                                                    <code>DatetimeService</code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>formGroupDirective</td>
+                                                  
+                                                        <td>
+                                                                    <code>FormGroupDirective</code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>_validationService</td>
+                                                  
+                                                        <td>
+                                                                    <code>ValidationService</code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</section>
+
+    <section data-compodoc="block-inputs">
+    <h3 id="inputs">Inputs</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="ui-errors"></a>
+                        <b>ui-errors</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>string[]</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>[]</code>
+                    </td>
+                </tr>
+                            <tr>
+                                <td class="col-md-4" colspan="2">
+                                    <div class="io-line">Inherited from         <code><a href="../components/PolarisUiFormBase.html" target="_self" >PolarisUiFormBase</a></code>
+</div>
+                                </td>
+                            </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in         <code><a href="../components/PolarisUiFormBase.html#source" target="_self" >PolarisUiFormBase:66</a></code>
+</div>
+                            </td>
+                        </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>The custom error message to display to the user, used with reactive form elements.</p>
+</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="ui-form-control"></a>
+                        <b>ui-form-control</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>FormControl</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>new FormControl()</code>
+                    </td>
+                </tr>
+                            <tr>
+                                <td class="col-md-4" colspan="2">
+                                    <div class="io-line">Inherited from         <code><a href="../components/PolarisUiFormBase.html" target="_self" >PolarisUiFormBase</a></code>
+</div>
+                                </td>
+                            </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in         <code><a href="../components/PolarisUiFormBase.html#source" target="_self" >PolarisUiFormBase:36</a></code>
+</div>
+                            </td>
+                        </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>The form control associated with the element.</p>
+</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="ui-form-control-name"></a>
+                        <b>ui-form-control-name</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                            <tr>
+                                <td class="col-md-4" colspan="2">
+                                    <div class="io-line">Inherited from         <code><a href="../components/PolarisUiFormBase.html" target="_self" >PolarisUiFormBase</a></code>
+</div>
+                                </td>
+                            </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in         <code><a href="../components/PolarisUiFormBase.html#source" target="_self" >PolarisUiFormBase:42</a></code>
+</div>
+                            </td>
+                        </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>The form control name associated with the form control.</p>
+</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="ui-form-group"></a>
+                        <b>ui-form-group</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>FormGroup</code>
+
+                    </td>
+                </tr>
+                            <tr>
+                                <td class="col-md-4" colspan="2">
+                                    <div class="io-line">Inherited from         <code><a href="../components/PolarisUiFormBase.html" target="_self" >PolarisUiFormBase</a></code>
+</div>
+                                </td>
+                            </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in         <code><a href="../components/PolarisUiFormBase.html#source" target="_self" >PolarisUiFormBase:24</a></code>
+</div>
+                            </td>
+                        </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>The form group associated with the element.</p>
+</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="ui-form-group-name"></a>
+                        <b>ui-form-group-name</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                            <tr>
+                                <td class="col-md-4" colspan="2">
+                                    <div class="io-line">Inherited from         <code><a href="../components/PolarisUiFormBase.html" target="_self" >PolarisUiFormBase</a></code>
+</div>
+                                </td>
+                            </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in         <code><a href="../components/PolarisUiFormBase.html#source" target="_self" >PolarisUiFormBase:30</a></code>
+</div>
+                            </td>
+                        </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>The form group name associated with the element.</p>
+</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="ui-instructions"></a>
+                        <b>ui-instructions</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>&#x27;&#x27;</code>
+                    </td>
+                </tr>
+                            <tr>
+                                <td class="col-md-4" colspan="2">
+                                    <div class="io-line">Inherited from         <code><a href="../components/PolarisUiFormBase.html" target="_self" >PolarisUiFormBase</a></code>
+</div>
+                                </td>
+                            </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in         <code><a href="../components/PolarisUiFormBase.html#source" target="_self" >PolarisUiFormBase:48</a></code>
+</div>
+                            </td>
+                        </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>The instructions to accompany the element if necessary.</p>
+</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="ui-instructions-tooltip"></a>
+                        <b>ui-instructions-tooltip</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>&#x27;&#x27;</code>
+                    </td>
+                </tr>
+                            <tr>
+                                <td class="col-md-4" colspan="2">
+                                    <div class="io-line">Inherited from         <code><a href="../components/PolarisUiFormBase.html" target="_self" >PolarisUiFormBase</a></code>
+</div>
+                                </td>
+                            </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in         <code><a href="../components/PolarisUiFormBase.html#source" target="_self" >PolarisUiFormBase:54</a></code>
+</div>
+                            </td>
+                        </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>The tooltip to show with the instructions.</p>
+</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="ui-max-length"></a>
+                        <b>ui-max-length</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>string | number | null</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>null</code>
+                    </td>
+                </tr>
+                            <tr>
+                                <td class="col-md-4" colspan="2">
+                                    <div class="io-line">Inherited from         <code><a href="../components/PolarisUiFormBase.html" target="_self" >PolarisUiFormBase</a></code>
+</div>
+                                </td>
+                            </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in         <code><a href="../components/PolarisUiFormBase.html#source" target="_self" >PolarisUiFormBase:78</a></code>
+</div>
+                            </td>
+                        </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>The maximum sting length for an input, select, or textarea element.</p>
+</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="ui-outline-color"></a>
+                        <b>ui-outline-color</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>&quot;default&quot; | &quot;primary&quot;</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>&#x27;default&#x27;</code>
+                    </td>
+                </tr>
+                            <tr>
+                                <td class="col-md-4" colspan="2">
+                                    <div class="io-line">Inherited from         <code><a href="../components/PolarisUiFormBase.html" target="_self" >PolarisUiFormBase</a></code>
+</div>
+                                </td>
+                            </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in         <code><a href="../components/PolarisUiFormBase.html#source" target="_self" >PolarisUiFormBase:91</a></code>
+</div>
+                            </td>
+                        </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>The outline color for the form element.</p>
+</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="ui-placeholder"></a>
+                        <b>ui-placeholder</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>&#x27;&#x27;</code>
+                    </td>
+                </tr>
+                            <tr>
+                                <td class="col-md-4" colspan="2">
+                                    <div class="io-line">Inherited from         <code><a href="../components/PolarisUiFormBase.html" target="_self" >PolarisUiFormBase</a></code>
+</div>
+                                </td>
+                            </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in         <code><a href="../components/PolarisUiFormBase.html#source" target="_self" >PolarisUiFormBase:60</a></code>
+</div>
+                            </td>
+                        </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>The placeholder text for an input, select, textarea, or autocomplete element.</p>
+</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="ui-readonly"></a>
+                        <b>ui-readonly</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>false</code>
+                    </td>
+                </tr>
+                            <tr>
+                                <td class="col-md-4" colspan="2">
+                                    <div class="io-line">Inherited from         <code><a href="../components/PolarisUiFormBase.html" target="_self" >PolarisUiFormBase</a></code>
+</div>
+                                </td>
+                            </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in         <code><a href="../components/PolarisUiFormBase.html#source" target="_self" >PolarisUiFormBase:85</a></code>
+</div>
+                            </td>
+                        </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Whether to set the element as readonly.</p>
+</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="ui-stack-label"></a>
+                        <b>ui-stack-label</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>true</code>
+                    </td>
+                </tr>
+                            <tr>
+                                <td class="col-md-4" colspan="2">
+                                    <div class="io-line">Inherited from         <code><a href="../components/PolarisUiFormBase.html" target="_self" >PolarisUiFormBase</a></code>
+</div>
+                                </td>
+                            </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in         <code><a href="../components/PolarisUiFormBase.html#source" target="_self" >PolarisUiFormBase:18</a></code>
+</div>
+                            </td>
+                        </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Determines whether the label should be stacked above the content.</p>
+</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="ui-type"></a>
+                        <b>ui-type</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>&quot;text&quot; | &quot;number&quot; | &quot;phone&quot; | &quot;currency&quot; | &quot;date&quot;</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>&#x27;text&#x27;</code>
+                    </td>
+                </tr>
+                            <tr>
+                                <td class="col-md-4" colspan="2">
+                                    <div class="io-line">Inherited from         <code><a href="../components/PolarisUiFormBase.html" target="_self" >PolarisUiFormBase</a></code>
+</div>
+                                </td>
+                            </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in         <code><a href="../components/PolarisUiFormBase.html#source" target="_self" >PolarisUiFormBase:72</a></code>
+</div>
+                            </td>
+                        </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>The type of input element to render.</p>
+</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="ui-class"></a>
+                        <b>ui-class</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>&#x27;&#x27;</code>
+                    </td>
+                </tr>
+                            <tr>
+                                <td class="col-md-4" colspan="2">
+                                    <div class="io-line">Inherited from         <code><a href="../components/PolarisUiBase.html" target="_self" >PolarisUiBase</a></code>
+</div>
+                                </td>
+                            </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in         <code><a href="../components/PolarisUiBase.html#source" target="_self" >PolarisUiBase:23</a></code>
+</div>
+                            </td>
+                        </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>A variable representing a custom CSS class name for an element.</p>
+</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="ui-disabled"></a>
+                        <b>ui-disabled</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>false</code>
+                    </td>
+                </tr>
+                            <tr>
+                                <td class="col-md-4" colspan="2">
+                                    <div class="io-line">Inherited from         <code><a href="../components/PolarisUiBase.html" target="_self" >PolarisUiBase</a></code>
+</div>
+                                </td>
+                            </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in         <code><a href="../components/PolarisUiBase.html#source" target="_self" >PolarisUiBase:39</a></code>
+</div>
+                            </td>
+                        </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Whether to disable the element.</p>
+<p>Instead, use the &#39;disabled&#39; property on the FormControl directly.</p>
+</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="ui-label"></a>
+                        <b>ui-label</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>&#x27;&#x27;</code>
+                    </td>
+                </tr>
+                            <tr>
+                                <td class="col-md-4" colspan="2">
+                                    <div class="io-line">Inherited from         <code><a href="../components/PolarisUiBase.html" target="_self" >PolarisUiBase</a></code>
+</div>
+                                </td>
+                            </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in         <code><a href="../components/PolarisUiBase.html#source" target="_self" >PolarisUiBase:51</a></code>
+</div>
+                            </td>
+                        </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>The label to display next to the element.</p>
+</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="ui-orientation"></a>
+                        <b>ui-orientation</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>&quot;horizontal&quot; | &quot;vertical&quot;</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>&#x27;horizontal&#x27;</code>
+                    </td>
+                </tr>
+                            <tr>
+                                <td class="col-md-4" colspan="2">
+                                    <div class="io-line">Inherited from         <code><a href="../components/PolarisUiBase.html" target="_self" >PolarisUiBase</a></code>
+</div>
+                                </td>
+                            </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in         <code><a href="../components/PolarisUiBase.html#source" target="_self" >PolarisUiBase:65</a></code>
+</div>
+                            </td>
+                        </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>The orientation of the element.</p>
+</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="ui-show-label"></a>
+                        <b>ui-show-label</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>true</code>
+                    </td>
+                </tr>
+                            <tr>
+                                <td class="col-md-4" colspan="2">
+                                    <div class="io-line">Inherited from         <code><a href="../components/PolarisUiBase.html" target="_self" >PolarisUiBase</a></code>
+</div>
+                                </td>
+                            </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in         <code><a href="../components/PolarisUiBase.html#source" target="_self" >PolarisUiBase:58</a></code>
+</div>
+                            </td>
+                        </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Whether to show the label next to the element.</p>
+</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="ui-test-id"></a>
+                        <b>ui-test-id</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>&#x27;polaris-ui-element-test-id&#x27;</code>
+                    </td>
+                </tr>
+                            <tr>
+                                <td class="col-md-4" colspan="2">
+                                    <div class="io-line">Inherited from         <code><a href="../components/PolarisUiBase.html" target="_self" >PolarisUiBase</a></code>
+</div>
+                                </td>
+                            </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in         <code><a href="../components/PolarisUiBase.html#source" target="_self" >PolarisUiBase:30</a></code>
+</div>
+                            </td>
+                        </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>The testId represents the unique test ID for an element.</p>
+</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="ui-theme"></a>
+                        <b>ui-theme</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>PolarisThemeLevel | string</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>PolarisThemeLevel.Primary as PolarisThemeLevel</code>
+                    </td>
+                </tr>
+                            <tr>
+                                <td class="col-md-4" colspan="2">
+                                    <div class="io-line">Inherited from         <code><a href="../components/PolarisUiBase.html" target="_self" >PolarisUiBase</a></code>
+</div>
+                                </td>
+                            </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in         <code><a href="../components/PolarisUiBase.html#source" target="_self" >PolarisUiBase:17</a></code>
+</div>
+                            </td>
+                        </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Which theme to use for the element</p>
+</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="ui-tooltip"></a>
+                        <b>ui-tooltip</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>&#x27;&#x27;</code>
+                    </td>
+                </tr>
+                            <tr>
+                                <td class="col-md-4" colspan="2">
+                                    <div class="io-line">Inherited from         <code><a href="../components/PolarisUiBase.html" target="_self" >PolarisUiBase</a></code>
+</div>
+                                </td>
+                            </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in         <code><a href="../components/PolarisUiBase.html#source" target="_self" >PolarisUiBase:45</a></code>
+</div>
+                            </td>
+                        </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>The tooltip text to display.</p>
+</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</section>
+    <section data-compodoc="block-outputs">
+    <h3 id="outputs">Outputs</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="onClick"></a>
+                        <b>onClick</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>EventEmitter&lt;MouseEvent&gt;</code>
+
+                    </td>
+                </tr>
+                            <tr>
+                                <td class="col-md-4" colspan="2">
+                                    <div class="io-line">Inherited from         <code><a href="../components/PolarisUiBase.html" target="_self" >PolarisUiBase</a></code>
+</div>
+                                </td>
+                            </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in         <code><a href="../components/PolarisUiBase.html#source" target="_self" >PolarisUiBase:72</a></code>
+</div>
+                            </td>
+                        </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Event Emitters
+EventEmitters used to emit a string value when various mouse events occur.</p>
+</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="onMouseEnter"></a>
+                        <b>onMouseEnter</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>EventEmitter&lt;MouseEvent&gt;</code>
+
+                    </td>
+                </tr>
+                            <tr>
+                                <td class="col-md-4" colspan="2">
+                                    <div class="io-line">Inherited from         <code><a href="../components/PolarisUiBase.html" target="_self" >PolarisUiBase</a></code>
+</div>
+                                </td>
+                            </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in         <code><a href="../components/PolarisUiBase.html#source" target="_self" >PolarisUiBase:73</a></code>
+</div>
+                            </td>
+                        </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="onMouseLeave"></a>
+                        <b>onMouseLeave</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>EventEmitter&lt;MouseEvent&gt;</code>
+
+                    </td>
+                </tr>
+                            <tr>
+                                <td class="col-md-4" colspan="2">
+                                    <div class="io-line">Inherited from         <code><a href="../components/PolarisUiBase.html" target="_self" >PolarisUiBase</a></code>
+</div>
+                                </td>
+                            </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in         <code><a href="../components/PolarisUiBase.html#source" target="_self" >PolarisUiBase:74</a></code>
+</div>
+                            </td>
+                        </tr>
+            </tbody>
+        </table>
+</section>
+
+
+    <section data-compodoc="block-methods">
+    
+    <h3 id="methods">
+        Methods
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="closeTimePicker"></a>
+                    <span class="name">
+                            <span class="modifier">Public</span>
+                        <span ><b>closeTimePicker</b></span>
+                        <a href="#closeTimePicker"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>closeTimePicker()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="91"
+                                    class="link-to-prism">src/lib/polaris-time-picker/polaris-time-picker.component.ts:91</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Closes the time picker dialog.</p>
+</div>
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="ngOnInit"></a>
+                    <span class="name">
+                            <span class="modifier">Public</span>
+                            <span class="modifier"></span>
+                        <span ><b>ngOnInit</b></span>
+                        <a href="#ngOnInit"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>ngOnInit()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Inherited from         <code><a href="../components/PolarisUiFormBase.html" target="_self" >PolarisUiFormBase</a></code>
+</div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in         <code><a href="../components/PolarisUiFormBase.html#source" target="_self" >PolarisUiFormBase:71</a></code>
+</div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="onSelectDate"></a>
+                    <span class="name">
+                            <span class="modifier">Public</span>
+                        <span ><b>onSelectDate</b></span>
+                        <a href="#onSelectDate"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>onSelectDate(time: PolarisTime)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="99"
+                                    class="link-to-prism">src/lib/polaris-time-picker/polaris-time-picker.component.ts:99</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Handles the selection of a time from the time picker dialog.</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                                <td>Description</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>time</td>
+                                            <td>
+                                                        <code>PolarisTime</code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                            <td>
+                                                    <ul>
+<li>The selected time.</li>
+</ul>
+
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="openTimePicker"></a>
+                    <span class="name">
+                            <span class="modifier">Public</span>
+                        <span ><b>openTimePicker</b></span>
+                        <a href="#openTimePicker"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>openTimePicker(event: MouseEvent)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="83"
+                                    class="link-to-prism">src/lib/polaris-time-picker/polaris-time-picker.component.ts:83</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Opens the time picker dialog.</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                                <td>Description</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>event</td>
+                                            <td>
+                                                        <code>MouseEvent</code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                            <td>
+                                                    <ul>
+<li>The mouse event that triggered the opening.</li>
+</ul>
+
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="validateAndParseTime"></a>
+                    <span class="name">
+                            <span class="modifier">Public</span>
+                        <span ><b>validateAndParseTime</b></span>
+                        <a href="#validateAndParseTime"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>validateAndParseTime(timeString: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, allow24HourTime: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank">boolean</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="112"
+                                    class="link-to-prism">src/lib/polaris-time-picker/polaris-time-picker.component.ts:112</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Validates and parses a time string.</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                                <td>Default value</td>
+                                                <td>Description</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>timeString</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+                                            <td>
+                                            </td>
+
+                                            <td>
+                                                    <ul>
+<li>The time string to validate and parse.</li>
+</ul>
+
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                                <td>allow24HourTime</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+                                            <td>
+                                                    <code>false</code>
+                                            </td>
+
+                                            <td>
+                                                    <ul>
+<li>Whether to allow 24-hour time format.</li>
+</ul>
+
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>    <code>PolarisTime | null</code>
+
+                        </div>
+                            <div class="io-description">
+                                <p>The parsed time object or null if invalid.</p>
+
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="_removeConfirmPrefix"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>_removeConfirmPrefix</b></span>
+                        <a href="#_removeConfirmPrefix"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>_removeConfirmPrefix(fieldName: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Inherited from         <code><a href="../components/PolarisUiFormBase.html" target="_self" >PolarisUiFormBase</a></code>
+</div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in         <code><a href="../components/PolarisUiFormBase.html#source" target="_self" >PolarisUiFormBase:192</a></code>
+</div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Removes the &#39;Confirm&#39; prefix from a given field name.</p>
+<b>Example :</b><div><pre class="line-numbers"><code class="language-html">```typescript
+const fieldName = &#39;Confirm Password&#39;;
+console.log(_removeConfirmPrefix(fieldName)); // Output: &#39;Password&#39;</code></pre></div><b>Example :</b><div><pre class="line-numbers"><code class="language-none"></code></pre></div></div>
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                                <td>Description</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>fieldName</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                            <td>
+                                                    <ul>
+<li>The original field name.</li>
+</ul>
+
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                <p>The field name without the &#39;Confirm&#39; prefix if present, otherwise the original field name.</p>
+
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="_setFormControl"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>_setFormControl</b></span>
+                        <a href="#_setFormControl"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>_setFormControl()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Inherited from         <code><a href="../components/PolarisUiFormBase.html" target="_self" >PolarisUiFormBase</a></code>
+</div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in         <code><a href="../components/PolarisUiFormBase.html#source" target="_self" >PolarisUiFormBase:128</a></code>
+</div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Initializes the form control.</p>
+<p>This method handles various scenarios for initializing the form control:</p>
+<ol>
+<li>If <code>formGroup</code> and <code>formControlName</code> are provided, it retrieves the <code>FormControl</code> from the <code>formGroup</code>.</li>
+<li>If <code>formGroupName</code> and <code>formControlName</code> are provided, it attempts to retrieve the <code>FormGroup</code> from the parent form, retrieves the sub <code>FormGroup</code> using the <code>formGroupName</code>, and then gets the <code>FormControl</code>.</li>
+<li>If only <code>formControlName</code> is provided, it attempts to retrieve the <code>FormGroup</code> from the parent form and then gets the <code>FormControl</code>.</li>
+<li>If none of the above conditions are met, it uses the inputted <code>FormControl</code> or otherwise a default blank <code>FormControl</code>.</li>
+</ol>
+</div>
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="formatInput"></a>
+                    <span class="name">
+                            <span class="modifier">Public</span>
+                        <span ><b>formatInput</b></span>
+                        <a href="#formatInput"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>formatInput(event: Event)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Inherited from         <code><a href="../components/PolarisUiFormBase.html" target="_self" >PolarisUiFormBase</a></code>
+</div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in         <code><a href="../components/PolarisUiFormBase.html#source" target="_self" >PolarisUiFormBase:211</a></code>
+</div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Formats the input value based on the specified type.</p>
+<p>When the input type is &#39;phone&#39;, it extracts the numeric characters from the input value,
+formats the number according to the specified pattern, and updates the input value and form control.</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                                <td>Description</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>event</td>
+                                            <td>
+                                                        <code>Event</code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                            <td>
+                                                    <ul>
+<li>The event object that triggered the formatting.</li>
+</ul>
+
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getErrorMessages"></a>
+                    <span class="name">
+                            <span class="modifier">Public</span>
+                        <span ><b>getErrorMessages</b></span>
+                        <a href="#getErrorMessages"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>getErrorMessages(errors: ValidationErrors | null)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Inherited from         <code><a href="../components/PolarisUiFormBase.html" target="_self" >PolarisUiFormBase</a></code>
+</div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in         <code><a href="../components/PolarisUiFormBase.html#source" target="_self" >PolarisUiFormBase:167</a></code>
+</div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Processes form control errors and populates the <code>errors</code> array with corresponding error messages.</p>
+<p>This method iterates through the provided errors object, checks if each error exists in the <code>errorMessages</code> map,
+and replaces the <code>&lt;FIELD_NAME&gt;</code> placeholder with the processed label. The processed error messages are then added to the <code>errors</code> array.</p>
+<b>Example :</b><div><pre class="line-numbers"><code class="language-html">```typescript
+const errors = { required: true, email: true };
+this.label = &#39;First Name;
+_getErrorMessages(errors);
+// After execution, this.errors will contain: [&#39;First Name is required&#39;, &#39;Please enter a valid email address&#39;]</code></pre></div><b>Example :</b><div><pre class="line-numbers"><code class="language-none"></code></pre></div></div>
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                                <td>Description</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>errors</td>
+                                            <td>
+                                                        <code>ValidationErrors | null</code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                            <td>
+                                                    <ul>
+<li>The form control errors object.</li>
+</ul>
+
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="trimOuterSpace"></a>
+                    <span class="name">
+                            <span class="modifier">Public</span>
+                        <span ><b>trimOuterSpace</b></span>
+                        <a href="#trimOuterSpace"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>trimOuterSpace(event: Event)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Inherited from         <code><a href="../components/PolarisUiFormBase.html" target="_self" >PolarisUiFormBase</a></code>
+</div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in         <code><a href="../components/PolarisUiFormBase.html#source" target="_self" >PolarisUiFormBase:232</a></code>
+</div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Trims the leading and trailing spaces from the input value.</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                                <td>Description</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>event</td>
+                                            <td>
+                                                        <code>Event</code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                            <td>
+                                                    <ul>
+<li>The event object that triggered the trimming.</li>
+</ul>
+
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="emitClickEvent"></a>
+                    <span class="name">
+                            <span class="modifier">Public</span>
+                        <span ><b>emitClickEvent</b></span>
+                        <a href="#emitClickEvent"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>emitClickEvent(event: MouseEvent)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Inherited from         <code><a href="../components/PolarisUiBase.html" target="_self" >PolarisUiBase</a></code>
+</div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in         <code><a href="../components/PolarisUiBase.html#source" target="_self" >PolarisUiBase:80</a></code>
+</div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Emits the click event by calling the <code>onClick</code> event emitter.</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                                <td>Description</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>event</td>
+                                            <td>
+                                                        <code>MouseEvent</code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                            <td>
+                                                    <ul>
+<li>The mouse event object.</li>
+</ul>
+
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="emitMouseEnterEvent"></a>
+                    <span class="name">
+                            <span class="modifier">Public</span>
+                        <span ><b>emitMouseEnterEvent</b></span>
+                        <a href="#emitMouseEnterEvent"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>emitMouseEnterEvent(event: MouseEvent)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Inherited from         <code><a href="../components/PolarisUiBase.html" target="_self" >PolarisUiBase</a></code>
+</div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in         <code><a href="../components/PolarisUiBase.html#source" target="_self" >PolarisUiBase:88</a></code>
+</div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Emits a mouse enter event by calling the <code>onMouseEnter</code> event emitter.</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                                <td>Description</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>event</td>
+                                            <td>
+                                                        <code>MouseEvent</code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                            <td>
+                                                    <ul>
+<li>The mouse event object.</li>
+</ul>
+
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="emitMouseLeaveEvent"></a>
+                    <span class="name">
+                            <span class="modifier">Public</span>
+                        <span ><b>emitMouseLeaveEvent</b></span>
+                        <a href="#emitMouseLeaveEvent"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>emitMouseLeaveEvent(event: MouseEvent)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Inherited from         <code><a href="../components/PolarisUiBase.html" target="_self" >PolarisUiBase</a></code>
+</div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in         <code><a href="../components/PolarisUiBase.html#source" target="_self" >PolarisUiBase:97</a></code>
+</div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Emits a mouse leave event by calling the <code>onMouseLeave</code> event emitter.</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                                <td>Description</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>event</td>
+                                            <td>
+                                                        <code>MouseEvent</code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                            <td>
+                                                    <ul>
+<li>The mouse leave event object.</li>
+</ul>
+
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+    <section data-compodoc="block-properties">
+    
+    <h3 id="inputs">
+        Properties
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="displayedTimeFormControl"></a>
+                    <span class="name">
+                        <span ><b>displayedTimeFormControl</b></span>
+                        <a href="#displayedTimeFormControl"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>FormControl</code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="38" class="link-to-prism">src/lib/polaris-time-picker/polaris-time-picker.component.ts:38</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Form control for displaying the selected time.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="isTimePickerOpen"></a>
+                    <span class="name">
+                        <span ><b>isTimePickerOpen</b></span>
+                        <a href="#isTimePickerOpen"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>false</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="33" class="link-to-prism">src/lib/polaris-time-picker/polaris-time-picker.component.ts:33</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Indicates whether the time picker dialog is open.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="lastValidTime"></a>
+                    <span class="name">
+                            <span class="modifier">Optional</span>
+                        <span ><b>lastValidTime</b></span>
+                        <a href="#lastValidTime"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>PolarisTime</code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="43" class="link-to-prism">src/lib/polaris-time-picker/polaris-time-picker.component.ts:43</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Stores the last valid time selected.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="errorMessages"></a>
+                    <span class="name">
+                            <span class="modifier">Public</span>
+                        <span ><b>errorMessages</b></span>
+                        <a href="#errorMessages"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>ValidationErrors</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>{
+    atLeastOneSelected: &#x27;At least one &lt;FIELD_NAME&gt; must be selected&#x27;,
+    invalidEmail: &#x27;Please enter a valid email address&#x27;,
+    mismatch: &#x27;&lt;FIELD_NAME&gt; Values do not match&#x27;,
+    invalidPhone: &#x27;Please enter a valid phone number&#x27;,
+    required: &#x27;&lt;FIELD_NAME&gt; is required&#x27;,
+    invalid12HourTime: &#x27;Please enter a valid time&#x27;,
+    invalid24HourTime: &#x27;Please enter a valid time&#x27;,
+    or: &#x27;At least one requirement must be met&#x27;,
+    isNotNumeric: &#x27;&lt;FIELD_NAME&gt; must be a number&#x27;,
+    belowMin: &#x27;Value must be greater than or equal to the min&#x27;,
+    aboveMax: &#x27;Value must be less than or equal to the max&#x27;,
+  }</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <div class="io-line">Inherited from         <code><a href="../components/PolarisUiFormBase.html" target="_self" >PolarisUiFormBase</a></code>
+</div>
+                            </td>
+                        </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in         <code><a href="../components/PolarisUiFormBase.html#source" target="_self" >PolarisUiFormBase:94</a></code>
+</div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+</section>
+
+</div>
+
+
+    <div class="tab-pane fade  tab-source-code" id="source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { CommonModule, DatePipe } from &#x27;@angular/common&#x27;;
+import { PolarisUiFormBase } from &#x27;../polaris-ui-form-base&#x27;;
+import { Component, OnInit } from &#x27;@angular/core&#x27;;
+import { PolarisIcon } from &#x27;../polaris-icon&#x27;;
+import { PolarisIconButton } from &#x27;../polaris-icon-button&#x27;;
+import { FormControl, FormGroupDirective, ReactiveFormsModule } from &#x27;@angular/forms&#x27;;
+import { MatInputModule } from &#x27;@angular/material/input&#x27;;
+import { OverlayModule } from &#x27;@angular/cdk/overlay&#x27;;
+import { $PolarisTimePickerDialog } from &#x27;./polaris-time-picker-dialog/polaris-time-picker-dialog.component&#x27;;
+import { UntilDestroy, untilDestroyed } from &#x27;@ngneat/until-destroy&#x27;;
+import { DatetimeService, isPolarisTime, Meridiem, PolarisTime, ValidationService } from &#x27;@dealer-portal/polaris-core&#x27;;
+
+@UntilDestroy()
+@Component({
+    selector: &#x27;polaris-time-picker&#x27;,
+    imports: [
+        CommonModule,
+        PolarisIcon,
+        PolarisIconButton,
+        MatInputModule,
+        ReactiveFormsModule,
+        OverlayModule,
+        $PolarisTimePickerDialog,
+    ],
+    providers: [DatePipe],
+    templateUrl: &#x27;./polaris-time-picker.component.html&#x27;,
+    styleUrl: &#x27;./polaris-time-picker.component.scss&#x27;
+})
+export class PolarisTimePicker extends PolarisUiFormBase implements OnInit {
+  /**
+   * Indicates whether the time picker dialog is open.
+   */
+  isTimePickerOpen &#x3D; false;
+
+  /**
+   * Form control for displaying the selected time.
+   */
+  displayedTimeFormControl: FormControl;
+
+  /**
+   * Stores the last valid time selected.
+   */
+  lastValidTime?: PolarisTime;
+
+  constructor(
+    private _datePipe: DatePipe,
+    private _datetimeService: DatetimeService,
+    formGroupDirective: FormGroupDirective,
+    private _validationService: ValidationService
+  ) {
+    super(formGroupDirective);
+
+    this.displayedTimeFormControl &#x3D; new FormControl&lt;string&gt;(&#x27;&#x27;, [
+      this._validationService.orValidator([
+        this._validationService.time12HourValidator(),
+        this._validationService.time24HourValidator(),
+      ]),
+    ]);
+
+    this.displayedTimeFormControl.valueChanges.pipe(untilDestroyed(this)).subscribe((timeString) &#x3D;&gt; {
+      if (timeString) {
+        const parsedTime: PolarisTime | null &#x3D; this.validateAndParseTime(timeString, true);
+        this.lastValidTime &#x3D; parsedTime ?? undefined;
+        this.formControl.setValue(parsedTime);
+      } else {
+        this.formControl.setValue(null);
+      }
+    });
+  }
+
+  public override ngOnInit(): void {
+    super.ngOnInit();
+
+    if (this.formControl.value &amp;&amp; isPolarisTime(this.formControl.value)) {
+      this.onSelectDate(this.formControl.value);
+    }
+  }
+
+  /**
+   * Opens the time picker dialog.
+   * @param event - The mouse event that triggered the opening.
+   */
+  public openTimePicker(event: MouseEvent): void {
+    this.isTimePickerOpen &#x3D; true;
+    event.stopPropagation();
+  }
+
+  /**
+   * Closes the time picker dialog.
+   */
+  public closeTimePicker(): void {
+    this.isTimePickerOpen &#x3D; false;
+  }
+
+  /**
+   * Handles the selection of a time from the time picker dialog.
+   * @param time - The selected time.
+   */
+  public onSelectDate(time: PolarisTime): void {
+    this.displayedTimeFormControl.setValue(
+      this._datePipe.transform(this._datetimeService.convertTimeToDateTime(time), &#x27;hh:mm a&#x27;)
+    );
+    this.closeTimePicker();
+  }
+
+  /**
+   * Validates and parses a time string.
+   * @param timeString - The time string to validate and parse.
+   * @param allow24HourTime - Whether to allow 24-hour time format.
+   * @returns The parsed time object or null if invalid.
+   */
+  public validateAndParseTime(timeString: string, allow24HourTime: boolean &#x3D; false): PolarisTime | null {
+    let match: RegExpMatchArray | null &#x3D; this._validationService.time12HourRegex.exec(timeString);
+    if (match) {
+      const hours: number &#x3D; parseInt(match[1], 10);
+      const minutes: number &#x3D; parseInt(match[2], 10);
+      const period: Meridiem &#x3D; match[3].toUpperCase() as Meridiem;
+
+      return { hours, minutes, period };
+    }
+
+    if (allow24HourTime) {
+      match &#x3D; this._validationService.time24HourRegex.exec(timeString);
+      if (match) {
+        let hours: number &#x3D; parseInt(match[1], 10);
+        const minutes: number &#x3D; parseInt(match[2], 10);
+        const period: Meridiem &#x3D; hours &gt;&#x3D; 12 ? &#x27;PM&#x27; : &#x27;AM&#x27;;
+        if (hours &#x3D;&#x3D;&#x3D; 0) {
+          hours &#x3D; 12;
+        } else if (hours &gt; 12) {
+          hours -&#x3D; 12;
+        }
+
+        return { hours, minutes, period };
+      }
+    }
+
+    return null;
+  }
+}
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="templateData">
+        <pre class="line-numbers"><code class="language-html">&lt;div class&#x3D;&quot;polaris-date-picker d-flex flex-column&quot; cdkOverlayOrigin #trigger&#x3D;&quot;cdkOverlayOrigin&quot;&gt;
+  &lt;!-- Input Label --&gt;
+  @if (label) {
+  &lt;mat-label class&#x3D;&quot;d-flex align-items-center&quot;&gt;
+    &lt;span&gt;{{ label }}&lt;/span&gt;
+
+    &lt;!-- Info Icon --&gt;
+    @if (tooltip) {
+    &lt;polaris-icon [ui-tooltip]&#x3D;&quot;tooltip&quot; color&#x3D;&quot;primary&quot;&gt;info&lt;/polaris-icon&gt;
+    }
+  &lt;/mat-label&gt;
+  }
+
+  &lt;!-- Form Field --&gt;
+  &lt;mat-form-field
+    appearance&#x3D;&quot;outline&quot;
+    [attr.data-test-id]&#x3D;&quot;testId&quot;
+    [ngClass]&#x3D;&quot;[customClass]&quot;
+    (mouseenter)&#x3D;&quot;emitMouseEnterEvent($event)&quot;
+    (mouseleave)&#x3D;&quot;emitMouseLeaveEvent($event)&quot;
+    subscriptSizing&#x3D;&quot;dynamic&quot;
+  &gt;
+    &lt;input matInput [placeholder]&#x3D;&quot;placeholder&quot; [formControl]&#x3D;&quot;displayedTimeFormControl&quot; /&gt;
+    &lt;polaris-icon-button ui-class&#x3D;&quot;polaris-date-picker-toggle me-1&quot; matIconSuffix (onClick)&#x3D;&quot;openTimePicker($event)&quot;&gt;
+      &lt;polaris-icon color&#x3D;&quot;primary&quot; size&#x3D;&quot;xl&quot;&gt;time&lt;/polaris-icon&gt;
+    &lt;/polaris-icon-button&gt;
+  &lt;/mat-form-field&gt;
+&lt;/div&gt;
+
+&lt;!-- Time Picker Dialog Overlay --&gt;
+&lt;ng-template
+  cdkConnectedOverlay
+  [cdkConnectedOverlayOpen]&#x3D;&quot;isTimePickerOpen&quot;
+  [cdkConnectedOverlayOrigin]&#x3D;&quot;trigger&quot;
+  [cdkConnectedOverlayHasBackdrop]&#x3D;&quot;true&quot;
+  cdkConnectedOverlayBackdropClass&#x3D;&quot;opacity-0&quot;
+  (overlayOutsideClick)&#x3D;&quot;closeTimePicker()&quot;
+&gt;
+  &lt;polaris-time-picker-dialog
+    [initialTime]&#x3D;&quot;lastValidTime&quot;
+    (onCancel)&#x3D;&quot;closeTimePicker()&quot;
+    (onSelect)&#x3D;&quot;onSelectDate($event)&quot;
+  &gt;
+  &lt;/polaris-time-picker-dialog&gt;
+&lt;/ng-template&gt;
+</code></pre>
+    </div>
+
+
+    <div class="tab-pane fade " id="tree">
+        <div id="tree-container"></div>
+        <div class="tree-legend">
+            <div class="title">
+                <b>Legend</b>
+            </div>
+            <div>
+                <div class="color htmlelement"></div><span>Html element</span>
+            </div>
+            <div>
+                <div class="color component"></div><span>Component</span>
+            </div>
+            <div>
+                <div class="color directive"></div><span>Html element with directive</span>
+            </div>
+        </div>
+    </div>
+
+    
+</div>
+
+<script src="../js/libs/vis.min.js"></script>
+<script src="../js/libs/htmlparser.js"></script>
+<script src="../js/libs/deep-iterator.js"></script>
+<script>
+        var COMPONENT_TEMPLATE = '<div><div class="polaris-date-picker d-flex flex-column" cdkOverlayOrigin #trigger="cdkOverlayOrigin">  <!-- Input Label -->  @if (label) {  <mat-label class="d-flex align-items-center">    <span>{{ label }}</span>    <!-- Info Icon -->    @if (tooltip) {    <polaris-icon [ui-tooltip]="tooltip" color="primary">info</polaris-icon>    }  </mat-label>  }  <!-- Form Field -->  <mat-form-field    appearance="outline"    [attr.data-test-id]="testId"    [ngClass]="[customClass]"    (mouseenter)="emitMouseEnterEvent($event)"    (mouseleave)="emitMouseLeaveEvent($event)"    subscriptSizing="dynamic"  >    <input matInput [placeholder]="placeholder" [formControl]="displayedTimeFormControl" />    <polaris-icon-button ui-class="polaris-date-picker-toggle me-1" matIconSuffix (onClick)="openTimePicker($event)">      <polaris-icon color="primary" size="xl">time</polaris-icon>    </polaris-icon-button>  </mat-form-field></div><!-- Time Picker Dialog Overlay --><ng-template  cdkConnectedOverlay  [cdkConnectedOverlayOpen]="isTimePickerOpen"  [cdkConnectedOverlayOrigin]="trigger"  [cdkConnectedOverlayHasBackdrop]="true"  cdkConnectedOverlayBackdropClass="opacity-0"  (overlayOutsideClick)="closeTimePicker()">  <polaris-time-picker-dialog    [initialTime]="lastValidTime"    (onCancel)="closeTimePicker()"    (onSelect)="onSelectDate($event)"  >  </polaris-time-picker-dialog></ng-template></div>'
+    var COMPONENTS = [{'name': '$PolarisTimePickerDialog', 'selector': 'polaris-time-picker-dialog'},{'name': 'PolarisAccordion', 'selector': 'polaris-accordion'},{'name': 'PolarisBadge', 'selector': 'polaris-badge'},{'name': 'PolarisButton', 'selector': 'polaris-button'},{'name': 'PolarisCheckbox', 'selector': 'polaris-checkbox'},{'name': 'PolarisCheckboxGroup', 'selector': 'polaris-checkbox-group'},{'name': 'PolarisChip', 'selector': 'polaris-chip'},{'name': 'PolarisChipList', 'selector': 'polaris-chip-list'},{'name': 'PolarisDatePicker', 'selector': 'polaris-date-picker'},{'name': 'PolarisDialog', 'selector': 'polaris-dialog'},{'name': 'PolarisDivider', 'selector': 'polaris-divider'},{'name': 'PolarisExpansionPanel', 'selector': 'polaris-expansion-panel'},{'name': 'PolarisFilePicker', 'selector': 'polaris-file-picker'},{'name': 'PolarisHeading', 'selector': 'polaris-heading'},{'name': 'PolarisHref', 'selector': 'polaris-href'},{'name': 'PolarisIcon', 'selector': 'polaris-icon'},{'name': 'PolarisIconButton', 'selector': 'polaris-icon-button'},{'name': 'PolarisInput', 'selector': 'polaris-input'},{'name': 'PolarisLoader', 'selector': 'polaris-loader'},{'name': 'PolarisNotification', 'selector': 'polaris-notification'},{'name': 'PolarisPaginator', 'selector': 'polaris-paginator'},{'name': 'PolarisRadioGroup', 'selector': 'polaris-radio-group'},{'name': 'PolarisRichTextEditor', 'selector': 'polaris-rich-text-editor'},{'name': 'PolarisSearchBar', 'selector': 'polaris-search-bar'},{'name': 'PolarisSelect', 'selector': 'polaris-select'},{'name': 'PolarisStatusIcon', 'selector': 'polaris-status-icon'},{'name': 'PolarisTabBar', 'selector': 'polaris-tab-bar'},{'name': 'PolarisTable', 'selector': 'polaris-table'},{'name': 'PolarisTableBaseCell', 'selector': 'polaris-table-cell'},{'name': 'PolarisTableDateCell', 'selector': 'polaris-table-date-cell'},{'name': 'PolarisTextarea', 'selector': 'polaris-textarea'},{'name': 'PolarisTimePicker', 'selector': 'polaris-time-picker'},{'name': 'PolarisTooltip', 'selector': 'polaris-tooltip'},{'name': 'PolarisUiBase', 'selector': 'polaris-ui-base'},{'name': 'PolarisUiFormBase', 'selector': 'polaris-ui-form-base'},{'name': 'ThemeSwitcherComponent', 'selector': 'polaris-devtool-theme-switcher'}];
+    var DIRECTIVES = [{'name': 'PolarisTableCustomCellDirective', 'selector': 'polaris-table-custom-cell'},{'name': 'PolarisTableCustomHeaderRowDirective', 'selector': 'polaris-table-custom-header-row'},{'name': 'PolarisTooltipDirective', 'selector': '[polarisTooltip]'}];
+    var ACTUAL_COMPONENT = {'name': 'PolarisTimePicker'};
+</script>
+<script src="../js/tree.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+          <label class="dark-mode-switch">
+               <input type="checkbox">
+               <span class="slider">
+                    <svg class="slider-icon" viewBox="0 0 24 24" fill="none" height="20" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" width="20" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
+                    </svg>
+               </span>
+          </label>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'component';
+            var COMPODOC_CURRENT_PAGE_URL = 'PolarisTimePicker.html';
+            var MAX_SEARCH_RESULTS = 15;
+       </script>
+
+       <script>
+               $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               checkToggle(darkModeState);
+               if ($darkModeToggleSwitchers.length > 0) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].addEventListener('change', function (event) {
+                              darkModeState = !darkModeState;
+                              toggleDarkMode(darkModeState);
+                         });
+                    }
+               }
+          </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+
+       <script src="../js/menu-wc.js" defer></script>
+       <script nomodule src="../js/menu-wc_es5.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>

@@ -1,0 +1,29 @@
+
+<lib-polaris-base-widget [showRefresh]="false">
+  <widget-title>{{'widgets.favorite-links.title' | translate}}</widget-title>
+  <div class="d-flex flex-column gap-3">
+    <!-- If no favorites, show add favorites button -->
+    @if (favorites().length === 0) {
+    <polaris-href [underline]="false" (onClick)="onEditFavorites()">
+      <div class="d-flex align-items-center gap-3 fw-bold">
+        <span>{{ 'buttons.add-favorites' | translate }}</span>
+      </div>
+    </polaris-href>
+    } @else {
+    <!-- if there are favorites, display them -->
+    @for (fav of favorites(); track fav) {
+    <polaris-href [underline]="false" (onClick)="navigateToItem(fav.url)">
+      <div class="d-flex align-items-center gap-3">
+        <span>{{ fav.pageName }}</span>
+      </div>
+    </polaris-href>
+    }
+    <!-- edit favorites button -->
+    <polaris-href [underline]="false" (onClick)="onEditFavorites()">
+      <div class="d-flex align-items-center gap-3 fw-bold">
+        <span>{{ 'buttons.edit-favorites' | translate }}</span>
+      </div>
+    </polaris-href>
+    }
+  </div>
+</lib-polaris-base-widget>

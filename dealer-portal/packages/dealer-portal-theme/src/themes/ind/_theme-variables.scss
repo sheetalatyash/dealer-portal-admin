@@ -1,0 +1,69 @@
+@use 'sass:map';
+
+// ************************************* //
+// ********** Theme Overrides ********** //
+// ************************************* //
+
+
+// ********** Theme Primary Palette ********** //
+$theme-primary-colors: (
+  '100': #F7F0F2,
+  '200': #E7D4D6,
+  '300': #CFA8AD,
+  '400': #9E515C,
+  '500': #862633,
+  '600': #6B1E29,
+  '700': #360F14,
+  '800': #1B080A,
+  '900': #050202,
+);
+
+
+// ********** Theme Secondary Palette ********** //
+$theme-secondary-colors: (
+  '100': #CC8A00,
+  '200': #003360,
+);
+
+
+// ********** Theme Tertiary Palette ********** //
+$theme-tertiary-colors: (
+  '100': #D6D2C4,
+  '200': #2D2926,
+  '300': #97999B,
+);
+
+
+// ********** Theme Gray Palette ********** //
+$theme-gray-colors: (
+  '100': #F4F3F3,
+  '200': #D1CECE,
+  '300': #A49C9D,
+  '400': #766B6C,
+  '500': #49393B,
+  '600': #261416,
+);
+
+
+// ********** Theme Button State Colors ********** //
+$theme-button-colors: (
+  'primary':  map.get($theme-primary-colors, '500'),
+  'hover':    #B94151,
+  'pressed':  #711B26,
+  'disabled': map.get($theme-primary-colors, '300'),
+);
+
+
+// ********** Theme Colors ********** //
+$theme-colors: (
+  'secondary':  map.get($theme-gray-colors, '500'),
+  'light':      map.get($theme-gray-colors, '100'),
+  'dark':       map.get($theme-gray-colors, '900'),
+);
+$secondary:   map.get($theme-colors, 'secondary');
+$light:       map.get($theme-colors, 'light');
+$dark:        map.get($theme-colors, 'dark');
+
+
+// ********** Theme Font Family ********** //
+$font-family-sans-serif: 'Teko', system-ui, -apple-system, 'Segoe UI', Roboto, Arial, sans-serif !default;

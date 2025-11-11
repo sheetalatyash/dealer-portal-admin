@@ -1,0 +1,143 @@
+@use '@angular/material' as mat;
+@use '../../../../dealer-portal-theme/src/themes/polaris-base-theme/mixins/breakpoints' as breakpoints;
+
+:host {
+  --polaris-expansion-panel-border-style: 1px solid var(--theme-gray-200);
+
+  .polaris-expansion-panel {
+    @include mat.elevation(0);
+    border-radius: 0 !important;
+
+    &-theme {
+
+      //********** Primary Expansion Panel Theme **********//
+      &-primary {
+        .mat-expansion-panel {
+
+          &-header {
+            border-top: var(--polaris-expansion-panel-border-style);
+            padding: 0;
+
+            &:hover {
+              background: unset !important;
+            }
+
+            mat-panel-title {
+              font-weight: var(--polaris-font-weight-700);
+              flex-grow: 2 !important;
+            }
+
+            mat-panel-description {
+              margin: unset;
+            }
+          }
+
+          &-body {
+            padding-bottom: 2rem !important;
+            margin-bottom: 1rem !important;
+          }
+        }
+      }
+
+      //********** Secondary Expansion Panel Theme **********//
+      &-secondary {
+        background: var(--polaris-white);
+
+        .mat-expansion-panel {
+          border-bottom: var(--polaris-expansion-panel-border-style);
+
+          &-header {
+            background: var(--theme-gray-100);
+            border-bottom: var(--polaris-expansion-panel-border-style);
+            padding: 1rem;
+
+            &:hover {
+              background: var(--theme-gray-100) !important;
+            }
+
+            mat-panel-title {
+              font-weight: var(--polaris-font-weight-500);
+              color: var(--polaris-primary);
+            }
+
+            ::ng-deep .mat-expansion-indicator:after {
+              color: var(--polaris-primary);
+            }
+          }
+        }
+
+        &-nested {
+          .mat-expansion-panel {
+            border-bottom: none !important;
+
+            &-header {
+              border-top: none !important;
+              border-bottom: none !important;
+              background: var(--polaris-white);
+              padding: 1rem 1rem 1rem 2.75rem;
+
+              &:hover {
+                background: var(--polaris-white) !important;
+              }
+
+              mat-panel-title {
+                font-weight: var(--polaris-font-weight-400);
+                color: var(--polaris-body-color);
+              }
+
+              ::ng-deep .mat-expansion-indicator:after {
+                color: var(--polaris-body-color);
+              }
+            }
+          }
+        }
+      }
+    }
+
+    .mat-expansion-panel {
+      &-header {
+        mat-panel-description {
+          flex-direction: row-reverse;
+
+          polaris-icon {
+            position: relative;
+            z-index: 9;
+          }
+        }
+      }
+
+      &.mat-expanded {
+        ::ng-deep .mat-expansion-panel-body {
+          opacity: 1;
+          padding: 0;
+        }
+
+        ::ng-deep .mat-expansion-panel-header-title {
+          max-width: unset;
+          flex-basis: unset;
+
+          @include breakpoints.media-breakpoint-up(md) {
+            max-width: 140px;
+          }
+
+          @include breakpoints.media-breakpoint-up(lg) {
+            max-width: unset;
+          }
+        }
+      }
+
+      ::ng-deep .mat-expansion-panel-body {
+        opacity: 0;
+        padding-left: 0;
+        padding-right: 0;
+        transition: all 200ms linear;
+
+      }
+
+      ::ng-deep .mat-content.mat-content-hide-toggle {
+        margin: 0;
+        overflow: visible;
+      }
+    }
+  }
+}

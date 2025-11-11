@@ -1,0 +1,9 @@
+<span class="polaris-badge d-flex align-items-center justify-content-center px-2"
+  [ngClass]="[customClass, badgeColorClass, badgeSizeClass]"
+  [attr.data-test-id]="testId"
+  (click)="emitClickEvent($event)"
+  (mouseenter)="emitMouseEnterEvent($event)"
+  (mouseleave)="emitMouseLeaveEvent($event)"
+>
+  <ng-content></ng-content>
+</span>

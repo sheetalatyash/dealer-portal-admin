@@ -1,0 +1,525 @@
+@use 'sass:map';
+@use 'default-variables' as default;
+
+// ********** Prefix ********** //
+$variable-prefix:             default.$prefix   !default;
+$prefix:                      $variable-prefix  !default;
+
+
+// ********** Options ********** //
+$enable-rounded:              default.$enable-rounded               !default;
+$enable-transitions:          default.$enable-transitions           !default;
+$enable-reduced-motion:       default.$enable-reduced-motion        !default;
+$enable-smooth-scroll:        default.$enable-smooth-scroll         !default;
+$enable-grid-classes:         default.$enable-grid-classes          !default;
+$enable-container-classes:    default.$enable-container-classes     !default;
+$enable-cssgrid:              default.$enable-cssgrid               !default;
+$enable-button-pointers:      default.$enable-button-pointers       !default;
+$enable-rfs:                  default.$enable-rfs                   !default;
+$enable-validation-icons:     default.$enable-validation-icons      !default;
+$enable-negative-margins:     default.$enable-negative-margins      !default;
+$enable-deprecation-messages: default.$enable-deprecation-messages  !default;
+$enable-important-utilities:  default.$enable-important-utilities   !default;
+
+
+// ********** Color Mode ********** //
+$color-mode-type:  default.$color-mode-type !default;
+
+
+// ********************************* //
+// ********** Base Colors ********** //
+// ********************************* //
+
+
+// ********** Gray Palette ********** //
+$grays: default.$grays !default;
+// ******************************** //
+$gray-100: map.get($grays, '100') !default;
+$gray-200: map.get($grays, '200') !default;
+$gray-300: map.get($grays, '300') !default;
+$gray-400: map.get($grays, '400') !default;
+$gray-500: map.get($grays, '500') !default;
+$gray-600: map.get($grays, '600') !default;
+$gray-700: map.get($grays, '700') !default;
+$gray-800: map.get($grays, '800') !default;
+$gray-900: map.get($grays, '900') !default;
+
+
+// ********** Base Colors ********** //
+$colors: default.$colors !default;
+// ******************************** //
+$blue:       map.get($colors, 'blue')       !default;
+$purple:     map.get($colors, 'purple')     !default;
+$pink:       map.get($colors, 'pink')       !default;
+$red:        map.get($colors, 'red')        !default;
+$orange:     map.get($colors, 'orange')     !default;
+$green:      map.get($colors, 'green')      !default;
+$white:      map.get($colors, 'white')      !default;
+$black:      map.get($colors, 'black')      !default;
+$gray:       map.get($colors, 'gray')       !default;
+$gray-dark:  map.get($colors, 'gray-dark')  !default;
+$gray-light: map.get($colors, 'gray-light') !default;
+
+// ********** Color Contrast ********** //
+$color-contrast-map:    default.$color-contrast-map !default;
+// ******************************** //
+$color-contrast-dark:   map.get($color-contrast-map, 'dark')   !default;
+$color-contrast-light:  map.get($color-contrast-map, 'light')  !default;
+$min-contrast-ratio:    map.get($color-contrast-map, 'ratio')  !default;
+
+
+// ********** Blue Palette ********** //
+$blues: default.$blues !default;
+// ******************************** //
+$blue-100: map.get($blues, '100') !default;
+$blue-200: map.get($blues, '200') !default;
+$blue-300: map.get($blues, '300') !default;
+$blue-400: map.get($blues, '400') !default;
+$blue-500: map.get($blues, '500') !default;
+$blue-600: map.get($blues, '600') !default;
+$blue-700: map.get($blues, '700') !default;
+$blue-800: map.get($blues, '800') !default;
+$blue-900: map.get($blues, '900') !default;
+
+
+// ********** Red Palette ********** //
+$reds: default.$reds !default;
+// ******************************** //
+$red-100: map.get($reds, '100') !default;
+$red-200: map.get($reds, '200') !default;
+$red-300: map.get($reds, '300') !default;
+$red-500: map.get($reds, '500') !default;
+$red-600: map.get($reds, '600') !default;
+$red-700: map.get($reds, '700') !default;
+$red-800: map.get($reds, '800') !default;
+$red-900: map.get($reds, '900') !default;
+
+
+// ********** Orange Palette ********** //
+$oranges: default.$oranges !default;
+// ******************************** //
+$orange-100: map.get($oranges, '100') !default;
+$orange-200: map.get($oranges, '200') !default;
+$orange-300: map.get($oranges, '300') !default;
+$orange-400: map.get($oranges, '400') !default;
+$orange-500: map.get($oranges, '500') !default;
+$orange-600: map.get($oranges, '600') !default;
+$orange-700: map.get($oranges, '700') !default;
+$orange-800: map.get($oranges, '800') !default;
+$orange-900: map.get($oranges, '900') !default;
+
+
+// ********** Green Palette ********** //
+$greens: default.$greens !default;
+// ******************************** //
+$green-100: map.get($greens, '100') !default;
+$green-200: map.get($greens, '200') !default;
+$green-300: map.get($greens, '300') !default;
+$green-400: map.get($greens, '400') !default;
+$green-500: map.get($greens, '500') !default;
+$green-600: map.get($greens, '600') !default;
+$green-700: map.get($greens, '700') !default;
+$green-800: map.get($greens, '800') !default;
+$green-900: map.get($greens, '900') !default;
+
+
+// ********** Gradient ********** //
+$gradient: default.$gradient !default;
+
+
+// ********************************** //
+// ********** Theme Colors ********** //
+// ********************************** //
+
+
+// ********** Theme Primary Palette ********** //
+$theme-primary-colors: default.$theme-primary-colors !default;
+// ******************************** //
+$primary-100: map.get($theme-primary-colors, '100') !default;
+$primary-200: map.get($theme-primary-colors, '200') !default;
+$primary-300: map.get($theme-primary-colors, '300') !default;
+$primary-400: map.get($theme-primary-colors, '400') !default;
+$primary-500: map.get($theme-primary-colors, '500') !default;
+$primary-600: map.get($theme-primary-colors, '600') !default;
+$primary-700: map.get($theme-primary-colors, '700') !default;
+$primary-800: map.get($theme-primary-colors, '800') !default;
+$primary-900: map.get($theme-primary-colors, '900') !default;
+
+
+// ********** Theme Secondary Palette ********** //
+$theme-secondary-colors: default.$theme-secondary-colors !default;
+// ******************************** //
+$secondary-100: map.get($theme-secondary-colors, '100') !default;
+$secondary-200: map.get($theme-secondary-colors, '200') !default;
+
+
+// ********** Theme Tertiary Palette ********** //
+$theme-tertiary-colors: default.$theme-tertiary-colors !default;
+// ******************************** //
+$tertiary-100: map.get($theme-tertiary-colors, '100') !default;
+$tertiary-200: map.get($theme-tertiary-colors, '200') !default;
+$tertiary-300: map.get($theme-tertiary-colors, '300') !default;
+
+
+// ********** Theme Gray Palette ********** //
+$theme-gray-colors: default.$theme-gray-colors !default;
+// ******************************** //
+$theme-gray-100: map.get($theme-gray-colors, '100') !default;
+$theme-gray-200: map.get($theme-gray-colors, '200') !default;
+$theme-gray-300: map.get($theme-gray-colors, '300') !default;
+$theme-gray-400: map.get($theme-gray-colors, '400') !default;
+$theme-gray-500: map.get($theme-gray-colors, '500') !default;
+$theme-gray-600: map.get($theme-gray-colors, '600') !default;
+
+
+// ********** Theme Button State Colors ********** //
+$theme-button-colors: default.$theme-button-colors !default;
+// ******************************** //
+$theme-button-primary:  map.get($theme-button-colors, 'primary')  !default;
+$theme-button-hover:    map.get($theme-button-colors, 'hover')    !default;
+$theme-button-pressed:  map.get($theme-button-colors, 'pressed')  !default;
+$theme-button-disabled: map.get($theme-button-colors, 'disabled') !default;
+
+
+// ********** Theme Colors ********** //
+$theme-colors: default.$theme-colors !default;
+// ******************************** //
+$primary:     map.get($theme-colors, 'primary')     !default;
+$secondary:   map.get($theme-colors, 'secondary')   !default;
+$success:     map.get($theme-colors, 'success')     !default;
+$info:        map.get($theme-colors, 'info')        !default;
+$warning:     map.get($theme-colors, 'warning')     !default;
+$danger:      map.get($theme-colors, 'danger')      !default;
+$danger-dark: map.get($theme-colors, 'danger-dark') !default;
+$light:       map.get($theme-colors, 'light')       !default;
+$dark:        map.get($theme-colors, 'dark')        !default;
+$black:       map.get($theme-colors, 'black')       !default;
+
+
+// ********** Theme Text Colors ********** //
+$theme-colors-text: default.$theme-colors-text !default;
+// ******************************** //
+$primary-text-emphasis:    map.get($theme-colors-text, 'primary')    !default;
+$secondary-text-emphasis:  map.get($theme-colors-text, 'secondary')  !default;
+$success-text-emphasis:    map.get($theme-colors-text, 'success')    !default;
+$info-text-emphasis:       map.get($theme-colors-text, 'info')       !default;
+$warning-text-emphasis:    map.get($theme-colors-text, 'warning')    !default;
+$danger-text-emphasis:     map.get($theme-colors-text, 'danger')     !default;
+$light-text-emphasis:      map.get($theme-colors-text, 'light')      !default;
+$dark-text-emphasis:       map.get($theme-colors-text, 'dark')       !default;
+
+
+// ********** Theme Background Subtle Colors ********** //
+$theme-colors-bg-subtle: default.$theme-colors-bg-subtle !default;
+// ******************************** //
+$primary-bg-subtle:    map.get($theme-colors-bg-subtle, 'primary')    !default;
+$secondary-bg-subtle:  map.get($theme-colors-bg-subtle, 'secondary')  !default;
+$success-bg-subtle:    map.get($theme-colors-bg-subtle, 'success')    !default;
+$info-bg-subtle:       map.get($theme-colors-bg-subtle, 'info')       !default;
+$warning-bg-subtle:    map.get($theme-colors-bg-subtle, 'warning')    !default;
+$danger-bg-subtle:     map.get($theme-colors-bg-subtle, 'danger')     !default;
+$light-bg-subtle:      map.get($theme-colors-bg-subtle, 'light')      !default;
+$dark-bg-subtle:       map.get($theme-colors-bg-subtle, 'dark')       !default;
+
+
+// ********** Theme Border Subtle Colors ********** //
+$theme-border-subtle-colors: default.$theme-border-subtle-colors !default;
+// ******************************** //
+$primary-border-subtle:    map.get($theme-border-subtle-colors, 'primary')    !default;
+$secondary-border-subtle:  map.get($theme-border-subtle-colors, 'secondary')  !default;
+$success-border-subtle:    map.get($theme-border-subtle-colors, 'success')    !default;
+$info-border-subtle:       map.get($theme-border-subtle-colors, 'info')       !default;
+$warning-border-subtle:    map.get($theme-border-subtle-colors, 'warning')    !default;
+$danger-border-subtle:     map.get($theme-border-subtle-colors, 'danger')     !default;
+$light-border-subtle:      map.get($theme-border-subtle-colors, 'light')      !default;
+$dark-border-subtle:       map.get($theme-border-subtle-colors, 'dark')       !default;
+
+
+// ********** Body Colors ********** //
+$body-colors: default.$body-colors !default;
+// ******************************** //
+$body-text-align:           map.get($body-colors, 'text-align')       !default;
+$body-color:                map.get($body-colors, 'color')            !default;
+$body-bg:                   map.get($body-colors, 'bg')               !default;
+$body-secondary-color:      map.get($body-colors, 'secondary-color')  !default;
+$body-secondary-bg:         map.get($body-colors, 'secondary-bg')     !default;
+$body-tertiary-color:       map.get($body-colors, 'tertiary-color')   !default;
+$body-tertiary-bg:          map.get($body-colors, 'tertiary-bg')      !default;
+$body-emphasis-color:       map.get($body-colors, 'emphasis-color')   !default;
+
+
+// ********** RGB Theme Colors ********** //
+$theme-colors-rgb:                default.$theme-colors-rgb !default;
+
+
+// ******************************* //
+// ********** Utilities ********** //
+// ******************************* //
+$utilities-colors:                default.$utilities-colors                 !default;
+$utilities-text:                  default.$utilities-text                   !default;
+$utilities-text-colors:           default.$utilities-text-colors            !default;
+$utilities-text-emphasis-colors:  default.$utilities-text-emphasis-colors   !default;
+$utilities-bg:                    default.$utilities-bg                     !default;
+$utilities-bg-colors:             default.$utilities-bg-colors              !default;
+$utilities-bg-subtle:             default.$utilities-bg-subtle              !default;
+$utilities-border:                default.$utilities-border                 !default;
+$utilities-border-colors:         default.$utilities-border-colors          !default;
+$utilities-border-subtle:         default.$utilities-border-subtle          !default;
+
+
+// ********** Links ********** //
+$utilities-links-underline: default.$utilities-links-underline !default;
+
+
+// ********** Link Styles ********** //
+$link-styles: default.$link-styles !default;
+// ******************************* //
+$link-color:             map.get($link-styles, 'color')             !default;
+$link-decoration:        map.get($link-styles, 'decoration')        !default;
+$link-shade-percentage:  map.get($link-styles, 'shade-percentage')  !default;
+$link-hover-color:       map.get($link-styles, 'hover-color')       !default;
+$link-hover-decoration:  map.get($link-styles, 'hover-decoration')  !default;
+
+
+// ********** Spacing ********** //
+$spacer:            default.$spacer             !default;
+$spacers:           default.$spacers            !default;
+$negative-spacers:  default.$negative-spacers   !default;
+$gutters:           default.$gutters            !default;
+
+
+// ********** Aspect Ratios ********** //
+$aspect-ratios: default.$aspect-ratios !default;
+
+
+// ********** Borders ********** //
+$border-styles: default.$border-styles !default;
+// ******************************** //
+$border-width:              map.get($border-styles, 'width')              !default;
+$border-style:              map.get($border-styles, 'style')              !default;
+$border-color:              map.get($border-styles, 'color')              !default;
+$border-color-translucent:  map.get($border-styles, 'color-translucent')  !default;
+$border-widths:             default.$border-widths                        !default;
+
+
+// ********** Border Radius ********** //
+$border-radius-sizes: default.$border-radius-sizes !default;
+$border-radius-sm:   map.get($border-radius-sizes, 'sm')    !default;
+$border-radius:      map.get($border-radius-sizes, 'md')    !default;
+$border-radius-lg:   map.get($border-radius-sizes, 'lg')    !default;
+$border-radius-xl:   map.get($border-radius-sizes, 'xl')    !default;
+$border-radius-xxl:  map.get($border-radius-sizes, 'xxl')   !default;
+$border-radius-pill: map.get($border-radius-sizes, 'pill')  !default;
+$border-radius-2xl:  $border-radius-xxl                     !default;
+
+
+// ********** Box Shadows ********** //
+$box-shadow-sizes: default.$box-shadow-sizes  !default;
+// ******************************** //
+$box-shadow-sm:    map.get($box-shadow-sizes, 'sm')     !default;
+$box-shadow:       map.get($box-shadow-sizes, 'md')     !default;
+$box-shadow-lg:    map.get($box-shadow-sizes, 'lg')     !default;
+$box-shadow-inset: map.get($box-shadow-sizes, 'inset')  !default;
+
+
+// ********** Breakpoints ********** //
+$grid-breakpoints: default.$grid-breakpoints !default;
+
+
+// ********** Font Weights ********** //
+$font-weights: default.$font-weights !default;
+// ******************************** //
+$font-weight-lighter:   map.get($font-weights, 'lighter') !default;
+$font-weight-light:     map.get($font-weights, '300')     !default;
+$font-weight-normal:    map.get($font-weights, '400')     !default;
+$font-weight-medium:    map.get($font-weights, '500')     !default;
+$font-weight-semibold:  map.get($font-weights, '600')     !default;
+$font-weight-bold:      map.get($font-weights, '700')     !default;
+$font-weight-bolder:    map.get($font-weights, 'bolder')  !default;
+$font-weight-black:     map.get($font-weights, 'black')   !default;
+$font-weight-base:      default.$font-weight-base         !default;
+
+
+// ********** Font Family ********** //
+$font-family-sans-serif: default.$font-family-sans-serif !default;
+$font-family-monospace:  default.$font-family-monospace  !default;
+$font-family-base:       default.$font-family-base       !default;
+$font-family-code:       default.$font-family-code       !default;
+
+
+// ********** Font Sizes ********** //
+$body-font-sizes: default.$body-font-sizes !default;
+// ******************************** //
+$font-size-root:    map.get($body-font-sizes, 'root')            !default;
+$font-size-base:    map.get($body-font-sizes, 'base')            !default;
+$font-size-xxs:     map.get($body-font-sizes, 'xxs')             !default;
+$font-size-xs:      map.get($body-font-sizes, 'xs')              !default;
+$font-size-sm:      map.get($body-font-sizes, 'sm')              !default;
+$font-size-ml:      map.get($body-font-sizes, 'ml')              !default;
+$font-size-lg:      map.get($body-font-sizes, 'lg')              !default;
+$small-font-size:   default.$small-font-size    !default;
+$sub-sup-font-size: default.$sub-sup-font-size  !default;
+
+
+// ********** Line Height ********** //
+$line-heights: default.$line-heights !default;
+// ******************************** //
+$line-height-base: map.get($line-heights, 'md') !default;
+$line-height-sm:   map.get($line-heights, 'sm') !default;
+$line-height-lg:   map.get($line-heights, 'lg') !default;
+
+
+// ********** Heading Font Sizes ********** //
+$font-sizes: default.$heading-font-sizes !default;
+// ******************************** //
+$h1-font-size: map.get($font-sizes, 1) !default;
+$h2-font-size: map.get($font-sizes, 2) !default;
+$h3-font-size: map.get($font-sizes, 3) !default;
+$h4-font-size: map.get($font-sizes, 4) !default;
+$h5-font-size: map.get($font-sizes, 5) !default;
+$h6-font-size: map.get($font-sizes, 6) !default;
+
+
+// ********** Heading Styles ********** //
+$heading-styles: default.$heading-styles !default;
+// ******************************** //
+$headings-margin-bottom: map.get($heading-styles, 'margin-bottom')  !default;
+$headings-font-family:   map.get($heading-styles, 'font-family')    !default;
+$headings-font-style:    map.get($heading-styles, 'font-style')     !default;
+$headings-font-weight:   map.get($heading-styles, 'font-weight')    !default;
+$headings-line-height:   map.get($heading-styles, 'line-height')    !default;
+$headings-color:         map.get($heading-styles, 'color')          !default;
+
+
+// ********** Display Font Sizes ********** //
+$display-font-sizes: default.$display-font-sizes !default;
+
+
+// ********** Display Styles ********** //
+$display-styles: default.$display-styles !default;
+// ******************************** //
+$display-font-family: map.get($display-styles, 'font-family') !default;
+$display-font-style:  map.get($display-styles, 'font-style')  !default;
+$display-font-weight: map.get($display-styles, 'font-weight') !default;
+$display-line-height: map.get($display-styles, 'line-height') !default;
+
+
+// ********** Lead Styles ********** //
+$lead-styles: default.$lead-styles !default;
+// ******************************** //
+$lead-font-size:   map.get($lead-styles, 'font-size')    !default;
+$lead-font-weight: map.get($lead-styles, 'font-weight')  !default;
+
+
+// ********** Escaped Characters ********** //
+$escaped-characters: default.$escaped-characters !default;
+
+
+// ********** Code Styles ********** //
+$code-styles: default.$code-styles !default;
+// ******************************** //
+$code-font-size:           default.$code-font-size              !default;
+$code-color:               map.get($code-styles, 'color')       !default;
+$kbd-padding-y:            map.get($code-styles, 'padding-y')   !default;
+$kbd-padding-x:            map.get($code-styles, 'padding-x')   !default;
+$kbd-font-size:            $code-font-size                      !default;
+$kbd-color:                map.get($code-styles, 'kbd-color')   !default;
+$kbd-bg:                   map.get($code-styles, 'bg')          !default;
+$nested-kbd-font-weight:   map.get($code-styles, 'font-weight') !default;
+$pre-color:                map.get($code-styles, 'pre-color')   !default;
+
+
+// ********** Focus Rings ********** //
+$focus-ring: default.$focus-ring !default;
+// ******************************** //
+$focus-ring-width:       map.get($focus-ring, 'width')   !default;
+$focus-ring-opacity:     default.$focus-ring-opacity     !default;
+$focus-ring-color:       map.get($focus-ring, 'color')   !default;
+$focus-ring-blur:        map.get($focus-ring, 'blur')    !default;
+$focus-ring-box-shadow:  default.$focus-ring-box-shadow  !default;
+
+
+// ********** Grid Containers ********** //
+$container-max-widths: default.$container-max-widths !default;
+
+
+// ********** Grid styles ********** //
+$grid-styles: default.$grid-styles !default;
+// ******************************** //
+$grid-columns:        map.get($grid-styles, 'columns')  !default;
+$grid-row-columns:    map.get($grid-styles, 'rows')     !default;
+$grid-gutter-width:   default.$grid-gutter-width        !default;
+$container-padding-x: $grid-gutter-width                !default;
+
+
+// ********** Horizontal Rule Styles ********** //
+$hr-styles: default.$hr-styles !default;
+// ******************************** //
+$hr-margin-y:     map.get($hr-styles, 'margin-y')     !default;
+$hr-color:        map.get($hr-styles, 'color')        !default;
+$hr-border-color: map.get($hr-styles, 'border-color') !default;
+$hr-border-width: map.get($hr-styles, 'border-width') !default;
+$hr-opacity:      map.get($hr-styles, 'opacity')      !default;
+
+
+// ********** Image Thumbnail Styles ********** //
+$thumbnails: default.$thumbnails !default;
+// ******************************** //
+$thumbnail-padding:           map.get($thumbnails, 'padding')         !default;
+$thumbnail-bg:                map.get($thumbnails, 'bg')              !default;
+$thumbnail-border-width:      map.get($thumbnails, 'border-width ')   !default;
+$thumbnail-border-color:      map.get($thumbnails, 'border-color')    !default;
+$thumbnail-border-radius:     map.get($thumbnails, 'border-radius')   !default;
+$thumbnail-box-shadow:        map.get($thumbnails, 'box-shadow')      !default;
+
+
+// ********** Lists ********** //
+$list-inline-padding: default.$list-inline-padding  !default;
+
+
+// ********** Mark Styles ********** //
+$mark-styles: default.$mark-styles !default;
+// ******************************** //
+$mark-padding:  map.get($mark-styles, 'padding')  !default;
+$mark-color:    map.get($mark-styles, 'color')    !default;
+$mark-bg:       map.get($mark-styles, 'bg')       !default;
+
+
+// ********** Paragraph ********** //
+$paragraph-margin-bottom: default.$paragraph-margin-bottom !default;
+
+
+// ********** Placeholder ********** //
+$placeholders: default.$placeholders !default;
+// ******************************** //
+$placeholder-opacity-max: map.get($placeholders, 'max') !default;
+$placeholder-opacity-min: map.get($placeholders, 'min') !default;
+
+
+// ********** Position ********** //
+$position-values: default.$position-values !default;
+
+
+// ********** Transitions ********** //
+$transitions: default.$transitions !default;
+// ******************************** //
+$transition-base:            map.get($transitions, 'base')           !default;
+$transition-fade:            map.get($transitions, 'fade')           !default;
+$transition-collapse:        map.get($transitions, 'collapse')       !default;
+$transition-collapse-width:  map.get($transitions, 'collapse-width') !default;
+
+
+// ********** Z-Index ********** //
+$z-indices: default.$z-indices !default;
+// ******************************** //
+$zindex-dropdown:             map.get($z-indices, 'dropdown')           !default;
+$zindex-sticky:               map.get($z-indices, 'sticky')             !default;
+$zindex-fixed:                map.get($z-indices, 'fixed')              !default;
+$zindex-offcanvas-backdrop:   map.get($z-indices, 'offcanvas-backdrop') !default;
+$zindex-offcanvas:            map.get($z-indices, 'offcanvas')          !default;
+$zindex-modal-backdrop:       map.get($z-indices, 'modal-backdrop')     !default;
+$zindex-modal:                map.get($z-indices, 'modal')              !default;
+$zindex-popover:              map.get($z-indices, 'popover')            !default;
+$zindex-tooltip:              map.get($z-indices, 'tooltip')            !default;
+$zindex-toast:                map.get($z-indices, 'toast')              !default;
+$zindex-levels:               default.$zindex-levels                    !default;

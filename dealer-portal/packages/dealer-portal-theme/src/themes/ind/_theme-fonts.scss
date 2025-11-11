@@ -1,0 +1,9 @@
+@use '../polaris-base-theme/mixins/font-face' as font-face-mixins;
+@use '../polaris-base-theme/variables/base-variables' as app;
+
+// change font family here
+@include font-face-mixins.font-face('Teko', 'fonts/teko/Teko-Light', app.$font-weight-light, normal, (ttf));
+@include font-face-mixins.font-face('Teko', 'fonts/teko/Teko-Regular', app.$font-weight-normal, normal, (ttf));
+@include font-face-mixins.font-face('Teko', 'fonts/teko/Teko-Medium', app.$font-weight-medium, normal, (ttf));
+@include font-face-mixins.font-face('Teko', 'fonts/teko/Teko-SemiBold', app.$font-weight-semibold, normal, (ttf));
+@include font-face-mixins.font-face('Teko', 'fonts/teko/Teko-Bold', app.$font-weight-bold, normal, (ttf));

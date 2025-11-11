@@ -1,0 +1,143 @@
+{
+  "name": "account-search",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "application",
+  "prefix": "as",
+  "sourceRoot": "apps/account-search/src",
+  "tags": ["app", "ui"],
+  "targets": {
+    "build": {
+      "executor": "@angular-devkit/build-angular:application",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/apps/account-search",
+        "index": "apps/account-search/src/index.html",
+        "browser": "apps/account-search/src/main.ts",
+        "polyfills": ["zone.js"],
+        "tsConfig": "apps/account-search/tsconfig.app.json",
+        "inlineStyleLanguage": "scss",
+        "assets": [
+          {
+            "glob": "**/*",
+            "input": "apps/account-search/public"
+          },
+          {
+            "glob": "**/*",
+            "input": "dist/packages/dealer-portal-theme/css",
+            "output": "css"
+          },
+          {
+            "glob": "**/*",
+            "input": "dist/packages/dealer-portal-theme/fonts",
+            "output": "fonts"
+          },
+          {
+            "glob": "**/*",
+            "input": "dist/packages/dealer-portal-theme/images",
+            "output": "images"
+          },
+          {
+            "glob": "**/*",
+            "input": "dist/packages/dealer-portal-theme/js",
+            "output": "js"
+          },
+          {
+            "glob": "**/*",
+            "input": "apps/account-search/src/assets",
+            "output": "."
+          }
+        ],
+        "styles": ["apps/account-search/src/styles.scss"],
+        "scripts": [],
+        "allowedCommonJsDependencies": [
+          "ua-parser-js",
+          "reflect-metadata"
+        ],
+        "budgets": [
+            {
+              "type": "initial",
+              "maximumWarning": "5mb",
+              "maximumError": "10mb"
+            },
+            {
+              "type": "anyComponentStyle",
+              "maximumWarning": "5kb",
+              "maximumError": "150kb"
+            }
+          ]
+      },
+      "configurations": {
+        "production": {
+          "fileReplacements": [
+            {
+              "replace": "apps/account-search/src/_environments/environment.ts",
+              "with": "apps/account-search/src/_environments/environment.production.ts"
+            }
+          ]
+        },
+        "staging": {
+          "fileReplacements": [
+            {
+              "replace": "apps/account-search/src/_environments/environment.ts",
+              "with": "apps/account-search/src/_environments/environment.staging.ts"
+            }
+          ]
+        },
+        "development": {
+          "fileReplacements": [
+            {
+              "replace": "apps/account-search/src/_environments/environment.ts",
+              "with": "apps/account-search/src/_environments/environment.development.ts"
+            }
+          ]
+        },
+        "local": {
+          "optimization": false,
+          "extractLicenses": false,
+          "sourceMap": true,
+          "fileReplacements": [
+            {
+              "replace": "apps/account-search/src/_environments/environment.ts",
+              "with": "apps/account-search/src/_environments/environment.local.ts"
+            }
+          ]
+        }
+      },
+      "defaultConfiguration": "production"
+    },
+    "serve": {
+      "executor": "@angular-devkit/build-angular:dev-server",
+      "configurations": {
+        "production": {
+          "buildTarget": "account-search:build:production"
+        },
+        "staging": {
+          "buildTarget": "account-search:build:staging"
+        },
+        "development": {
+          "buildTarget": "account-search:build:development"
+        },
+        "local": {
+          "buildTarget": "account-search:build:local"
+        }
+      },
+      "defaultConfiguration": "local"
+    },
+    "extract-i18n": {
+      "executor": "@angular-devkit/build-angular:extract-i18n",
+      "options": {
+        "buildTarget": "account-search:build"
+      }
+    },
+    "lint": {
+      "executor": "@nx/eslint:lint"
+    },
+    "test": {
+      "executor": "@nx/jest:jest",
+      "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
+      "options": {
+        "jestConfig": "apps/account-search/jest.config.ts"
+      }
+    }
+  }
+}

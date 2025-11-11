@@ -1,0 +1,43 @@
+@use '../../../../../packages/dealer-portal-theme/src/themes/polaris-base-theme/mixins/breakpoints' as breakpoints;
+
+.user-impersonation {
+  &-header {
+    border-bottom: var(--polaris-border-width) var(--polaris-border-style) var(--polaris-border-color);
+
+    &-link {
+      color: var(--polaris-link-color);
+      cursor: pointer;
+    }
+  }
+}
+
+.search-term {
+  &-row {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin-bottom: 0.5rem;
+
+    > * {
+      margin-bottom: 1rem;
+      min-width: 30.0rem;
+    }
+  }
+}
+
+@include breakpoints.media-breakpoint-down(md) {
+  .search-term {
+    &-row {
+      > * {
+          width: 100% !important;
+      }
+    }
+  }
+}
+
+.back-to-account-link {
+  color: var(--polaris-primary);
+  font-size: var(--polaris-font-size-sm);
+  font-style: italic;
+  font-weight: var(--polaris-font-weight-500);
+}

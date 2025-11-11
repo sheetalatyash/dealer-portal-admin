@@ -1,0 +1,113 @@
+$step-padding: 0.15rem;
+$line-size: 0.2rem;
+
+.stepper {
+  align-items: start;
+  display: flex;
+}
+
+.step {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  font-weight: var(--polaris-font-weight-500);
+  justify-content: center;
+
+  &-header {
+    display: flex;
+    justify-content: center;
+    position: relative;
+    width: 100%;
+
+    &-icon {
+      background-color: var(--polaris-primary);
+      border: $line-size solid var(--polaris-primary);
+      border-radius: 50%;
+      color: var(--polaris-white);
+      padding: $step-padding;
+      z-index: 1;
+      text-decoration: none;
+    }
+
+    &:before,
+    &:after {
+      background-color: var(--polaris-primary);
+      content: '';
+      height: $line-size;
+      position: absolute;
+      top: calc(50% - ($line-size / 2));
+      width: 50%;
+    }
+
+    &:before {
+      left: 0;
+    }
+
+    &:after {
+      left: 50%;
+    }
+  }
+
+  &-content {
+    color: var(--polaris-gray);
+    text-align: center;
+    text-decoration: none;
+  }
+
+  &.active {
+    .step-header-icon {
+      background-color: var(--polaris-white);
+      border-color: var(--polaris-primary);
+      color: var(--polaris-primary);
+    }
+
+    .step-content {
+      color: var(--polaris-primary);
+    }
+
+    // Targets any step after the active step (considered inactive)
+    ~ .step {
+      color: var(--polaris-gray);
+
+      .step-header {
+        &-icon {
+          background-color: var(--polaris-white);
+          border-color: var(--polaris-gray);
+        }
+
+        &:before,
+        &:after {
+          background-color: var(--polaris-gray);
+        }
+      }
+    }
+
+    // Targets the step directly after the active step (considered inactive but the 'before' line needs to be colored primary)
+    + .step {
+      .step-header {
+        &:before {
+          background-color: var(--polaris-primary);
+        }
+      }
+    }
+  }
+
+  // Remove the 'before' line of the first step
+  &:first-child {
+    .step-header {
+      &:before {
+        display: none;
+      }
+    }
+  }
+
+  // Remove the 'after' line of the last step
+  &:last-child {
+    .step-header {
+      &:after {
+        display: none;
+      }
+    }
+  }
+}

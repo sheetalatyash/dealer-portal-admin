@@ -1,0 +1,39 @@
+@if (users$ | async; as users) {
+  @if (isLoading) {
+    <polaris-loader></polaris-loader>
+  }
+  @else {
+    <div class="result-count">{{ users.length }} {{ 'search-results-for-account' | translate }} {{accountNumber}}</div>
+    <div class="user-impersonation-table d-flex flex-column">
+      <polaris-table ui-test-id="user-listing-table"
+                      [data]="users"
+                      [config]="tableConfig">
+        <!-- Generate a new column for each column in tableConfig.columns -->
+        @for (column of tableConfig.columns; track (column.id)) {
+          <polaris-table-custom-cell [columnName]="column.id">
+            <ng-template let-user>
+              <!-- If columnType is 'text' -->
+              @if (column.columnType === 'text') {
+                <div [innerHTML]="user[$any(column.key)]"></div>
+                <!-- If columnType is an icon -->
+                } @else if (column.columnType === 'icon') {
+                <polaris-status-icon [condition]="user[$any(column.key)]"
+                                      [hideIconIfFalsyCondition]="true"
+                                      size="xl">
+                </polaris-status-icon>
+              <!-- If columnType is a link -->
+              } @else if (column.columnType === 'link') {
+                @if (column.id === 'impersonate') {
+                <polaris-href (onClick)="impersonateUser(user)" ui-test-id="impersonate-user-link">{{ 'impersonate' | translate }}</polaris-href>
+                }
+              }
+            </ng-template>
+          </polaris-table-custom-cell>
+        }
+      </polaris-table>
+    </div>
+  }
+}
+@else {
+  <polaris-loader></polaris-loader>
+}

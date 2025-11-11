@@ -1,0 +1,227 @@
+<ng-container [formGroup]="messageFormGroup">
+  @if(!isLoading) {
+  <div class="row mb-3">
+    <div class="col-8">
+      <div class="section-header">{{ 'communication-message' | translate }}</div>
+      <div class="section-content d-flex flex-column gap-3">
+        <div>
+          <div class="section-content-field-label">{{ 'default-language' | translate }}</div>
+          <polaris-select
+            [ui-label]="'default-language' | translate"
+            ui-class="w-50"
+            ui-form-control-name="defaultLanguage"
+            dropdownWidth="auto"
+            ui-test-id="communication-language-input"
+            [ui-show-label]="false"
+            [options]="languageOptions"
+          ></polaris-select>
+        </div>
+        <div>
+          <div class="section-content-field-label">{{ 'text-title' | translate }}</div>
+          <polaris-input
+            [ui-label]="'text-title' | translate"
+            ui-form-control-name="title"
+            ui-test-id="communication-title-input"
+            [ui-show-label]="false"
+          >
+          </polaris-input>
+        </div>
+        <div>
+          <div class="section-content-field-label">{{ 'message' | translate }}</div>
+          <polaris-rich-text-editor
+            ui-form-control-name="message"
+            ui-test-id="communication-message-input"
+            [ui-label]="'message' | translate"
+            [ui-show-label]="false"
+          >
+          </polaris-rich-text-editor>
+        </div>
+        <div class="row">
+          <div class="col-6">
+            <div class="section-content-field-label">
+              {{ 'keywords' | translate }}
+              <span class="section-content-field-label-optional">{{ 'form.optional' | translate }}</span>
+            </div>
+            <polaris-input
+              ui-form-control-name="keywords"
+              ui-test-id="communication-keywords-input"
+              [ui-placeholder]="'keywords-placeholder' | translate"
+            >
+            </polaris-input>
+          </div>
+          <div class="col-6">
+            <div class="section-content-field-label">
+              {{ 'internal-notes' | translate }}
+              <span class="section-content-field-label-optional">
+                {{ 'form.optional' | translate }}
+              </span>
+            </div>
+            <polaris-input ui-form-control-name="internalNotes" ui-test-id="communication-internal-notes-input">
+            </polaris-input>
+          </div>
+        </div>
+        <div class="row">
+          <div class="section-content-field-label">
+            {{ 'attachments' | translate }}
+            <span class="section-content-field-label-optional">{{ 'form.optional' | translate }}</span>
+          </div>
+          @if (communication) {
+          <div class="col-12">
+            <polaris-file-picker
+              [ui-form-control]="filePickerFormControl"
+              [uploadFiles]="uploadFiles"
+              [allowMultiple]="true"
+              [allowedFileTypes]="allowedFileTypes"
+              [maximumFileSize]="maxAttachmentSize"
+              (onAddFiles)="onUploadAttachments($event)"
+              (onCancelFile)="onClearFileUpload($event)"
+              (onDeleteFile)="onClearFileUpload($event)"
+            ></polaris-file-picker>
+          </div>
+          @if(filePickerFormControl.errors) {
+          <div>
+            @let fileSizeExceededFiles = filePickerFormControl.errors['fileSizeExceeded'];
+            @if(fileSizeExceededFiles?.length) {
+            <div class="section-error">
+              {{ 'invalid-file-size' | translate : { '0': fileSizeExceededFiles?.join(', ') } }}
+            </div>
+            } @let invalidFileTypesFiles = filePickerFormControl.errors['invalidFileTypes'];
+            @if(invalidFileTypesFiles?.length) {
+            <div class="section-error">
+              {{ 'invalid-file-types' | translate : { '0': invalidFileTypesFiles?.join(', ') } }}
+            </div>
+            }
+          </div>
+          } } @else {
+          <div>{{ 'attachment-prerequisites' | translate }}</div>
+          }
+        </div>
+        @if(communication && messageFormGroup.get('attachments')?.value?.length) {
+        <div class="row">
+          <div class="section-content-field-label">
+            {{ 'uploaded-files' | translate }}
+          </div>
+          @for(attachment of messageFormGroup.get('attachments')?.value ; track attachment.attachmentId) {
+          <div class="d-flex align-items-center gap-1">
+            <polaris-icon size="xl">attachment-doc</polaris-icon>
+            <a [href]="attachment.location">
+              {{ attachment.name }}
+            </a>
+            <polaris-icon-button (onClick)="onDeleteAttachment(attachment)">
+              <polaris-icon size="xl" color="dark">delete</polaris-icon>
+            </polaris-icon-button>
+          </div>
+          }
+        </div>
+        }
+      </div>
+    </div>
+    <div class="col-4 d-flex flex-column gap-4">
+      <div>
+        <div class="section-header">{{ 'settings' | translate }}</div>
+        <div class="section-content outlined d-flex flex-column gap-3">
+          <div>
+            <div class="section-content-field-label d-flex align-items-center gap-1">
+              {{ 'comm-status' | translate }}
+              <polaris-href [underline]="false" (onClick)="toolTipService.onTooltipClicked('communication-status')">
+                <polaris-icon trailing-icon size="xl">info</polaris-icon>
+              </polaris-href>
+            </div>
+            <polaris-radio-group
+              ui-orientation="vertical"
+              ui-form-control-name="messageStatus"
+              ui-test-id="communication-status-options"
+              [options]="communicationStatusOptions"
+            >
+            </polaris-radio-group>
+          </div>
+          <div>
+            <div class="section-content-field-label d-flex align-items-center gap-1">
+              {{ 'group' | translate }}
+              <polaris-href [underline]="false" (onClick)="toolTipService.onTooltipClicked('group')">
+                <polaris-icon trailing-icon size="xl">info</polaris-icon>
+              </polaris-href>
+            </div>
+            <polaris-radio-group
+              ui-orientation="vertical"
+              ui-form-control-name="group"
+              ui-test-id="communication-group-options"
+              [options]="communicationGroupOptions"
+              [ui-show-label]="false"
+              [ui-label]="'group' | translate"
+            >
+            </polaris-radio-group>
+          </div>
+          @if(communicationSubGroupOptions.length) {
+          <div>
+            <div class="section-content-field-label d-flex align-items-center gap-1">
+              {{ 'sub-group' | translate }}
+              <polaris-href [underline]="false" (onClick)="toolTipService.onTooltipClicked('sub-group')">
+                <polaris-icon trailing-icon size="xl">info</polaris-icon>
+              </polaris-href>
+            </div>
+            <polaris-select ui-form-control-name="subGroup"
+                            dropdownWidth="auto"
+                            ui-test-id="communication-sub-group-options"
+                            [options]="communicationSubGroupOptions"
+                            [ui-show-label]="false">
+            </polaris-select>
+          </div>
+          }
+        </div>
+      </div>
+      <div>
+        <div class="section-header d-flex align-items-center gap-2">
+          {{ 'timeframe' | translate }}
+          <polaris-href [underline]="false" (onClick)="toolTipService.onTooltipClicked('timeframe')">
+            <polaris-icon trailing-icon size="xl">info</polaris-icon>
+          </polaris-href>
+        </div>
+        <div class="section-content outlined d-flex flex-column gap-3">
+          <div>
+            <div class="section-content-field-label">{{ 'timezone' | translate }}</div>
+            <polaris-select
+              [ui-label]="'timezone' | translate"
+              ui-form-control-name="timezone"
+              dropdownWidth="auto"
+              ui-test-id="communication-timezone-input"
+              [options]="timezoneOptions"
+              [ui-show-label]="false"
+            >
+            </polaris-select>
+          </div>
+          <div>
+            <div class="section-content-field-label">{{ 'start-date' | translate }}</div>
+            <polaris-date-picker ui-form-control-name="startDate" ui-test-id="communication-start-date-input">
+            </polaris-date-picker>
+          </div>
+
+          <polaris-time-picker
+            ui-form-control-name="startTime"
+            ui-test-id="communication-start-time-input"
+          ></polaris-time-picker>
+
+          <div>
+            <div class="section-content-field-label">{{ 'end-date' | translate }}</div>
+            <polaris-date-picker ui-form-control-name="endDate" ui-test-id="communication-end-date-input">
+            </polaris-date-picker>
+          </div>
+          <polaris-time-picker
+            ui-form-control-name="endTime"
+            ui-test-id="communication-end-time-input"
+          ></polaris-time-picker>
+          @if(messageFormGroup.hasError('startDateAfterEndDate')) {
+          <span class="section-error">{{ 'end-date-after-error' | translate }}</span>
+          }@else if(messageFormGroup.hasError('startTimeAfterEndTime')) {
+          <span class="section-error">{{ 'end-time-after-error' | translate }}</span>
+          }@else if (messageFormGroup.hasError('endDateBeforeTodayInDraft')) {
+          <span class="section-error">{{ 'end-date-before-today-error' | translate }}</span>
+          }
+        </div>
+      </div>
+    </div>
+  </div>
+  } @else {
+  <polaris-loader></polaris-loader>
+  }
+</ng-container>

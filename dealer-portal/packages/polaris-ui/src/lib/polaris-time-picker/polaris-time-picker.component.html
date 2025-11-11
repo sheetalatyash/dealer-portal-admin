@@ -1,0 +1,45 @@
+<div class="polaris-date-picker d-flex flex-column" cdkOverlayOrigin #trigger="cdkOverlayOrigin">
+  <!-- Input Label -->
+  @if (label) {
+  <mat-label class="d-flex align-items-center">
+    <span>{{ label }}</span>
+
+    <!-- Info Icon -->
+    @if (tooltip) {
+    <polaris-icon [ui-tooltip]="tooltip" color="primary">info</polaris-icon>
+    }
+  </mat-label>
+  }
+
+  <!-- Form Field -->
+  <mat-form-field
+    appearance="outline"
+    [attr.data-test-id]="testId"
+    [ngClass]="[customClass]"
+    (mouseenter)="emitMouseEnterEvent($event)"
+    (mouseleave)="emitMouseLeaveEvent($event)"
+    subscriptSizing="dynamic"
+  >
+    <input matInput [placeholder]="placeholder" [formControl]="displayedTimeFormControl" />
+    <polaris-icon-button ui-class="polaris-date-picker-toggle me-1" matIconSuffix (onClick)="openTimePicker($event)">
+      <polaris-icon color="primary" size="xl">time</polaris-icon>
+    </polaris-icon-button>
+  </mat-form-field>
+</div>
+
+<!-- Time Picker Dialog Overlay -->
+<ng-template
+  cdkConnectedOverlay
+  [cdkConnectedOverlayOpen]="isTimePickerOpen"
+  [cdkConnectedOverlayOrigin]="trigger"
+  [cdkConnectedOverlayHasBackdrop]="true"
+  cdkConnectedOverlayBackdropClass="opacity-0"
+  (overlayOutsideClick)="closeTimePicker()"
+>
+  <polaris-time-picker-dialog
+    [initialTime]="lastValidTime"
+    (onCancel)="closeTimePicker()"
+    (onSelect)="onSelectDate($event)"
+  >
+  </polaris-time-picker-dialog>
+</ng-template>

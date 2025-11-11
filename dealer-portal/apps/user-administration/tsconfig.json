@@ -1,0 +1,36 @@
+{
+  "compilerOptions": {
+    "paths": {
+      "@classes": ["apps/user-administration/src/_classes/index.ts"],
+      "@components/*": ["apps/user-administration/src/_components/*"],
+      "@enums": ["apps/user-administration/src/_enums/index.ts"],
+      "@environments": ["apps/user-administration/src/_environments/index.ts"],
+      "@services": ["apps/user-administration/src/_services/index.ts"],
+      "@types": ["apps/user-administration/src/_types/index.ts"],
+      "@dealer-portal/polaris-core": ["packages/polaris-core/src/index.ts"],
+      "@dealer-portal/polaris-shared": ["packages/polaris-shared/src/index.ts"],
+      "@dealer-portal/polaris-ui": ["packages/polaris-ui/src/index.ts"],
+      "@dealer-portal/polaris-modules": ["packages/polaris-modules/src/index.ts"]
+    },
+  },
+  "files": [],
+  "include": [],
+  "references": [
+    {
+      "path": "./tsconfig.editor.json"
+    },
+    {
+      "path": "./tsconfig.app.json"
+    },
+    {
+      "path": "./tsconfig.spec.json"
+    }
+  ],
+  "extends": "../../tsconfig.base.json",
+  "angularCompilerOptions": {
+    "enableI18nLegacyMessageIdFormat": false,
+    "strictInjectionParameters": true,
+    "strictInputAccessModifiers": true,
+    "strictTemplates": true
+  }
+}

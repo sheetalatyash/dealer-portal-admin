@@ -1,0 +1,25 @@
+<div class="row">
+  <div class="col-12 col-md-10 offset-md-2">
+    @if (isDetailsView && userDetails()) {
+      <div class="row">
+        <div class="col-12 col-md-6">
+          <ua-display-field>{{ userDetails()!.staffRole.name }}</ua-display-field>
+        </div>
+      </div>
+    } @else {
+      <div class="d-flex flex-column">
+        @if (roleFormData()) {
+          <polaris-radio-group
+            [ui-id]="formName"
+            [ui-instructions]="instructionsText"
+            ui-orientation="vertical"
+            [options]="roleFormData()!.options"
+            [errorMessages]="this.errorMessages"
+            [ui-form-control]="roleFormData()!.formControl"
+            (onError)="onError({page: pageName, category: formName, messages: $event})"
+          ></polaris-radio-group>
+        }
+      </div>
+    }
+  </div>
+</div>

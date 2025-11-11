@@ -1,0 +1,29 @@
+.section-header {
+  color: var(--polaris-primary);
+  font-size: var(--polaris-font-size-md);
+  font-weight: var(--polaris-font-weight-600);
+  margin-bottom: 0.5rem;
+  text-transform: uppercase;
+}
+
+.section-content {
+  &.outlined {
+    border: var(--polaris-border-width) var(--polaris-border-style) var(--polaris-border-color);
+    padding: 1rem;
+  }
+
+  &-field-label {
+    font-size: var(--polaris-font-size-sm);
+    font-weight: var(--polaris-font-weight-600);
+    margin-bottom: 0.5rem;
+
+    &-optional {
+      font-weight: normal;
+    }
+  }
+}
+
+.section-error {
+  color: var(--polaris-danger);
+  font-size: var(--polaris-font-size-sm);
+}

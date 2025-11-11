@@ -1,0 +1,26 @@
+@if (isAccountLogin)  {
+  <polaris-loader></polaris-loader>
+}
+@else {
+  <div class="user-impersonation-table d-flex flex-column">
+    <polaris-table ui-test-id="user-listing-table"
+                    [data]="salesAccounts"
+                    [config]="tableConfig">
+      @for (column of tableConfig.columns; track (column.id)) {
+        <polaris-table-custom-cell [columnName]="column.id">
+          <ng-template let-user>
+            @if (column.columnType === 'text') {
+              <div [innerHTML]="user[$any(column.key)]"></div>
+            } @else if (column.columnType === 'icon') {
+              <polaris-href (onClick)="showPlan(user)" ui-test-id="plan-link"><polaris-icon size="xxl">attachment-doc</polaris-icon></polaris-href>
+            } @else if (column.columnType === 'link') {
+              @if (column.id === 'login') {
+                <polaris-href (onClick)="loginToAccount(user)" ui-test-id="impersonate-user-link">{{ 'sales-account-view.login' | translate }}</polaris-href>
+              }
+            }
+          </ng-template>
+        </polaris-table-custom-cell>
+      }
+    </polaris-table>
+  </div>
+}

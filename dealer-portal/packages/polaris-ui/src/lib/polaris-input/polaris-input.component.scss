@@ -1,0 +1,18 @@
+:host {
+  padding-bottom: 1rem;
+}
+
+:host ::ng-deep .outline {
+  &-primary {
+    &.mat-mdc-form-field {
+      .mdc-text-field--outlined:not(.mdc-text-field--disabled):not(.mdc-text-field--invalid)
+        .mdc-notched-outline__leading,
+      .mdc-text-field--outlined:not(.mdc-text-field--disabled):not(.mdc-text-field--invalid)
+        .mdc-notched-outline__notch,
+      .mdc-text-field--outlined:not(.mdc-text-field--disabled):not(.mdc-text-field--invalid)
+        .mdc-notched-outline__trailing {
+        border-color: var(--polaris-primary) !important;
+      }
+    }
+  }
+}

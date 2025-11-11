@@ -1,0 +1,23 @@
+@if (retailGoalsData$ | async; as retailGoalsData) {
+  @if (retailGoalsData.length > 0) {
+    <lib-polaris-base-widget
+      [showDescription]="true"
+      [showRefresh]="false">
+
+      <widget-title>{{'widgets.monthly-retail-goal.title' | translate}}</widget-title>
+      <widget-description>{{'widgets.monthly-retail-goal.description' | translate}}</widget-description>
+
+      <polaris-table [data]="retailGoalsData" [tableTheme]="PolarisTableTheme.Widget" [config]="tableConfig">
+        <polaris-table-custom-cell columnName="achieved">
+          <ng-template let-item>
+            <polaris-status-icon
+              [condition]="item.actual === item.goal"
+              [hideIcon]="item.actual === item.goal && item.actual === 0 && item.goal === 0"
+              [hideIconIfFalsyCondition]="true"
+              size="md"></polaris-status-icon>
+          </ng-template>
+        </polaris-table-custom-cell>
+      </polaris-table>
+    </lib-polaris-base-widget>
+  }
+}

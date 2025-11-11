@@ -1,0 +1,15 @@
+@if (showToggle) {
+  <div class="d-flex justify-content-end pb-3">
+    <polaris-accordion-toggle [polarisAccordion]="self"></polaris-accordion-toggle>
+  </div>
+}
+
+<mat-accordion
+  #accordion="matAccordion"
+  [attr.data-test-id]="testId"
+  [ngClass]="customClass"
+  [multi]="allowMultipleExpanded"
+  (mouseenter)="emitMouseEnterEvent($event)"
+  (mouseleave)="emitMouseLeaveEvent($event)">
+  <ng-content></ng-content>
+</mat-accordion>

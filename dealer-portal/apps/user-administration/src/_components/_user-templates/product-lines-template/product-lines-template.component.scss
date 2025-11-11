@@ -1,0 +1,15 @@
+:host {
+
+  .expansion-panel-content-list {
+    gap: 1rem;
+  }
+
+  .no-results {
+    color: var(--polaris-gray-400);
+  }
+
+  polaris-checkbox-group {
+    min-width: 200px;
+  }
+
+}

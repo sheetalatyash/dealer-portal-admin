@@ -1,0 +1,25 @@
+<polaris-dialog [hideActions]="true">
+  <div ngProjectAs="polaris-dialog-title" class="training-video-dialog-title">
+    {{ data.title }}
+  </div>
+  <div class="training-video-dialog-player">
+    @if(!isVideoReady && !hasError) {
+    <div class="video-loader">
+      <polaris-loader></polaris-loader>
+    </div>
+    } @else if (hasError) {
+    <div class="video-error">{{ errorMessage }}</div>
+    }
+    <div class="video-wrapper" [class.video-hidden]="!isVideoReady">
+      <iframe
+        #vimeoIframe
+        [title]="data.title"
+        [src]="safeVideoUrl"
+        frameborder="0"
+        referrerpolicy="strict-origin-when-cross-origin"
+        allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share"
+        allowfullscreen
+      ></iframe>
+    </div>
+  </div>
+</polaris-dialog>

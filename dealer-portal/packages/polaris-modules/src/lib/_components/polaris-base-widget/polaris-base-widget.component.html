@@ -1,0 +1,34 @@
+<div class="widget d-flex flex-column gap-4 mb-4 p-3" [ngClass]="{'blue-border': blueBorder}">
+  <div class="widget-header d-flex flex-column gap-3">
+
+    <div class="d-flex justify-content-between align-items-center">
+
+      <!-- Title -->
+      <div class="widget-header-title text-uppercase">
+        <ng-content select="widget-title"></ng-content>
+      </div>
+
+      <!-- Refresh Button -->
+      @if (showRefresh) {
+        <div class="widget-header-refresh">
+          <polaris-href (onClick)="emitRefreshEvent()">
+            <polaris-icon size="lg" color="primary" leading-icon>refresh</polaris-icon>
+            <span>{{'refresh' | translate}}</span>
+          </polaris-href>
+        </div>
+      }
+    </div>
+
+    <!-- Description -->
+    @if (showDescription) {
+      <div class="widget-header-description">
+        <ng-content select="widget-description"></ng-content>
+      </div>
+    }
+
+  </div>
+
+  <div class="widget-content">
+    <ng-content></ng-content>
+  </div>
+</div>

@@ -1,0 +1,21 @@
+// ************************************* //
+// ********** Theme Overrides ********** //
+// ************************************* //
+
+
+// ********** Theme Primary Palette ********** //
+$theme-primary-colors: (
+    '100': #EBF0F7,
+    '200': #CCDCEA,
+    '300': #99B8D5,
+    '400': #3371AC,
+    '500': #004E97,
+    '600': #003E79,
+    '700': #001F3C,
+    '800': #00101E,
+    '900': #00050A,
+);
+
+
+// ********** Theme Font Family ********** //
+$font-family-sans-serif: 'Barlow', system-ui, -apple-system, 'Segoe UI', Roboto, Arial, sans-serif !default;

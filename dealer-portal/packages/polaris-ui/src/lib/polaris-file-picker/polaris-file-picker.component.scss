@@ -1,0 +1,177 @@
+.polaris-file-picker {
+  display: flex;
+
+  &.vertical {
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  &-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+  }
+
+  &-drop-area {
+    align-items: center;
+    border: 2px dashed var(--polaris-primary);
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    max-height: 5rem;
+    min-height: 5rem;
+
+    &.drag-over {
+      border-color: var(--theme-primary-300);
+
+      .polaris-file-picker-upload-text {
+        color: var(--theme-primary-300);
+      }
+    }
+  }
+
+  &-upload-text {
+    align-items: center;
+    color: var(--polaris-primary);
+    display: flex;
+    justify-content: center;
+    gap: 0.5rem;
+
+    > span {
+      font-size: var(--polaris-font-size-sm);
+      text-decoration: underline;
+    }
+
+    &.drag-over {
+      color: var(--theme-primary-300);
+    }
+  }
+
+  &-requirements {
+    color: var(--theme-gray-600);
+    display: flex;
+    font-size: var(--polaris-font-size-xs);
+    font-weight: var(--polaris-font-weight-400);
+    gap: 0.5rem;
+    justify-content: space-between;
+
+    &-type {
+    }
+
+    &-size {
+      white-space: nowrap;
+    }
+  }
+
+  &-divider {
+    flex-shrink: 1;
+    visibility: hidden;
+    border-right: var(--polaris-border-width) var(--polaris-border-style) var(--polaris-border-color);
+    padding-right: 2rem;
+    margin-right: 2rem;
+
+    &.show {
+      visibility: visible;
+    }
+  }
+
+  &-file-list {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+
+    &-title {
+      font-weight: var(--polaris-font-weight-600);
+      font-size: var(--polaris-font-size-sm);
+    }
+
+    &-items {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+
+    &-item {
+      display: flex;
+      gap: 0.5rem;
+
+      &-icon {
+        display: flex;
+        align-items: center;
+      }
+
+      &-body {
+        display: flex;
+        flex-direction: column;
+        flex-grow: 1;
+        gap: 0.1rem;
+
+        &-action {
+          display: flex;
+          justify-content: end;
+        }
+
+        &-progress {
+          @mixin progress-bar-style($color, $color-subtle) {
+            ::ng-deep .mdc-linear-progress__bar {
+              color: $color;
+            }
+
+            ::ng-deep .mdc-linear-progress__buffer-bar {
+              background-color: $color-subtle;
+            }
+          }
+
+          &-uploading {
+            @include progress-bar-style(var(--polaris-info), var(--polaris-info-bg-subtle));
+          }
+
+          &-success {
+            @include progress-bar-style(var(--polaris-success), var(--polaris-success-bg-subtle));
+          }
+
+          &-error {
+            @include progress-bar-style(var(--polaris-danger), var(--polaris-danger-bg-subtle));
+          }
+        }
+
+        &-details {
+          display: flex;
+          font-size: var(--polaris-font-size-xs);
+          gap: 0.5rem;
+          justify-content: space-between;
+
+          &-title {
+            font-weight: var(--polaris-font-weight-400);
+            overflow-wrap: anywhere;
+          }
+
+          &-status {
+            &-uploading {
+              color: var(--theme-gray-400);
+              font-weight: var(--polaris-font-weight-400);
+            }
+
+            &-success {
+              color: var(--polaris-success);
+              font-weight: var(--polaris-font-weight-700);
+              text-transform: uppercase;
+            }
+
+            &-error {
+              color: var(--polaris-danger);
+              font-weight: var(--polaris-font-weight-700);
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+// Hide the default file input
+input[type='file'] {
+  display: none;
+}

@@ -1,0 +1,72 @@
+$time-input-height: 3.125rem;
+
+.polaris-time-picker-dialog {
+  animation: fadeInScale 120ms ease-out;
+  background: var(--polaris-white);
+  border: var(--polaris-border-width) var(--polaris-border-style) var(--polaris-border-color);
+  box-shadow: var(--mat-datepicker-calendar-container-elevation-shadow);
+
+  &-title {
+    display: block;
+    font-size: var(--polaris-font-size-sm);
+    font-weight: var(--polaris-font-weight-500);
+    text-transform: uppercase;
+  }
+
+  input[type='text'] {
+    background-color: var(--polaris-gray-200);
+    border: var(--polaris-border-width) var(--polaris-border-style) var(--polaris-border-color);
+    color: var(--polaris-gray-500);
+    font-size: 2.625rem;
+    height: $time-input-height;
+    text-align: center;
+    width: 5.25rem;
+
+    &:focus {
+      color: var(--polaris-black);
+      background-color: var(--theme-primary-200);
+      border: var(--polaris-border-width) var(--polaris-border-style) var(--polaris-primary);
+      outline: none;
+    }
+  }
+
+  .colon {
+    font-size: $time-input-height;
+    font-weight: var(--polaris-font-weight-500);
+    height: $time-input-height;
+    line-height: calc($time-input-height * 0.7);
+    padding: 0 0.25rem;
+  }
+
+  .input-subscript {
+    font-size: var(--polaris-font-size-xs);
+  }
+
+  .period-toggle-ctr {
+    border: var(--polaris-border-width) var(--polaris-border-style) var(--polaris-border-color);
+    height: $time-input-height;
+  }
+
+  .period-toggle {
+    background-color: var(--polaris-gray-200);
+    border: none;
+    color: var(--polaris-gray-500);
+    height: 50%;
+    padding: 0 0.75rem;
+
+    &.selected {
+      background-color: var(--polaris-gray-300);
+    }
+  }
+}
+
+@keyframes fadeInScale {
+  from {
+    transform: scaleY(95%);
+    opacity: 0;
+  }
+  to {
+    transform: scaleY(100%);
+    opacity: 1;
+  }
+}

@@ -1,0 +1,29 @@
+<div class="d-flex justify-content-between align-items-center w-100"
+     [ngClass]="[
+      labelPosition === 'before' ? 'flex-row-reverse' : '',
+      'polaris-checkbox-group--theme-' + theme
+     ]">
+
+  <mat-checkbox
+    [ngClass]="customClass"
+    [formControl]="formControl"
+    [attr.data-test-id]="testId"
+    [style.min-width]="minWidth"
+    (change)="emitCheckboxUpdate($event)">
+  </mat-checkbox>
+
+  <div class="d-flex align-items-center gap-2">
+    <span [ngClass]="labelClass" [innerHtml]="label"></span>
+    @if (optional) {
+      <span class="polaris-radio-group-optional-label font-size-sm">
+        {{ 'form.optional' | translate }}
+      </span>
+    }
+    @if (tooltip) {
+      <polaris-icon size="xl" color="primary" [ui-tooltip]="tooltip">info</polaris-icon>
+    }
+    @else if (tooltipAction) {
+      <polaris-icon size="xl" color="primary" (click)="onTooltipClicked($event)">info</polaris-icon>
+    }
+  </div>
+</div>

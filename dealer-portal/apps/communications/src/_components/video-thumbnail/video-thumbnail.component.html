@@ -1,0 +1,30 @@
+@if (videoCommunication) {
+  <div class="video-listing d-flex gap-2 p-3"
+       [ngClass]="{ 'active': active }"
+       (click)="emitThumbnailClicked()">
+    <div #thumbnailElement class="video-listing-thumbnail position-relative d-flex">
+      <video
+        #probe
+        preload="metadata"
+        [src]="this.getVideoSrc(videoCommunication)"
+      ></video>
+      <div class="video-cover position-absolute d-flex align-items-center justify-content-center">
+        <polaris-icon color="white" size="xxl">play-circle-outline</polaris-icon>
+      </div>
+      <span class="video-duration position-absolute font-size-sm fw-semibold">{{ duration }}</span>
+    </div>
+
+    <div class="d-flex gap-1 flex-column pt-1">
+      <div class="d-flex align-items-center gap-1">
+        @if (isNewCommunication(videoCommunication.startDate)) {
+          <polaris-badge [color]="polarisBadgeColor.Warning">New</polaris-badge>
+        }
+        <polaris-heading h6 color="primary">{{ videoCommunication.title }}</polaris-heading>
+      </div>
+      <div class="d-flex flex-column font-size-sm">
+        <div>{{ videoCommunication.startDate | date: 'shortDate'}}</div>
+      </div>
+
+    </div>
+  </div>
+}

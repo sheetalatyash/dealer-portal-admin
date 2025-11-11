@@ -1,0 +1,95 @@
+@use 'sass:color' as color;
+@use 'sass:list' as list;
+@use 'sass:map' as map;
+@use 'sass:math' as math;
+@use 'sass:meta' as meta;
+
+// ********** Prefix for :root CSS variables ********** //
+$prefix: polaris- !default;
+
+// Bootstrap functions
+//
+// Utility mixins and functions for evaluating source code across our variables, maps, and mixins.
+
+// Ascending
+// Used to evaluate Sass maps like our grid breakpoints.
+@mixin assert-ascending($map, $map-name) {
+  $prev-key: null;
+  $prev-num: null;
+  @each $key, $num in $map {
+    @if $prev-num == null or math.unit($num) == "%" or math.unit($prev-num) == "%" {
+      // Do nothing
+    } @else if not math.compatible($prev-num, $num) {
+      @warn "Potentially invalid value for #{$map-name}: This map must be in ascending order, but key '#{$key}' has value #{$num} whose unit makes it incomparable to #{$prev-num}, the value of the previous key '#{$prev-key}' !";
+    } @else if $prev-num >= $num {
+      @warn "Invalid value for #{$map-name}: This map must be in ascending order, but key '#{$key}' has value #{$num} which isn't greater than #{$prev-num}, the value of the previous key '#{$prev-key}' !";
+    }
+    $prev-key: $key;
+    $prev-num: $num;
+  }
+}
+
+// Starts at zero
+// Used to ensure the min-width of the lowest breakpoint starts at 0.
+@mixin assert-starts-at-zero($map, $map-name: "$grid-breakpoints") {
+  @if list.length($map) > 0 {
+    $values: map.values($map);
+    $first-value: list.nth($values, 1);
+    @if $first-value != 0 {
+      @warn "First breakpoint in #{$map-name} must start at 0, but starts at #{$first-value}.";
+    }
+  }
+}
+
+// Colors
+@function to-rgb($value) {
+  @if $value == null {
+    @return null;
+  }
+  @return (
+    color.channel($value, "red", $space: rgb),
+    color.channel($value, "green", $space: rgb),
+    color.channel($value, "blue", $space: rgb)
+  );
+}
+
+// stylelint-disable scss/dollar-variable-pattern
+@function rgba-css-var($identifier, $target) {
+  @if $identifier == "body" and $target == "bg" {
+    @return rgba(var(--#{$prefix}#{$identifier}-bg-rgb), var(--#{$prefix}#{$target}-opacity));
+  } @if $identifier == "body" and $target == "text" {
+    @return rgba(var(--#{$prefix}#{$identifier}-color-rgb), var(--#{$prefix}#{$target}-opacity));
+  } @else {
+    @return rgba(var(--#{$prefix}#{$identifier}-rgb), var(--#{$prefix}#{$target}-opacity));
+  }
+}
+
+@function map-loop($map, $func, $args...) {
+  $_map: ();
+
+  @each $key, $value in $map {
+    // allow to pass the $key and $value of the map as an function argument
+    $_args: ();
+    @each $arg in $args {
+      $_args: list.append($_args, if($arg == "$key", $key, if($arg == "$value", $value, $arg)));
+    }
+
+    $_map: map.merge($_map, ($key: meta.call(meta.get-function($func), $_args...)));
+  }
+
+  @return $_map;
+}
+
+
+// Internal Bootstrap function to turn maps into its negative variant.
+// It prefixes the keys with `n` and makes the value negative.
+@function negativify-map($map) {
+  $result: ();
+  @each $key, $value in $map {
+    @if $key != 0 {
+      $result: map.merge($result, ("n" + $key: (-$value)));
+    }
+  }
+  @return $result;
+}
+

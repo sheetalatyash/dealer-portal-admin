@@ -1,0 +1,69 @@
+<div class="communication-confirmation-container px-5 py-4">
+  <div class="communication-confirmation-header d-flex justify-content-between">
+    <div class="d-flex flex-column gap-2">
+      <polaris-heading h6 ui-class="text-uppercase">
+        {{ 'message-confirmation' | translate }}
+      </polaris-heading>
+    </div>
+
+    <polaris-button ui-theme="primary" (onClick)="onViewAllCommunications()">
+      {{ 'view-all-communications' | translate }}
+    </polaris-button>
+  </div>
+
+  <polaris-divider ui-class="mt-5 mb-4"></polaris-divider>
+
+  <div class="communication-confirmation-content">
+    <div class="communication-confirmation-content-header">
+      <polaris-heading h4 ui-class="pb-2">
+        {{ 'confirmation.message' | translate }}
+      </polaris-heading>
+      <span>
+        {{ 'confirmation.next-steps.title' | translate }}
+      </span>
+      <ul>
+        <li>
+          {{ 'confirmation.next-steps.stepOne' | translate }}
+        </li>
+      </ul>
+    </div>
+    <!-- Temporarily disabled email form during UAT, will be re-enabled after UAT and once the feature is fully developed -->
+    <!--
+    <polaris-divider ui-class="my-4"></polaris-divider>
+
+    <div class="communication-confirmation-content-form" [formGroup]="sendEmailFormGroup">
+      <div class="communication-confirmation-content-form-title">
+        {{ 'confirmation.email-form.title' | translate }}
+      </div>
+
+      <div class="row gap-4 py-4 col-8">
+        <div class="col-12">
+          <polaris-input ui-form-control-name="emailTitle" [ui-label]="'text-title' | translate"> </polaris-input>
+        </div>
+
+        <div class="col-12">
+          <polaris-rich-text-editor ui-form-control-name="emailBody" [ui-label]="'message' | translate">
+          </polaris-rich-text-editor>
+        </div>
+
+        <div class="col-12">
+          <polaris-checkbox-group
+            [ui-form-group]="$any(sendEmailFormGroup.get('acknowledgements'))"
+            [options]="emailFormAcknowledgementOptions"
+            ui-orientation="vertical"
+          >
+          </polaris-checkbox-group>
+        </div>
+
+        <div class="col-12 d-flex justify-content-end">
+          <polaris-button ui-theme="primary" (onClick)="onSend()">
+            {{ 'send' | translate }}
+          </polaris-button>
+        </div>
+      </div>
+    </div>
+
+    <polaris-divider ui-class="my-4"></polaris-divider>
+    -->
+  </div>
+</div>

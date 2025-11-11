@@ -1,0 +1,104 @@
+<div class="communication-add-edit-container px-5 py-4">
+  <div class="communication-add-edit-header d-flex justify-content-between pb-4">
+    <!-- Title -->
+    @let communicationTitle = communication?.defaultMessage?.title ?? '';
+    <div class="d-flex flex-r gap-2 align-items-center">
+      <polaris-heading h6 ui-class="text-uppercase">
+        {{ formTitle }}{{ communicationTitle ? ':' : '' }}
+      </polaris-heading>
+      {{ communicationTitle }}
+      <polaris-href [underline]="false" (onClick)="toolTipService.onTooltipClicked('add-edit-help')">
+        <polaris-icon trailing-icon size="xl">info</polaris-icon>
+      </polaris-href>
+    </div>
+
+    @if(communicationFormGroup) {
+    <!-- Header Actions -->
+    <div class="d-flex gap-5">
+      @if(isLastStep) {
+      <polaris-button [ui-disabled]="disablePublish" (onClick)="onPublish()">
+        {{ 'publish' | translate }}
+      </polaris-button>
+      } @else {
+      <div class="d-flex flex-column align-items-start">
+        <polaris-button [ui-disabled]="disableContinue" (onClick)="onContinue()">
+          {{ 'save-and-continue' | translate }}
+        </polaris-button>
+        @if (disableContinue && !disableCancel) {
+        <small class="mt-1 d-flex align-items-center gap-1 communication-add-edit-hint">
+          <polaris-icon color="primary" size="xl">info</polaris-icon>
+          {{ 'required-fields-missing' | translate }}
+        </small>
+        }
+      </div>
+      @if(currentStepId !== CommunicationAddEditStep.Translation) {
+      <polaris-button ui-theme="tertiary" [ui-disabled]="disableSave" (onClick)="onSave()">
+        {{ 'save' | translate }}
+      </polaris-button>
+      } }
+      <polaris-button ui-theme="tertiary" [ui-disabled]="disableCancel" (onClick)="onCancel()">
+        {{ 'cancel' | translate }}
+      </polaris-button>
+    </div>
+    }
+  </div>
+
+  <!-- Form Stepper -->
+  <div class="pt-4 pb-5">
+    <ca-form-stepper [steps]="formSteps" [activeStep]="currentStepIndex" (navigateStep)="onNavigateToStep($event)">
+    </ca-form-stepper>
+  </div>
+
+  <!-- Form Content -->
+  <div class="communication-add-edit-form-content mb-3">
+    @if(communicationFormGroup) {
+    <form [formGroup]="communicationFormGroup">
+      @switch (currentStepId) {
+      <!-- Message Step -->
+      @case (CommunicationAddEditStep.Message) {
+      <ca-communication-add-edit-message [communication]="communication" (loadingChange)="onChildLoadingChange($event)">
+      </ca-communication-add-edit-message>
+      }
+      <!-- Account Targets Step -->
+      @case (CommunicationAddEditStep.AccountTargets) {
+      <ca-communication-add-edit-account-targets
+        [communication]="communication"
+        (loadingChange)="onChildLoadingChange($event)"
+      >
+      </ca-communication-add-edit-account-targets>
+      }
+      <!-- User Targets Step -->
+      @case (CommunicationAddEditStep.UserTargets) {
+      <ca-communication-add-edit-user-targets
+        [communication]="communication"
+        (loadingChange)="onChildLoadingChange($event)"
+      >
+      </ca-communication-add-edit-user-targets>
+      }
+      <!-- Translations Step -->
+      @case (CommunicationAddEditStep.Translation) {
+      <ca-communication-add-edit-translations
+        [communication]="communication"
+        (loadingChange)="onChildLoadingChange($event)"
+        (formChange)="onChildFormChange($event)"
+      >
+      </ca-communication-add-edit-translations>
+      }
+      <!-- Review Step -->
+      @case (CommunicationAddEditStep.Review) {
+      <ca-communication-add-edit-review [communication]="communication" (loadingChange)="onChildLoadingChange($event)">
+      </ca-communication-add-edit-review>
+      } }
+    </form>
+    } @else {
+    <polaris-loader></polaris-loader>
+    }
+  </div>
+
+  @if(!isFirstStep) {
+  <polaris-href [underline]="false" (onClick)="onBack()">
+    <polaris-icon leading-icon size="xl">arrow-left</polaris-icon>
+    {{ 'back' | translate }}
+  </polaris-href>
+  }
+</div>

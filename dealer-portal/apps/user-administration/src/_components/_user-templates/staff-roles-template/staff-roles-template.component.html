@@ -1,0 +1,38 @@
+<div class="row">
+  <div class="col-12 col-md-10 offset-md-2">
+    @if (isDetailsView && userDetails()) {
+      <div class="row">
+        <div class="col-12 col-md-6">
+          @if (userDetails()!.serviceStaffRoles.length) {
+            @for (role of userDetails()!.serviceStaffRoles; track role.id) {
+              <ua-display-field>{{ role.name }}</ua-display-field>
+            }
+          } @else {
+            <i class="no-results">{{'none-selected' | translate}}</i>
+          }
+        </div>
+      </div>
+    } @else {
+      @if (serviceStaffRoleFormData()) {
+        <div class="d-flex flex-column">
+
+          <!-- Service Staff Roles Checkboxes -->
+          <polaris-checkbox-group
+            [ui-id]="formName"
+            ui-label="{{'service-staff-roles' | translate}}"
+            ui-orientation="vertical"
+            [ui-form-group]="serviceStaffRoleFormData()!.formGroup"
+            [ui-show-label]="false"
+            [ui-errors]="[this.errorMessage]"
+            [ui-instructions]="instructionsText"
+            [ui-instructions-tooltip]="instructionsTooltipText"
+            [options]="serviceStaffRoleFormData()!.options"
+            (onError)="onError({page: pageName, category: formName, messages: $event})"
+          ></polaris-checkbox-group>
+
+        </div>
+      }
+
+    }
+  </div>
+</div>

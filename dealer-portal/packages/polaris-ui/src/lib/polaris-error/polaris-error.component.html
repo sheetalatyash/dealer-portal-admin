@@ -1,0 +1,14 @@
+@if (visible) {
+  <div class="d-flex flex-column gap-2" role="alert">
+   @if (normalizedErrors().length > 0) {
+     @for (error of normalizedErrors(); track error) {
+       <mat-error>{{ error }}</mat-error>
+     }
+   }
+
+   <!-- If no [error] or [errors] are passed, allow projecting ngContent -->
+   @if (normalizedErrors().length === 0) {
+     <mat-error><ng-content></ng-content></mat-error>
+   }
+  </div>
+}

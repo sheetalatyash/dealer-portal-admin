@@ -1,0 +1,157 @@
+:host {
+
+  .toggle-account-table {
+    gap: 2.0rem;
+    width: 100%;
+  }
+
+  .toggle-account-table th, .toggle-account-table td {
+    border: 1px solid var(--polaris-gray-300);
+    border-collapse: collapse;
+  }
+
+  .switch-account {
+    display: flex;
+    align-items: center;
+    font-weight: var(--polaris-font-weight-500);
+    justify-content: flex-start;
+
+    polaris-status-icon {
+      margin-right: 0.7rem;
+    }
+  }
+
+  .result-count {
+    font-size: 1.0rem;
+    font-weight: var(--polaris-font-weight-700);
+    padding-bottom: 1.0rem;
+    padding-top: 0.6rem;
+  }
+
+  .mat-mdc-header-row {
+    background-color: var(--polaris-primary);
+    color: var(--polaris-white);
+    font-weight: var(--polaris-font-weight-700);
+    height: auto;
+  }
+
+  .mat-mdc-header-cell {
+    padding: 0.75rem;
+    align-items: left;
+  }
+
+  tr.expansion-row {
+    height: 0;
+  }
+
+  .expansion-row-cell {
+    margin: 0;
+    padding: 0;
+  }
+
+  .expansion-row-wrapper {
+    height:0px;
+  }
+
+  .expansion-row-wrapper-expanded {
+    min-height: max-content;
+    margin: 0;
+    padding: 0;
+  }
+
+  .expansion-row-button {
+    transition: transform 225ms cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .expansion-row-button-expanded {
+    transform: rotate(180deg);
+  }
+
+  .expand-column {
+    width: 5%;
+    &-owner {
+      background-color: #C9E2FA;
+    }
+    &-operator {
+      background-color: #CCCCCC;
+    }
+  }
+
+  .account-number-column {
+    width: 13%;
+    &-owner {
+      background-color: #C9E2FA;
+      font-weight: var(--polaris-font-weight-500);
+    }
+    &-operator {
+      background-color: #CCCCCC;
+    }
+  }
+
+  .account-name-column {
+    width: 32%;
+    &-owner {
+      background-color: #C9E2FA;
+      font-weight: var(--polaris-font-weight-500);
+      &-child {
+        padding-left: 0;
+      }
+    }
+    &-operator {
+      background-color: #CCCCCC;
+      &-child {
+        background-color: #CCCCCC;
+        padding-left: 1.5rem;
+      }
+    }
+    &-dealer {
+      &-child {
+        padding-left: 2.0rem;
+      }
+    }
+  }
+
+  .account-type-column {
+    width: 10%;
+    &-owner {
+      background-color: #C9E2FA;
+      font-weight: var(--polaris-font-weight-500);
+    }
+    &-operator {
+      background-color: #CCCCCC;
+    }
+  }
+
+  .city-column {
+    width:16%;
+    &-owner {
+      background-color: #C9E2FA;
+      font-weight: var(--polaris-font-weight-500);
+    }
+    &-operator {
+      background-color: #CCCCCC;
+    }
+  }
+
+  .state-column {
+    width: 6%;
+    &-owner {
+      background-color: #C9E2FA;
+      font-weight: var(--polaris-font-weight-500);
+    }
+    &-operator {
+      background-color: #CCCCCC;
+    }
+  }
+
+  .toggle-column {
+    width: 18%;
+    &-owner {
+      background-color: #C9E2FA;
+      font-weight: var(--polaris-font-weight-500);
+    }
+    &-operator {
+      background-color: #CCCCCC;
+    }
+  }
+}

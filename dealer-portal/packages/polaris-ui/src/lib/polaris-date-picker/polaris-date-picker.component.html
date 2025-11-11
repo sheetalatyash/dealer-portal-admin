@@ -1,0 +1,37 @@
+<div class="polaris-date-picker d-flex flex-column">
+  <!-- Input Label -->
+  @if (label) {
+  <mat-label class="d-flex align-items-center">
+    <span>{{ label }}</span>
+
+    <!-- Info Icon -->
+    @if (tooltip) {
+    <polaris-icon [ui-tooltip]="tooltip" color="primary">info</polaris-icon>
+    }
+  </mat-label>
+  }
+
+  <!-- Form Field -->
+  <mat-form-field
+    appearance="outline"
+    [attr.data-test-id]="testId"
+    [ngClass]="[customClass]"
+    (mouseenter)="emitMouseEnterEvent($event)"
+    (mouseleave)="emitMouseLeaveEvent($event)"
+    subscriptSizing="dynamic"
+  >
+    <input
+      matInput
+      [matDatepicker]="datePicker"
+      [placeholder]="placeholder"
+      [formControl]="formControl"
+      [min]="minDate"
+      [max]="maxDate"
+      [matDatepickerFilter]="dateFilter"
+    />
+    <polaris-icon-button ui-class="polaris-date-picker-toggle me-1" matIconSuffix (onClick)="datePicker.open()">
+      <polaris-icon color="primary" size="xl">calendar</polaris-icon>
+    </polaris-icon-button>
+    <mat-datepicker #datePicker panelClass="polaris-date-picker-calendar"></mat-datepicker>
+  </mat-form-field>
+</div>

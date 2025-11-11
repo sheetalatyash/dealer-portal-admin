@@ -1,0 +1,25 @@
+<!-- polaris-tab-bar.component.html -->
+<nav mat-tab-nav-bar
+     [attr.data-test-id]="testId"
+     [ngClass]="[customClass]"
+     (click)="emitClickEvent($event)"
+     (mouseenter)="emitMouseEnterEvent($event)"
+     (mouseleave)="emitMouseLeaveEvent($event)"
+     [selectedIndex]="selectedIndex"
+     mat-align-tabs="start"
+     [mat-stretch-tabs]="stretchTabs"
+     [tabPanel]="tabNavigationPanel">
+
+  @for (tab of tabs; let index = $index; track index) {
+    <a mat-tab-link
+       [active]="tab.selected"
+       [attr.data-test-id]="tab.id"
+       ngClass="['polaris-tab', compact ? 'polaris-tab-compact' : '']"
+       [disabled]="tab.disabled"
+       (click)="emitSelectedTab(tab)">
+      {{ tab.label }}
+    </a>
+  }
+</nav>
+
+<mat-tab-nav-panel #tabNavigationPanel></mat-tab-nav-panel>

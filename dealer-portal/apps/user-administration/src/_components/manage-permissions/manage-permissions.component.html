@@ -1,0 +1,57 @@
+<div class="container-fluid manage-permissions d-flex flex-column gap-2">
+  <!-- User Admin BreadCrumb -->
+  <div class="d-flex mb-4">
+    <polaris-href [underline]="false" [routerLink]="Route.Home">
+      <polaris-icon leading-icon size="xl">arrow-left</polaris-icon>
+      <span>{{ 'user-administration' | translate }}</span>
+    </polaris-href>
+  </div>
+
+  <div class="manage-permissions-header d-flex justify-content-between">
+    <!-- Title -->
+    <div class="d-flex flex-column">
+      <polaris-heading h1>{{ 'permissions-by-app' | translate }}</polaris-heading>
+    </div>
+
+  </div>
+
+  <!-- Manage Permissions Body -->
+  <div class="d-flex flex-column gap-2">
+    <div class="mb-4">{{ 'select-permissions-category' | translate }}</div>
+
+    <!-- Permissions Selectors -->
+    <div class="d-flex gap-4 mb-4">
+      <ua-control-bar [showTabView]="false" [showSearchBar]="false"></ua-control-bar>
+    </div>
+
+    @if (isEditView) { @if (users(); as users) {
+    <div class="d-flex flex-column">
+      <polaris-table ui-test-id="user-listing-table" [data]="users" [config]="tableConfig">
+        <!-- Generate a new column for each column in tableConfig.columns -->
+        @for (column of tableConfig.columns; track (column.id)) {
+          @if (column.columnType === 'text') {
+            <polaris-table-custom-cell [columnName]="column.id">
+              <ng-template let-user>
+                <div [innerHTML]="user[$any(column.key)]"></div>
+              </ng-template>
+            </polaris-table-custom-cell>
+          } @else if (column.columnType === 'radio') {
+            @if (accessLevelOptions()[column.id]) {
+              <polaris-table-custom-cell [columnName]="column.id">
+                <ng-template let-user>
+                  <polaris-radio-group
+                    [options]="[accessLevelOptions()[column.id]]"
+                    [ui-form-control]="accessControls()[user.emailAddress]">
+                  </polaris-radio-group>
+                </ng-template>
+              </polaris-table-custom-cell>
+            }
+          }
+        }
+      </polaris-table>
+    </div>
+    } @else {
+    <polaris-loader></polaris-loader>
+    } }
+  </div>
+</div>

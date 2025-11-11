@@ -1,0 +1,10 @@
+{
+  "name": "@dealer-portal/polaris-shared",
+  "version": "0.0.1",
+  "peerDependencies": {
+    "@angular/core": "19.2.4"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}

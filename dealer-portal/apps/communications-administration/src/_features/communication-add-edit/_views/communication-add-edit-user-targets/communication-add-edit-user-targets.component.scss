@@ -1,0 +1,19 @@
+.form {
+  &-content {
+    &-option {
+      &-info-text {
+        font-size: var(--polaris-font-size-sm);
+        margin-bottom: 0.5rem;
+      }
+
+      &-ctr {
+        border: var(--polaris-border-width) var(--polaris-border-style) var(--polaris-border-color);
+        margin-top: 0.5rem;
+
+        &-options {
+          margin-top: 0.5rem;
+        }
+      }
+    }
+  }
+}

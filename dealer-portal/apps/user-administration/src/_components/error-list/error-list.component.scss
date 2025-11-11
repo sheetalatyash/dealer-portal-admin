@@ -1,0 +1,14 @@
+:host {
+  ul {
+    margin: 0;
+    padding-left: 1rem;
+
+    li {
+      cursor: pointer;
+
+      &::marker {
+        color: var(--polaris-danger);
+      }
+    }
+  }
+}

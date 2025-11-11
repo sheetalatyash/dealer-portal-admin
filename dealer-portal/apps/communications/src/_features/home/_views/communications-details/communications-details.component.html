@@ -1,0 +1,106 @@
+<div class="px-4 px-md-5 py-md-4 py-3">
+  <!-- Back Link -->
+  <a class="back-link" [routerLink]="Route.Home">
+    <polaris-icon size="xxl">arrow-left</polaris-icon>
+    {{ 'title' | translate }}
+  </a>
+  @if(isLoading) {
+  <polaris-loader></polaris-loader>
+  } @else if(communication) {
+  <div>
+    <!-- Button Bar -->
+    <div class="d-flex justify-content-end gap-md-2 py-4">
+      <polaris-icon-button [ui-disabled]="disableActivity" (onClick)="setFavorited(communication, !communication.isFavorite)">
+        @if(communication.isFavorite) {
+        <polaris-icon leading-icon color="primary" size="lg">favorite-filled</polaris-icon>
+        } @else {
+        <polaris-icon leading-icon size="lg">favorite-outline</polaris-icon>
+        }
+        <span class="d-none d-md-block">
+          {{ !communication.isFavorite ? ['favorite' | translate] : ['unfavorite' | translate] }}
+        </span>
+      </polaris-icon-button>
+
+      <polaris-icon-button [ui-disabled]="disableActivity" (onClick)="setRead(communication, !communication.isRead)">
+        @if(communication.isRead) {
+        <polaris-icon leading-icon size="lg">mail-unread</polaris-icon>
+        } @else {
+        <polaris-icon leading-icon size="lg">mail-read</polaris-icon>
+        }
+        <span class="d-none d-md-block">
+          {{ !communication.isRead ? ['mark-read' | translate] : ['mark-unread' | translate] }}
+        </span>
+      </polaris-icon-button>
+
+      <polaris-icon-button [ui-disabled]="disableActivity" (onClick)="setArchived(communication, !communication.isArchive)">
+        @if(communication.isArchive) {
+        <polaris-icon leading-icon size="lg">undo-archive</polaris-icon>
+        } @else {
+        <polaris-icon leading-icon size="lg">archive</polaris-icon>
+        }
+        <span class="d-none d-md-block">
+          {{ !communication.isArchive ? ['archive' | translate] : ['unarchive' | translate] }}
+        </span>
+      </polaris-icon-button>
+    </div>
+
+    <!-- Title -->
+    <h3 class="communication-title" [title]="communication.title">{{ communication.title }}</h3>
+
+    <!-- Subtitle Row -->
+    <div class="d-flex justify-content-between align-items-center">
+      <span class="communication-date">{{ communication.startDate | date : dateFormat }}</span>
+
+      <comm-communication-badge [badgeType]="communication.groupName"></comm-communication-badge>
+    </div>
+
+    <!-- WYSIWYG Content -->
+    <div class="mt-4 communication-content">
+      <comm-wysiwyg-viewer class="d-none d-md-block"
+                           [content]="communication.message ?? ''"
+                           [preventDefaultLinkBehavior]="false"></comm-wysiwyg-viewer>
+      <!-- Mobile Only Line Limited Version -->
+      <comm-wysiwyg-viewer class="d-md-none"
+                           [content]="communication.message ?? ''"
+                           [preventDefaultLinkBehavior]="false"
+                           [maxLines]="10"></comm-wysiwyg-viewer>
+    </div>
+
+    <!-- Attachments -->
+    @if(communication.attachments; as attachments) {
+    <ng-container>
+      @if(attachments.length > 0) {
+      <div class="communication-attachments d-flex flex-column gap-3 gap-md-4 py-2 mt-1 mt-md-4 border-top">
+        <div class="d-flex flex-column flex-md-row gap-2 gap-md-4">
+          <span class="fw-bold">
+            {{ attachments.length }}
+            {{ attachments.length > 1 ? ['attachments' | translate] : ['attachment' | translate] }}
+          </span>
+          @if(attachments.length > 1) {
+          <button role="button"
+                  class="communication-attachments-link-button d-flex align-items-center gap-1"
+                  (click)="onDownloadAttachments(attachments)">
+            <polaris-icon size="xxl">download</polaris-icon>
+            <span class="link-button-sm">{{'download-all' | translate}}</span>
+          </button>
+          }
+        </div>
+        <div class="d-flex flex-column flex-md-row flex-wrap gap-3 gap-4">
+          @for(attachment of attachments; track attachment.attachmentId) {
+          <button role="button"
+                  class="communication-attachments-link-button d-flex align-items-center gap-2"
+                  (click)="onDownloadAttachment(attachment)">
+            <polaris-icon size="xxl">attachment-doc</polaris-icon>
+            <span class="communication-attachments-link-button-xs"> {{ attachment.name }} </span>
+          </button>
+          }
+        </div>
+      </div>
+      }
+    </ng-container>
+    }
+  </div>
+  } @else {
+  <div class="communication-error py-4">{{'communication-not-loaded' | translate}}</div>
+  }
+</div>

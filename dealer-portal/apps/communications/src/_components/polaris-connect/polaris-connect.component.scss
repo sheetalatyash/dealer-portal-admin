@@ -1,0 +1,28 @@
+:host {
+  .polaris-connect {
+    &-content {
+
+      &-video {
+        position: relative;
+        width: 100%;
+        padding-bottom: 56.25%; // 16:9 ratio
+        height: 0;
+        overflow: hidden;
+
+        video {
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+          display: block;
+        }
+      }
+    }
+  }
+}
+
+::ng-deep .app-content {
+  background: var(--polaris-white) !important;
+}

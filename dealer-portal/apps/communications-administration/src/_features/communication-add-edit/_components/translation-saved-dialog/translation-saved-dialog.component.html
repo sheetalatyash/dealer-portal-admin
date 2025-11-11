@@ -1,0 +1,17 @@
+<polaris-dialog [hideCloseButton]="true">
+    <div ngProjectAs="polaris-dialog-title">
+        <span class="fw-normal">
+            {{ "dialog.translation-saved.title" | translate }}
+        </span>
+    </div>
+
+    <span class="dialog-text">
+        {{ "dialog.translation-saved.message" | translate }}
+    </span>
+
+    <div ngProjectAs="polaris-dialog-actions" class="d-flex justify-content-center">
+        <polaris-button (click)="closeDialog()" ui-theme="primary">
+            {{ "okay" | translate }}
+        </polaris-button>
+    </div>
+</polaris-dialog>

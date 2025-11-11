@@ -1,0 +1,33 @@
+.polaris-search-bar {
+
+  &-chips {
+    background-color: var(--polaris-white);
+    overflow-x: auto;
+    position: sticky;
+    top: 0;
+    z-index: 1;
+
+    &::-webkit-scrollbar {
+      height: 0;
+    }
+
+    &:hover {
+      &::-webkit-scrollbar {
+        height: 0.45rem;
+      }
+    }
+
+    &::-webkit-scrollbar-track {
+      background: var(--polaris-gray-200);
+    }
+
+    &::-webkit-scrollbar-thumb {
+      background: var(--polaris-gray-500);
+      border-radius: var(--polaris-border-radius-xl);
+    }
+
+    &::-webkit-scrollbar-thumb:hover {
+      background: var(--polaris-gray-600);
+    }
+  }
+}

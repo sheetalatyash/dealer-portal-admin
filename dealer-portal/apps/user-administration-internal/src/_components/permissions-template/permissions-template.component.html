@@ -1,0 +1,210 @@
+@if (permissions$ | async; as permissions) {
+
+<div class="row">
+  <!-- Right Column-->
+  <div class="col-md-6 d-flex flex-column gap-3">
+    <!-- Username-->
+    <div class="row align-items-center pe-2 mb-2">
+      <div class="col-12 col-md-5">
+        <mat-label>{{ 'username' | translate }}</mat-label>
+      </div>
+      <div class="col-12 col-md-7">
+        {{ internalUserInfo?.claims?.userName }}
+      </div>
+    </div>
+
+    <!-- Email -->
+    <div class="row align-items-center pe-2 mb-2">
+      <div class="col-12 col-md-5">
+        <mat-label>{{ 'email' | translate }}</mat-label>
+      </div>
+      <div class="col-12 col-md-7">
+        {{ internalUserInfo?.claims?.email }}
+      </div>
+    </div>
+
+    <!-- First Name -->
+    <div class="row align-items-center pe-2 mb-2">
+      <div class="col-12 col-md-5">
+        <mat-label>{{ 'first-name' | translate }}</mat-label>
+      </div>
+      <div class="col-12 col-md-7">
+        {{ internalUserInfo?.claims?.givenName }}
+      </div>
+    </div>
+
+    <!-- Last Name -->
+    <div class="row align-items-center pe-2">
+      <div class="col-12 col-md-5">
+        <mat-label>{{ 'last-name' | translate }}</mat-label>
+      </div>
+      <div class="col-12 col-md-7">
+        {{ internalUserInfo?.claims?.familyName }}
+      </div>
+    </div>
+
+    <!-- Account Impersonation Level -->
+    <uai-two-column-radio-group
+                                [label]="'permissions-form.account-impersonation-level'"
+                                [formControl]="getFormControl('accountImpersonationPermission')"
+                                [options]="accountImpersonationPermissionOptions">
+    </uai-two-column-radio-group>
+
+    <!-- Internal Impersonation Level -->
+    <uai-two-column-radio-group
+                                [label]="'permissions-form.internal-impersonation-level'"
+                                [formControl]="getFormControl('internalImpersonationPermission')"
+                                [options]="internalImpersonationPermissionOptions">
+    </uai-two-column-radio-group>
+
+    <!-- Account Status -->
+    <uai-two-column-radio-group
+                                [label]="'permissions-form.account-status'"
+                                [formControl]="getFormControl('isActive')"
+                                [options]="accountStatusOptions">
+    </uai-two-column-radio-group>
+  </div>
+
+    <!-- Left Column-->
+  <div class="col-md-6 d-flex flex-column gap-3">
+    <!-- Help Desk Ticket Number -->
+    <div class="row align-items-center">
+      <div class="col-12 col-md-5 pe-2">
+        <mat-label>
+          {{ 'permissions-form.help-desk-ticket-number' | translate }}
+          @if (!isDetailsView) {
+          <span class="fw-bold text-danger">*</span>
+          }
+        </mat-label>
+      </div>
+      <div class="col-12 col-md-7">
+        <polaris-input ui-class="w-100 text-truncate"
+                       [ui-form-control]="getFormControl('helpDeskNumber')"
+                       [ui-max-length]="inputCharacterLimit"
+                       ui-id="helpDeskNumber">
+        </polaris-input>
+      </div>
+    </div>
+
+    <!-- Empty Space -->
+    <div class="mb-3"></div>
+
+    <!-- Sales Role-->
+    <div class="row align-items-center">
+      <div class="col-12 col-md-5 pe-2">
+        <mat-label>{{ 'sales-role' | translate }}</mat-label>
+      </div>
+      <div class="col-12 col-md-7">
+        <polaris-input ui-class="w-100 text-truncate"
+                       [ui-form-control]="getFormControl('salesRole')"
+                       [ui-max-length]="inputCharacterLimit"
+                       ui-id="salesRole">
+        </polaris-input>
+      </div>
+    </div>
+
+    <!-- Sales Rep Id-->
+    <div class="row align-items-center">
+      <div class="col-12 col-md-5 pe-2">
+        <mat-label> {{ 'sales-rep-id' | translate }} </mat-label>
+      </div>
+      <div class="col-12 col-md-7">
+        <polaris-input ui-class="w-100 text-truncate"
+                       [ui-form-control]="getFormControl('salesRepId')"
+                       [ui-max-length]="inputCharacterLimit"
+                       ui-id="salesRepId">
+        </polaris-input>
+      </div>
+    </div>
+    <!-- Optimizely portal admin access radio -->
+    <uai-two-column-radio-group [label]="'permissions-form.optimizely-admin-access'"
+                                [formControl]="getFormControl('isOptimizelyPortalAdmin')"
+                                [options]="optiPortalAdminStatusOptions">
+    </uai-two-column-radio-group>
+
+    <!-- Optimizely language admin access-->
+    <uai-two-column-radio-group [label]="'permissions-form.optimizely-language-admin'"
+                                [formControl]="getFormControl('isOptimizelyLanguageAdmin')"
+                                [options]="optiLanguageAdminStatusOptions">
+    </uai-two-column-radio-group>
+
+    <!-- Optimizely content admin access-->
+    <uai-two-column-radio-group [label]="'permissions-form.optimizely-content-admin'"
+                                [formControl]="getFormControl('isOptimizelyContentAdmin')"
+                                [options]="optiContentAdminStatusOptions">
+    </uai-two-column-radio-group>
+  </div>
+</div>
+
+<polaris-accordion>
+  @for (page of permissions.pages; track page.contentId) {
+  <polaris-expansion-panel [ui-test-id]="expansionPanelTestId + '-' + page.menuName">
+    <polaris-expansion-panel-title>
+      <div class="d-flex align-items-center gap-2">
+        <span>{{ page.menuName }}</span>
+        <polaris-icon size="xl" color="primary" ui-tooltip="{{ 'inherited-permissions-tooltip' | translate }}">info</polaris-icon>
+      </div>
+    </polaris-expansion-panel-title>
+    <div class="d-flex flex-column gap-5">
+
+      <!-- Permissions Accordion -->
+      <polaris-accordion class="d-flex flex-column col-12 col-xl-8 mb-4" [showToggle]="false">
+
+        <!-- Label Bar -->
+        <div class="label-bar d-flex justify-content-end gap-2">
+          @for (accessLevel of permissions.pageAccessCategories; track accessLevel.displayName) {
+          <div class="d-flex justify-content-center" [style.min-width]="radioMinWidth">
+            <mat-label>{{ accessLevel.displayName }}</mat-label>
+          </div>
+          }
+        </div>
+
+        @for (category of page.children; track category.contentId) {
+        <polaris-expansion-panel
+                                 [ui-test-id]="expansionPanelTestId + '-' + page.menuName + '-' + category.menuName"
+                                 ui-theme="secondary"
+                                 togglePosition="before"
+                                 headerHeight="50px"
+                                 [expanded]="false"
+                                 [usePolarisExpansionToggle]="false"
+                                 >
+          <polaris-expansion-panel-title>{{ category.menuName }}</polaris-expansion-panel-title>
+          <polaris-expansion-panel-description>
+            <polaris-radio-group
+                                 (click)="$event.stopPropagation()"
+                                 [options]="generatePermissionOptions(category, page)"
+                                 [ui-form-control]="getNestedFormControl(page, category)"
+                                 [ui-readonly]="isDetailsView"
+                                 (onSelectionChange)="handleCategorySelectionChange($event, page, category)"
+                                 [ui-stack-label]="false"
+                                 [hideIfDisabled]="true"
+                                 >
+            </polaris-radio-group>
+          </polaris-expansion-panel-description>
+
+          <div class="permissions-list">
+            @for (permission of category.children; track permission.contentId) {
+            <div class="permission d-flex justify-content-between align-items-center">
+              <mat-label>{{ permission.menuName }}</mat-label>
+              <polaris-radio-group
+                                   [options]="generatePermissionOptions(permission)"
+                                   [ui-readonly]="isDetailsView"
+                                   [ui-form-control]="getNestedFormControl(page, category, permission)"
+                                   [hideIfDisabled]="true">
+              </polaris-radio-group>
+            </div>
+            }
+          </div>
+
+        </polaris-expansion-panel>
+        }
+      </polaris-accordion>
+    </div>
+  </polaris-expansion-panel>
+  }
+</polaris-accordion>
+} @else {
+ no permissions
+}
+
+

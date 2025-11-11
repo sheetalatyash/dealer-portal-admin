@@ -1,0 +1,162 @@
+@use 'sass:meta';
+@use 'functions' as functions;
+@use '../mixins/rfs' as rfs-mixins;
+@use '../variables/base-variables' as app;
+
+
+
+:root {
+  // Note: Custom variable values only support SassScript inside `#{}`.
+
+  // Colors
+  //
+  // Generate palettes for full colors, grays, and theme colors.
+
+  @each $color, $value in app.$colors {
+    --#{app.$prefix}#{$color}: #{$value};
+  }
+
+  @each $color, $value in app.$grays {
+    --#{app.$prefix}gray-#{$color}: #{$value};
+  }
+
+  @each $color, $value in app.$theme-colors {
+    --#{app.$prefix}#{$color}: #{$value};
+  }
+
+  @each $color, $value in app.$theme-gray-colors {
+    --theme-gray-#{$color}: #{$value};
+  }
+
+  @each $color, $value in app.$theme-primary-colors {
+    --theme-primary-#{$color}: #{$value};
+  }
+
+  @each $color, $value in app.$theme-secondary-colors {
+    --theme-secondary-#{$color}: #{$value};
+  }
+
+  @each $color, $value in app.$theme-tertiary-colors {
+    --theme-tertiary-#{$color}: #{$value};
+  }
+
+  @each $button-state, $value in app.$theme-button-colors {
+    --theme-button-#{$button-state}: #{$value};
+  }
+
+  @each $color, $value in app.$theme-colors-rgb {
+    --#{app.$prefix}#{$color}-rgb: #{$value};
+  }
+
+  @each $color, $value in app.$theme-colors-text {
+    --#{app.$prefix}#{$color}-text-emphasis: #{$value};
+  }
+
+  @each $color, $value in app.$theme-colors-bg-subtle {
+    --#{app.$prefix}#{$color}-bg-subtle: #{$value};
+  }
+
+  @each $color, $value in app.$theme-border-subtle-colors {
+    --#{app.$prefix}#{$color}-border-subtle: #{$value};
+  }
+
+  --#{app.$prefix}white-rgb: #{functions.to-rgb(app.$white)};
+  --#{app.$prefix}black-rgb: #{functions.to-rgb(app.$black)};
+
+  // Fonts
+
+  // Note: Use `inspect` for lists so that quoted items keep the quotes.
+  // See https://github.com/sass/sass/issues/2383#issuecomment-336349172
+  --#{app.$prefix}font-sans-serif: #{meta.inspect(app.$font-family-sans-serif)};
+  --#{app.$prefix}font-monospace: #{meta.inspect(app.$font-family-monospace)};
+  --#{app.$prefix}gradient: #{app.$gradient};
+
+  // Root and body
+  // scss-docs-start root-body-variables
+  @if app.$font-size-root != null {
+    --#{app.$prefix}root-font-size: #{app.$font-size-root};
+  }
+
+  --#{app.$prefix}body-font-family: #{meta.inspect(app.$font-family-base)};
+  @include rfs-mixins.rfs(app.$font-size-base, --#{app.$prefix}body-font-size);
+  --#{app.$prefix}body-font-weight: #{app.$font-weight-base};
+  --#{app.$prefix}body-line-height: #{app.$line-height-base};
+
+  --#{app.$prefix}font-size-xxs: #{app.$font-size-xxs};
+  --#{app.$prefix}font-size-xs: #{app.$font-size-xs};
+  --#{app.$prefix}font-size-sm: #{app.$font-size-sm};
+  --#{app.$prefix}font-size-md: #{app.$font-size-base};
+  --#{app.$prefix}font-size-ml: #{app.$font-size-ml};
+  --#{app.$prefix}font-size-lg: #{app.$font-size-lg};
+
+  @each $font-weight, $value in app.$font-weights {
+    --#{app.$prefix}font-weight-#{$font-weight}: #{$value};
+  }
+
+  @if app.$body-text-align != null {
+    --#{app.$prefix}body-text-align: #{app.$body-text-align};
+  }
+
+  --#{app.$prefix}body-color: #{app.$body-color};
+  --#{app.$prefix}body-color-rgb: #{functions.to-rgb(app.$body-color)};
+  --#{app.$prefix}body-bg: #{app.$body-bg};
+  --#{app.$prefix}body-bg-rgb: #{functions.to-rgb(app.$body-bg)};
+
+  --#{app.$prefix}emphasis-color: #{app.$body-emphasis-color};
+  --#{app.$prefix}emphasis-color-rgb: #{functions.to-rgb(app.$body-emphasis-color)};
+
+  --#{app.$prefix}secondary-color: #{app.$body-secondary-color};
+  --#{app.$prefix}secondary-color-rgb: #{functions.to-rgb(app.$body-secondary-color)};
+  --#{app.$prefix}secondary-bg: #{app.$body-secondary-bg};
+  --#{app.$prefix}secondary-bg-rgb: #{functions.to-rgb(app.$body-secondary-bg)};
+
+  --#{app.$prefix}tertiary-color: #{app.$body-tertiary-color};
+  --#{app.$prefix}tertiary-color-rgb: #{functions.to-rgb(app.$body-tertiary-color)};
+  --#{app.$prefix}tertiary-bg: #{app.$body-tertiary-bg};
+  --#{app.$prefix}tertiary-bg-rgb: #{functions.to-rgb(app.$body-tertiary-bg)};
+  // scss-docs-end root-body-variables
+
+  --#{app.$prefix}heading-color: #{app.$headings-color};
+
+  --#{app.$prefix}link-color: #{app.$link-color};
+  --#{app.$prefix}link-color-rgb: #{functions.to-rgb(app.$link-color)};
+  --#{app.$prefix}link-decoration: #{app.$link-decoration};
+
+  --#{app.$prefix}link-hover-color: #{app.$link-hover-color};
+  --#{app.$prefix}link-hover-color-rgb: #{functions.to-rgb(app.$link-hover-color)};
+
+  @if app.$link-hover-decoration != null {
+    --#{app.$prefix}link-hover-decoration: #{app.$link-hover-decoration};
+  }
+
+  --#{app.$prefix}code-color: #{app.$code-color};
+  --#{app.$prefix}highlight-color: #{app.$mark-color};
+  --#{app.$prefix}highlight-bg: #{app.$mark-bg};
+
+  // scss-docs-start root-border-var
+  --#{app.$prefix}border-width: #{app.$border-width};
+  --#{app.$prefix}border-style: #{app.$border-style};
+  --#{app.$prefix}border-color: #{app.$border-color};
+  --#{app.$prefix}border-color-translucent: #{app.$border-color-translucent};
+
+  --#{app.$prefix}border-radius: #{app.$border-radius};
+  --#{app.$prefix}border-radius-sm: #{app.$border-radius-sm};
+  --#{app.$prefix}border-radius-lg: #{app.$border-radius-lg};
+  --#{app.$prefix}border-radius-xl: #{app.$border-radius-xl};
+  --#{app.$prefix}border-radius-xxl: #{app.$border-radius-xxl};
+  --#{app.$prefix}border-radius-2xl: var(--#{app.$prefix}border-radius-xxl); // Deprecated in v5.3.0 for consistency
+  --#{app.$prefix}border-radius-pill: #{app.$border-radius-pill};
+  // scss-docs-end root-border-var
+
+  --#{app.$prefix}box-shadow: #{app.$box-shadow};
+  --#{app.$prefix}box-shadow-sm: #{app.$box-shadow-sm};
+  --#{app.$prefix}box-shadow-lg: #{app.$box-shadow-lg};
+  --#{app.$prefix}box-shadow-inset: #{app.$box-shadow-inset};
+
+  // Focus styles
+  // scss-docs-start root-focus-variables
+  --#{app.$prefix}focus-ring-width: #{app.$focus-ring-width};
+  --#{app.$prefix}focus-ring-opacity: #{app.$focus-ring-opacity};
+  --#{app.$prefix}focus-ring-color: #{app.$focus-ring-color};
+  // scss-docs-end root-focus-variables
+}

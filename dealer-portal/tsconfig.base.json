@@ -1,0 +1,36 @@
+{
+  "compilerOptions": {
+    "rootDir": ".",
+    "baseUrl": "./",
+    "declaration": false,
+    "downlevelIteration": true,
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
+    "forceConsistentCasingInFileNames": true,
+    "importHelpers": true,
+    "lib": ["ES2022", "dom"],
+    "module": "ES2022",
+    "moduleResolution": "node",
+    "noFallthroughCasesInSwitch": true,
+    "noImplicitOverride": true,
+    "noImplicitReturns": true,
+    "noPropertyAccessFromIndexSignature": true,
+    "outDir": "./dist/out-tsc",
+    "sourceMap": true,
+    "strict": true,
+    "target": "ES2022",
+    "useDefineForClassFields": false,
+    "paths": {
+      "@dealer-portal/dealer-portal-theme": ["packages/dealer-portal-theme/src/index.ts"],
+      "@dealer-portal/dealer-portal-theme/css/*": ["dist/packages/dealer-portal-theme/css/*"],
+      "@dealer-portal/polaris-core": ["packages/polaris-core/src/index.ts"],
+      "@dealer-portal/polaris-modules": ["packages/polaris-modules/src/index.ts"],
+      "@dealer-portal/polaris-shared": ["packages/polaris-shared/src/index.ts"],
+      "@dealer-portal/polaris-ui": ["packages/polaris-ui/src/index.ts"]
+    },
+    "skipLibCheck": true,
+    "resolveJsonModule": true,
+    "esModuleInterop": true
+  },
+  "exclude": ["node_modules", "tmp"]
+}

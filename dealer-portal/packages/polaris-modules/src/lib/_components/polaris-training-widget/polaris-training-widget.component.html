@@ -1,0 +1,61 @@
+<lib-polaris-base-widget [showRefresh]="false">
+  <widget-title>{{ 'widgets.polaris-training.title' | translate }}</widget-title>
+  <div class="d-flex flex-column gap-3">
+    @for (category of trainingData; let index = $index; track index) {
+    <!-- Display resources based on access -->
+    @if (!category.requiresUserAdminAccess || hasSecurityAccess) {
+    <div class="d-flex flex-wrap flex-column align-items-start align-items-center-md justify-content-between">
+      <div class="d-flex gap-1 flex-wrap">
+        <span class="widget-training-title">{{ category.title }}:</span>
+        <polaris-href (onClick)="openVideoDialog(category.videoUrl, category.title)" [underline]="false">
+          {{ 'widgets.polaris-training.video' | translate }}
+        </polaris-href>
+      </div>
+      <div class="d-flex gap-1 align-items-center flex-wrap">
+        <span>{{ 'widgets.polaris-training.training-articles' | translate }}:</span>
+        <polaris-href [url]="category.articleUrl" [openInNewTab]="true" [underline]="false">
+          {{ 'widgets.polaris-training.english' | translate }}
+        </polaris-href>
+        <span>/</span>
+        <polaris-href [url]="category.articleUrlFrench" [openInNewTab]="true" [underline]="false">
+          {{ 'widgets.polaris-training.french' | translate }}
+        </polaris-href>
+      </div>
+    </div>
+    } }
+  </div>
+
+  @if(showSupportSection) {
+  <div class="widget-section-header pt-4">{{ 'widgets.polaris-training.questions.title' | translate }}</div>
+  <div class="widget-section-questions">
+    @if(showCallSupportInfo) {
+    <!-- Call Support Section -->
+    <div class="widget-section-questions-column">
+      <span>{{ 'widgets.polaris-training.questions.call-support.title' | translate }}</span>
+      <a class="widget-section-questions-action" href="tel:{{ supportPhoneNumber }}">
+        <img [src]="callSupportImageLocation" class="widget-section-questions-image" alt="You Call Support" />
+        {{ supportPhoneNumber }}
+      </a>
+      <span class="widget-section-questions-tagline">{{
+        'widgets.polaris-training.questions.call-support.description' | translate
+      }}</span>
+    </div>
+    <div class="widget-section-questions-divider"></div>
+    }
+    <!-- Support Callback Section -->
+    <div class="widget-section-questions-column">
+      <span>{{ 'widgets.polaris-training.questions.support-callback.title' | translate }}</span>
+      <polaris-href (onClick)="openCallbackDialog()" [underline]="false">
+        <div class="widget-section-questions-action">
+          <img
+            [src]="supportCallbackImageLocation"
+            class="widget-section-questions-image"
+            alt="Request a Support Callback"
+          />
+          {{ 'widgets.polaris-training.questions.support-callback.description' | translate }}
+        </div>
+      </polaris-href>
+    </div>
+  </div>
+  }
+</lib-polaris-base-widget>

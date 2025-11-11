@@ -1,0 +1,31 @@
+
+<lib-polaris-base-widget [showRefresh]="false" [blueBorder]="true">
+  <widget-title>{{'widgets.polaris-connect.title' | translate}}</widget-title>
+  <div class="d-flex flex-column gap-3">
+    @if (communications.length > 0) {
+    @for (item of communications; track item) {
+    <div (click)="onCommunicationClicked(item)" class="d-flex gap-3 align-items-center">
+      <div class="d-flex gap-3 align-items-center">
+        <polaris-href [ngClass]="{ 'communication-item-new': IsNewCommunication(item.startDate) }" class="text-wrap" [underline]="false">
+          {{ item.title }}
+        </polaris-href>
+
+        @if(IsNewCommunication(item.startDate)) {
+        <polaris-badge [color]="PolarisBadgeColor.Warning">{{ 'New' | translate }}</polaris-badge>
+        }
+      </div>
+    </div>
+    }
+    <div class="d-flex align-items-center pt-3">
+      <polaris-href (onClick)="onViewAll()">
+        <span>{{'viewAll' | translate}}</span>
+        <polaris-icon size="xl" color="primary" trailing-icon>arrow-right</polaris-icon>
+      </polaris-href>
+    </div>
+    }
+    @else {
+    {{ 'widgets.polaris-connect.no-data' | translate }}
+    }
+  </div>
+</lib-polaris-base-widget>
+

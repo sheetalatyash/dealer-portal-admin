@@ -1,0 +1,26 @@
+@use '../variables/base-variables' as app;
+
+.ratio {
+  position: relative;
+  width: 100%;
+
+  &::before {
+    display: block;
+    padding-top: var(--#{app.$prefix}aspect-ratio);
+    content: "";
+  }
+
+  > * {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  }
+}
+
+@each $key, $ratio in app.$aspect-ratios {
+  .ratio-#{$key} {
+    --#{app.$prefix}aspect-ratio: #{$ratio};
+  }
+}

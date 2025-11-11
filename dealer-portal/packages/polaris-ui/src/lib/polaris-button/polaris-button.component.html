@@ -1,0 +1,11 @@
+<button class="polaris-button"
+        [ngClass]="[customClass, buttonThemeClass]"
+        [attr.data-test-id]="testId"
+        [disableRipple]="true"
+        [disabled]="disabled"
+        (click)="emitClickEvent($event)"
+        (mouseenter)="emitMouseEnterEvent($event)"
+        (mouseleave)="emitMouseLeaveEvent($event)"
+        mat-stroked-button>
+  <ng-content/>
+</button>

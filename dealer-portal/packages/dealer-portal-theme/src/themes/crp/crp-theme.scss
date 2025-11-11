@@ -1,0 +1,13 @@
+@charset "UTF-8";
+
+@use 'theme-variables' as theme;
+
+@use '../polaris-base-theme/variables/base-variables' with (
+  $font-family-sans-serif:  theme.$font-family-sans-serif,
+  $theme-primary-colors:    theme.$theme-primary-colors,
+);
+
+@use 'theme-fonts' as theme-fonts;
+@use '../polaris-base-theme/vendor';
+@use '../../vendors/material';
+

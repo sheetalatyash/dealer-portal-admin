@@ -1,0 +1,21 @@
+:host {
+
+  .result-count {
+    font-size: 1.0rem;
+    font-weight: var(--polaris-font-weight-700);
+    padding-bottom: 1.0rem;
+    padding-top: 0.6rem;
+  }
+
+  .mat-mdc-header-row {
+    background-color: var(--polaris-primary);
+    color: var(--polaris-white);
+    font-weight: var(--polaris-font-weight-700);
+    height: auto;
+  }
+
+  .mat-mdc-header-cell {
+    padding: 0.75rem;
+    align-items: left;
+  }
+}

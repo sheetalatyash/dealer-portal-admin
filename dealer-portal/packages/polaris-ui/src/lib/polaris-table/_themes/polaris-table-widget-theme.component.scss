@@ -1,0 +1,33 @@
+:host {
+  .polaris-table-widget-theme {
+    table-layout: fixed;
+
+    .mat-mdc-header-row {
+      background-color: var(--polaris-white);
+      color: var(--polaris-gray);
+      text-transform: uppercase;
+    }
+
+    .mat-mdc-header-cell {
+      font-size: var(--polaris-font-size-sm);
+      border-left: none;
+      border-right: none;
+      border-top: none;
+      border-bottom: 2px var(--polaris-border-style) var(--polaris-border-color);
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    .mat-mdc-cell {
+      font-size: var(--polaris-font-size-sm);
+      border-left: none;
+      border-right: none;
+      border-top: none;
+      border-bottom: var(--polaris-border-width) var(--polaris-border-style) var(--polaris-border-color);
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+  }
+}

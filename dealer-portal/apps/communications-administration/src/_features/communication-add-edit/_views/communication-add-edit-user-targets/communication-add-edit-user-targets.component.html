@@ -1,0 +1,101 @@
+<ca-communication-add-edit-targets
+                                   [stepTitle]="'form.step.user-targets'"
+                                   [stepDescription]="'user-targets-help-text'"
+                                   [templateFileName]="'specific-users-template.csv'"
+                                   [specificTargetsLabel]="'option.by-specific-user'"
+                                   [isLoading]="isLoading"
+                                   [tableData$]="allAccounts$"
+                                   [tableColumns]="accountsTableColumns"
+                                   [specificTargetsFormGroup]="userTargetsFormGroup"
+                                   [isSpecificTargetsSelected]="isSpecificAccountsSelected"
+                                   [isAnyOptionalGeneralTargetSelected]="isAnyOptionalGeneralTargetSelected"
+                                   [uploadFiles]="uploadingFile ? [uploadingFile] : []"
+                                   [filePickerFormControl]="filePickerFormControl"
+                                   (fileSelected)="onFileSelected($event)"
+                                   (fileCanceled)="onFileCanceled($event)"
+                                   (rowsDeleted)="onRowsDeleted($event, allAccountsSubject)">
+  <ng-container partnerTypeSelection>
+    <div class="col-4">
+      <polaris-checkbox-group [ui-form-group]="userTargetsFormGroup" [options]="departmentSelection">
+      </polaris-checkbox-group>
+      @if(isDepartmentSelected) {
+      <div class="col-12 form-content-option-ctr py-2 px-3">
+        <div class="form-content-option-ctr-options">
+          <polaris-checkbox-group [ui-form-group]="departmentOptionsFormGroup"
+                                  [options]="departmentOptions" ui-orientation="vertical">
+          </polaris-checkbox-group>
+        </div>
+      </div>
+      }
+    </div>
+  </ng-container>
+
+  <ng-container productLineSelection>
+    <div class="col-4">
+      <polaris-checkbox-group [ui-form-group]="userTargetsFormGroup" [options]="roleSelection">
+      </polaris-checkbox-group>
+      @if(isRoleSelected) {
+      <div class="col-12 form-content-option-ctr py-2 px-3">
+        <div class="form-content-option-ctr-options">
+          <polaris-checkbox-group
+                                  [ui-form-group]="staffRoleOptionsFormGroup"
+                                  [options]="staffRoleOptions"
+                                  ui-orientation="vertical">
+          </polaris-checkbox-group>
+        </div>
+      </div>
+      }
+    </div>
+  </ng-container>
+
+  <ng-container customerClassSelection>
+    <div class="col-4">
+      <polaris-checkbox-group [ui-form-group]="userTargetsFormGroup" [options]="serviceStaffRoleSelection">
+      </polaris-checkbox-group>
+      @if(isServiceStaffRoleSelected) {
+      <div class="col-12 form-content-option-ctr py-2 px-3">
+        <div class="form-content-option-ctr-options">
+          <polaris-checkbox-group
+                                  [ui-form-group]="serviceStaffRoleOptionsFormGroup"
+                                  [options]="serviceStaffRoleOptions"
+                                  ui-orientation="vertical">
+          </polaris-checkbox-group>
+        </div>
+      </div>
+      }
+    </div>
+  </ng-container>
+
+  <ng-container salesTerritoryOrRegionSelection>
+    <div class="col-4">
+      <polaris-checkbox-group [ui-form-group]="userTargetsFormGroup" [options]="securityOrAppPermissionsSelection">
+      </polaris-checkbox-group>
+      @if(isSecurityOrAppPermissionsSelected) {
+      <div class="form-content-option-ctr-options">
+        <polaris-search-bar
+                            ui-class="w-75"
+                            ui-placeholder="Search for a permission"
+                            ui-form-control-name="securityOrAppPermissionsOptions"
+                            [searchResults]="securityOrAppPermissionsOptions$ | async"
+                            [searchResultsFilterFn]="filterSearchResults"
+                            [addChipOnSelectResult]="true"
+                            [hideSearchIcon]="true"
+                            [showAutocompleteOnEmptySearch]="true"
+                            [ui-form-group]="userTargetsFormGroup">
+        </polaris-search-bar>
+      </div>
+      }
+    </div>
+  </ng-container>
+
+  <ng-container specificAccountsInstructions>
+    <div>
+      <span>{{ 'specific-accounts.user.upload-file' | translate }}</span>
+      <ul>
+        <li>{{ 'specific-accounts.user.prefix-instruction' | translate }}</li>
+        <li>{{ 'specific-accounts.user.prefix-instruction-pt2' | translate }}</li>
+        <li>{{ 'specific-accounts.user.file-format-instruction' | translate }}</li>
+      </ul>
+    </div>
+  </ng-container>
+</ca-communication-add-edit-targets>

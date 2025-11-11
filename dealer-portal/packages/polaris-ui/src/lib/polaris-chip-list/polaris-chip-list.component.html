@@ -1,0 +1,20 @@
+<div
+  class="polaris-chip-list"
+  [ngClass]="customClass"
+  [attr.data-test-id]="testId"
+  (click)="emitClickEvent($event)"
+  (mouseenter)="emitMouseEnterEvent($event)"
+  (mouseleave)="emitMouseLeaveEvent($event)"
+>
+  @for(chip of chips; track chip.id) {
+  <polaris-chip
+    [id]="chip.id"
+    [ui-test-id]="chip.testId"
+    [isSelected]="chip.selected"
+    (selectionChange)="onChipChange(chip)"
+  >
+    {{ chip.label }}
+  </polaris-chip>
+  }
+  <ng-content></ng-content>
+</div>

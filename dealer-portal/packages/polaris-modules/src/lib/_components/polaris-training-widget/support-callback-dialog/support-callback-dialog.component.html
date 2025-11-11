@@ -1,0 +1,70 @@
+<polaris-dialog [hideCloseButton]="dialogRef.disableClose ?? true">
+  <div ngProjectAs="polaris-dialog-title" class="support-callback-dialog-title">
+    {{ 'widgets.polaris-training.questions.support-callback.dialog.title' | translate }}
+  </div>
+
+  @if(!hasSubmitted) {
+  <div
+    class="support-callback-dialog-description"
+    [innerHTML]="'widgets.polaris-training.questions.support-callback.dialog.description' | translate"
+  ></div>
+  <div class="support-callback-dialog-disclaimer">
+    {{ 'widgets.polaris-training.questions.support-callback.dialog.disclaimer' | translate }}
+  </div>
+
+  <form [formGroup]="form" class="support-callback-dialog-form">
+    <polaris-input
+      ui-form-control-name="contactName"
+      [ui-label]="'widgets.polaris-training.questions.support-callback.dialog.form.contact-name' | translate"
+      [ui-placeholder]="'widgets.polaris-training.questions.support-callback.dialog.form.contact-name' | translate"
+    ></polaris-input>
+    <polaris-input
+      ui-form-control-name="contactPhone"
+      [ui-label]="'widgets.polaris-training.questions.support-callback.dialog.form.contact-phone' | translate"
+      [ui-placeholder]="'widgets.polaris-training.questions.support-callback.dialog.form.contact-phone' | translate"
+      ui-type="phone"
+    ></polaris-input>
+    <polaris-textarea
+      ui-form-control-name="question"
+      [ui-label]="'widgets.polaris-training.questions.support-callback.dialog.form.question' | translate"
+      [ui-placeholder]="
+        'widgets.polaris-training.questions.support-callback.dialog.form.question-placeholder' | translate
+      "
+    ></polaris-textarea>
+  </form>
+  } @else {
+  <!-- Shows a different message depending on success or failure -->
+  @if(isSubmissionSuccess) {
+  <!-- Show a different message if off hours -->
+  @let displayedMessage = data.isOffHours ?
+  "widgets.polaris-training.questions.support-callback.dialog.off-hours-message" :
+  "widgets.polaris-training.questions.support-callback.dialog.success-message";
+  <div [innerHTML]="displayedMessage | translate"></div>
+  } @else {
+  <div
+    class="support-callback-dialog-description"
+    [innerHTML]="
+      'widgets.polaris-training.questions.support-callback.dialog.failure-message'
+        | translate
+          : {
+              supportPhoneNumber: data.supportPhoneNumber
+            }
+    "
+  ></div>
+  } }
+
+  <div ngProjectAs="polaris-dialog-actions" class="support-callback-dialog-actions">
+    @if(!hasSubmitted) {
+    <polaris-button ui-theme="tertiary" (click)="closeDialog()">
+      {{ 'widgets.polaris-training.questions.support-callback.dialog.form.actions.cancel' | translate }}
+    </polaris-button>
+    <polaris-button (click)="onSubmit()" [ui-disabled]="form.disabled">
+      {{ 'widgets.polaris-training.questions.support-callback.dialog.form.actions.submit' | translate }}
+    </polaris-button>
+    } @else {
+    <polaris-button (click)="closeDialog()">
+      {{ 'widgets.polaris-training.questions.support-callback.dialog.form.actions.close' | translate }}
+    </polaris-button>
+    }
+  </div>
+</polaris-dialog>

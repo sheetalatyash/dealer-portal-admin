@@ -1,0 +1,25 @@
+:host ::ng-deep .mat-mdc-radio-button.align-items-start .mdc-form-field {
+  align-items: flex-start;
+}
+:host ::ng-deep .mat-mdc-radio-button.align-items-center .mdc-form-field {
+  align-items: center;
+}
+:host ::ng-deep .mat-mdc-radio-button.align-items-end .mdc-form-field {
+  align-items: flex-end;
+}
+
+:host ::ng-deep .mat-mdc-radio-button.label-top .mdc-form-field {
+  flex-direction: column-reverse; // circle below, label above
+  align-items: center;
+  font-size: var(--polaris-font-size-sm);
+}
+
+:host ::ng-deep .mat-mdc-radio-button.label-bottom .mdc-form-field {
+  flex-direction: column; // circle above, label below
+  align-items: center;
+  font-size: var(--polaris-font-size-sm);
+}
+
+:host ::ng-deep .mat-mdc-radio-button .mat-internal-form-field>label {
+  padding: 0;
+}

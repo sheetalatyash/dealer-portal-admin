@@ -1,0 +1,40 @@
+<div class="row">
+  <div class="col-12 col-md-10 offset-md-2">
+    <div class="d-flex flex-column gap-2">
+
+      <polaris-error [visible]="!isDetailsView && productLinesFormInvalid()">
+        {{ errorMessage }}
+      </polaris-error>
+
+      <!-- Instructions -->
+      @if (!isDetailsView) {
+        <div class="d-flex gap-1 align-items-center mb-1">
+          <i>{{ 'form.instructions.select-all-that-apply' | translate }}</i>
+          <polaris-icon size="xl" color="primary" ui-tooltip="{{ 'tooltips.product-lines-tooltip' | translate}}">info</polaris-icon>
+        </div>
+      }
+
+      <div id="productLines" class="d-flex flex-column flex-md-row flex-md-wrap gap-3 gap-md-5">
+        @for (unitResult of productLinesFormData(); let last = $last; track unitResult.name) {
+
+          @if (!isDetailsView || !unitResult.hideOnReadOnly) {
+            <polaris-checkbox-group
+              [ui-id]="formName"
+              [ui-form-group]="unitResult.formGroup"
+              [ui-readonly]="isDetailsView"
+              [displayReadonlyIcons]="false"
+              [options]="unitResult.options"
+              ui-orientation="vertical"
+            ></polaris-checkbox-group>
+
+            @if (!last) {
+              <div class="d-flex d-md-none">
+                <polaris-divider></polaris-divider>
+              </div>
+            }
+          }
+        }
+      </div>
+    </div>
+  </div>
+</div>

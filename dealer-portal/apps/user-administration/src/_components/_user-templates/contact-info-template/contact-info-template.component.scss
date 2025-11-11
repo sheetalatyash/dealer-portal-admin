@@ -1,0 +1,11 @@
+@use '../../../../../../packages/dealer-portal-theme/src/themes/polaris-base-theme/mixins/breakpoints' as breakpoints;
+
+polaris-input {
+  @include breakpoints.media-breakpoint-up(lg) {
+    width: 320px;
+  }
+}
+
+.expansion-panel-content {
+  gap: 2rem;
+}

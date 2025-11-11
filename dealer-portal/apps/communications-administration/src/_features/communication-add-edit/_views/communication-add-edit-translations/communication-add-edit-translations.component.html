@@ -1,0 +1,253 @@
+<div class="container-fluid">
+  <div class="form-header">
+    <div class="form-header-title">{{ 'form.step.translation' | translate }}</div>
+  </div>
+  @if(!isInitializing) {
+  <div class="form-content my-5">
+    <div class="row pb-5">
+      <div class="default-message-container col">
+        <div>
+          <div class="form-column-title">
+            {{ 'default-language-detected' | translate }}
+          </div>
+          {{ defaultTranslation?.language }}
+        </div>
+
+        <div>
+          <div class="form-column-title">
+            {{ 'text-title' | translate }}
+          </div>
+          {{ defaultTranslation?.title }}
+        </div>
+        <div>
+          <span class="form-column-title">
+            {{ 'message' | translate }}
+          </span>
+          <ca-rich-text-viewer [content]="defaultTranslation?.messageBody ?? ''"> </ca-rich-text-viewer>
+        </div>
+        <div>
+          <span class="form-column-title">
+            {{ 'attachments' | translate }}
+          </span>
+          @for(attachment of defaultTranslation?.attachments; track attachment.attachmentId) {
+          <div class="d-flex align-items-center gap-1">
+            <polaris-icon size="xl">attachment-doc</polaris-icon>
+            <a [href]="attachment.location">
+              {{ attachment.name }}
+            </a>
+          </div>
+          }
+        </div>
+      </div>
+      <div class="translation-form-container col" [formGroup]="translationAddEditFormGroup" #translationFormElement>
+        <div class="d-flex flex-column gap-2">
+          <span>{{ 'form.step.translation' | translate }}</span>
+          <span>
+            <span class="fw-bold">{{ 'note' | translate }}:</span>
+            {{ 'auto-translate-disclaimer' | translate }}
+          </span>
+
+          <div class="d-flex align-items-end gap-4">
+            <div class="flex-grow-1">
+              @if(selectedTranslationForEdit) {
+              <polaris-input
+                ui-form-control-name="language"
+                [ui-readonly]="true"
+                [ui-label]="'form.step.translation' | translate"
+              >
+                [ui-show-label]="false"</polaris-input
+              >
+              } @else {
+              <polaris-select
+                ui-form-control-name="language"
+                [ui-label]="'form.step.translation' | translate"
+                [options]="availableAddLanguages"
+                [ui-placeholder]="'select-one' | translate"
+                [ui-show-label]="false"
+                dropdownWidth="auto"
+              >
+              </polaris-select>
+              }
+            </div>
+            <polaris-button
+              ui-theme="secondary"
+              [ui-disabled]="!isLanguageSelected || disableFormControls"
+              (onClick)="onAutoTranslate()"
+            >
+              {{ 'auto-translate-action' | translate }}
+            </polaris-button>
+          </div>
+        </div>
+
+        <polaris-input
+          ui-form-control-name="title"
+          [ui-outline-color]="selectedTranslationForEdit ? 'primary' : 'default'"
+          [ui-label]="'text-title' | translate"
+        >
+        </polaris-input>
+
+        <polaris-rich-text-editor
+          ui-form-control-name="message"
+          [ui-outline-color]="selectedTranslationForEdit ? 'primary' : 'default'"
+          [ui-label]="'message' | translate"
+        >
+        </polaris-rich-text-editor>
+
+        <polaris-checkbox-group
+          [options]="[confirmationOption]"
+          [ui-form-group]="$any(translationAddEditFormGroup.get('confirmation'))"
+        >
+        </polaris-checkbox-group>
+
+        @if(confirmationFormControl.invalid && confirmationFormControl.touched) {
+        <div class="form-error-message">
+          <div class="fw-bold">
+            {{ 'translation-confirmation-error.title' | translate }}
+          </div>
+          <div>
+            {{ 'translation-confirmation-error.message' | translate }}
+          </div>
+        </div>
+        }
+
+        <div class="d-flex justify-content-end gap-4 pt-4">
+          @if(!selectedTranslationForEdit) { @if(translationAddEditFormGroup.dirty) {
+          <polaris-button ui-theme="tertiary" [ui-disabled]="disableFormControls" (onClick)="onReset()">
+            {{ 'reset-action' | translate }}
+          </polaris-button>
+          }
+          <polaris-button
+            ui-theme="primary"
+            [ui-disabled]="!addTranslationEnabled || disableFormControls"
+            (onClick)="onAddTranslation()"
+          >
+            {{ 'translation-add-action' | translate }}
+          </polaris-button>
+          } @else {
+          <polaris-button ui-theme="tertiary" [ui-disabled]="disableFormControls" (onClick)="onCancelEditTranslation()">
+            {{ 'cancel' | translate }}
+          </polaris-button>
+          <polaris-button ui-theme="tertiary" [ui-disabled]="disableFormControls" (onClick)="onReset(true)">
+            {{ 'revert' | translate }}
+          </polaris-button>
+          <polaris-button ui-theme="primary" [ui-disabled]="disableFormControls" (onClick)="onUpdateTranslation()">
+            {{ 'update' | translate }}
+          </polaris-button>
+          }
+        </div>
+      </div>
+    </div>
+
+    @if(displayedTranslations.length > 0) {
+    <div>
+      <polaris-expansion-panel headerHeight="45px">
+        <div ngProjectAs="polaris-expansion-panel-title">
+          <span class="form-translations-review-header">
+            {{ 'translations-review-title' | translate }}
+          </span>
+        </div>
+
+        @for(translation of displayedTranslations; track translation.cultureCode) {
+        <polaris-expansion-panel headerHeight="45px" [expanded]="selectedTranslationForEdit === translation">
+          <div ngProjectAs="polaris-expansion-panel-title">
+            {{ translation.language }}
+          </div>
+          <div ngProjectAs="polaris-expansion-panel-actions" class="d-flex gap-2 pe-3">
+            @if(selectedTranslationForEdit !== translation) {
+            <polaris-icon-button
+              [ui-disabled]="disableFormControls"
+              (onClick)="onSelectTranslationForEdit($event, translation)"
+            >
+              <polaris-icon size="xl" color="primary">edit</polaris-icon>
+            </polaris-icon-button>
+            } @else {
+            <div class="d-flex align-items-center">
+              <polaris-icon size="xl" color="dark">edit</polaris-icon>
+              <div class="editing-text">
+                {{ 'editing-mode' | translate }}
+              </div>
+            </div>
+            }
+            <polaris-icon-button
+              [ui-disabled]="disableFormControls"
+              (onClick)="onDeleteTranslation($event, translation)"
+            >
+              <polaris-icon size="xl" color="dark">delete</polaris-icon>
+            </polaris-icon-button>
+          </div>
+
+          <div class="form-translations-review-translation-details px-3 pt-2 pb-4">
+            <span class="fw-semibold">
+              {{ 'text-title' | translate }}
+            </span>
+            <div>
+              {{ translation.title }}
+            </div>
+            <span class="fw-semibold">
+              {{ 'message' | translate }}
+            </span>
+            <ca-rich-text-viewer [content]="translation.messageBody"> </ca-rich-text-viewer>
+            <span class="fw-semibold">
+              {{ 'attachments' | translate }}
+            </span>
+            <div>
+              @let translationFilePickerFormControl = translationAttachmentsFormGroup.get(translation.cultureCode);
+
+              <polaris-file-picker
+                [maximumFileSize]="1 * 1024 * 1024 * 1024"
+                [ui-form-group]="translationAttachmentsFormGroup"
+                [ui-form-control-name]="translation.cultureCode"
+                [allowMultiple]="true"
+                [allowedFileTypes]="allowedFileTypes"
+                [uploadFiles]="translationFilePickerFormControl?.value"
+                (onAddFiles)="onUploadTranslationAttachments(translation, $event)"
+                (onDeleteFile)="onClearFileUpload(translation, $event)"
+                (onCancelFile)="onClearFileUpload(translation, $event)"
+              ></polaris-file-picker>
+
+              @if(translationFilePickerFormControl?.errors) {
+              <div>
+                @let fileSizeExceededFiles = translationFilePickerFormControl?.errors?.['fileSizeExceeded'];
+                @if(fileSizeExceededFiles?.length) {
+                <div class="form-error-message">
+                  {{ 'invalid-file-size' | translate : { '0': fileSizeExceededFiles?.join(', ') } }}
+                </div>
+                } @let invalidFileTypesFiles = translationFilePickerFormControl?.errors?.['invalidFileTypes'];
+                @if(invalidFileTypesFiles?.length) {
+                <div class="form-error-message">
+                  {{ 'invalid-file-types' | translate : { '0': invalidFileTypesFiles?.join(', ') } }}
+                </div>
+                }
+              </div>
+              }
+            </div>
+            @if(translation.attachments.length) {
+            <span class="fw-semibold">
+              {{ 'uploaded-files' | translate }}
+            </span>
+            <div class="d-flex flex-column gap-2">
+              @for(attachment of translation.attachments; track attachment.attachmentId) {
+              <div class="d-flex align-items-center gap-1">
+                <polaris-icon size="xl">attachment-doc</polaris-icon>
+                <a [href]="attachment.location">
+                  {{ attachment.name }}
+                </a>
+                <polaris-icon-button
+                  [ui-disabled]="disableFormControls"
+                  (onClick)="onDeleteTranslationAttachment(translation, attachment)"
+                >
+                  <polaris-icon size="xl" color="dark">delete</polaris-icon>
+                </polaris-icon-button>
+              </div>
+              }
+            </div>
+            }
+          </div>
+        </polaris-expansion-panel>
+        }
+      </polaris-expansion-panel>
+    </div>
+    }
+  </div>
+  } @else { <polaris-loader></polaris-loader> }
+</div>

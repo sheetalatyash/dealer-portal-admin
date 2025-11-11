@@ -1,0 +1,209 @@
+{
+  "buttons": {
+    "cancel": "Cancel",
+    "exit": "Exit",
+    "go": "Go",
+    "reset": "Reset",
+    "save-and-exit": "Save & Exit",
+    "edit-favorites": "Edit Favorites",
+    "add-favorites": "Add Favorites"
+  },
+  "dialog": {
+    "message-center-listing-help": {
+      "title": "Search",
+      "message": "Search messages spanning up to 18 months for Programs, Alerts, and Communications."
+    }
+  },
+  "title": "MESSAGE CENTER",
+  "search": "Search Programs, Alerts & Communications",
+  "all-active": "All Active",
+  "help": "Help",
+  "save": "Save",
+  "cancel": "Cancel",
+  "all": "All",
+  "none": "None",
+  "app-dashboard": "App Dashboard",
+  "download-all": "Download All",
+  "communication-not-loaded": "Messages could not be loaded.",
+  "attachment": "Attachment",
+  "attachments": "Attachments",
+  "read": "Read",
+  "filtered-communication-messages": "Search Results Across \"All Messages\"",
+  "news-forms-links": "News, Forms & Links",
+  "starred": "Starred",
+  "close": "Close",
+  "unstarred": "Unstarred",
+  "archived": "Archived",
+  "unarchived": "Unarchived",
+  "archive": "Archive",
+  "unarchive": "Unarchive",
+  "mark-unread": "Mark Unread",
+  "mark-read": "Mark Read",
+  "favorite": "Favorite",
+  "favorite-tooltip": "Add to Favorites",
+  "unfavorite-tooltip": "Remove from Favorites",
+  "select-communication-tooltip": "Select Communication",
+  "unfavorite": "Unfavorite",
+  "date-format": "MM/dd/yy",
+  "refresh": "Refresh",
+  "viewAll": "View All",
+  "new": "New",
+  "unsaved-changes-confirmation": "You have unsaved changes on this page. Do you want to leave this page and discard your changes or stay on this page?",
+  "notification": {
+    "try-again": "Try Again",
+    "failed": "Action Failed",
+    "undo": "Undo",
+    "communication-not-found": "Communication not found. Please return to the homepage.",
+    "return-home": "Please return to the homepage and select a communication",
+    "internal-user-message": "Message center is currently not available for internal users",
+    "internal-user-redirect": "To continue, visit the",
+    "internal-user-redirect-page": "page",
+    "favorite": {
+      "added": "Marked as Favorite",
+      "removed": "Favorite removed"
+    },
+    "mark": {
+      "read": "Marked as Read",
+      "unread": "Marked as Unread"
+    }
+  },
+  "table": {
+    "col": {
+      "product": "Product",
+      "actual": "Actual",
+      "goal": "Goal",
+      "vin": "VIN",
+      "model": "Model"
+    },
+    "search": "Search all messages",
+    "no-results": "You have no new messages",
+    "no-results-alert": "You have no new alert communications",
+    "no-results-program": "You have no new program communications",
+    "no-results-favorite": "You have not marked any message as favorite. To mark message as favorite, click the star icon next to the date.",
+    "no-results-archive": "There are no archived messages",
+    "no-results-search": "No Results. Your search did not return any matches. Please modify your search terms and try again.",
+    "paging": {
+      "displaying": "Displaying {{0}}-{{1}} of {{2}}",
+      "load-more": "Load More",
+      "view-past-alert": "View All Past Alerts",
+      "view-past-program": "View All Past Programs",
+      "view-alert": "View Active Alerts",
+      "view-program": "View Active Programs"
+    },
+    "sort": {
+      "title": "Sort",
+      "new-to-old": "Newest to Oldest",
+      "old-to-new": "Oldest to Newest"
+    },
+    "tab": {
+      "alerts": "Alerts",
+      "communications": "Communications",
+      "programs": "Programs",
+      "favorites": "Favorites",
+      "archive": "Archive",
+      "webinar": "Webinar"
+    }
+  },
+  "toggle-account-view": {
+    "title": "Toggle Account",
+    "help-dialog-title": "Toggle Account Help",
+    "help-dialog-text": "Toggle Account help text here...",
+    "help-dialog-close": "Close",
+    "search-placeholder": "Search",
+    "search-results": "Accounts found",
+    "table-column": {
+      "account-number": "Account Number",
+      "account-name": "Account Name",
+      "account-type": "Customer Class",
+      "active-account": "Active",
+      "dealer-number": "Dealer Number",
+      "state": "State",
+      "city": "City",
+      "switch-account": "Switch Account",
+      "toggle": "Toggle Account"
+    }
+  },
+  "widgets": {
+    "tasks": {
+      "title": "Task Dashboard"
+    },
+    "follow-up": {
+      "title": "Follow Up",
+      "no-data": "There are no follow-up items at this time. Use \"Refresh\" link to get the latest."
+    },
+    "favorite-links": {
+      "title": "Favorite Links"
+    },
+    "monthly-retail-goal": {
+      "title": "Monthly Retail Goal",
+      "description": "Based on your business plan"
+    },
+    "polaris-connect": {
+      "title": "Polaris Connect",
+      "no-data": "No new content.",
+      "description": "Stay up-to-date on the latest news from Polaris vehicles including product introductions, new retail programs and other business updates.",
+      "tabs": {
+        "all": "All",
+        "off-road-vehicles": "Off-Road Vehicles",
+        "on-road-vehicles": "On-Road Vehicles",
+        "marine": "Marine",
+        "snowmobiles-and-timbersleds": "Snowmobiles & Timbersleds",
+        "indian-and-slingshot": "Indian & Slingshot"
+      }
+    },
+    "polaris-unit-inquiry": {
+      "title": "Unit Inquiry",
+      "search-vin-pin": "Search Unit Inquiry:",
+      "vin-pin": "VIN/PIN",
+      "recently-viewed": "Recently Viewed"
+    },
+    "polaris-training": {
+      "title": "Dealer Website Update Resources",
+      "home-page-communication": "Homepage",
+      "security-administration": "Security Administration",
+      "video": "Video",
+      "training-articles": "Training Articles",
+      "english": "English",
+      "french": "French",
+      "questions": {
+        "title": "Dealer Website Update Questions",
+        "call-support": {
+          "title": "You Call Us!",
+          "description": "Less Than 60 Sec Hold Time"
+        },
+        "support-callback": {
+          "title": "Have Us Call You!",
+          "description": "Click Here To Connect",
+          "dialog": {
+            "title": "Polaris Live Agent",
+            "description": "This question is for <b>Dealer Website Questions ONLY.</b> Submit your questions below and a Polaris representative will reach out by phone as soon as possible.",
+            "disclaimer": "Please verify your phone number before submitting the question.",
+            "form": {
+              "contact-name": "Contact Name",
+              "contact-phone": "Contact Phone Number",
+              "question": "Dealer Website Question",
+              "question-placeholder": "How can we help?",
+              "actions": {
+                "submit": "Submit",
+                "cancel": "Cancel",
+                "close": "Close"
+              }
+            },
+            "success-message": "Thanks for your submission!<br><br>A Polaris representative will contact you shortly on the phone number provided.",
+            "off-hours-message": "<p><strong>Thank you for your submission.</strong></p><p>Support is currently unavailable. Polaris Live Agent is available during the following hours:</p><ul><li><strong>Monday-Friday:</strong> 8:00 AM - 7:00 PM CST</li><li><strong>Saturday:</strong> 10:00 AM - 2:00 PM CST</li></ul><p>However, your request is in process and we'll follow up as soon as possible during normal business hours.</p><p><strong>We appreciate your patience.</strong></p>",
+            "failure-message": "We're sorry, but there was an error submitting your request. Please try again later or call Dealer Support at {{supportPhoneNumber}}."
+          }
+        }
+      }
+    },
+    "edit-widgets": {
+      "customize": "Customize Apps",
+      "title": "Customize Homepage Apps",
+      "description": "Personalize your homepage apps by dragging and dropping them within the list view. The default app is <br> pinned and cannot be removed, but it can be repositioned within the Homepage App list view.",
+      "home-widgets": "Home Widgets",
+      "add-apps": "Add Apps",
+      "empty-available-widgets": "All available apps have been added.",
+      "empty-active-widgets": "Drag widgets here."
+    }
+  }
+}

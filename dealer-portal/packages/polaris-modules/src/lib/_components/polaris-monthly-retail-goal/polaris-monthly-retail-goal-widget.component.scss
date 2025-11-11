@@ -1,0 +1,13 @@
+.widget-container {
+  background-color: var(--polaris-white);
+  border: var(--polaris-border-width) var(--polaris-border-style) var(--polaris-border-color);
+
+  .widget-title {
+    font-size: var(--polaris-font-size-lg);
+    font-weight: var(--polaris-font-weight-bolder);
+  }
+
+  .widget-description {
+    color: var(--polaris-gray);
+  }
+}

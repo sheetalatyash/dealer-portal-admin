@@ -1,0 +1,40 @@
+{
+  "compilerOptions": {
+    "paths": {
+      "@classes/*": ["apps/communications-administration/src/_classes/*"],
+      "@classes": ["apps/communications-administration/src/_classes/index.ts"],
+      "@components/*": ["apps/communications-administration/src/_components/*"],
+      "@components": ["apps/communications-administration/src/_components/index.ts"],
+      "@features/*": ["apps/communications-administration/src/_features/*"],
+      "@enums/*": ["apps/communications-administration/src/_enums/*"],
+      "@enums": ["apps/communications-administration/src/_enums/index.ts"],
+      "@environments/*": ["apps/communications-administration/src/_environments/*"],
+      "@services/*": ["apps/communications-administration/src/services/*"],
+      "@types/*": ["apps/communications-administration/src/_types/*"],
+      "@types": ["apps/communications-administration/src/_types/index.ts"],
+      "@dealer-portal/polaris-core": ["packages/polaris-core/src/index.ts"],
+      "@dealer-portal/polaris-shared": ["packages/polaris-shared/src/index.ts"],
+      "@dealer-portal/polaris-ui": ["packages/polaris-ui/src/index.ts"]
+    }
+  },
+  "files": [],
+  "include": [],
+  "references": [
+    {
+      "path": "./tsconfig.editor.json"
+    },
+    {
+      "path": "./tsconfig.app.json"
+    },
+    {
+      "path": "./tsconfig.spec.json"
+    }
+  ],
+  "extends": "../../tsconfig.base.json",
+  "angularCompilerOptions": {
+    "enableI18nLegacyMessageIdFormat": false,
+    "strictInjectionParameters": true,
+    "strictInputAccessModifiers": true,
+    "strictTemplates": true
+  }
+}

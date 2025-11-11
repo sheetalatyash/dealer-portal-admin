@@ -1,0 +1,26 @@
+<div class="d-flex flex-column">
+
+    <!-- Input Label -->
+    @if (label && showLabel) {
+    <mat-label class="d-flex align-items-center gap-2">
+        <span>{{ label }}</span>
+    </mat-label>
+    }
+
+    <!-- Editor -->
+    <div [ngClass]="{
+        'outline-primary': outlineColor === 'primary',        
+        'outline-error': formControl.invalid && formControl.touched,
+    }">
+        <editor licenseKey="gpl" [init]="editorConfig" [formControl]="formControl">
+        </editor>
+    </div>
+
+    <!-- Error Messages -->
+    @if (formControl.invalid && formControl.touched) {
+    @for (error of errors; track error) {
+    <mat-error>{{ error }}</mat-error>
+    }
+    }
+
+</div>

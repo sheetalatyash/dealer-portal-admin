@@ -1,0 +1,159 @@
+{
+  "name": "communications-administration",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "application",
+  "prefix": "ca",
+  "sourceRoot": "apps/communications-administration/src",
+  "tags": [
+    "app",
+    "ui"
+  ],
+  "targets": {
+    "build": {
+      "executor": "@angular-devkit/build-angular:application",
+      "outputs": [
+        "{options.outputPath}"
+      ],
+      "options": {
+        "outputPath": "dist/apps/communications-administration",
+        "index": "apps/communications-administration/src/index.html",
+        "browser": "apps/communications-administration/src/main.ts",
+        "polyfills": [
+          "zone.js"
+        ],
+        "tsConfig": "apps/communications-administration/tsconfig.app.json",
+        "inlineStyleLanguage": "scss",
+        "assets": [
+          {
+            "glob": "**/*",
+            "input": "apps/communications-administration/public"
+          },
+          {
+            "glob": "**/*",
+            "input": "dist/packages/dealer-portal-theme/css",
+            "output": "css"
+          },
+          {
+            "glob": "**/*",
+            "input": "dist/packages/dealer-portal-theme/fonts",
+            "output": "fonts"
+          },
+          {
+            "glob": "**/*",
+            "input": "dist/packages/dealer-portal-theme/images",
+            "output": "images"
+          },
+          {
+            "glob": "**/*",
+            "input": "dist/packages/dealer-portal-theme/js",
+            "output": "js"
+          },
+          {
+            "glob": "**/*",
+            "input": "node_modules/tinymce",
+            "output": "/tinymce/"
+          },
+          {
+            "glob": "**/*",
+            "input": "apps/communications-administration/src/assets",
+            "output": "."
+          }
+        ],
+        "styles": [
+          "apps/communications-administration/src/styles.scss"
+        ],
+        "scripts": [],
+        "allowedCommonJsDependencies": [
+          "ua-parser-js",
+          "reflect-metadata"
+        ],
+        "budgets": [
+          {
+            "type": "initial",
+            "maximumWarning": "5mb",
+            "maximumError": "10mb"
+          },
+          {
+            "type": "anyComponentStyle",
+            "maximumWarning": "5kb",
+            "maximumError": "150kb"
+          }
+        ]
+      },
+      "configurations": {
+        "production": {
+          "fileReplacements": [
+            {
+              "replace": "apps/communications-administration/src/_environments/environment.ts",
+              "with": "apps/communications-administration/src/_environments/environment.production.ts"
+            }
+          ]
+        },
+        "staging": {
+          "fileReplacements": [
+            {
+              "replace": "apps/communications-administration/src/_environments/environment.ts",
+              "with": "apps/communications-administration/src/_environments/environment.staging.ts"
+            }
+          ]
+        },
+        "development": {
+          "fileReplacements": [
+            {
+              "replace": "apps/communications-administration/src/_environments/environment.ts",
+              "with": "apps/communications-administration/src/_environments/environment.development.ts"
+            }
+          ]
+        },
+        "local": {
+          "optimization": false,
+          "extractLicenses": false,
+          "sourceMap": true,
+          "fileReplacements": [
+            {
+              "replace": "apps/communications-administration/src/_environments/environment.ts",
+              "with": "apps/communications-administration/src/_environments/environment.local.ts"
+            }
+          ]
+        }
+      },
+      "defaultConfiguration": "production"
+    },
+    "serve": {
+      "executor": "@angular-devkit/build-angular:dev-server",
+      "configurations": {
+        "production": {
+          "buildTarget": "communications-administration:build:production"
+        },
+        "staging": {
+          "buildTarget": "communications-administration:build:staging"
+        },
+        "development": {
+          "buildTarget": "communications-administration:build:development"
+        },
+        "local": {
+          "buildTarget": "communications-administration:build:local"
+        }
+      },
+      "defaultConfiguration": "local"
+    },
+    "extract-i18n": {
+      "executor": "@angular-devkit/build-angular:extract-i18n",
+      "options": {
+        "buildTarget": "communications-administration:build"
+      }
+    },
+    "lint": {
+      "executor": "@nx/eslint:lint"
+    },
+    "test": {
+      "executor": "@nx/jest:jest",
+      "outputs": [
+        "{workspaceRoot}/coverage/{projectRoot}"
+      ],
+      "options": {
+        "jestConfig": "apps/communications-administration/jest.config.ts"
+      }
+    }
+  }
+}

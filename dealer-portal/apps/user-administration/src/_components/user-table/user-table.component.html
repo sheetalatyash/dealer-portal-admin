@@ -1,0 +1,62 @@
+<div class="user-administration-table d-flex flex-column">
+  @let users = filteredUsers();
+  @if (users !== null) {
+    <polaris-table
+      ui-test-id="user-listing-table"
+      [data]="users"
+      [stickyHeader]="true"
+      [config]="tableConfig"
+      (onLoadMore)="onLoadMore()">
+
+      <!-- Generate a new column for each column in tableConfig.columns -->
+      @for (column of tableConfig.columns; track (column.id)) {
+        <polaris-table-custom-cell [columnName]="column.id">
+          <ng-template let-user>
+
+            <!-- If columnType is 'text' -->
+            @if (column.columnType === 'text') {
+              <div [innerHTML]="user[$any(column.key)]"></div>
+
+            <!-- If columnType is an icon -->
+            } @else if (column.columnType === 'icon') {
+              <polaris-status-icon
+                [condition]="user[$any(column.key)]"
+                [hideIconIfFalsyCondition]="true"
+                ui-test-id="user-{{$any(column.key)}}-{{user[$any(column.key)]}}"
+                size="xl">
+              </polaris-status-icon>
+
+            <!-- If columnType is a link -->
+            } @else if (column.columnType === 'link') {
+
+              <!-- Re-Send Verification Email link -->
+              @if (column.id === 'verification') {
+                @if (hasReadWriteAccess(); as hasReadWriteAccess) {
+                  <polaris-href
+                    *accessControl="accessControlLevel.ReadWrite"
+                    (onClick)="resendVerificationEmail(user)"
+                    [ui-disabled]="!hasReadWriteAccess"
+                    ui-test-id="resend-verification-link">
+                    Resend Email
+                  </polaris-href>
+                }
+
+              <!-- View/Edit User link -->
+              } @else if (column.id === 'actions') {
+                <div class="d-flex gap-2">
+                  <polaris-href  (onClick)="navigateToUserPage(user, 'details')" ui-test-id="view-view-user-link">View</polaris-href>
+                  <polaris-href *accessControl="accessControlLevel.ReadWrite"  (onClick)="navigateToUserPage(user, 'edit')" ui-test-id="view-edit-user-link">Edit</polaris-href>
+                </div>
+              }
+
+            }
+          </ng-template>
+        </polaris-table-custom-cell>
+      }
+
+    </polaris-table>
+  }
+  @else {
+    <polaris-loader></polaris-loader>
+  }
+</div>

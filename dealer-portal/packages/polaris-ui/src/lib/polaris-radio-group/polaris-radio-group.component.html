@@ -1,0 +1,62 @@
+<div class="polaris-radio-group d-flex gap-2"
+     [id]="id"
+     [attr.data-test-id]="testId"
+     [ngClass]="[
+       labelOrientationClass,
+       'polaris-radio-group--theme-' + theme
+     ]">
+
+  <!-- Errors -->
+  <polaris-error
+    [visible]="formControl.invalid && formControl.touched"
+    [errors]="errors"></polaris-error>
+
+  <!-- Label -->
+  @if (label && showLabel) {
+    <mat-label>{{ label }}</mat-label>
+  }
+
+  <!-- Instructions -->
+  @if (instructions) {
+    <p><i>{{ instructions }}</i></p>
+  }
+
+  <!-- Radio Group -->
+  <mat-radio-group
+    class="d-flex gap-2"
+    [formControl]="formControl"
+    [ngClass]="[customClass, orientationClass]"
+    (mouseenter)="emitMouseEnterEvent($event)"
+    (mouseleave)="emitMouseLeaveEvent($event)">
+
+    <!-- Radio Options -->
+    @for (option of options; track option.value) {
+
+      <!-- ReadOnly Mode (Show values as (✔) or (✖) icons) -->
+      @if (readonly) {
+        <polaris-icon
+          [style.min-width]="option.minWidth"
+          class="text-center"
+          color="{{option.selected ? 'success' : 'danger'}}"
+        >{{option.selected && displayTruthyValues ? 'check' : displayFalsyValues ? 'close' : ''}}</polaris-icon>
+
+      <!-- Default Radio Buttons -->
+      } @else {
+        <mat-radio-button
+          [labelPosition]="labelPosition === 'left' ? 'before' : 'after'"
+          [ngClass]="['d-flex', 'justify-content-' + justifyButtonContent, 'align-items-' + alignItems]"
+          [class.label-top]="labelPosition === 'top'"
+          [class.label-bottom]="labelPosition === 'bottom'"
+          [attr.data-test-id]="(option.testId || 'polaris-option-unknown') + '-radio-button'"
+          [style.min-width]="option.minWidth"
+          [style.opacity]="hideIfDisabled && option.disabled ? 0 : 1"
+          [checked]="option.selected"
+          [disabled]="option.disabled"
+          [value]="option.value">
+          <span [innerHtml]="option.label"></span>
+        </mat-radio-button>
+      }
+    }
+
+  </mat-radio-group>
+</div>

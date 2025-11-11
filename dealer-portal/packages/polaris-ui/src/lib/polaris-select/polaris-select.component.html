@@ -1,0 +1,60 @@
+<div class="polaris-select d-flex flex-column" [ngClass]="customClass" [attr.data-test-id]="testId">
+
+  <!-- Label -->
+  @if (label && showLabel) {
+  <mat-label>{{ label }}</mat-label>
+  }
+
+  <!-- Instructions -->
+  @if (instructions) {
+  <p><i>{{ instructions }}</i></p>
+  }
+
+  <mat-form-field appearance="outline" floatLabel="always" subscriptSizing="dynamic">
+    <mat-select [disableRipple]="true"
+                [panelWidth]="panelWidth"
+                [placeholder]="placeholder"
+                [formControl]="formControl"
+                [attr.data-test-id]="testId"
+                [panelClass]="readonly ? 'd-none' : ''">
+
+      @if (options$ | async; as selectOptions) {
+        @for (option of selectOptions; track option.value) {
+
+          <!-- First Level Grouping -->
+          @if (option.children?.length) {
+            <mat-optgroup [label]="option.label" class="polaris-option-group">
+
+              @for (child of option.children; track child.value) {
+
+                <!-- Second Level Grouping -->
+                @if (child.children?.length) {
+                  <mat-optgroup [label]="child.label" class="polaris-option-group">
+                    @for (subChild of child.children; track subChild.value) {
+                      <mat-option class="polaris-option" [value]="subChild.value" [attr.data-test-id]="option.testId">{{ subChild.label }}</mat-option>
+                    }
+                  </mat-optgroup>
+                } @else {
+                  <!-- Direct Option in First-Level Group -->
+                  <mat-option class="polaris-option" [value]="child.value" [attr.data-test-id]="option.testId">{{ child.label }}</mat-option>
+                }
+              }
+
+            </mat-optgroup>
+          } @else {
+            <!-- Regular Option -->
+            <mat-option class="polaris-option" [value]="option.value" [attr.data-test-id]="option.testId">{{ option.label }}</mat-option>
+          }
+        }
+      }
+    </mat-select>
+  </mat-form-field>
+
+  <!-- Errors -->
+  @if (formControl && formControl.invalid && formControl.touched) {
+    @for (error of errors; track error) {
+      <mat-error>{{ error }}</mat-error>
+    }
+  }
+
+</div>

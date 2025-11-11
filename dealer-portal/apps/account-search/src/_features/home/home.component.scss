@@ -1,0 +1,22 @@
+@use '../../../../../packages/dealer-portal-theme/src/themes/polaris-base-theme/mixins/breakpoints' as breakpoints;
+
+.account-search {
+
+  &-content {
+    display: grid;
+    grid-column-gap: 3.0rem;
+    grid-row-gap: 2.0rem;
+    grid-template-columns: 18.0rem auto;
+    justify-items:left;
+    vertical-align: top;
+
+    @include breakpoints.media-breakpoint-down(md) {
+      grid-template-columns: auto;
+    }
+
+    &-filters {
+      border-width: var(--polaris-border-width);
+    }
+
+  }
+}

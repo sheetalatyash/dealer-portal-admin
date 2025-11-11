@@ -1,0 +1,56 @@
+@use '@angular/material' as mat;
+
+.checkbox-group {
+  padding-top: 0.9rem;
+}
+
+.checkbox-group {
+  padding-top: 0.9rem;
+}
+
+.account-filter-expansion-panel {
+  width: 18.0rem;
+  padding: 0;
+}
+::ng-deep .mat-expansion-panel-body {
+  padding: 8px 0 24px 12px !important;
+}
+
+.expansion-panel {
+  border-bottom: var(--polaris-border-width) var(--polaris-border-style) var(--polaris-secondary);
+  width: 48.0rem;
+}
+
+.expansion-panel-content {
+  margin-left: -0.7rem;
+}
+
+.expansion-panel-title {
+  vertical-align: middle;
+  white-space: nowrap;
+  font-weight: var(--polaris-font-weight-500);
+}
+
+.nested-checkbox-group-family {
+  font-weight: var(--polaris-font-weight-500);
+  padding-top: 0.5rem;
+  padding-left: 0.4rem;
+}
+
+.non-nested-checkbox-group mat-checkbox {
+  padding-top: 0.5rem;
+}
+
+.nested-checkbox-group-multiple-products {
+  padding-left: 1.2rem;
+}
+
+.nested-checkbox-group-single-products {
+  padding-top: 0.5rem;
+}
+
+.select-all-checkbox {
+  display: flex;
+  font-weight: var(--polaris-font-weight-500);
+  justify-content: flex-start;
+}

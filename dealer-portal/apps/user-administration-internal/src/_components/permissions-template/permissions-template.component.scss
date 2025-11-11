@@ -1,0 +1,19 @@
+:host {
+  .label-bar {
+    padding-left: 1rem;
+    padding-right: 1rem;
+    font-weight: var(--polaris-font-weight-500);
+  }
+
+  .permissions-list {
+    .permission {
+      padding-left: 1rem;
+      padding-right: 1rem;
+      padding-bottom: .25rem;
+
+      &:not(:last-child) {
+        border-bottom: 1px solid var(--theme-gray-200);
+      }
+    }
+  }
+}

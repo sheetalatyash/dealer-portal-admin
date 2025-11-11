@@ -1,0 +1,25 @@
+@if (followUpData$ | async; as followUpData) {
+<lib-polaris-base-widget (refreshWidget)="refreshFollowUpData(true)">
+  <widget-title>{{'widgets.follow-up.title' | translate}}</widget-title>
+  <div class="d-flex flex-column gap-3">
+    @if (!isLoading) {
+      @if (followUpData.length > 0) {
+        @for (item of followUpData; track item) {
+        <polaris-href [underline]="false" (onClick)="navigateToItem(item?.url)">
+          <div class="d-flex align-items-center gap-3">
+            <polaris-badge [sizeSquare]="polarisBadgeSizeSquare.Medium" ui-class="d-flex fw-semibold" [color]="PolarisBadgeColor.Danger">{{ item.count }}</polaris-badge>
+            <span>{{ item.displayName }}</span>
+          </div>
+        </polaris-href>
+        }
+      }
+      @else{
+      {{ 'widgets.follow-up.no-data' | translate }}
+      }
+    } @else {
+    <polaris-loader></polaris-loader>
+    }
+
+  </div>
+</lib-polaris-base-widget>
+}

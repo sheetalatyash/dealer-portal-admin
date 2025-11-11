@@ -1,0 +1,31 @@
+<div class="row">
+  <div class="col-12 col-md-10 offset-md-2">
+    @if (isDetailsView && userDetails()) {
+    <div class="row">
+      <div class="col-12 col-md-6">
+        <div class="col d-flex flex-column expansion-panel-content-list">
+          @for (department of userDetails()!.departments; track department.id) {
+          <ua-display-field>{{ department.name }}</ua-display-field>
+          }
+        </div>
+      </div>
+    </div>
+    } @else {
+      <div class="d-flex flex-column">
+        <!-- Department Checkboxes -->
+        @if (departmentsFormData()) {
+          <polaris-checkbox-group
+            [ui-form-group]="departmentsFormData()!.formGroup"
+            [ui-id]="formName"
+            [errorMessages]="this.errorMessages"
+            [ui-instructions]="instructionsText"
+            [ui-instructions-tooltip]="instructionsTooltipText"
+            (onError)="onError({page: pageName, category: formName, messages: $event})"
+            [options]="departmentsFormData()!.options"
+            ui-orientation="vertical"
+          ></polaris-checkbox-group>
+        }
+      </div>
+    }
+  </div>
+</div>

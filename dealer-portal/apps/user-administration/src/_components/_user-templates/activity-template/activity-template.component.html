@@ -1,0 +1,166 @@
+<div class="row">
+  <div class="col-12 col-md-10 offset-md-2">
+    @if (isDetailsView && userDetails()) {
+      <div class="row">
+      <div class="col-12 col-md-6">
+        <div class="d-flex flex-column activity-form">
+          <ua-display-field>
+            <leading-icon>
+              <polaris-status-icon [condition]="userDetails()!.active"></polaris-status-icon>
+            </leading-icon>
+            <span>{{ 'form.active-user' | translate }}</span>
+            <trailing-icon>
+              <polaris-icon [ui-tooltip]="getTooltip('Active User') ?? ''" size="xl" color="primary">info</polaris-icon>
+            </trailing-icon>
+          </ua-display-field>
+
+          <polaris-divider></polaris-divider>
+
+          <ua-display-field>
+            <leading-icon>
+              <polaris-status-icon [condition]="userDetails()!.admin"></polaris-status-icon>
+            </leading-icon>
+            <span>{{ 'form.security-admin-access' | translate }}</span>
+            <trailing-icon>
+              <polaris-icon [ui-tooltip]="getTooltip('Security Admin Access') ?? ''" size="xl" color="primary"
+              >info</polaris-icon
+              >
+            </trailing-icon>
+          </ua-display-field>
+
+          <polaris-divider></polaris-divider>
+
+          @if (showSpiffs()) {
+            <ua-display-field>
+              <leading-icon>
+                <polaris-status-icon [condition]="userDetails()!.spiffEligible"></polaris-status-icon>
+              </leading-icon>
+              <span>{{ 'form.eligible-for-spiffs' | translate }}</span>
+              <trailing-icon>
+                <polaris-icon [ui-tooltip]="getTooltip('Eligible for Spiffs') ?? ''" size="xl" color="primary"
+                >info</polaris-icon>
+              </trailing-icon>
+            </ua-display-field>
+
+            @if (userDetails()?.vendorNumber) {
+              <ua-display-field>
+                <leading-icon>
+                  <polaris-icon size="xl" color="primary"
+                  >space</polaris-icon>
+                </leading-icon>
+                <ng-container [ngTemplateOutlet]="vendorNumberTemplate"></ng-container>
+              </ua-display-field>
+            }
+
+          <polaris-divider></polaris-divider>
+          }
+
+          @if (showPoints()) {
+          <ua-display-field>
+            <leading-icon>
+              <polaris-status-icon [condition]="userDetails()!.pointsEligible"></polaris-status-icon>
+            </leading-icon>
+            <span>{{ 'form.eligible-for-points' | translate }}</span>
+            <trailing-icon>
+              <polaris-icon [ui-tooltip]="getTooltip('Eligible for Points') ?? ''" size="xl" color="primary"
+              >info</polaris-icon
+              >
+            </trailing-icon>
+          </ua-display-field>
+
+          <polaris-divider></polaris-divider>
+          }
+
+          @if (userDetails()!.active) {
+          <ua-display-field>
+            <leading-icon>
+              <polaris-status-icon [condition]="userDetails()!.isPrimaryCommunicationContact"></polaris-status-icon>
+            </leading-icon>
+            <span>{{ 'form.primary-communication-contact' | translate }}</span>
+            <trailing-icon>
+              <polaris-icon [ui-tooltip]="getTooltip('Primary communication contact') ?? ''" size="xl" color="primary"
+              >info</polaris-icon
+              >
+            </trailing-icon>
+          </ua-display-field>
+
+          <polaris-divider></polaris-divider>
+          }
+
+          @if (showWebInfinity()) {
+          <ua-display-field>
+            <leading-icon>
+              <polaris-status-icon [condition]="userDetails()!.shareToWebInfinity"></polaris-status-icon>
+            </leading-icon>
+            <span>{{ 'form.access-to-intl-dealer-portal' | translate }}</span>
+            <trailing-icon>
+              <polaris-icon
+                [ui-tooltip]="getTooltip('Access to INTL dealer portal (Web Infinity)') ?? ''"
+                size="xl"
+                color="primary"
+              >info</polaris-icon
+              >
+            </trailing-icon>
+          </ua-display-field>
+
+          <polaris-divider></polaris-divider>
+          }
+
+          <ua-display-field class="pt-2">
+            <label>{{ 'form.employment' | translate }}</label>
+            {{ userDetails()!.employmentType.name }}
+          </ua-display-field>
+        </div>
+      </div>
+    </div>
+    } @else {
+        <div class="activity-form d-flex flex-column">
+          @if (activityFormData()) {
+
+            <!-- Activity Checkboxes -->
+            <polaris-checkbox-group
+              checkboxWrapperClass="w-100"
+              [ui-id]="activityFormName"
+              [ui-form-group]="activityFormData()!.formGroup"
+              [options]="activityFormData()!.options"
+              ui-orientation="vertical"
+              [dividers]="true"
+            ></polaris-checkbox-group>
+          }
+
+          <polaris-divider></polaris-divider>
+
+          @if (employmentFormData()) {
+          <!-- Employment Type -->
+          <polaris-radio-group
+            class="pt-2"
+            ui-label="{{ 'employment-type' | translate }}"
+            [ui-id]="employmentFormName"
+            [ui-errors]="[employmentFormErrorMessage]"
+            (onError)="onError({page: pageName, category: employmentFormName, messages: $event})"
+            [ui-form-control]="employmentFormData()!.formControl"
+            [options]="employmentFormData()!.options"
+          ></polaris-radio-group>
+          }
+        </div>
+    }
+  </div>
+</div>
+
+<ng-template #activePrimaryContactTemplate>
+  <div class="d-flex align-items-center gap-1 active-primary-contact-template">
+    <svg width="60" height="60" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M20.6656 17.5152L14.1596 6.2466C13.7146 5.47536 12.8909 5 12 5C11.1091 5 10.2854 5.47536 9.84036 6.2466L3.33439 17.5152C2.88854 18.2872 2.88854 19.2371 3.33439 20.0093C3.77943 20.7805 4.60313 21.2559 5.49403 21.2559H18.506C19.3969 21.2559 20.2206 20.7805 20.6656 20.0093C21.1115 19.2372 21.1115 18.2873 20.6656 17.5152ZM19.2125 19.1699C19.069 19.424 18.7977 19.5805 18.506 19.5773H5.49403C5.20226 19.5773 4.93342 19.4224 4.78754 19.1699C4.64247 18.9175 4.64247 18.6069 4.78754 18.3544L11.2943 7.08586C11.4394 6.83343 11.7091 6.67853 12 6.67853C12.291 6.67853 12.5606 6.83343 12.7065 7.08586L19.2125 18.3544C19.3608 18.6061 19.3608 18.9183 19.2125 19.1699Z" fill="#B45309"/>
+      <path d="M11.9999 15.4007C12.4638 15.4007 12.8392 15.0254 12.8392 14.5615V10.016C12.8392 9.55214 12.4638 9.17676 11.9999 9.17676C11.536 9.17676 11.1606 9.55214 11.1606 10.016V14.5623V14.5615C11.1606 15.0254 11.536 15.4007 11.9999 15.4007Z" fill="#B45309"/>
+      <path d="M12.8565 17.5693C12.8565 18.711 11.1436 18.711 11.1436 17.5693C11.1436 16.4268 12.8565 16.4268 12.8565 17.5693Z" fill="#B45309"/>
+    </svg>
+    <span>{{ activePrimaryCommunicationContactWarning }}</span>
+  </div>
+</ng-template>
+
+<ng-template #vendorNumberTemplate>
+  <div class="d-flex gap-2 vendor-number-template">
+    <i>{{ labels['vendorNumber'] }}</i>
+    <i>{{ userDetails()!.vendorNumber }}</i>
+  </div>
+</ng-template>

@@ -1,0 +1,23 @@
+<div class="account-search-result d-flex flex-column gap-3">
+
+  <!-- Tabs -->
+  <polaris-tab-bar [tabs]="tabs" [compact]="false" (tabSelected)="tabSelected($event)"></polaris-tab-bar>
+
+  <!-- Result Count -->
+  <div class="account-search-result-count">{{accountCount}} {{ 'search-results' | translate }}{{filteredBy}}</div>
+
+  <!-- Search Results -->
+  <div class="account-search-result-content">
+    @if(filteredAccountsLoading || recentAccountsLoading) {
+      <polaris-loader></polaris-loader>
+    }
+    @else {
+      @if (selectedTab?.id === recentTabId) {
+        <as-recent-list [accounts$]="recentAccounts$" (accountDeleted)="onAccountDeleted($event)"></as-recent-list>
+      }
+      @else if (selectedTab?.id === accountTabId) {
+        <as-account-list  [accounts$]="accounts$" [firstSearch]="firstSearch"></as-account-list>
+      }
+    }
+  </div>
+</div>

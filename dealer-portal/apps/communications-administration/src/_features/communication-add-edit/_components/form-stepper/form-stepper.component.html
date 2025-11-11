@@ -1,0 +1,15 @@
+<div class="stepper">
+  @for(step of steps; track step; let index = $index) {
+  <div class="step" [ngClass]="{ active: activeStep === index, inactive: activeStep < index }">
+    <div class="step-header">
+      <a href="javascript:void(0);" class="step-header-icon" [attr.data-test-id]="step.testId"
+        (click)="onStepClick(step)">
+        <polaris-icon size="sm">check</polaris-icon>
+      </a>
+    </div>
+    <a href="javascript:void(0);" class="step-content" (click)="onStepClick(step)">
+      {{ step.label }}
+    </a>
+  </div>
+  }
+</div>

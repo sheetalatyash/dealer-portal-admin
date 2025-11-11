@@ -1,0 +1,59 @@
+.form {
+  &-header {
+    border-top: var(--polaris-border-width) var(--polaris-border-style) var(--polaris-border-color);
+    margin-bottom: 0.5rem;
+
+    &-title {
+      color: var(--polaris-primary);
+      font-size: var(--polaris-font-size-md);
+      font-weight: var(--polaris-font-weight-600);
+      margin-top: 0.75rem;
+      text-transform: uppercase;
+    }
+  }
+
+  &-content {
+    &-info-text {
+      color: var(--polaris-gray);
+      display: flex;
+      flex-direction: column;
+      font-size: var(--polaris-font-size-sm);
+      font-weight: var(--polaris-font-weight-500);
+    }
+  }
+
+  &-specific-accounts {
+    padding: 1.5rem 1rem;
+
+    &-instructions {
+      border-right: 1px solid var(--polaris-border-color);
+      &-title {
+        font-weight: var(--polaris-font-weight-500);
+      }
+    }
+  }
+}
+
+.vertical-line {
+  border-left: var(--polaris-border-width) solid var(--polaris-border-color);
+  height: 100%;
+}
+
+.download-template {
+  &-link {
+    font-size: var(--polaris-font-size-md);
+    font-weight: var(--polaris-font-weight-500);
+    text-transform: none;
+    text-decoration: none;
+  }
+
+  &-button {
+    flex: 0 0 12%;
+    min-width: 12%;
+  }
+
+  &-supported-formats {
+    color: var(--polaris-light-text-emphasis);
+    font-size: var(--polaris-font-size-xs);
+  }
+}

@@ -1,0 +1,10 @@
+.polaris-option-group {
+  color: var(--theme-primary-600) !important;
+  font-size: var(--polaris-font-size-xs) !important;
+  font-weight: var(--polaris-font-weight-700) !important;
+
+  .mat-mdc-optgroup-label {
+    min-height: 2rem !important ;
+  }
+}
+

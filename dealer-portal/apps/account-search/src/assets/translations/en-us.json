@@ -1,0 +1,136 @@
+{
+  "title": {
+    "account-search-help": "Account Search Help",
+    "account-search": "Account Search"
+  },
+  "account-search-help-text": "Account Search help text here...",
+  "close": "Close",
+  "search-placeholder": "Search by Account Number or Name",
+  "filters-header": "FILTERS",
+  "filtered-by": ", filtered by Account Class Code: ",
+  "filtered-by-note": ". Please use Filters section on left panel to refine/modify search results.",
+  "clear-all": "Clear All",
+  "errors": {
+    "missing-account-number": "Account number is required.",
+    "missing-account-number-email-address": "Missing account number or email address.",
+    "missing-sales-rep-id": "Missing sales rep ID.",
+    "generic-impersonation-error":  "Something went wrong while attempting to impersonate the user.",
+    "no-users-found": "No users found for this account.",
+    "not-able-to-delete-recently-viewed": "Not able to delete recently viewed account.",
+    "not-able-to-load-recently-viewed": "Not able to load recently viewed accounts."
+  },
+  "filters": {
+    "select-common-class-codes": "Auto-select common Account Class Codes",
+        "select-common-class-codes2": "Auto-select commonly used Account class codes",
+    "partners": "Partner Types",
+    "products": "Product Lines",
+    "classes": "Account Class Code",
+    "countries": "Countries",
+    "states": "State / Province",
+    "statuses": "Account Status"
+  },
+  "placeholders": {
+    "countries": "Select Countries",
+    "states": " Select State/Province"
+  },
+  "include-inactive": "Include Inactive",
+  "apply-filter": "Apply Filter",
+  "minimum-chars-message": "Please enter at least 3 characters",
+  "show-more": "more",
+  "show-less": "less",
+  "search-results": "Search Results",
+  "card": {
+    "account-profile": "Account Profile",
+    "map-and-directions": "Map & Directions",
+    "owner": "Owner",
+    "operator": "Operator",
+    "partner-type": "Partner Type",
+    "customer-class": "Customer Class",
+    "sales-managers": "Sales Managers",
+    "product-lines": "Product Lines",
+    "view-full-list-of-staff": "View full staff list",
+    "login-to-account": "LOGIN TO ACCOUNT",
+    "login-as-sales-user": "Login as Sales User",
+    "or-select-user": "Or Select User",
+    "no-accounts-matching": "There are no accounts matching the search or filters.",
+    "begin-a-new-search": "Begin a new search",
+    "start-by-typing": "Start by typing an account ID or name in the search bar above.",
+    "use-filters": "'Use filters to narrow down your results and find exactly what you need.",
+    "service-identifiers": "Service Identifiers",
+    "website":  "Dealer Website"
+  },
+  "tabs": {
+    "search-results": "Search Results",
+    "recently-viewed": "Recently Viewed"
+  },
+  "login-as-user": "Login as User",
+  "no-matching-accounts": "There are no accounts matching the search or filters.",
+  "help": "Help",
+  "search-results-for-account": "Search Results for Account",
+  "impersonate": "Impersonate",
+  "table": {
+    "col": {
+      "first-name": "First Name",
+      "last-name": "Last Name",
+      "username": "Username",
+      "primary-contact": "Primary Contact",
+      "admin": "Admin",
+      "points": "Points",
+      "spiff": "Spiff",
+      "departments": "Departments",
+      "role": "Role",
+      "employment-type": "Employment Type",
+      "account-access": "Account Access"
+    }
+  },
+  "back-to-account-search": "BACK TO ACCOUNT SEARCH",
+  "search-any-column": "Search any column",
+  "user-impersonation-search-title": "User Impersonation Search",
+  "minimum-characters-message": "Please enter at least 3 characters",
+  "account-results-view": {
+    "search-results": "Search Results",
+    "tabs": {
+      "search-results": " Search Results",
+      "recently-viewed": "Recently Viewed"
+    }
+  },
+  "home-view": {
+    "help": "Help",
+    "title": {
+      "account-search-help": "Account Search Help",
+      "account-search": "Account Search"
+    }
+  },
+  "recent-view": {
+    "account-was-not-found": "Account was not found",
+    "delete-tooltip": "Delete Recently Viewed account",
+    "login-as-user": "Login as User"
+  },
+  "sales-account-view": {
+    "title": "Sales Accounts",
+    "help": "Help",
+    "help-dialog-title": "Sales Accounts Help",
+    "help-dialog-text": "Sales Accounts help text here...",
+    "help-dialog-close": "Close",
+    "login": "Login",
+    "search": "Search by Account Number or Name",
+    "search-placeholder": "Search",
+    "select-one": "Select one",
+    "director-of-sales": "Director of Sales",
+    "sales-manager": "Sales Manager",
+    "sales-user-accounts-not-found": "Sales user accounts not found",
+    "sales-account-number-is-required": "Account number is required",
+    "regional-manager": "Regional Manager",
+    "region-sales-manager-unassigned": "RSM unassigned",
+    "director-of-sales-unassigned": "DOS unassigned",
+    "table-column": {
+      "sales-manager-name": "Sales Manager",
+      "account-number": "Account Number",
+      "account-name": "Account Name",
+      "city": "City",
+      "state": "State",
+      "plan": "Business Plan",
+      "login": "Account Access"
+    }
+  }
+}

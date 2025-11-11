@@ -1,0 +1,8 @@
+<button role="button" type="button" class="polaris-chip" [ngClass]="{ selected: isSelected }"
+  [attr.data-test-id]="testId" (click)="onChipClicked()">
+  <ng-content></ng-content>
+  @if (isSelected) {
+  <polaris-icon size="sm">close</polaris-icon>
+  }
+
+</button>

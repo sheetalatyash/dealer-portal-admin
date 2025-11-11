@@ -1,0 +1,26 @@
+:host {
+
+  //vars
+  $widget-border: var(--polaris-border-style) var(--polaris-border-width) var(--polaris-border-color) !default;
+
+  .widget {
+    background-color: var(--polaris-white);
+    border: $widget-border;
+
+    &-header {
+      &-title {
+        font-size: var(--polaris-font-size-lg);
+        font-weight: var(--polaris-font-weight-black);
+      }
+
+      &-description {
+        color: var(--polaris-gray);
+      }
+    }
+
+    &.blue-border {
+      border-color: var(--polaris-blue);
+    }
+  }
+
+}

@@ -1,0 +1,40 @@
+<div [id]="id" class="d-flex flex-column">
+
+  <!-- Input Label -->
+  @if (label && showLabel) {
+    <mat-label class="d-flex align-items-center gap-2">
+      <span>{{ label }}</span>
+
+      <!-- Info Icon -->
+      @if (infoTooltip) {
+        <polaris-icon [ui-tooltip]="infoTooltip" color="primary" size="xl">info</polaris-icon>
+      }
+
+    </mat-label>
+  }
+
+  <!-- Form Field -->
+  <mat-form-field
+    appearance="outline"
+    subscriptSizing="dynamic"
+    [attr.data-test-id]="testId"
+    [ngClass]="[customClass, outlineColor === 'primary' ? 'outline-primary' : '']"
+    (mouseenter)="emitMouseEnterEvent($event)"
+    (mouseleave)="emitMouseLeaveEvent($event)">
+    <input matInput
+           [placeholder]="placeholder"
+           [readonly]="readonly"
+           [formControl]="formControl"
+           [attr.maxlength]="maxLength ? maxLength : null"
+           (input)="formatInput($event)"
+           (blur)="trimOuterSpace($event)">
+  </mat-form-field>
+
+  <!-- Error Messages -->
+  @if (formControl.invalid && formControl.touched) {
+    @for (error of errors; let index = $index; track index) {
+      <mat-error [attr.data-test-id]="(testId || 'polaris-input-unknown') + '-error'">{{ error }}</mat-error>
+    }
+  }
+
+</div>

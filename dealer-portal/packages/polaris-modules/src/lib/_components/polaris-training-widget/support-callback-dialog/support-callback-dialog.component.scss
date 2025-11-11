@@ -1,0 +1,24 @@
+.support-callback-dialog {
+  &-title {
+    font-weight: var(--polaris-font-weight-700);
+    font-size: var(--polaris-font-size-lg);
+  }
+
+  &-disclaimer {
+    margin: 0.5rem 0;
+    color: var(--polaris-red);
+    font-weight: var(--polaris-font-weight-600);
+  }
+
+  &-form {
+    display: flex;
+    flex-direction: column;
+  }
+
+  &-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 2rem;
+    width: 100%;
+  }
+}

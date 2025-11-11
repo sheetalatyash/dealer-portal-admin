@@ -1,0 +1,74 @@
+@use '@angular/material' as mat;
+
+:host {
+  @include mat.button-density(0);
+
+  .polaris-button {
+    background-color: var(--theme-button-primary);
+    border: none;
+    color: var(--polaris-white);
+    cursor: pointer;
+    font-weight: var(--polaris-font-weight-600);
+    min-height: 3rem;
+    min-width: 8rem;
+    text-transform: uppercase;
+    white-space: nowrap;
+
+    &:hover {
+      background-color: var(--theme-button-hover);
+    }
+
+    &:disabled {
+      background-color: var(--theme-button-disabled);
+      pointer-events: none;
+    }
+
+    &:active {
+      background-color: var(--theme-button-pressed);
+    }
+
+    &-theme {
+      &-secondary {
+        background-color: var(--polaris-white);
+        box-shadow: inset 0 0 0 2px var(--theme-button-primary);
+        color: var(--theme-button-primary);
+
+        &:active,
+        &:hover,
+        &:disabled {
+          box-shadow: none;
+          color: var(--polaris-white);
+        }
+      }
+
+      &-tertiary {
+        background-color: transparent;
+        color: var(--theme-button-primary);
+        min-width: 0;
+        padding: 0;
+        text-decoration: underline;
+        text-underline-offset: 0.25rem;
+
+        &:hover {
+          background-color: transparent;
+          color: var(--theme-button-hover);
+        }
+
+        &:disabled {
+          background-color: transparent;
+          color: var(--theme-button-disabled);
+        }
+
+        &:active {
+          background-color: transparent;
+          color: var(--theme-button-pressed);
+        }
+      }
+    }
+
+    &-compact {
+      min-height: unset;
+      min-width: unset;
+    }
+  }
+}

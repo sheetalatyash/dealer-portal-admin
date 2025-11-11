@@ -1,0 +1,138 @@
+<div class="edit-widgets container-fluid d-flex flex-column gap-4">
+
+  <!-- Edit Widgets Header -->
+  <div class="d-flex flex-column gap-3">
+
+    <!-- Title & Actions -->
+    <div class="d-flex align-items-center justify-content-between">
+      <!-- Title -->
+      <polaris-heading h3 ui-test-id="app-dashboard-title">{{ 'app-dashboard' | translate }}</polaris-heading>
+
+      <!-- Header Actions -->
+      <div class="d-none d-md-flex gap-4">
+        <div [ngTemplateOutlet]="actionButtons"></div>
+      </div>
+    </div>
+
+    <polaris-divider></polaris-divider>
+
+  </div>
+
+  <div class="edit-widgets-content d-flex flex-column gap-4">
+
+    <!-- Content Header -->
+    <div class="d-flex flex-column">
+      <polaris-heading h6>{{ 'widgets.edit-widgets.title' | translate }}</polaris-heading>
+      <div class="edit-widgets-content-description" innerHTML="{{ 'widgets.edit-widgets.description' | translate }}"></div>
+    </div>
+
+    <!-- Widgets -->
+    <div class="d-flex flex-column flex-lg-row mr-2 me-md-4 ms-md-4 gap-4">
+      <!-- Active Widgets -->
+      @if (activeWidgets$ | async; as activeWidgets) {
+        @if (availableWidgets$ | async; as availableWidgets) {
+          <div class="widget-container d-flex flex-column">
+            <polaris-heading h6>{{ 'widgets.edit-widgets.home-widgets' | translate }}</polaris-heading>
+
+            <div cdkDropList
+                 id="activeWidgetsList"
+                 #activeWidgetsList="cdkDropList"
+                 class="widget-list"
+                 [style.min-height.px]="getWidgetHeight(activeWidgets, availableWidgets)"
+                 [cdkDropListData]="activeWidgets"
+                 [cdkDropListConnectedTo]="[availableWidgetsList]"
+                 (cdkDropListDropped)="drop($event)">
+
+              @if (activeWidgets.length === 0) {
+                <div class="widget-list-empty text-center">
+                  {{ 'widgets.edit-widgets.empty-active-widgets' | translate }}
+                </div>
+              } @else {
+                @for (widget of activeWidgets; track widget) {
+                  <div class="widget-list-item"
+                       cdkDrag
+                       (cdkDragStarted)="isDragging = true"
+                 (cdkDragEnded)="isDragging = false"
+                       [cdkDragData]="widget">
+                    <div class="widget-list-item-placeholder" *cdkDragPlaceholder></div>
+                    <polaris-icon size="xxl" color="muted">drag</polaris-icon>
+                    <span>{{ widget.name }}</span>
+
+                    @if(!widget.isPinned) {
+                      <polaris-icon class="widget-icon" size="lg" color="danger" (click)="removeWidget(widget)">remove</polaris-icon>
+                    } @else {
+                      <polaris-icon class="widget-icon" size="lg" color="muted">pin</polaris-icon>
+                    }
+                  </div>
+                }
+              }
+            </div>
+          </div>
+
+          <!-- Available Widgets -->
+          <div class="widget-container d-flex flex-column">
+            <polaris-heading h6>{{ 'widgets.edit-widgets.add-apps' | translate }}</polaris-heading>
+
+            <div cdkDropList
+                 id="availableWidgetsList"
+                 #availableWidgetsList="cdkDropList"
+                 class="widget-list"
+                 [ngClass]="{'empty': availableWidgets.length === 0}"
+                 [style.min-height.px]="getWidgetHeight(activeWidgets, availableWidgets)"
+                 [cdkDropListData]="availableWidgets"
+                 [cdkDropListConnectedTo]="[activeWidgetsList]"
+                 (cdkDropListDropped)="drop($event)"
+                 (cdkDropListEntered)="isHoveringAvailableList = true"
+                 (cdkDropListExited)="isHoveringAvailableList = false"
+                 [cdkDropListEnterPredicate]="isNotPinnedPredicate">
+
+              @if (availableWidgets.length === 0 && ((isDragging && !isHoveringAvailableList) || (!isDragging && !isHoveringAvailableList))) {
+                <div class="widget-list-empty text-center">
+                  {{ 'widgets.edit-widgets.empty-available-widgets' | translate }}
+                </div>
+              } @else {
+                @for (widget of availableWidgets; track widget) {
+                  <div class="widget-list-item"
+                       cdkDrag
+                       (cdkDragStarted)="isDragging = true"
+                       (cdkDragEnded)="isDragging = false"
+                       [cdkDragData]="widget">
+                    <div class="widget-list-item-placeholder" *cdkDragPlaceholder></div>
+                    <polaris-icon size="xxl" color="muted">drag</polaris-icon>
+                    <span>{{ widget.name }}</span>
+                  </div>
+                }
+              }
+            </div>
+          </div>
+        }
+      } @else {
+        <polaris-loader></polaris-loader>
+      }
+    </div>
+
+  </div>
+
+  <div class="edit-widgets-footer d-flex d-md-none justify-content-end">
+    <!-- Footer Actions -->
+    <div class="edit-widgets-footer-actions d-flex gap-4">
+      <div [ngTemplateOutlet]="actionButtons"></div>
+    </div>
+  </div>
+</div>
+
+
+<!-- Reusable template -->
+<ng-template #actionButtons>
+  <polaris-button (click)="saveChanges()" [ui-disabled]="!changesMade || !hasImpersonationWriteAccess" ui-theme="primary">
+    {{ 'buttons.save-and-exit' | translate }}
+  </polaris-button>
+
+  <polaris-button (click)="resetChanges()" [ui-disabled]="!changesMade" ui-theme="tertiary">
+    {{ 'buttons.reset' | translate }}
+  </polaris-button>
+
+  <polaris-button (click)="cancelChanges()" ui-theme="tertiary">
+    {{ 'buttons.exit' | translate }}
+  </polaris-button>
+</ng-template>

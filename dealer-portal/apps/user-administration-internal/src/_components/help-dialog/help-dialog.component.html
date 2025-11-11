@@ -1,0 +1,36 @@
+<polaris-dialog class="help-dialog">
+  <polaris-dialog-title>{{ 'title.help-dialog' | translate }}</polaris-dialog-title>
+
+  <p>
+    <span>{{ 'help-dialog.desc' | translate }}</span>
+  </p>
+
+  <p>
+    <b>{{ 'help-dialog.primary-communication-contact' | translate }}</b>
+    <span>David Brunswick</span>
+  </p>
+
+  <p>
+    <b>{{ 'help-dialog.add-user' | translate }}</b>
+    <span>{{ 'help-dialog.add-user-desc' | translate }}</span>
+  </p>
+
+  <p>
+    <b>{{ 'help-dialog.edit-user' | translate }}</b>
+    <span>{{ 'help-dialog.edit-user-desc' | translate }}</span>
+  </p>
+
+  <p>
+    <b>{{ 'help-dialog.pending-users' | translate }}</b>
+    <span>{{ 'help-dialog.pending-users-desc' | translate }}</span>
+  </p>
+
+  <p>
+    <b>{{ 'help-dialog.university-of-polaris' | translate }}</b>
+    <span>{{ 'help-dialog.university-of-polaris-desc' | translate }}</span>
+  </p>
+
+  <polaris-dialog-actions class="help-dialog-actions d-flex">
+    <polaris-button (click)="closeDialog()" ui-theme="primary">{{ 'close' | translate }}</polaris-button>
+  </polaris-dialog-actions>
+</polaris-dialog>

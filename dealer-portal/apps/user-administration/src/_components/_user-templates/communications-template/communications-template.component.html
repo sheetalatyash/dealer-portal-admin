@@ -1,0 +1,90 @@
+
+
+<polaris-accordion [showToggle]="false">
+  <!-- Email Communications -->
+  @if (emailCommunicationFormData(); as emailCommunicationFormData) {
+    <ng-container
+      *ngTemplateOutlet="categoryPanelTemplate2;
+                         context: {
+                           $implicit: emailCommunicationFormData,
+                           categories: emailCommunicationCategories(),
+                           displayTitle: ('email-communications-categories' | translate),
+                           title: 'email',
+                           tooltip: ('email-communications-categories-tooltip' | translate)
+                         }">
+    </ng-container>
+  }
+
+  <!-- Notifications -->
+  @if (notificationCommunicationFormData(); as notificationCommunicationFormData) {
+    <ng-container
+      *ngTemplateOutlet="categoryPanelTemplate2;
+                         context: {
+                           $implicit: notificationCommunicationFormData,
+                           categories: notificationCommunicationCategories(),
+                           displayTitle: ('email-notifications' | translate),
+                           title: 'notifications',
+                           tooltip: ('email-notifications-tooltip' | translate)
+                         }">
+    </ng-container>
+  }
+</polaris-accordion>
+
+<!-- 🔑 Reusable panel template -->
+<ng-template #categoryPanelTemplate2
+             let-data
+             let-categories="categories"
+             let-displayTitle="displayTitle"
+             let-title="title"
+             let-tooltip="tooltip">
+  <polaris-expansion-panel>
+    <polaris-expansion-panel-title>
+      <div class="d-flex gap-2 align-items-center">
+        <span>{{ displayTitle }}</span>
+        <polaris-icon ui-tooltip="{{ tooltip }}" size="xl" color="primary">info</polaris-icon>
+      </div>
+    </polaris-expansion-panel-title>
+
+    <div class="d-flex flex-column gap-2 col-12 col-md-8 col-lg-6 pb-4">
+      <div class="d-flex justify-content-end gap-2">
+        <b [style.min-width]="minWidth" class="text-center">
+          {{ 'form.email' | translate }}
+        </b>
+      </div>
+      <div class="d-flex flex-column gap-2">
+
+        @for (category of categories; track category.id) {
+          @if (isDetailsView) {
+            <div class="d-flex justify-content-between">
+              <div>{{ category.name }}</div>
+              <div class="d-flex gap-2 align-items-center">
+                <polaris-icon
+                  [style.min-width]="minWidth"
+                  class="text-center"
+                  color="{{ category.checked ? 'success' : 'danger' }}">
+                  {{ category.checked ? 'check' : 'close' }}
+                </polaris-icon>
+              </div>
+            </div>
+            <polaris-divider></polaris-divider>
+          }
+        }
+
+        @if (!isDetailsView) {
+          <polaris-checkbox-group
+            ui-class="justify"
+            [dividers]="true"
+            [showSelectAll]="true"
+            [showSelectAllAsHeader]="true"
+            labelPosition="before"
+            checkboxClass="d-flex justify-content-center"
+            checkboxWrapperClass="w-100"
+            [checkboxFullWidth]="true"
+            [ui-form-group]="data.formGroup"
+            [options]="data.options">
+          </polaris-checkbox-group>
+        }
+      </div>
+    </div>
+  </polaris-expansion-panel>
+</ng-template>

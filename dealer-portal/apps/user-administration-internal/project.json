@@ -1,0 +1,143 @@
+{
+   "name": "user-administration-internal",
+   "$schema": "../../node_modules/nx/schemas/project-schema.json",
+   "projectType": "application",
+   "prefix": "uai",
+   "sourceRoot": "apps/user-administration-internal/src",
+   "tags": ["app", "ui"],
+   "targets": {
+     "build": {
+       "executor": "@angular-devkit/build-angular:application",
+       "outputs": ["{options.outputPath}"],
+       "options": {
+         "outputPath": "dist/apps/user-administration-internal",
+         "index": "apps/user-administration-internal/src/index.html",
+         "browser": "apps/user-administration-internal/src/main.ts",
+         "polyfills": ["zone.js"],
+         "tsConfig": "apps/user-administration-internal/tsconfig.app.json",
+         "inlineStyleLanguage": "scss",
+         "assets": [
+           {
+             "glob": "**/*",
+             "input": "apps/user-administration-internal/public"
+           },
+           {
+             "glob": "**/*",
+             "input": "dist/packages/dealer-portal-theme/css",
+             "output": "css"
+           },
+           {
+             "glob": "**/*",
+             "input": "dist/packages/dealer-portal-theme/fonts",
+             "output": "fonts"
+           },
+           {
+             "glob": "**/*",
+             "input": "dist/packages/dealer-portal-theme/images",
+             "output": "images"
+           },
+           {
+             "glob": "**/*",
+             "input": "dist/packages/dealer-portal-theme/js",
+             "output": "js"
+           },
+           {
+            "glob": "**/*",
+            "input": "apps/user-administration-internal/src/assets",
+            "output": "."
+           }
+         ],
+         "styles": ["apps/user-administration-internal/src/styles.scss"],
+         "scripts": [],
+         "allowedCommonJsDependencies": [
+           "ua-parser-js",
+           "reflect-metadata"
+         ],
+         "budgets": [
+             {
+               "type": "initial",
+               "maximumWarning": "5mb",
+               "maximumError": "10mb"
+             },
+             {
+               "type": "anyComponentStyle",
+               "maximumWarning": "5kb",
+               "maximumError": "150kb"
+             }
+           ]
+       },
+       "configurations": {
+         "production": {
+           "fileReplacements": [
+             {
+               "replace": "apps/user-administration-internal/src/_environments/environment.ts",
+               "with": "apps/user-administration-internal/src/_environments/environment.production.ts"
+             }
+           ]
+         },
+         "staging": {
+           "fileReplacements": [
+             {
+               "replace": "apps/user-administration-internal/src/_environments/environment.ts",
+               "with": "apps/user-administration-internal/src/_environments/environment.staging.ts"
+             }
+           ]
+         },
+         "development": {
+           "fileReplacements": [
+             {
+               "replace": "apps/user-administration-internal/src/_environments/environment.ts",
+               "with": "apps/user-administration-internal/src/_environments/environment.development.ts"
+             }
+           ]
+         },
+         "local": {
+           "optimization": false,
+           "extractLicenses": false,
+           "sourceMap": true,
+           "fileReplacements": [
+             {
+               "replace": "apps/user-administration-internal/src/_environments/environment.ts",
+               "with": "apps/user-administration-internal/src/_environments/environment.local.ts"
+             }
+           ]
+         }
+       },
+       "defaultConfiguration": "production"
+     },
+     "serve": {
+       "executor": "@angular-devkit/build-angular:dev-server",
+       "configurations": {
+         "production": {
+           "buildTarget": "user-administration-internal:build:production"
+         },
+         "staging": {
+           "buildTarget": "user-administration-internal:build:staging"
+         },
+         "development": {
+           "buildTarget": "user-administration-internal:build:development"
+         },
+         "local": {
+           "buildTarget": "user-administration-internal:build:local"
+         }
+       },
+       "defaultConfiguration": "local"
+     },
+     "extract-i18n": {
+       "executor": "@angular-devkit/build-angular:extract-i18n",
+       "options": {
+         "buildTarget": "user-administration-internal:build"
+       }
+     },
+     "lint": {
+       "executor": "@nx/eslint:lint"
+     },
+     "test": {
+       "executor": "@nx/jest:jest",
+       "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
+       "options": {
+         "jestConfig": "apps/user-administration-internal/jest.config.ts"
+       }
+     }
+   }
+ }

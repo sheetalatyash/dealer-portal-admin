@@ -1,0 +1,38 @@
+// Place your material override for mat-table element here.
+// Create separate files for each element/control as needed and import it in index.scss file.
+:root {
+  --mat-table-header-headline-font: var(--polaris-body-font-family);
+  --mat-table-row-item-label-text-font: var(--polaris-body-font-family);
+  --polaris-table-transition: all 250ms cubic-bezier(0, 0, 0.2, 1);
+  --polaris-table-sort-icon-opacity: 0.56;
+}
+
+.mat-mdc-header-cell {
+  .mat-sort-header-content {
+    justify-content: space-between;
+    flex: 1 1 100%;
+
+    polaris-icon.polaris-sort-header-arrow {
+      .polaris-icon-sort {
+        transition: var(--polaris-table-transition);
+        opacity: var(--polaris-table-sort-icon-opacity);
+      }
+    }
+  }
+
+  &:hover {
+    .mat-sort-header-content {
+      polaris-icon.polaris-sort-header-arrow {
+        .polaris-icon-sort {
+          transition: var(--polaris-table-transition);
+          opacity: 1;
+        }
+      }
+    }
+  }
+
+  .mat-sort-header-arrow {
+    display: none !important;
+  }
+}
+

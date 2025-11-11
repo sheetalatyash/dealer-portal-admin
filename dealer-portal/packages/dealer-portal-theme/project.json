@@ -1,0 +1,31 @@
+{
+  "name": "dealer-portal-theme",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "packages/dealer-portal-theme/src",
+  "projectType": "library",
+  "tags": [],
+  "targets": {
+    "build": {
+      "executor": "@nx/webpack:webpack",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "webpackConfig": "packages/dealer-portal-theme/webpack/webpack.dev.js",
+        "outputPath": "dist/packages/dealer-portal-theme",
+        "tsConfig": "packages/dealer-portal-theme/tsconfig.lib.json"
+      }
+    },
+    "test": {
+      "executor": "@nx/jest:jest",
+      "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
+      "options": {
+        "jestConfig": "packages/dealer-portal-theme/jest.config.ts"
+      }
+    },
+    "release": {
+      "executor": "nx-release:build-update-publish",
+      "options": {
+        "libName": "dealer-portal-theme"
+      }
+    }
+  }
+}

@@ -1,0 +1,24 @@
+@use '../../../../dealer-portal-theme/src/themes/polaris-base-theme/mixins/breakpoints' as breakpoints;
+
+:host {
+  nav {
+    border-bottom: var(--polaris-border-width) solid var(--theme-gray-200);
+
+    a {
+      flex-grow: 0 !important;
+
+      &.polaris-tab {
+        &-compact {
+          padding: 0 0.25rem !important;
+          min-width: 0 !important;
+
+          @include breakpoints.media-breakpoint-down(md) {
+            padding: 0 1rem !important;
+          }
+        }
+      }
+    }
+  }
+}
+
+

@@ -1,0 +1,689 @@
+@use 'sass:color';
+@use 'sass:map';
+@use 'default_functions' as functions;
+
+// ********** Prefix for :root CSS variables ********** //
+$variable-prefix:             polaris-; // Deprecated in v5.2.0 for the shorter `$prefix`
+$prefix:                      $variable-prefix;
+
+
+// ********** Options ********** //
+$enable-rounded:              true;
+$enable-transitions:          true;
+$enable-reduced-motion:       true;
+$enable-smooth-scroll:        true;
+$enable-grid-classes:         true;
+$enable-container-classes:    true;
+$enable-cssgrid:              true;
+$enable-button-pointers:      true;
+$enable-rfs:                  true;
+$enable-validation-icons:     true;
+$enable-negative-margins:     true;
+$enable-deprecation-messages: true;
+$enable-important-utilities:  true;
+
+
+// ********** Color Mode ********** //
+$color-mode-type:             data; // `data` or `media-query`
+
+
+// ********************************* //
+// ********** Base Colors ********** //
+// ********************************* //
+
+
+// ********** Gray Palette ********** //
+$grays: (
+  '100': #FFFFFF,
+  '200': #F4F4F3,
+  '300': #DAD9D7,
+  '400': #A1A3A6,
+  '500': #828488,
+  '600': #63656A,
+  '700': #3B3D40,
+  '800': #28282A,
+  '900': #000000,
+);
+
+
+// ********** Base Colors ********** //
+$colors: (
+  'blue':       #418CFD,
+  'purple':     #6f42C1,
+  'pink':       #D63384,
+  'red':        #dc3545,
+  'orange':     #B45309,
+  'gold':       #EC9C3D,
+  'green':      #198754,
+  'black':      map.get($grays, '900'),
+  'white':      map.get($grays, '100'),
+  'gray':       map.get($grays, '600'),
+  'gray-dark':  map.get($grays, '800'),
+  'gray-light': '#858585'
+);
+
+
+// ********** Color Contrast ********** //
+// Customize the light and dark text colors
+// for use in our color contrast function.
+$color-contrast-map: (
+  'dark':  map.get($colors, 'white'),
+  'light': map.get($colors, 'black'),
+  'ratio' : 4.5,
+);
+
+
+// ********** Blue Palette ********** //
+$blues: (
+  '100': #F2F7FF,
+  '200': #D9E8FF,
+  '300': #B3D1FE,
+  '400': #67A3FD,
+  '500': map.get($colors, 'blue'),
+  '600': #3470CA,
+  '700': #1A3865,
+  '800': #1A3865,
+  '900': #00050C,
+);
+
+
+// ********** Red Palette ********** //
+$reds: (
+  '100': #FDF8F8,
+  '200': #F4D3D6,
+  '300': #E9ABB0,
+  '400': #D45A64,
+  '500': map.get($colors, 'red'),
+  '600': #9C132A,
+  '700': #511419,
+  '800': #280A0C,
+  '900': #050102,
+);
+
+
+// ********** Orange Palette ********** //
+$oranges: (
+  '100': #FCEFE0,
+  '200': #F9DEBF,
+  '300': #F6CE9F,
+  '400': #EFAD5E,
+  '500': map.get($colors, 'orange'),
+  '600': #D28933,
+  '700': #8E5E25,
+  '800': #483012,
+  '900': #191106,
+);
+
+
+// ********** Green Palette ********** //
+$greens: (
+  '100': #F0FFF9,
+  '200': #C1ECDC,
+  '300': #92D9BF,
+  '400': #33B284,
+  '500': map.get($colors, 'green'),
+  '600': #037F52,
+  '700': #024029,
+  '800': #012015,
+  '900': #000A06,
+);
+
+
+// ********** Gradient ********** //
+// The gradient which is added to components
+// if `$enable-gradients` is `true`.
+// This gradient is also added to elements
+// with `.bg-gradient`
+$gradient: linear-gradient(180deg, rgba(map.get($colors, 'white'), .15), rgba(map.get($colors, 'white'), 0));
+
+
+// ********************************** //
+// ********** Theme Colors ********** //
+// ********************************** //
+// CRP theme colors are used to initialize the theme
+
+
+// ********** Theme Primary Palette ********** //
+$theme-primary-colors: (
+  '100': #EBF0F7,
+  '200': #CCDCEA,
+  '300': #99B8D5,
+  '400': #3371AC,
+  '500': #004E97,
+  '600': #003E79,
+  '700': #001F3C,
+  '800': #00101E,
+  '900': #00050A,
+);
+
+
+// ********** Theme Primary Palette ********** //
+$theme-secondary-colors: (
+  '100': #65B2E9,
+  '200': #2D72B4,
+);
+
+
+// ********** Theme Tertiary Palette ********** //
+$theme-tertiary-colors: (
+  '100': #006450,
+  '200': #8A2432,
+  '300': #FF9E1B,
+);
+
+
+// ********** Theme Gray Palette ********** //
+$theme-gray-colors: (
+  '100': #F2F3F5,
+  '200': #CCD1D5,
+  '300': #99A2AB,
+  '400': #667481,
+  '500': #334557,
+  '600': #0D2337,
+);
+
+
+// ********** Theme Button State Colors ********** //
+$theme-button-colors: (
+  'primary':  map.get($theme-primary-colors, '500'),
+  'hover':    map.get($theme-secondary-colors, '100'),
+  'pressed':  #00396F,
+  'disabled': #75747B,
+);
+
+
+// ********** Theme Colors ********** //
+$theme-colors: (
+  'primary':      map.get($theme-primary-colors, '500'),
+  'secondary':    map.get($theme-gray-colors, '300'),
+  'success':      map.get($colors, 'green'),
+  'info':         map.get($colors, 'blue'),
+  'warning':      map.get($colors, 'orange'),
+  'warning-bg':   map.get($colors, 'gold'),
+  'danger':       map.get($colors, 'red'),
+  'danger-dark':  map.get($reds, '600'),
+  'light':        map.get($theme-gray-colors, '200'),
+  'white':        map.get($colors, 'white'),
+  'dark':         map.get($theme-primary-colors, '900'),
+  'black':        map.get($colors, 'black'),
+);
+
+
+// ********** Theme Text Colors ********** //
+$theme-colors-text: (
+  'primary':   color.mix(map.get($colors, 'black'), map.get($theme-colors, 'primary'), 60%),
+  'secondary': color.mix(map.get($colors, 'black'), map.get($theme-colors, 'secondary'), 60%),
+  'success':   color.mix(map.get($colors, 'black'), map.get($theme-colors, 'success'), 60%),
+  'info':      color.mix(map.get($colors, 'black'), map.get($theme-colors, 'info'), 60%),
+  'warning':   color.mix(map.get($colors, 'black'), map.get($theme-colors, 'warning'), 60%),
+  'danger':    color.mix(map.get($colors, 'black'), map.get($theme-colors, 'danger'), 60%),
+  'light':     map.get($theme-gray-colors, '500'),
+  'dark':      map.get($theme-gray-colors, '500'),
+);
+
+
+// ********** Theme Background Subtle Colors ********** //
+$theme-colors-bg-subtle: (
+  'primary':    color.mix(map.get($colors, 'white'), map.get($theme-colors, 'primary'), 80%),
+  'secondary':  color.mix(map.get($colors, 'white'), map.get($theme-colors, 'secondary'), 80%),
+  'success':    color.mix(map.get($colors, 'white'), map.get($theme-colors, 'success'), 80%),
+  'info':       color.mix(map.get($colors, 'white'), map.get($theme-colors, 'info'), 80%),
+  'warning':    color.mix(map.get($colors, 'white'), map.get($theme-colors, 'warning'), 80%),
+  'danger':     color.mix(map.get($colors, 'white'), map.get($theme-colors, 'danger'), 80%),
+  'light':      color.mix(map.get($colors, 'white'), map.get($theme-gray-colors, '100'), 80%),
+  'dark':       map.get($theme-gray-colors, '200'),
+);
+
+
+// ********** Theme Border Subtle Colors ********** //
+$theme-border-subtle-colors: (
+  'primary':   color.mix(map.get($colors, 'white'), map.get($theme-colors, 'primary'), 60%),
+  'secondary': color.mix(map.get($colors, 'white'), map.get($theme-colors, 'secondary'), 60%),
+  'success':   color.mix(map.get($colors, 'white'), map.get($theme-colors, 'success'), 60%),
+  'info':      color.mix(map.get($colors, 'white'), map.get($theme-colors, 'info'), 60%),
+  'warning':   color.mix(map.get($colors, 'white'), map.get($theme-colors, 'warning'), 60%),
+  'danger':    color.mix(map.get($colors, 'white'), map.get($theme-colors, 'danger'), 60%),
+  'light':     map.get($theme-gray-colors, '200'),
+  'dark':      map.get($theme-gray-colors, '500'),
+);
+
+
+// ********** Body Colors ********** //
+$body-colors: (
+  'text-align':        null,
+  'color':             map.get($colors, 'black'),
+  'bg':                map.get($colors, 'white'),
+  'secondary-color':   rgba(map.get($colors, 'black'), .75),
+  'secondary-bg':      map.get($grays, '200'),
+  'tertiary-color':    rgba(map.get($colors, 'black'), .5),
+  'tertiary-bg':       map.get($grays, '100'),
+  'emphasis-color':    map.get($grays, '200'),
+);
+
+
+// ********** RGB Theme Colors ********** //
+$theme-colors-rgb: functions.map-loop($theme-colors, 'to-rgb', '$value');
+$utilities-colors: $theme-colors-rgb; // deprecated in v6
+
+
+// ******************************* //
+// ********** Utilities ********** //
+// ******************************* //
+
+
+// ********** Text Colors Map ********** //
+$utilities-text: map.merge(
+    $utilities-colors,
+    (
+      'black':  functions.to-rgb(map.get($colors, 'black')),
+      'white':  functions.to-rgb(map.get($colors, 'white')),
+      'body':   functions.to-rgb(map.get($body-colors, 'color')),
+    )
+);
+
+
+// Set the text color for each utility color
+$utilities-text-colors: functions.map-loop($utilities-text, 'rgba-css-var', '$key', 'text');
+
+
+// ********** Text Emphasis Colors Map ********** //
+$utilities-text-emphasis-colors: (
+  'primary-emphasis':   var(--#{$prefix}primary-text-emphasis),
+  'secondary-emphasis': var(--#{$prefix}secondary-text-emphasis),
+  'success-emphasis':   var(--#{$prefix}success-text-emphasis),
+  'info-emphasis':      var(--#{$prefix}info-text-emphasis),
+  'warning-emphasis':   var(--#{$prefix}warning-text-emphasis),
+  'danger-emphasis':    var(--#{$prefix}danger-text-emphasis),
+  'light-emphasis':     var(--#{$prefix}light-text-emphasis),
+  'dark-emphasis':      var(--#{$prefix}dark-text-emphasis),
+) !default;
+
+
+// ********** Background Colors Map ********** //
+$utilities-bg: map.merge(
+    $utilities-colors,
+    (
+      'black':  functions.to-rgb(map.get($colors, 'black')),
+      'white':  functions.to-rgb(map.get($colors, 'white')),
+      'body':   functions.to-rgb(map.get($body-colors, 'body')),
+    )
+);
+
+
+// Set the background color for each utility color
+$utilities-bg-colors: functions.map-loop($utilities-bg, 'rgba-css-var', '$key', 'bg');
+
+
+// ********** Background Subtle Colors Map ********** //
+$utilities-bg-subtle: (
+  'primary-subtle':   var(--#{$prefix}primary-bg-subtle),
+  'secondary-subtle': var(--#{$prefix}secondary-bg-subtle),
+  'success-subtle':   var(--#{$prefix}success-bg-subtle),
+  'info-subtle':      var(--#{$prefix}info-bg-subtle),
+  'warning-subtle':   var(--#{$prefix}warning-bg-subtle),
+  'danger-subtle':    var(--#{$prefix}danger-bg-subtle),
+  'light-subtle':     var(--#{$prefix}light-bg-subtle),
+  'dark-subtle':      var(--#{$prefix}dark-bg-subtle)
+);
+
+// ********** Border Colors Map ********** //
+$utilities-border: map.merge(
+    $utilities-colors,
+    (
+      'black':  functions.to-rgb(map.get($colors, 'black')),
+      'white':  functions.to-rgb(map.get($colors, 'white')),
+    )
+);
+
+
+// Set the border color for each utility color
+$utilities-border-colors: functions.map-loop($utilities-border, rgba-css-var, '$key', 'border');
+
+
+// ********** Border Subtle Colors Map ********** //
+$utilities-border-subtle: (
+  'primary-subtle':   var(--#{$prefix}primary-border-subtle),
+  'secondary-subtle': var(--#{$prefix}secondary-border-subtle),
+  'success-subtle':   var(--#{$prefix}success-border-subtle),
+  'info-subtle':      var(--#{$prefix}info-border-subtle),
+  'warning-subtle':   var(--#{$prefix}warning-border-subtle),
+  'danger-subtle':    var(--#{$prefix}danger-border-subtle),
+  'light-subtle':     var(--#{$prefix}light-border-subtle),
+  'dark-subtle':      var(--#{$prefix}dark-border-subtle),
+);
+
+
+// ********** Links ********** //
+// Set the link color for each utility color
+$utilities-links-underline: functions.map-loop($utilities-colors, 'rgba-css-var', '$key', 'link-underline');
+
+
+// ********** Link Styles ********** //
+$link-shade-percentage: 20%;
+$link-color: map.get($theme-primary-colors, '500');
+$link-styles: (
+  'color':              $link-color,
+  'decoration':        underline,
+  'shade-percentage':  $link-shade-percentage,
+  'hover-color':       color.mix(map.get($colors, 'black'), $link-color, $link-shade-percentage),
+  'hover-decoration':  null,
+);
+
+
+// ********** Spacing ********** //
+$spacer: 1rem;
+$spacers: (
+  0: 0,
+  1: $spacer * .25,
+  2: $spacer * .5,
+  3: $spacer,
+  4: $spacer * 1.5,
+  5: $spacer * 3,
+);
+
+
+// ********** Negative Spacing Map ********** //
+$negative-spacers: if($enable-negative-margins, functions.negativify-map($spacers), null);
+
+
+// ********** Grid Gutters ********** //
+$gutters: $spacers !default;
+
+
+// ********** Aspect Ratios ********** //
+$aspect-ratios: (
+  '1x1':  100%,
+  '4x3':  calc(3 / 4 * 100%),
+  '16x9': calc(9 / 16 * 100%),
+  '21x9': calc(9 / 21 * 100%),
+);
+
+
+// ********** Borders ********** //
+$border-styles: (
+  'width':              1px,
+  'style':              solid,
+  'color':              map.get($grays, '300'),
+  'color-translucent':  rgba(map.get($colors, 'black'), .175),
+);
+
+// ********** Border Widths ********** //
+$border-widths: (
+  1: 1px,
+  2: 2px,
+  3: 3px,
+  4: 4px,
+  5: 5px,
+);
+
+
+// ********** Border Radius ********** //
+$border-radius-sizes: (
+  'sm':   .25rem,
+  'md':   .375rem,
+  'lg':   .5rem,
+  'xl':   1rem,
+  'xxl':  2rem,
+  'pill': 50rem,
+);
+
+
+// ********** Box Shadows ********** //
+$box-shadow-sizes: (
+  'sm':       0 .5rem 1rem rgba(map.get($colors, 'black'), .15),
+  'md':       0 .125rem .25rem rgba(map.get($colors, 'black'), .075),
+  'lg':       0 1rem 3rem rgba(map.get($colors, 'black'), .175),
+  'inset':    inset 0 1px 2px rgba(map.get($colors, 'black'), .075),
+);
+
+
+// ********** Breakpoints ********** //
+$grid-breakpoints: (
+  xs: 0,
+  sm: 540px,
+  md: 768px,
+  lg: 1024px,
+  xl: 1220px,
+  xxl: 1440px
+);
+
+// Helps catch errors in your maps
+// where values might be misconfigured
+// (for example, breakpoints or scale
+// values that aren’t in the correct order).
+@include functions.assert-ascending($grid-breakpoints, '$grid-breakpoints');
+@include functions.assert-starts-at-zero($grid-breakpoints, '$grid-breakpoints');
+
+
+// ********** Font Weights ********** //
+$font-weights: (
+  'lighter':      lighter,
+  '300':          300,
+  '400':          400,
+  '500':          500,
+  '600':          600,
+  '700':          700,
+  'bolder':       bolder,
+  'black':        900,
+);
+$font-weight-base: map.get($font-weights, '400');
+
+
+// ********** Font Family ********** //
+$font-family-sans-serif:  'Barlow', Roboto, system-ui, -apple-system, 'Segoe UI', Arial, sans-serif;
+$font-family-monospace:   SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace;
+$font-family-base:        var(--#{$prefix}font-sans-serif);
+$font-family-code:        var(--#{$prefix}font-monospace);
+
+
+// ********** Font Sizes ********** //
+$font-size-base: 1rem;
+$body-font-sizes: (
+  'root':   null,
+  'base':   $font-size-base,
+  'xxs':    $font-size-base * .625,
+  'xs':     $font-size-base * .75,
+  'sm':     $font-size-base * .875,
+  'ml':     $font-size-base * 1.125,
+  'lg':     $font-size-base * 1.25,
+);
+$small-font-size:   map.get($body-font-sizes, 'sm');
+$sub-sup-font-size:  map.get($body-font-sizes, 'xs');
+
+
+// ********** Line Height ********** //
+$line-heights: (
+  'sm': 1.25,
+  'md': 1.5,
+  'lg': 1.5,
+);
+
+
+// ********** Heading Font Sizes ********** //
+$heading-font-size-base: $font-size-base;
+$heading-font-sizes: (
+  1: $heading-font-size-base * 2.5,
+  2: $heading-font-size-base * 2,
+  3: $heading-font-size-base * 1.75,
+  4: $heading-font-size-base * 1.5,
+  5: $heading-font-size-base * 1.25,
+  6: $heading-font-size-base,
+);
+
+
+// ********** Heading Styles ********** //
+$heading-styles: (
+  'margin-bottom': $spacer * 0,
+  'font-family':   var(--#{$prefix}font-sans-serif),
+  'font-style':    null,
+  'font-weight':   var(--#{$prefix}font-weight-700),
+  'line-height':   1.2,
+  'color':         inherit,
+);
+
+
+// ********** Display Font Sizes ********** //
+$display-font-sizes: (
+  1: 2.25rem,
+  2: 2rem,
+  3: 1.75rem,
+  4: 1.5rem,
+  5: 1.25rem,
+  6: 1rem,
+);
+
+
+// ********** Display Styles ********** //
+$display-styles: (
+  'font-family':   var(--#{$prefix}font-sans-serif),
+  'font-style':    null,
+  'font-weight':   var(--#{$prefix}font-weight-700),
+  'line-height':   map.get($heading-styles, 'line-height'),
+);
+
+
+// ********** Lead Styles ********** //
+$lead-styles: (
+  'font-size':    $font-size-base * 1.25,
+  'font-weight':  map.get($font-weights, '300'),
+);
+
+
+// ********** Escaped Characters ********** //
+$escaped-characters: (
+    ('<', '%3c'),
+    ('>', '%3e'),
+    ('#', '%23'),
+    ('(', '%28'),
+    (')', '%29'),
+);
+
+
+// ********** Code Styles ********** //
+$code-font-size: $small-font-size;
+$code-styles: (
+  'color':        map.get($colors, 'pink'),
+  'padding-y':    .1875rem,
+  'padding-x':    .375rem,
+  'kbd-color':    var(--#{$prefix}body-bg),
+  'kbd-bg':       var(--#{$prefix}body-color),
+  'font-weight':  null,
+  'pre-color':    null,
+);
+
+
+// ********** Focus Ring Styles ********** //
+$focus-ring-opacity: .25;
+$focus-ring: (
+  'width': .25rem,
+  'color': rgba(map.get($colors, 'blue'), $focus-ring-opacity),
+  'blur': 0,
+);
+$focus-ring-box-shadow: 0 0 map.get($focus-ring, 'blur') map.get($focus-ring, 'width') map.get($focus-ring, 'color');
+
+
+// ********** Grid Containers ********** //
+$container-max-widths: (
+  sm: 576px,
+  md: 790px,
+  lg: 1056px,
+  xl: 1252px,
+  xxl: 1462px
+);
+
+// Helps catch errors in your maps
+// where values might be misconfigured
+// (for example, breakpoints or scale
+// values that aren’t in the correct order).
+@include functions.assert-ascending($container-max-widths, '$container-max-widths');
+
+
+// ********** Grid styles ********** //
+$grid-gutter-width: 2.5rem;
+$grid-styles: (
+  'columns': 12,
+  'rows': 6,
+);
+
+
+// ********** Horizontal Rule Styles ********** //
+$hr-styles: (
+  'margin-y':       $spacer,
+  'color':          inherit,
+  'border-color':   null,
+  'border-width':   var(--#{$prefix}border-width),
+  'opacity':        .25,
+);
+
+
+// ********** Image Thumbnail Styles ********** //
+$thumbnails: (
+  'padding':        .25rem,
+  'bg':             var(--#{$prefix}body-bg),
+  'border-width':   var(--#{$prefix}border-width),
+  'border-color':   var(--#{$prefix}border-color),
+  'border-radius':  var(--#{$prefix}border-radius),
+  'box-shadow':     var(--#{$prefix}box-shadow-sm)
+);
+
+
+// ********** Lists ********** //
+$list-inline-padding: .5rem !default;
+
+
+// ********** Mark Styles ********** //
+$mark-styles: (
+  'padding': .1875em,
+  'color':    map.get($colors, 'black'),
+  'bg':       map.get($oranges, '200'),
+);
+
+
+// ********** Paragraph ********** //
+$paragraph-margin-bottom: 1rem !default;
+
+// ********** Placeholder ********** //
+$placeholders: (
+  'max': .5,
+  'min': .2,
+);
+
+
+// ********** Position ********** //
+$position-values: (
+  0: 0,
+  50: 50%,
+  100: 100%
+);
+
+
+// ********** Transitions ********** //
+$transitions: (
+  'base':           all .2s ease-in-out,
+  'fade':           opacity .15s linear,
+  'collapse':       height .35s ease,
+  'collapse-width': width .35s ease,
+);
+
+
+// ********** Z-Index ********** //
+$z-indices: (
+  'dropdown':             1000,
+  'sticky':               1020,
+  'fixed':                1030,
+  'offcanvas-backdrop':   1040,
+  'offcanvas':            1045,
+  'modal-backdrop':       1050,
+  'modal':                1055,
+  'popover':              1070,
+  'tooltip':              1080,
+  'toast':                1090,
+);
+
+$zindex-levels: (
+  n1: -1,
+  0: 0,
+  1: 1,
+  2: 2,
+  3: 3
+);

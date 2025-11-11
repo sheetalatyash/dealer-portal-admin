@@ -1,0 +1,19 @@
+<div class="display-field d-flex flex-column">
+  <div class="display-field-label">
+    <ng-content select="label"></ng-content>
+  </div>
+  <div [ngClass]="alignmentClass" class="display-field-value d-flex">
+
+    <!-- Icon before value -->
+    <ng-content select="leading-icon"></ng-content>
+
+    <!-- Value -->
+    <span>
+      <ng-content></ng-content>
+    </span>
+
+    <!-- Icon after value -->
+    <ng-content select="trailing-icon"></ng-content>
+
+  </div>
+</div>

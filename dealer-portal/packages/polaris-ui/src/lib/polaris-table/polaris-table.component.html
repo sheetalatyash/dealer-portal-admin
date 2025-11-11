@@ -1,0 +1,100 @@
+<div [ngClass]="stickyHeader ? 'polaris-table-sticky-header' : 'overflow-auto'">
+
+  <!-- Polaris Table -->
+  <table mat-table
+         matSort
+         class="polaris-table-base"
+         [attr.data-test-id]="testId"
+         [dataSource]="dataSource"
+         [ngClass]="[getTableThemeClass(), customClass]"
+         (click)="emitClickEvent($event)"
+         (matSortChange)="config.customSort?.($event)"
+         (mouseenter)="emitMouseEnterEvent($event)"
+         (mouseleave)="emitMouseLeaveEvent($event)">
+
+    <ng-container matColumnDef="polarisTableCustomHeaderRow">
+      <th mat-header-cell *matHeaderCellDef [attr.colspan]="config.columns.length" [ngClass]="customHeaderRows.first.customClass">
+        <ng-content select="polaris-table-custom-header-row"></ng-content>
+      </th>
+    </ng-container>
+
+    <!-- Expandable Column (Only for rows with nested data) -->
+    <ng-container matColumnDef="expand">
+      <th mat-header-cell *matHeaderCellDef></th>
+      <td mat-cell *matCellDef="let row">
+        test
+        @if (isParentRow(row)) {
+          <button mat-icon-button (click)="toggleRow(row, $event)">
+            <mat-icon>{{ expandedElement === row ? 'expand_less' : 'expand_more' }}</mat-icon>
+          </button>
+        }
+      </td>
+    </ng-container>
+
+    <!-- Table Columns -->
+    @for(column of config.columns; track column.id) {
+      <ng-container [matColumnDef]="column.id">
+        <th mat-header-cell *matHeaderCellDef [ngClass]="getTableHeaderClassList(column)">
+          @if(column.sortable) {
+            <span [mat-sort-header]="column.id">
+              {{ column.label }}
+              <polaris-icon class="polaris-sort-header-arrow" size="xl">sort</polaris-icon>
+            </span>
+
+          } @else {
+            <div [innerHTML]="column.label"
+                 [ngClass]="'text-' + column.alignContent">
+            </div>
+          }
+        </th>
+        <td mat-cell *matCellDef="let element" [ngClass]="getBreakpointClassList(column)">
+          <div class="d-flex" [ngClass]="'justify-content-' + column.alignContent">
+            @if(getTemplateForColumn(column); as template) {
+              <ng-container *ngTemplateOutlet="template; context: { $implicit: element }"></ng-container>
+            } @else {
+              {{ element[column.key] }}
+            }
+          </div>
+        </td>
+      </ng-container>
+    }
+
+    <!-- Table Header -->
+    <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
+
+    <!-- Custom Header Rows (Only for rows with custom header content) -->
+    @if (isCustomHeaderContentPresent) {
+      <tr mat-header-row *matHeaderRowDef="['polarisTableCustomHeaderRow']; sticky: true"></tr>
+    }
+
+    <!-- Parent Row -->
+    <ng-container *matRowDef="let row; columns: displayedColumns; when: isParentRow">
+      <tr mat-row class="parent-row" (click)="toggleRow(row, $event)"></tr>
+    </ng-container>
+
+    <!-- Child Rows (Hidden Initially) -->
+    <!-- TODO: Animation -->
+    <ng-container *matRowDef="let row; columns: displayedColumns; when: isChildRow">
+      <tr mat-row class="child-row"
+          [style.padding-left.px]="getChildLevel(row) * 24"
+          [@detailExpand]="isExpandedRow(getParentRowId(row))">
+      </tr>
+    </ng-container>
+
+    <!-- Standalone Rows (Neither Parent Nor Child) -->
+    <ng-container *matRowDef="let row; columns: displayedColumns; when: isStandaloneRow">
+      <tr mat-row class="standalone-row" (click)="onRowClicked(row)"></tr>
+    </ng-container>
+
+  </table>
+</div>
+
+<!-- Pagination -->
+@if(config.pagination) {
+  <polaris-paginator
+    [ui-test-id]="config.pagination.uiTestId"
+    [displayedElements]="data.length"
+    [maxElements]="config.pagination ? config.pagination.totalItems : 0"
+    (onLoadMore)="onLoadMore()"
+  ></polaris-paginator>
+}

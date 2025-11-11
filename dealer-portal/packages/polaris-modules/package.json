@@ -1,0 +1,19 @@
+{
+  "name": "@dealer-portal/polaris-modules",
+  "peerDependencies": {
+    "@angular/common": "19.2.4",
+    "@angular/core": "19.2.4",
+    "@angular/platform-browser": "19.2.4",
+    "@dealer-portal/polaris-core": "^0.0.1",
+    "@dealer-portal/polaris-ui": "0.0.1",
+    "@ngneat/until-destroy": "^10.0.0",
+    "@ngx-translate/core": "^16.0.4",
+    "rxjs": "~7.8.0",
+    "@angular/material": "19.2.7",
+    "@angular/forms": "19.2.4"
+  },
+  "version": "0.0.1",
+  "publishConfig": {
+    "access": "public"
+  }
+}

@@ -1,0 +1,13 @@
+<div class="d-flex flex-column gap-2">
+  <ul>
+    @for (item of errorListItems(); track trackByError($index, item)) {
+      <li (click)="scrollToControl(item)">
+        <polaris-error>{{ item.errorMessage }}</polaris-error>
+      </li>
+    }
+  </ul>
+
+  @if (errorListItems().length > 0) {
+    <polaris-divider></polaris-divider>
+  }
+</div>

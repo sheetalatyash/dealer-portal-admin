@@ -1,0 +1,26 @@
+<polaris-dialog [hideCloseButton]="true">
+  <div ngProjectAs="polaris-dialog-title">
+    <span class="fw-normal">
+      {{ data.title | translate : { '0': data.language ?? '' } }}
+    </span>
+  </div>
+
+  <span class="dialog-text">
+    {{ data.message | translate }}
+
+    @if (data.htmlMessage) {
+    <div [innerHTML]="data.htmlMessage | translate"></div>
+    }
+  </span>
+
+  <div ngProjectAs="polaris-dialog-actions" class="d-flex gap-3">
+    @if (data.secondaryButtonLabel) {
+    <polaris-button (click)="closeDialog(false)" ui-theme="secondary">
+      {{ data.secondaryButtonLabel | translate }}
+    </polaris-button>
+    }
+    <polaris-button (click)="closeDialog(true)" ui-theme="primary">
+      {{ data.primaryButtonLabel | translate }}
+    </polaris-button>
+  </div>
+</polaris-dialog>

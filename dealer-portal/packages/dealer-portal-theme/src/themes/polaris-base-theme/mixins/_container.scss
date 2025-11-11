@@ -1,0 +1,12 @@
+@use '../variables/base-variables' as app;
+
+// Container mixins
+@mixin make-container($gutter: app.$container-padding-x) {
+  --#{app.$prefix}gutter-x: #{$gutter};
+  --#{app.$prefix}gutter-y: 0;
+  width: 100%;
+  padding-right: calc(var(--#{app.$prefix}gutter-x) * .5); // stylelint-disable-line function-disallowed-list
+  padding-left: calc(var(--#{app.$prefix}gutter-x) * .5); // stylelint-disable-line function-disallowed-list
+  margin-right: auto;
+  margin-left: auto;
+}

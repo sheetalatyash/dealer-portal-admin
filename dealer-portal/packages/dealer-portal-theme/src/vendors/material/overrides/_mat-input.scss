@@ -1,0 +1,49 @@
+// Place your material override for mat-input elements here.
+// Create separate files for each element/control as needed and import it in index.scss file.
+
+:root {
+  --mdc-outlined-text-field-container-shape: 1px !important;
+  --mdc-outlined-text-field-error-outline-color: var(--polaris-danger) !important;
+  --mdc-outlined-text-field-error-hover-outline-color: var(--polaris-danger) !important;
+  --mdc-outlined-text-field-error-focus-outline-color: var(--polaris-danger) !important;
+  --mat-form-field-error-text-color: var(--polaris-danger) !important;
+}
+
+.mat-mdc-form-field {
+
+  // Invalid Form Fields
+  &.mat-form-field-invalid {
+    --mdc-outlined-text-field-outline-width: var(--mdc-outlined-text-field-focus-outline-width) !important;
+  }
+}
+
+// mat-errors
+.mat-mdc-form-field-error {
+  color: var(--mat-form-field-error-text-color) !important;
+  font-size: var(--polaris-font-size-sm);
+}
+
+.mdc-text-field--outlined {
+  background-color: var(--polaris-white);
+  border-radius: var(--mdc-outlined-text-field-container-shape) !important;
+
+  .mat-mdc-form-field-flex {
+    background-color: var(--polaris-white);
+    border-radius: var(--mdc-outlined-text-field-container-shape);
+  }
+}
+
+.polaris-search-bar-autocomplete-open {
+  .mdc-notched-outline__leading {
+    border-bottom: var(--polaris-border-width) var(--polaris-border-style) var(--polaris-primary) !important;
+    border-left: var(--polaris-border-width) var(--polaris-border-style) var(--polaris-gray-500) !important;
+    border-top: var(--polaris-border-width) var(--polaris-border-style) var(--polaris-gray-500) !important;
+    border-bottom-left-radius: 0px !important;
+  }
+  .mdc-notched-outline__trailing {
+    border-bottom: var(--polaris-border-width) var(--polaris-border-style) var(--polaris-primary) !important;
+    border-right: var(--polaris-border-width) var(--polaris-border-style) var(--polaris-gray-500) !important;
+    border-top: var(--polaris-border-width) var(--polaris-border-style) var(--polaris-gray-500) !important;
+    border-bottom-right-radius: 0px !important;
+  }
+}

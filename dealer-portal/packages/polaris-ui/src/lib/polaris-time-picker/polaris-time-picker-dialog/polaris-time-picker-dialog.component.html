@@ -1,0 +1,74 @@
+<div
+  class="polaris-time-picker-dialog pt-3 px-3"
+  [formGroup]="timeForm"
+  [attr.data-test-id]="testId"
+  [ngClass]="[customClass]"
+  (mouseenter)="emitMouseEnterEvent($event)"
+  (mouseleave)="emitMouseLeaveEvent($event)"
+>
+  <span class="polaris-time-picker-dialog-title mb-2">Enter Time</span>
+
+  <!-- Dialog Inputs -->
+  <div class="d-flex">
+    <div class="d-flex flex-column">
+      <input
+        #hoursInput
+        type="text"
+        formControlName="hours"
+        maxlength="2"
+        data-test-id="time-picker-dialog-hours-input"
+      />
+      <span class="input-subscript"> Hour </span>
+    </div>
+    <span class="colon">:</span>
+    <div class="d-flex flex-column">
+      <input type="text" formControlName="minutes" maxlength="2" data-test-id="time-picker-dialog-minutes-input" />
+      <span class="input-subscript">Minute</span>
+    </div>
+    <div class="period-toggle-ctr d-flex flex-column ms-3">
+      <button
+        class="period-toggle"
+        data-test-id="time-picker-dialog-am-toggle"
+        [ngClass]="{ selected: period === 'AM' }"
+        (click)="onSelectPeriod('AM')"
+      >
+        AM
+      </button>
+      <button
+        class="period-toggle"
+        data-test-id="time-picker-dialog-pm-toggle"
+        [ngClass]="{ selected: period === 'PM' }"
+        (click)="onSelectPeriod('PM')"
+      >
+        PM
+      </button>
+    </div>
+  </div>
+
+  <!-- Form Errors -->
+  @if(timeForm.get('hours')?.invalid && timeForm.get('hours')?.touched) {
+  <small class="text-danger">Hours must be between 01 and 12.</small>
+  } @else if (timeForm.get('minutes')?.invalid && timeForm.get('minutes')?.touched) {
+  <small class="text-danger">Minutes must be between 00 and 59.</small>
+  }
+
+  <!-- Dialog Actions -->
+  <div class="d-flex align-items-center justify-content-end gap-4">
+    <polaris-button
+      ui-theme="tertiary"
+      ui-class="text-decoration-none"
+      ui-test-id="time-picker-dialog-cancel"
+      (click)="onCancel()"
+    >
+      {{ cancelText }}
+    </polaris-button>
+    <polaris-button
+      ui-theme="tertiary"
+      ui-class="text-decoration-none"
+      ui-test-id="time-picker-dialog-ok"
+      (click)="onSelectTime()"
+    >
+      {{ confirmText }}
+    </polaris-button>
+  </div>
+</div>

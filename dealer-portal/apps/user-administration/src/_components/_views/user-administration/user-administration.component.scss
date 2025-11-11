@@ -1,0 +1,10 @@
+:host {
+  .user-administration-header {
+    padding-top: 1rem;
+    background: var(--polaris-white);
+
+    .link-divider {
+      color: var(--polaris-primary);
+    }
+  }
+}

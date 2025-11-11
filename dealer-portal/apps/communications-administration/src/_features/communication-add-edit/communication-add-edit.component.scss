@@ -1,0 +1,20 @@
+.communication-add-edit {
+  &-container {
+    background-color: var(--polaris-white);
+    border: var(--polaris-border-width) var(--polaris-border-style) var(--polaris-border-color);
+    margin: 1.5rem 1.25rem;
+  }
+
+  &-header {
+    border-bottom: var(--polaris-border-width) var(--polaris-border-style) var(--polaris-border-color);
+  }
+
+  &-form-content {
+    border-bottom: var(--polaris-border-width) var(--polaris-border-style) var(--polaris-border-color);
+  }
+
+  &-hint {
+      color: var(--polaris-gray);
+      font-size: var(--polaris-font-size-sm);
+  }
+}

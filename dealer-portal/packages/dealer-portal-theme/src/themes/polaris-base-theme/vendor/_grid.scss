@@ -1,0 +1,42 @@
+@use '../mixins/grid' as grid;
+@use '../variables/base-variables' as app;
+
+// Row
+//
+// Rows contain your columns.
+
+:root {
+  @each $name, $value in app.$grid-breakpoints {
+    --#{app.$prefix}breakpoint-#{$name}: #{$value};
+  }
+}
+
+@if app.$enable-grid-classes {
+  .row {
+    @include grid.make-row();
+
+    > * {
+      @include grid.make-col-ready();
+    }
+  }
+}
+
+@if app.$enable-cssgrid {
+  .grid {
+    display: grid;
+    grid-template-rows: repeat(var(--#{app.$prefix}rows, 1), 1fr);
+    grid-template-columns: repeat(var(--#{app.$prefix}columns, #{app.$grid-columns}), 1fr);
+    gap: var(--#{app.$prefix}gap, #{app.$grid-gutter-width});
+
+    @include grid.make-cssgrid();
+  }
+}
+
+
+// Columns
+//
+// Common styles for small and large grid columns
+
+@if app.$enable-grid-classes {
+  @include grid.make-grid-columns();
+}

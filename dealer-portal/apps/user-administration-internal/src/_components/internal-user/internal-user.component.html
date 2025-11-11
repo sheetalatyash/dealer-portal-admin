@@ -1,0 +1,45 @@
+<div class="container-fluid user-page d-flex flex-column">
+  <div class="user-page-header sticky-top d-flex justify-content-between">
+    <!-- Heading -->
+    <polaris-heading h3 ui-test-id="user-profile-title">
+      <span>{{ pageHeader }}</span>
+      @if (userFullName$ | async; as fullName) {
+        <span> - {{ fullName }}</span>
+      }
+      @else {
+        <span> - {{ (internalUserInfo$ | async)?.claims?.userName }}</span>
+      }
+    </polaris-heading>
+
+    <!-- Actions -->
+    <div *accessControl="accessControlLevel.ReadWrite" class="user-page-header-actions d-none d-md-flex">
+      @for (button of userPageActionButtons; track button) {
+        @if (button.visible) {
+          <!-- TODO: fix access level-->
+          <polaris-button
+            ui-test-id="internal-user-admin-{{ button.label }}-button"
+            [ui-theme]="button.theme"
+            [ui-disabled]="button.label === buttonAction.SaveChanges && !permissionsFormValid"
+            (onClick)="startUserPageAction(button)">
+            {{ button.label }}
+          </polaris-button>
+        }
+      }
+    </div>
+  </div>
+
+
+  <!-- Permissions Tab View -->
+  @if (permissions$ | async; as permissions) {
+    <uai-permissions-template
+      expansionPanelTestId="internal-user-permissions"
+      [isDetailsView]="isDetailsView"
+      [permissions]="permissions"
+      [internalUserInfo]="internalUserInfo$ | async"
+      (permissionsUpdated)="storePermissionsChanges($event)"
+      (formInitialized)="onFormInitialized($event)">
+    </uai-permissions-template>
+  } @else {
+    <polaris-loader></polaris-loader>
+  }
+</div>

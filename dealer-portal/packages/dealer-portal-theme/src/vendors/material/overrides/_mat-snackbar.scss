@@ -1,0 +1,22 @@
+// Place your material override for mat-snackbar element here.
+// Create separate files for each element/control as needed and import it in index.scss file.
+:root {
+  --mdc-snackbar-container-color: var(--polaris-white);
+  --mdc-snackbar-supporting-text-color: var(-polaris-black);
+}
+
+// Set the z-index of the snackbar higher than the portal header
+.cdk-overlay-container:has(.cdk-global-overlay-wrapper > .cdk-overlay-pane > mat-snack-bar-container) {
+  z-index: 1200;
+}
+
+.mat-mdc-snack-bar-container {
+  margin: unset !important;
+}
+
+.mat-mdc-snack-bar-container .mat-mdc-snackbar-surface {
+  min-width: unset !important;
+  max-width: unset !important;
+  width: 97vw !important;
+  margin: var(--main-header-height, 8px) 0 0 0 !important;
+}

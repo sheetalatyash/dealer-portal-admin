@@ -1,0 +1,33 @@
+@use 'sass:string';
+@use 'sass:list';
+@use 'sass:map';
+
+// Font Face
+
+@mixin font-face($name, $path, $weight: 400, $style: normal, $extensions: (woff2, woff, ttf)) {
+  $src: null;
+
+  // Font format mappings
+  $formats: (
+    woff2: 'woff2',
+    woff: 'woff',
+    ttf: 'truetype'
+  );
+
+  @each $extension in $extensions {
+    $quoted-url: '../../' + $path + '.' + $extension;
+
+    $format: map.get($formats, $extension);
+    $quoted-format: string.quote($format);
+
+    $src: list.append($src, url($quoted-url) format($quoted-format), comma);
+  }
+
+  @font-face {
+    font-family: string.quote($name);
+    src: $src;
+    font-weight: $weight;
+    font-style: $style;
+    font-display: swap;
+  }
+}

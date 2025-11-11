@@ -1,0 +1,118 @@
+.action-button {
+  font-size: var(--polaris-font-size-sm);
+  padding: 0.8rem 1.1rem;
+}
+
+.content-card-header {
+  user-select: text;
+}
+
+.content-card-label {
+  font-size: 1rem;
+  font-weight: var(--polaris-font-weight-500);
+}
+
+.content-card-link {
+  color: var(--polaris-primary);
+  font-size: var(--polaris-font-size-sm);
+  font-style: italic;
+  font-weight: var(--polaris-font-weight-500);
+}
+
+.content-card-phone {
+  color: var(--polaris-primary);
+  font-size: 1.0rem;
+  font-weight: var(--polaris-font-weight-500);
+  padding: 0.8rem 0;
+}
+
+.content-card-profile {
+  color: var(--polaris-primary);
+  font-size: 1.0rem;
+  font-weight: var(--polaris-font-weight-500);
+}
+
+.contents-grid {
+  background-color: var(--polaris-white);
+  display: grid;
+  grid-column-gap: 0.9rem;
+  grid-row-gap: 0.3rem;
+  grid-template-columns: auto auto auto;
+  justify-items:left;
+  vertical-align: top;
+  width: 100%;
+}
+
+.delete-account-button {
+  padding-left: 0.5rem;
+}
+
+.products-grid {
+  background-color: var(--polaris-white);
+  display: grid;
+  grid-column-gap: 0.9rem;
+  grid-row-gap: 0.3rem;
+  grid-template-columns: auto auto;
+  justify-items:left;
+  vertical-align: top;
+  width: 100%;
+}
+
+.products-grid-item {
+  padding: 0.5rem;
+}
+
+.result-count {
+  font-size: 1.0rem;
+  font-weight: var(--polaris-font-weight-700);
+  padding-bottom: 1.0rem;
+  padding-top: 0.6rem;
+}
+
+mat-card {
+  border: 1px var(--polaris-primary) var(--polaris-border-style);
+  user-select: text;
+}
+
+mat-card-header {
+  border-bottom: 2px var(--polaris-primary) var(--polaris-border-style);
+}
+
+mat-card-title {
+  font-size: var(--polaris-font-size-lg);
+  font-weight: var(--polaris-font-weight-500);
+}
+
+mat-card-subtitle {
+  font-size: var(--polaris-font-size-md);
+  padding-bottom: 0.8rem;
+}
+
+mat-card-content {
+  font-size: 0.9rem;
+  justify-items:left;
+  padding: 0.8rem 0.8rem;
+  vertical-align: top;
+}
+
+mat-card-actions {
+  align-items: end;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  left: 0;
+  position: absolute;
+  top: 0;
+  width: 100%;
+  z-index: 1;
+}
+
+@media (max-width:48rem) {
+  mat-card-content {
+    grid-template-columns: auto;
+  }
+
+  .products-grid {
+    grid-template-columns: auto;
+  }
+}

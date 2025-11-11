@@ -1,0 +1,29 @@
+:host {
+
+  // Justify checkboxes within a given container
+  .polaris-checkbox-group.justify {
+
+    section {
+      width: 100%;
+      justify-content: space-between;
+    }
+  }
+
+  .checkbox-header-true {
+
+    .checkbox-header {
+      background-color: var(--polaris-primary);
+      color: var(--polaris-white);
+      font-weight: var(--polaris-font-weight-500);
+    }
+
+    polaris-checkbox {
+      margin-left: 1rem;
+    }
+  }
+
+  // Aligns content blocks (not the checkboxes) left
+  .polaris-checkbox-group.align-items-start {
+    align-items: start !important;
+  }
+}

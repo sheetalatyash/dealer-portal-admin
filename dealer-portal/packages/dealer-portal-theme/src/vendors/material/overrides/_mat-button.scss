@@ -1,0 +1,5 @@
+// Place your material override for mat-button element here.
+// Create separate files for each element/control as needed and import it in index.scss file.
+:root {
+  --mat-outlined-button-state-layer-color: none;
+}

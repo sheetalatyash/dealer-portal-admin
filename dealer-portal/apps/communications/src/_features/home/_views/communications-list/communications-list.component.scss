@@ -1,0 +1,138 @@
+@use '../../../../../../../packages/dealer-portal-theme/src/themes/polaris-base-theme/mixins/breakpoints' as breakpoints;
+
+.communication-list {
+  &-internal-user {
+    color: var(--polaris-gray-400);
+    font-style: normal;
+    line-height: 180%;
+    height: 90dvh;
+
+    &-primary-message {
+      padding-top: 7em;
+
+      &-message {
+        padding-left: .5em;
+        font-size: var(--polaris-font-size-lg);
+        font-weight: var(--polaris-font-weight-500);
+      }
+    }
+
+    &-visit {
+      font-size: (--polaris-font-size-md);
+      font-weight: var(--polaris-font-weight-400);
+    }
+  }
+
+  &-header {
+    &-title {
+      font-size: var(--polaris-font-size-ml);
+      font-weight: var(--polaris-font-weight-bolder);
+    }
+
+    &-tabs {
+      flex: 3;
+
+      ::ng-deep &-selected a:hover {
+        color: var(--polaris-primary) !important;
+        background-color: #C8C8C8;
+        border-bottom: 3px solid var(--polaris-primary) !important;
+      }
+
+      ::ng-deep &-selected a:hover span {
+        color: var(--polaris-primary) !important;
+      }
+
+      ::ng-deep nav {
+        border-bottom: none !important;
+      }
+    }
+
+    &-search {
+      flex: 1;
+
+      ::ng-deep .mat-mdc-form-field-infix {
+        min-width: 250px !important;
+      }
+    }
+  }
+
+  &-search-message {
+    line-height: var(--polaris-body-line-height);
+    border-bottom: 1px solid var(--polaris-border-color);
+    color: var(--polaris-light-text-emphasis);
+    font-weight: var(--polaris-font-weight-700);
+    padding: .75rem !important;
+    padding-left: 1.5rem !important;
+  }
+
+  &-action-bar {
+    background-color: var(--polaris-secondary-bg);
+    border: solid 1px var(--polaris-dark-border-subtle);
+
+    &-select-items {
+      all: unset;
+      align-items: center;
+      display: flex;
+      justify-content: center;
+
+      mat-checkbox {
+        pointer-events: none;
+      }
+
+      &:focus {
+        outline: revert;
+      }
+
+      &:hover {
+        background-color: var(--polaris-secondary-bg-subtle);
+        border-radius: var(--polaris-border-radius);
+        cursor: pointer;
+      }
+    }
+
+    &-sort {
+      font-size: var(--polaris-font-size-xs);
+    }
+  }
+
+  &-menu-item {
+    font-size: var(--polaris-font-size-sm);
+    min-height: 30px !important;
+  }
+
+  &-active-menu-item {
+    color: var(--polaris-primary);
+    font-weight: var(--polaris-font-weight-bolder);
+  }
+
+  &-empty-content {
+    min-height: 400px;
+
+    @include breakpoints.media-breakpoint-down(md) {
+      min-height: 200px;
+    }
+
+    &-no-data {
+      padding: 20px;
+      margin-top: 5px;
+    }
+  }
+
+  &-footer {
+    background-color: var(--polaris-secondary-bg);
+    display: flex;
+    flex-direction: column;
+    min-height: 45px;
+
+    &-count {
+      color: var(--polaris-light-text-emphasis);
+      font-size: var(--polaris-font-size-xs);
+    }
+  }
+}
+
+@media (min-width: 1720px) {
+  .flex-row-reverse-communication {
+    flex-direction: row-reverse !important;
+  }
+}

@@ -1,0 +1,35 @@
+:host {
+  .user-page {
+    gap: 2rem;
+
+    &-header {
+      gap: 2rem;
+      padding-top: 2rem;
+      background-color: var(--polaris-white);
+
+      polaris-heading {
+        text-transform: capitalize;
+      }
+
+      &-actions {
+        gap: 2rem;
+      }
+    }
+
+    &-footer {
+      &-actions {
+        row-gap: 0.5rem;
+        column-gap: 2.5rem;
+        flex-wrap: wrap;
+
+        > :first-child {
+          flex: 1 1 100%;
+
+          ::ng-deep button {
+            width: 100%;
+          }
+        }
+      }
+    }
+  }
+}

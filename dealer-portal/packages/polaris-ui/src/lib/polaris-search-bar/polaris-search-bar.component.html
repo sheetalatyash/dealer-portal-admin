@@ -1,0 +1,128 @@
+<div class="d-flex flex-column gap-2">
+  <!-- Label -->
+  @if (label && showLabel) {
+    <div class="d-flex gap-1 align-items-center">
+      <mat-label>{{ label }}</mat-label>
+
+      @if (labelTooltip) {
+        <polaris-icon [ui-tooltip]="labelTooltip" size="xl" color="primary">info</polaris-icon>
+      }
+    </div>
+  }
+
+  <!-- Instructions -->
+  @if (instructions) {
+  <p>
+    <i>{{ instructions }}</i>
+  </p>
+  }
+
+  <mat-form-field
+    class="polaris-search-bar"
+    [ngClass]="[customClass, autocompleteOpen ? 'polaris-search-bar-autocomplete-open' : '']"
+    appearance="outline"
+    subscriptSizing="dynamic"
+  >
+    @if (!hideSearchIcon) {
+    <polaris-icon matPrefix size="xl" ui-class="ms-2 me-1">search</polaris-icon>
+    }
+
+    <polaris-chip-list
+      ui-class="column-gap-2 row-gap-1"
+      [chips]="selectedSearchResults"
+      (onChipSelect)="onRemoveSelectedResult($event)"
+    >
+      <input
+        #searchInput
+        matInput
+        type="text"
+        [attr.data-test-id]="testId"
+        [ngClass]="[addChipOnSelectResult ? 'w-auto flex-grow-1' : 'w-100']"
+        [(ngModel)]="searchText"
+        [placeholder]="placeholder"
+        [matAutocomplete]="auto"
+        (input)="onInput($event)"
+        (keydown)="onKeyDown($event)"
+      />
+    </polaris-chip-list>
+
+    <!-- CLEAR BUTTON -->
+    @if (clearable && (searchText.length || (addChipOnSelectResult && selectedSearchResults.length))) {
+      <polaris-icon-button
+        type="button"
+        matSuffix
+        ui-class="polaris-search-bar-clear-button me-1"
+        aria-label="Clear search"
+        (onClick)="onClearSearch($event)"
+      >
+        <polaris-icon size="sm" [ui-tooltip]="'close' | translate">close</polaris-icon>
+      </polaris-icon-button>
+    }
+
+    <!-- AUTOCOMPLETE PANEL -->
+    <mat-autocomplete
+      #auto="matAutocomplete"
+      [class]="[
+        'polaris-search-bar-autocomplete-panel',
+        searchResultFilters.length ? 'polaris-search-bar-autocomplete-panel-chips' : ''
+      ]"
+      [displayWith]="getAutocompleteReplacementText"
+      [hideSingleSelectionIndicator]="true"
+      [autoSelectActiveOption]="false"
+      (optionSelected)="onResultSelected($event)"
+      (opened)="onAutocompletePanelChange(true)"
+      (closed)="onAutocompletePanelChange(false)"
+    >
+      <!-- Search Result Filters  -->
+      @if(searchResultFilters.length) {
+      <div class="polaris-search-bar-chips p-2">
+        <polaris-chip-list
+          ui-class="flex-nowrap gap-2"
+          [chips]="searchResultFilters"
+          (onChipSelect)="onFilterSelected($event)"
+        ></polaris-chip-list>
+      </div>
+      }
+
+      <!-- Search Results -->
+      @if(displayedSearchResults$ | async; as displayedSearchResults) {
+      <!-- Conditionally show the search results -->
+      @if(displayedSearchResults.length && (searchText.length || showAutocompleteOnEmptySearch)) {
+      <!-- Show a non-categorized results if there is only a single blank category -->
+      @if(displayedSearchResults.length === 1 && displayedSearchResults[0].category === '') {
+      <!-- Loop through all the options of the first option -->
+      @for(option of displayedSearchResults[0].options; let index = $index; track index) {
+      <mat-option
+        [id]="option.id"
+        [value]="option"
+        [attr.data-test-id]="option.testId"
+        class="polaris-option ps-4"
+      >
+        {{ option.label }}
+      </mat-option>
+      } } @else {
+      <!-- Show categorized results otherwise -->
+      @for(category of displayedSearchResults; track category.category) {
+      <mat-optgroup class="polaris-option-group" [label]="category.category">
+        @for(option of category.options; track option.id) {
+        <mat-option
+          [id]="option.id"
+          [value]="option"
+          [attr.data-test-id]="option.testId"
+          class="polaris-option ps-4"
+        >
+          {{ option.label }}
+        </mat-option>
+        }
+      </mat-optgroup>
+      } } } }
+    </mat-autocomplete>
+  </mat-form-field>
+
+  <!-- Error Messages -->
+  @if (formControl && formControl.invalid && formControl.touched) {
+  <!-- Display each error message -->
+  @for (error of errors; track error) {
+  <mat-error>{{ error }}</mat-error>
+  } }
+</div>

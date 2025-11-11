@@ -1,0 +1,106 @@
+<div class="polaris-file-picker" [ngClass]="filePickerClass" [attr.data-test-id]="testId">
+    <div class="polaris-file-picker-content">
+        <!-- Drop Area and Input for the File Picker -->
+        <div class="polaris-file-picker-drop-area" (drop)="onDrop($event)" (dragover)="onDrag($event)"
+            (dragleave)="onDrag($event)" (click)="onClickFilePicker($event)">
+            <input #fileInput type="file" (change)="onInputFile($event)" [multiple]="allowMultiple" />
+            <div class="polaris-file-picker-upload-text" tabindex="0" role="button" (keydown)="onKeyDown($event)">
+                <polaris-icon size="xl">attachment-upload</polaris-icon>
+                <span>Upload File</span>
+            </div>
+        </div>
+        <!-- File Picker Validation Info -->
+        <div class="polaris-file-picker-requirements">
+            <span class="polaris-file-picker-requirements-type">
+                @if(allowedFileTypes.length > 0) {
+                Supported Formats: {{ allowedFileTypes.join(', ').toUpperCase() }}
+                }
+            </span>
+            <span class="polaris-file-picker-requirements-size">
+                @if(maximumFileSize > 0) {
+                Maximum Size: {{ maximumFileSize | fileSize: 'auto' : 0 }}
+                }
+            </span>
+        </div>
+    </div>
+
+    <!-- Divider is only needed in the horizontal variant -->
+    @if(orientation === "horizontal") {
+    <div class="polaris-file-picker-divider" [ngClass]="{'show': uploadFiles.length > 0}">
+    </div>
+    }
+
+    <!-- File Upload List -->
+    <div class="polaris-file-picker-file-list">
+        @if(uploadFiles && uploadFiles.length > 0) {
+        <span class="polaris-file-picker-file-list-title">
+            Processing Files
+        </span>
+        <div class="polaris-file-picker-file-list-items">
+            @for(file of uploadFiles; track file.id ? file.id : file.name) {
+          <div class="polaris-file-picker-file-list-item" [attr.data-test-id]="file.testId">
+            <div class="polaris-file-picker-file-list-item-icon">
+              <polaris-icon size="xxl">attachment-doc</polaris-icon>
+            </div>
+            <!-- File Action Bar -->
+            <div class="polaris-file-picker-file-list-item-body">
+              <div class="polaris-file-picker-file-list-item-body-action">
+
+                <!-- File Delete Button -->
+                @switch (file.status) {
+                @case(fileStatus.Uploading) {
+                <polaris-icon-button (click)="onCancel(file)">
+                  <polaris-icon color="dark" size="sm">close</polaris-icon>
+                </polaris-icon-button>
+                }
+                @case(fileStatus.Success) {
+                <div class="py-1 gap-2">
+                  <polaris-icon color="success" size="md">confirmation</polaris-icon>
+                </div>
+                <polaris-icon-button (click)="onDelete(file)">
+                  <polaris-icon color="dark" size="sm">close</polaris-icon>
+                </polaris-icon-button>
+                }
+                @case(fileStatus.Error) {
+                <polaris-icon-button (click)="onCancel(file)">
+                  <polaris-icon color="danger" size="sm">close</polaris-icon>
+                </polaris-icon-button>
+                }
+                }
+              </div>
+              <!-- File Progress Bar -->
+              <div
+                   [ngClass]="'polaris-file-picker-file-list-item-body-progress-' + file.status.toLocaleLowerCase()">
+                <mat-progress-bar [mode]="file.progress === 'indeterminate' ? file.progress : 'determinate'"
+                                  [value]="file.progress">
+                </mat-progress-bar>
+              </div>
+
+              <!-- File Details and Status -->
+              <div class="polaris-file-picker-file-list-item-body-details">
+                <div class="polaris-file-picker-file-list-item-body-details-title">
+                  {{file.name}}
+                </div>
+                <span
+                      [ngClass]="'polaris-file-picker-file-list-item-body-details-status-' + file.status.toLocaleLowerCase()">
+                  @switch (file.status) {
+                  @case(fileStatus.Uploading) {
+                  Uploading...
+                  }
+                  @case(fileStatus.Success) {
+                  Completed
+                  }
+                  @case(fileStatus.Error) {
+                  Upload Failed
+                  }
+                  }
+                </span>
+
+              </div>
+            </div>
+          </div>
+            }
+        </div>
+        }
+    </div>
+</div>

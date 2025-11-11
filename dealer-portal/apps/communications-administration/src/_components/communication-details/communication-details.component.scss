@@ -1,0 +1,51 @@
+.communication {
+  &-expansion-title {
+    color: var(--polaris-primary);
+    font-weight: var(--polaris-font-weight-600);
+    text-transform: uppercase;
+  }
+
+  &-section {
+    &-title {
+      font-size: var(--polaris-font-size-sm);
+      font-weight: var(--polaris-font-weight-700);
+    }
+  }
+
+  &-sub-section {
+    font-size: var(--polaris-font-size-sm);
+    &-title {
+      font-weight: var(--polaris-font-weight-600);
+    }
+
+    &-list {
+      padding-top: 0.75rem;
+      font-size: var(--polaris-font-size-md);
+    }
+  }
+
+  &-message {
+
+    &-content {
+      grid-template-columns: auto 1fr;
+      grid-template-rows: repeat(5, auto);
+      grid-column-gap: 1rem;
+      grid-row-gap: 1rem;
+
+      font-size: var(--polaris-font-size-sm);
+    }
+  }
+
+  &-translation {
+    &-content {
+      display: grid;
+      grid-template-columns: auto 1fr;
+      grid-template-rows: repeat(3, auto);
+      grid-column-gap: 1rem;
+      grid-row-gap: 1rem;
+
+      border-right: var(--polaris-border-color) var(--polaris-border-style) var(--polaris-border-width);
+      font-size: var(--polaris-font-size-sm);
+    }
+  }
+}

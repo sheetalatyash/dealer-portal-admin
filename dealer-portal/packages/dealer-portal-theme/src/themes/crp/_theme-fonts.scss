@@ -1,0 +1,9 @@
+@use '../polaris-base-theme/mixins/font-face' as font-face-mixins;
+@use '../polaris-base-theme/variables/base-variables' as app;
+
+// change font family here
+@include font-face-mixins.font-face('Barlow', 'fonts/barlow/regular/Barlow-Regular', app.$font-weight-normal);
+@include font-face-mixins.font-face('Barlow', 'fonts/barlow/medium/Barlow-Medium', app.$font-weight-medium);
+@include font-face-mixins.font-face('Barlow', 'fonts/barlow/semi-bold/Barlow-SemiBold', app.$font-weight-semibold);
+@include font-face-mixins.font-face('Barlow', 'fonts/barlow/bold/Barlow-Bold', app.$font-weight-bold);
+@include font-face-mixins.font-face('Barlow', 'fonts/barlow/extra-bold/Barlow-ExtraBold', app.$font-weight-black);

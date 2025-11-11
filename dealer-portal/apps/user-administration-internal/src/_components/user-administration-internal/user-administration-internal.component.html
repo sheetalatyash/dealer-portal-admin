@@ -1,0 +1,19 @@
+<div class="container-fluid user-administration">
+  <div class="user-administration-header d-flex flex-column flex-md-row justify-content-md-between mb-4 gap-3">
+    <div class="d-flex flex-column gap-2">
+      <!-- Heading -->
+      <polaris-heading h3 ui-test-id="user-administration-title">{{ title | translate }}</polaris-heading>
+    </div>
+  </div>
+  <div class="control-bar d-flex flex-column gap-4 mt-4">
+    <div class="control-bar-row d-flex flex-column flex-md-row gap-4 align-items-center">
+      <polaris-search-bar (onSearch)="onSearch($event)"></polaris-search-bar>
+    </div>
+  </div>
+  @if(searchText$ | async; as searchText) {
+    <uai-user-table [data$]="internalUsers$" [pageSize]="pageSize" [totalCount$]="totalCount$" [loading]="loading" data-test-id="user-table" (loadMore)="onTableLoadMore()"></uai-user-table>
+  }
+  @else { <!-- Display last modified users -->
+    <uai-user-table [data$]="internalUsersRecentlyModified$" [pageSize]="pageSize" [totalCount$]="recentlyModifiedCount$" [loading]="loading" data-test-id="user-table" (loadMore)="onTableLoadMore()"></uai-user-table>
+  }
+</div>

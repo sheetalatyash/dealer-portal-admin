@@ -1,0 +1,54 @@
+
+<lib-polaris-base-widget [showRefresh]="false">
+  <widget-title>{{ 'widgets.polaris-unit-inquiry.title' | translate }}</widget-title>
+
+  <div class="mb-3">
+    <div class="widget-section-header fw-bold">{{ 'widgets.polaris-unit-inquiry.search-vin-pin' | translate }}</div>
+    <div class="d-flex gap-2">
+      <div class="flex-grow-1">
+        <polaris-search-bar
+          #vinSearchBar
+          (onEnter)="onSearchSubmit($event)"
+          ui-placeholder="{{ 'widgets.polaris-unit-inquiry.vin-pin' | translate}}">
+        </polaris-search-bar>
+      </div>
+      <polaris-button (onClick)="onSearchSubmit(vinSearchBar.searchText)" ui-theme="secondary" [compact]="true">{{ 'buttons.go' | translate }}</polaris-button>
+    </div>
+  </div>
+
+  @if (displayedUnitInquiries(); as data) {
+    @if (data.length) {
+      <div class="widget-section-header fw-bold">{{ 'widgets.polaris-unit-inquiry.recently-viewed' | translate }}</div>
+      <polaris-table
+      [data]="data"
+      [tableTheme]="tableTheme.Widget"
+      [config]="tableConfiguration"
+      (onLoadMore)="onLoadMore()">
+
+        <polaris-table-custom-cell columnName="vehicleIdentificationNumber">
+          <ng-template let-item>
+            <div class="d-flex flex-column">
+              <polaris-href
+              class="mb-2 fs-6"
+              [underline]="false"
+              (onClick)="onVehicleIdentificationNumberClicked(item.vehicleIdentificationNumber)">
+              {{ item.vehicleIdentificationNumber }}
+              </polaris-href>
+              <div class="text-uppercase">{{ item.description }}</div>
+            </div>
+          </ng-template>
+        </polaris-table-custom-cell>
+        <polaris-table-custom-cell columnName="model">
+          <ng-template let-item>
+            <div class="d-flex flex-column">
+              <polaris-href class="mb-2" style="visibility: hidden;" [underline]="false">placeholder</polaris-href>
+              <div class="text-uppercase">{{ item.modelNumber }}</div>
+            </div>
+          </ng-template>
+        </polaris-table-custom-cell>
+
+      </polaris-table>
+    }
+  }
+
+</lib-polaris-base-widget>

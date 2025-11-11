@@ -1,0 +1,77 @@
+:host {
+  display: flex;
+  justify-content: center;
+  pointer-events: all !important;
+
+  .polaris-icon {
+    line-height: 1rem;
+    width: 1rem;
+    height: 1rem;
+    display: inline-block;
+    color: inherit;
+
+    &-color {
+      &-primary {
+        color: var(--polaris-primary);
+      }
+
+      &-success {
+        color: var(--polaris-success);
+      }
+
+      &-warning {
+        color: var(--polaris-warning);
+      }
+
+      &-danger {
+        color: var(--polaris-danger);
+      }
+
+      &-info {
+        color: var(--polaris-info);
+      }
+
+      &-light {
+        color: var(--polaris-light);
+      }
+
+      &-dark {
+        color: var(--polaris-dark);
+      }
+
+      &-white {
+        color: var(--polaris-white);
+      }
+
+      &-muted {
+        color: var(--polaris-gray-400);
+      }
+    }
+
+    &-size {
+      &-xs {
+        transform: scale(.5);
+      }
+
+      &-sm {
+        transform: scale(.75);
+      }
+
+      &-md {
+        transform: scale(1);
+      }
+
+      &-lg {
+        transform: scale(1.25);
+      }
+
+      &-xl {
+        transform: scale(1.5);
+      }
+
+      &-xxl {
+        transform: scale(2);
+      }
+    }
+  }
+}

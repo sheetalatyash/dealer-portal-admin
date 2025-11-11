@@ -1,0 +1,79 @@
+<div class="control-bar d-flex flex-column gap-4">
+  <!-- Navigation -->
+  @if (showTabView) {
+    @if (userAdministrationNavigationTabs(); as navigationTabs) {
+      <polaris-tab-bar [tabs]="navigationTabs" (tabSelected)="changeNavigationTab($event)"></polaris-tab-bar>
+    }
+  }
+
+  <div class="control-bar-row d-flex flex-column flex-lg-row gap-4 align-items-md-start align-items-lg-end justify-content-between">
+    @if (controlBarForm) {
+
+      <div class="d-flex flex-column flex-md-row gap-3">
+        <!-- Dealer Select -->
+        @if (showDealerSelect && dealerOptions) {
+          <polaris-select
+            ui-label="{{ 'account' | translate }}"
+            [ui-show-label]="showLabels"
+            [options]="dealerOptions"
+            ui-placeholder="{{ 'form.instructions.select-account' | translate }}"
+            ui-test-id="user-admin-dealer-selector"
+            dropdownWidth="fitContent"
+            [ui-form-control]="getFormControl('dealer')">
+          </polaris-select>
+        }
+
+        <!-- Search Bar -->
+        @if (showSearchBar) {
+          <polaris-search-bar
+            ui-placeholder="{{ 'search-users' | translate }}"
+            ui-test-id="user-admin-listing-search-bar"
+            [ui-form-control]="getFormControl('searchTerm')">
+          </polaris-search-bar>
+        }
+
+        <!-- Permission Select -->
+        @if (showPermissionSelect) {
+          @if (this.permissionOptions(); as permissionOptions) {
+            <polaris-select
+              ui-label="{{ 'category' | translate }}"
+              [ui-show-label]="showLabels"
+              [options]="permissionOptions"
+              ui-placeholder="{{ 'form.instructions.select-category' | translate }}"
+              ui-test-id="user-admin-permission-selector"
+              [ui-form-control]="getFormControl('permission')">
+            </polaris-select>
+          }
+        }
+      </div>
+
+      @if (showPrimaryContactSelect) {
+        @if (activeUsers()) {
+          <div class="d-flex flex-column flex-md-row gap-3 align-items-stretch align-items-md-end">
+            <polaris-search-bar
+              ui-label="{{ 'labels.primary-contact' | translate }}"
+              ui-placeholder="{{ 'labels.select-primary-contact' | translate }}"
+              ui-test-id="user-admin-primary-contact-search-bar"
+              labelTooltip="{{ 'tooltips.primary-contact' | translate }}"
+              [ui-form-control]="getFormControl('primaryContact')"
+              [searchResults]="filteredActiveUsers()"
+              [showAutocompleteOnEmptySearch]="true"
+              (onClear)="removeSelectedPrimaryContact()"
+              (onSelectResult)="onSelectResult($event)">
+            </polaris-search-bar>
+
+            <polaris-button
+              ui-theme="secondary"
+              [compact]="true"
+              [ui-disabled]="!selectedPrimaryContact()"
+              (onClick)="updatePrimaryContact()">
+              {{ 'buttons.add-as-primary' | translate }}
+            </polaris-button>
+          </div>
+        }
+      }
+
+
+    }
+  </div>
+</div>

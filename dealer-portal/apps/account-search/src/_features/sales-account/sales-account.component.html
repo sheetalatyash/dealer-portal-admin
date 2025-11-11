@@ -1,0 +1,64 @@
+<div class="container-fluid sales-account">
+  <ng-container>
+    <div class="sales-account-header d-flex justify-content-between pb-4 mb-3">
+      <div class="d-flex align-items-center gap-2">
+        <polaris-heading h1 ui-test-id="salse-account-title">
+          {{ title }}
+        </polaris-heading>
+        <div class="sales-account-header-link d-flex gap-1" (click)="openHelpDialog()">
+          <a data-test-id="help-href"><polaris-icon size="xl">info</polaris-icon></a>
+        </div>
+      </div>
+    </div>
+    @if (isLoading) {
+      <polaris-loader></polaris-loader>
+    }
+    @else {
+      <div>
+        <form [formGroup]="salesAccountFormGroup" #salesAccountFormElement>
+          <!-- when user is a director of sales or regional manager (not a sales manager), show the input fields  -->
+          @if (!isSalesManager) {
+            <div class="row">
+              <div class="col-md-4 col-12 mb-3">
+                <polaris-input [ui-readonly]="true" [ui-label]="'sales-account-view.director-of-sales' | translate"
+                  ui-test-id="director-of-sales-input" [ui-show-label]="true" ui-form-control-name="directorOfSales">
+                </polaris-input>
+              </div>
+              <div class="col-md-4 col-12 mb-3">
+                @if(isRegionalManager || isSalesManager) {
+                  <polaris-input [ui-readonly]="true" [ui-label]="'sales-account-view.regional-manager' | translate"
+                    ui-test-id="regional-manager-input" [ui-show-label]="true" ui-form-control-name="regionalManager">
+                  </polaris-input>
+                } @else {
+                  <polaris-select ui-form-control-name="regionalManager" [ui-label]="'sales-account-view.regional-manager' | translate"
+                    dropdownWidth="auto" ui-test-id="regional-manager-input" [ui-placeholder]="'sales-account-view.select-one' | translate"
+                    [ui-show-label]="true" [options]="regionalManagerOptions" (onSelectionChange)="onSelectRegionalManager($event.value)">
+                  </polaris-select>
+                }
+              </div>
+              <div class="col-md-4 col-12 mb-3">
+                @if(isSalesManager) {
+                  <polaris-input [ui-readonly]="true" [ui-label]="'sales-account-view.sales-manager' | translate"
+                    ui-test-id="sales-manager-input" [ui-show-label]="true" ui-form-control-name="salesManager">
+                  </polaris-input>
+                } @else {
+                  <polaris-select ui-form-control-name="salesManager" [ui-label]="'sales-account-view.sales-manager' | translate"
+                    dropdownWidth="auto" ui-test-id="sales-manager-input" [ui-placeholder]="'sales-account-view.select-one' | translate"
+                    [ui-show-label]="true" [options]="salesManagerOptions" (onSelectionChange)="onSelectSalesManager($event.value)">
+                  </polaris-select>
+                }
+              </div>
+            </div>
+          }
+          <div class="search-term-row d-flex flex-column flex-md-row gap-4 align-items-center">
+            <polaris-search-bar ui-form-control-name="searchTerm" ui-placeholder="{{ 'sales-account-view.search-placeholder' | translate }}"
+                                ui-test-id="user-search-term" [ui-label]="'sales-account-view.search' | translate"
+                                (onSearch)="applySearch($event)">
+            </polaris-search-bar>
+          </div>
+        </form>
+        <as-sales-account-table [searchTerm$]="search$" [salesAccounts$]="salesAccounts$" [selectedUsername$]="selectedUsername$" data-test-id="account-table"></as-sales-account-table>
+      </div>
+    }
+  </ng-container>
+</div>

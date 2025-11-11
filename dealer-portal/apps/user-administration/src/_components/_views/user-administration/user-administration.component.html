@@ -1,0 +1,68 @@
+<div class="container-fluid user-administration">
+  <div class="d-flex flex-column gap-2 user-administration-header">
+    <div class="d-flex flex-column flex-md-row align-items-start justify-content-md-between gap-3">
+      <div class="d-flex gap-1 align-items-center">
+
+        <div class="d-flex flex-column gap-1">
+
+          <div class="d-flex gap-1 align-items-center">
+            <!-- Heading -->
+            <polaris-heading h3 ui-test-id="user-administration-title">{{ title | translate }}</polaris-heading>
+
+            <!-- Help Link -->
+            <polaris-href (onClick)="openHelpDialog()" ui-test-id="help-href" [underline]="false"  aria-label="Help">
+              <polaris-icon trailing-icon size="xl" class="pt-1">info</polaris-icon>
+            </polaris-href>
+          </div>
+
+          <div class="d-flex gap-2 font-size-sm">
+            <polaris-href (onClick)="openVideoDialog(videoUrl)" [underline]="false">
+              {{ 'training.video' | translate}}
+            </polaris-href>
+
+            <div class="link-divider">|</div>
+
+            <div class="d-flex gap-1 align-items-center flex-wrap">
+              <span>{{ 'training.articles' | translate }}:</span>
+              <polaris-href [url]="articleUrl" [openInNewTab]="true" [underline]="false">
+                {{ 'training.english' | translate }}
+              </polaris-href>
+              <span>/</span>
+              <polaris-href [url]="articleUrlFrench" [openInNewTab]="true" [underline]="false">
+                {{ 'training.french' | translate }}
+              </polaris-href>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="d-flex flex-column align-items-md-end gap-2">
+        <!-- Add User Button -->
+        <polaris-button
+          *accessControl="accessControlLevel.ReadWrite"
+          ui-test-id="user-admin-add-user-button"
+          (onClick)="navigateApplication('/user/add/new')">
+          {{ 'add-user' | translate }}
+        </polaris-button>
+
+        <!-- Manage Permissions Link -->
+        <polaris-href
+          *accessControl="accessControlLevel.ReadWrite"
+          (onClick)="navigateApplication('manage-permissions')"
+          ui-class="font-size-sm"
+          ui-test-id="user-admin-manage-permissions-button">
+          {{ 'manage-permissions' | translate }}
+        </polaris-href>
+      </div>
+    </div>
+
+    <ua-control-bar
+      [showLabels]="false"
+      [showPermissionSelect]="false"
+      [showPrimaryContactSelect]="true">
+    </ua-control-bar>
+
+  </div>
+
+  <ua-user-table data-test-id="user-table"></ua-user-table>
+</div>

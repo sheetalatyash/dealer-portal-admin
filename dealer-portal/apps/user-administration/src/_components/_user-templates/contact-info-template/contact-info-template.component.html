@@ -1,0 +1,109 @@
+<div class="row">
+  <div class="col-12 col-md-10 offset-md-2">
+    @if (isDetailsView && userDetails()) {
+      <div class="row">
+        <div class="col-3">
+          <div class="d-flex flex-column expansion-panel-content">
+            <div class="d-flex justify-content-between expansion-panel-content">
+              <ua-display-field>
+                <label>{{ 'first-name' | translate }}</label>
+                {{ userDetails()!.firstName }}
+              </ua-display-field>
+
+              <ua-display-field>
+                <label>{{ 'last-name' | translate }}</label>
+                {{ userDetails()!.lastName }}
+              </ua-display-field>
+            </div>
+
+            <ua-display-field>
+              <label>{{ 'username-email' | translate }}</label>
+              {{ userDetails()!.userName }}
+            </ua-display-field>
+
+            <ua-display-field>
+              <label>{{ 'form.job-title' | translate }}</label>
+              {{ userDetails()!.jobTitle }}
+            </ua-display-field>
+
+            <ua-display-field>
+              <label>{{ 'form.phone' | translate }}</label>
+              {{ userDetails()!.phone | phoneNumber }}
+            </ua-display-field>
+          </div>
+        </div>
+      </div>
+    } @else {
+      <div class="contact-info-form row">
+      <div class="col-12 col-md-10">
+        <div class="d-flex flex-column">
+          <div class="d-flex flex-column flex-lg-row gap-lg-5">
+            <polaris-input
+              ui-label="{{ 'first-name' | translate }}"
+              ui-placeholder="{{ 'first-name' | translate }}"
+              ui-id="firstName"
+              [ui-max-length]="inputCharacterLimit"
+              (onError)="onError({page: pageName, category: formName, control: 'firstName', messages: $event})"
+              [ui-form-control]="getFormControl('firstName')"
+            >
+            </polaris-input>
+
+            <polaris-input
+              ui-label="{{ 'last-name' | translate }}"
+              ui-placeholder="{{ 'last-name' | translate }}"
+              [ui-max-length]="inputCharacterLimit"
+              ui-id="lastName"
+              (onError)="onError({page: pageName, category: formName, control: 'lastName', messages: $event})"
+              [ui-form-control]="getFormControl('lastName')"
+            >
+            </polaris-input>
+          </div>
+
+          <div class="d-flex flex-column flex-lg-row gap-lg-5">
+            <polaris-input
+              infoTooltip="{{ 'form.username-email-tooltip' | translate }}"
+              ui-label="{{ 'username-email' | translate }}"
+              ui-placeholder="{{ 'form.email' | translate }}"
+              [ui-max-length]="emailCharacterLimit"
+              ui-id="userName"
+              (onError)="onError({page: pageName, category: formName, control: 'userName', messages: $event})"
+              [ui-form-control]="getFormControl('userName')"
+            >
+            </polaris-input>
+
+            <polaris-input
+              ui-label="{{ 'form.confirm-username-email' | translate }}"
+              ui-placeholder="{{ 'form.confirm-email' | translate }}"
+              [ui-max-length]="emailCharacterLimit"
+              ui-id="confirmUserName"
+              (onError)="onError({page: pageName, category: formName, control: 'confirmUserName', messages: $event})"
+              [ui-form-control]="getFormControl('confirmUserName')"
+            >
+            </polaris-input>
+          </div>
+
+          <polaris-input
+            [ui-label]="jobTitleLabel"
+            ui-placeholder="{{ 'form.job-title' | translate }}"
+            [ui-max-length]="inputCharacterLimit"
+            ui-id="jobTitle"
+            (onError)="onError({page: pageName, category: formName, control: 'jobTitle', messages: $event})"
+            [ui-form-control]="getFormControl('jobTitle')"
+          >
+          </polaris-input>
+
+          <polaris-input
+            ui-label="{{ 'form.phone-optional' | translate }}"
+            [ui-type]="phoneInputType"
+            [ui-max-length]="phoneInputMaxLength"
+            ui-id="phone"
+            (onError)="onError({page: pageName, category: formName, control: 'phone', messages: $event})"
+            [ui-form-control]="getFormControl('phone')"
+          >
+          </polaris-input>
+        </div>
+      </div>
+    </div>
+    }
+  </div>
+</div>

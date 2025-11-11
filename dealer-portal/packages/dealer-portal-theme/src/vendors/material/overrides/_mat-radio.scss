@@ -1,0 +1,101 @@
+:root {
+  --mdc-radio-selected-icon-color: var(--polaris-primary) !important;
+  --mdc-radio-selected-focus-icon-color: var(--polaris-primary) !important;
+  --mdc-radio-selected-hover-icon-color: var(--polaris-primary) !important;
+}
+
+.polaris-radio-group--theme-primary {
+  .mat-mdc-radio-button .mdc-radio__background {
+    color: var(--polaris-primary) !important;
+  }
+
+  .mat-mdc-radio-button
+  .mdc-radio:hover
+  .mdc-radio__native-control:not([disabled])
+  ~ .mdc-radio__background
+  .mdc-radio__outer-circle {
+    border-color: var(--polaris-primary) !important;
+  }
+
+  // These override the border color of the actual radio button inner and outer circles
+  .mat-mdc-radio-button .mdc-radio__native-control:enabled:checked + .mdc-radio__background .mdc-radio__outer-circle,
+  .mat-mdc-radio-button .mdc-radio__native-control:enabled:checked + .mdc-radio__background .mdc-radio__inner-circle {
+    border-color: var(--polaris-primary) !important;
+  }
+
+  .mat-mdc-radio-button
+  .mdc-radio:hover
+  .mdc-radio__native-control:enabled:checked
+  + .mdc-radio__background
+  .mdc-radio__outer-circle,
+  .mat-mdc-radio-button
+  .mdc-radio:hover
+  .mdc-radio__native-control:enabled:checked
+  + .mdc-radio__background
+  .mdc-radio__inner-circle {
+    border-color: var(--polaris-primary) !important;
+  }
+}
+
+/* -------------------------------
+   Secondary (white) theme
+   Scoped to the wrapper class
+-------------------------------- */
+.polaris-radio-group--theme-secondary {
+  --mdc-radio-unselected-icon-color: var(--polaris-white) !important;
+  --mdc-radio-unselected-focus-icon-color: var(--polaris-primary) !important;
+  --mdc-radio-unselected-hover-icon-color: var(--polaris-primary) !important;
+
+  .mat-mdc-radio-button .mdc-radio:hover .mdc-radio__background {
+    position: relative;
+  }
+
+  .mat-mdc-radio-button .mdc-radio:hover .mdc-radio__background::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 10px;  // match MDC inner dot size
+    height: 10px;
+    border-radius: 50%;
+    background-color: var(--polaris-primary);
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+  }
+
+  // background
+  .mat-mdc-radio-button .mdc-radio__background {
+    color: var(--polaris-white) !important;
+  }
+
+  // outer circle -- hover
+  .mat-mdc-radio-button .mdc-radio:hover .mdc-radio__native-control:enabled:not(:checked) + .mdc-radio__background .mdc-radio__outer-circle,
+  .mat-mdc-radio-button .mdc-radio:hover .mdc-radio__native-control:not([disabled]) ~ .mdc-radio__background .mdc-radio__outer-circle {
+    border-color: var(--polaris-white) !important;
+    background-color: var(--polaris-white) !important;
+  }
+
+  // inner circle -- hover
+  .mat-mdc-radio-button .mdc-radio:hover .mdc-radio__native-control:enabled:not(:checked) + .mdc-radio__background .mdc-radio__inner-circle,
+  .mat-mdc-radio-button .mdc-radio:hover .mdc-radio__native-control:not([disabled]) ~ .mdc-radio__background .mdc-radio__inner-circle {
+    border-color: var(--polaris-primary) !important;
+    background-color: var(--polaris-primary) !important;
+  }
+
+  // outer circle -- not checked
+  .mat-mdc-radio-button .mdc-radio__native-control:enabled:not(:checked) + .mdc-radio__background > .mdc-radio__outer-circle {
+    border-color: var(--polaris-white) !important;
+    background-color: var(--polaris-white) !important;
+
+  }
+
+  // inner circle -- checked
+  .mat-mdc-radio-button .mdc-radio__native-control:enabled:checked + .mdc-radio__background .mdc-radio__outer-circle {
+    border-color: var(--polaris-white) !important;
+  }
+
+  // outer circle -- checked
+  .mat-mdc-radio-button .mdc-radio__native-control:enabled:checked + .mdc-radio__background .mdc-radio__inner-circle {
+    border-color: var(--polaris-primary) !important;
+  }
+}

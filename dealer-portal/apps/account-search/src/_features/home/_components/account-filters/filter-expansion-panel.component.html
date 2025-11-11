@@ -1,0 +1,43 @@
+<div class="account-filter-expansion-panel">
+  <polaris-expansion-panel ui-theme="primary" togglePosition="after" headerHeight="3.1rem" [expanded]="filterPanelExpanded" [usePolarisExpansionToggle]="true">
+    <polaris-expansion-panel-title class="expansion-panel-title">{{ title }}</polaris-expansion-panel-title>
+    <div class="expansion-panel-content">
+      @if (dataFormat === ExpansionPanelDataFormat.CheckboxGroup) {
+        @if (optionsNested) {
+          <div class="select-all-checkbox">
+            <polaris-checkbox [ui-form-control]="selectAllControl" ui-label="Select All" ui-orientation="vertical" (checkboxUpdated)="onCheckboxChange($event)"></polaris-checkbox>
+          </div>
+          @for(option of nestedOptions; track option) {
+            @if(option && option.options && option.options.length > 1) {
+              <div class="nested-checkbox-group-family">{{ option.productFamily }}</div>
+              <div class="fw-normal nested-checkbox-group-multiple-products">
+                <polaris-checkbox-group [ui-form-group]="filtersForm" [options]="option.options" ui-orientation="vertical"></polaris-checkbox-group>
+              </div>
+            } @else {
+              <div class="fw-normal nested-checkbox-group-single-products">
+                <polaris-checkbox-group [ui-form-group]="filtersForm" [options]="option?.options!" ui-orientation="vertical"></polaris-checkbox-group>
+              </div>
+            }
+          }
+        } @else {
+          <div class="fw-normal non-nested-checkbox-group" >
+            <polaris-checkbox-group [ui-form-group]="filtersForm" [options]=filterOptions!.options! ui-orientation="vertical"></polaris-checkbox-group>
+          </div>
+        }
+      } @else if (dataFormat === ExpansionPanelDataFormat.SearchBar) {
+        <div class="fw-normal non-nested-checkbox-group">
+          <polaris-search-bar
+            ui-form-control-name="options"
+            [searchResults]="filterOptions!.mapToSingleSearchBarCategoryResult(filterTitle)"
+            [searchResultsFilterFn]="genericSearchResultFilter"
+            [addChipOnSelectResult]="true"
+            [hideSearchIcon]="true"
+            [ui-placeholder]="searchBarPlaceholder"
+            [showAutocompleteOnEmptySearch]="true"
+            [ui-form-group]="searchBarFormGroup">
+          </polaris-search-bar>
+        </div>
+      }
+    </div>
+  </polaris-expansion-panel>
+</div>

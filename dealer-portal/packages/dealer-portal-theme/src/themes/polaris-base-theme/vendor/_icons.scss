@@ -1,0 +1,240 @@
+@charset "UTF-8";
+
+@font-face {
+  font-family: 'polaris-icon-font';
+  src: url('../../fonts/icons/polaris-icon-font.eot');
+  src: url('../../fonts/icons/polaris-icon-font.eot?#iefix') format('embedded-opentype'),
+    url('../../fonts/icons/polaris-icon-font.woff') format('woff'),
+    url('../../fonts/icons/polaris-icon-font.ttf') format('truetype'),
+    url('../../fonts/icons/polaris-icon-font.svg#polaris-icon-font') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+
+[data-icon]:before {
+  font-family: 'polaris-icon-font' !important;
+  content: attr(data-icon);
+  font-style: normal !important;
+  font-weight: normal !important;
+  font-variant: normal !important;
+  text-transform: none !important;
+  speak: none;
+  line-height: 1;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+[class^='polaris-icon-']:before,
+[class*=' polaris-icon-']:before {
+  font-family: 'polaris-icon-font' !important;
+  font-style: normal !important;
+  font-weight: normal !important;
+  font-variant: normal !important;
+  text-transform: none !important;
+  speak: none;
+  line-height: 1rem;
+  height: 1rem;
+  width: 1rem;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  display: flex;
+  align-self: center;
+}
+
+/********** Only replace from here down  **********/
+
+.polaris-icon-check:before {
+  content: "\61";
+}
+.polaris-icon-close:before {
+  content: "\62";
+}
+.polaris-icon-account:before {
+  content: "\63";
+}
+.polaris-icon-checkbox-selected:before {
+  content: "\64";
+}
+.polaris-icon-mail:before {
+  content: "\65";
+}
+.polaris-icon-tasks-notification-on:before {
+  content: "\66";
+}
+.polaris-icon-time:before {
+  content: "\67";
+}
+.polaris-icon-more-horiz:before {
+  content: "\68";
+}
+.polaris-icon-checkbox-selected-inter:before {
+  content: "\69";
+}
+.polaris-icon-alert:before {
+  content: "\6a";
+}
+.polaris-icon-archive:before {
+  content: "\6b";
+}
+.polaris-icon-check-alt:before {
+  content: "\6c";
+}
+.polaris-icon-more-vert:before {
+  content: "\6d";
+}
+.polaris-icon-undo-archive:before {
+  content: "\6e";
+}
+.polaris-icon-unlock:before {
+  content: "\6f";
+}
+.polaris-icon-polaris-star:before {
+  content: "\70";
+}
+.polaris-icon-minus:before {
+  content: "\71";
+}
+.polaris-icon-arrow-up:before {
+  content: "\73";
+}
+.polaris-icon-print:before {
+  content: "\75";
+}
+.polaris-icon-radio-blank:before {
+  content: "\77";
+}
+.polaris-icon-download:before {
+  content: "\78";
+}
+.polaris-icon-info:before {
+  content: "\79";
+}
+.polaris-icon-sort-descending:before {
+  content: "\7a";
+}
+.polaris-icon-plus:before {
+  content: "\41";
+}
+.polaris-icon-radio-button-selected:before {
+  content: "\42";
+}
+.polaris-icon-mail-read:before {
+  content: "\43";
+}
+.polaris-icon-eye:before {
+  content: "\44";
+}
+.polaris-icon-sort-ascending:before {
+  content: "\45";
+}
+.polaris-icon-ask-polaris:before {
+  content: "\46";
+}
+.polaris-icon-favorite-filled:before {
+  content: "\47";
+}
+.polaris-icon-recent:before {
+  content: "\48";
+}
+.polaris-icon-refresh:before {
+  content: "\49";
+}
+.polaris-icon-favorite-outline:before {
+  content: "\4a";
+}
+.polaris-icon-attachment-doc:before {
+  content: "\4b";
+}
+.polaris-icon-calendar:before {
+  content: "\4c";
+}
+.polaris-icon-link:before {
+  content: "\4d";
+}
+.polaris-icon-search:before {
+  content: "\4e";
+}
+.polaris-icon-sort:before {
+  content: "\4f";
+}
+.polaris-icon-lock:before {
+  content: "\50";
+}
+.polaris-icon-close-alt:before {
+  content: "\51";
+}
+.polaris-icon-checkbox-blank:before {
+  content: "\52";
+}
+.polaris-icon-logout:before {
+  content: "\53";
+}
+.polaris-icon-task:before {
+  content: "\54";
+}
+.polaris-icon-mail-unread:before {
+  content: "\76";
+}
+.polaris-icon-arrow-down:before {
+  content: "\55";
+}
+.polaris-icon-arrow-dropdown:before {
+  content: "\72";
+}
+.polaris-icon-arrow-left:before {
+  content: "\56";
+}
+.polaris-icon-edit:before {
+  content: "\59";
+}
+.polaris-icon-delete:before {
+  content: "\58";
+}
+.polaris-icon-confirmation:before {
+  content: "\30";
+}
+.polaris-icon-upload-icon:before {
+  content: "\5a";
+}
+.polaris-icon-no-alert:before {
+  content: "\31";
+}
+.polaris-icon-no-archive:before {
+  content: "\32";
+}
+.polaris-icon-no-comm:before {
+  content: "\33";
+}
+.polaris-icon-no-favorite:before {
+  content: "\34";
+}
+.polaris-icon-no-program:before {
+  content: "\35";
+}
+.polaris-icon-arrow-right:before {
+  content: "\57";
+}
+.polaris-icon-dealer:before {
+  content: "\74";
+}
+.polaris-icon-customize:before {
+  content: "\36";
+}
+.polaris-icon-drag:before {
+  content: "\38";
+}
+.polaris-icon-remove:before {
+  content: "\25";
+}
+.polaris-icon-location:before {
+  content: "\26";
+}
+.polaris-icon-pin:before {
+  content: "\37";
+}
+.polaris-icon-play-circle-outline:before {
+  content: "\39";
+}
+.polaris-icon-feedback:before {
+  content: "\21";
+}

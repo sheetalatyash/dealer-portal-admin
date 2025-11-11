@@ -1,0 +1,62 @@
+<div class="row mx-2">
+  <div class="col-12 col-lg-8 p-0 pe-lg-3">
+    <div class="content-block">
+      <router-outlet></router-outlet>
+    </div>
+  </div>
+  <div class="col-12 col-lg-4 p-0 ps-lg-3 mt-5 mt-lg-0">
+    <div class="d-flex flex-column gap-2 position-relative">
+      <div class="edit-widgets-button d-flex position-absolute">
+        <polaris-href (onClick)="editWidgets()">
+          <span>{{ 'widgets.edit-widgets.customize' | translate }}</span>
+          <polaris-icon trailing-icon>customize</polaris-icon>
+        </polaris-href>
+      </div>
+
+      @if(activeWidgets$ | async; as widgets) {
+        <div class="d-flex flex-column">
+          @for (widget of widgets; track widget.id) {
+            @switch (widget.name) {
+              @case('Polaris Connect') {
+                @if (videoCommunication$ | async; as communicationVideos) {
+                  <polaris-communication-video-widget
+                    [communications]="communicationVideos"
+                    (viewAllClicked)="viewAllPolarisConnect()">
+                  </polaris-communication-video-widget>
+                }
+              }
+              @case('Follow Up') {
+                <polaris-follow-up-widget></polaris-follow-up-widget>
+              }
+              @case('Favorites') {
+                <polaris-favorites-widget></polaris-favorites-widget>
+              }
+              @case('Task Dashboard') {
+                <polaris-tasks-widget></polaris-tasks-widget>
+              }
+              @case('Performance Tracking') {
+                <div class="content-block widget">
+                  Performance Testing Placeholder
+                </div>
+              }
+              @case('Unit Inquiry') {
+                <polaris-unit-inquiry-widget></polaris-unit-inquiry-widget>
+              }
+              @case('Website Updates') {
+                <polaris-training-widget [trainingDataSource]="trainingDataSource"></polaris-training-widget>
+              }
+              @case('Parts Detail') {
+                <div class="content-block widget">
+                  Parts Details Placeholder
+                </div>
+              }
+              @case('Monthly Retail Goal') {
+                <polaris-monthly-retail-goal-widget></polaris-monthly-retail-goal-widget>
+              }
+            }
+          }
+        </div>
+      }
+    </div>
+  </div>
+</div>

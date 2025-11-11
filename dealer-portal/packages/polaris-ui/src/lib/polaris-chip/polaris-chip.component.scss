@@ -1,0 +1,25 @@
+.polaris-chip {
+  align-items: center;
+  background: var(--polaris-white);
+  border: var(--polaris-border-width) var(--polaris-border-style) var(--polaris-border-color);
+  border-radius: var(--polaris-border-radius-lg);
+  color: var(--polaris-gray-500);
+  display: flex;
+  gap: 0.25rem;
+  padding: 0.125rem 0.375rem;
+
+  &:hover {
+    background-color: var(--polaris-gray-200);
+    color: black;
+  }
+
+  &.selected {
+    background-color: var(--theme-primary-200);
+    border: none;
+    color: var(--polaris-black);
+
+    &:hover {
+      background-color: var(--theme-primary-300);
+    }
+  }
+}

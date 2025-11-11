@@ -1,0 +1,347 @@
+{
+  "title": {
+    "comm-admin": "Message Center Administration"
+  },
+  "communication-administration": {
+    "filter": {
+      "active": "Active",
+      "orv": "Off Road Vehicles",
+      "on-road": "Indian & Slingshot",
+      "marine": "Marine",
+      "snow": "Snowmobile & Timbersled",
+      "work-and-transport": "Work and Transportation",
+      "alerts": "Alerts",
+      "programs": "Programs",
+      "polaris-connect": "Polaris Connect",
+      "my-communications": "My Communications"
+    }
+  },
+  "form": {
+    "title": {
+      "add": "Add Communication Message",
+      "edit": "Edit Communication Message",
+      "review": "Review Communication Message"
+    },
+    "step": {
+      "message": "Message",
+      "account-targets": "Account Targets",
+      "user-targets": "User Targets",
+      "translation": "Translation",
+      "review": "Review"
+    },
+    "description": {
+      "account-targets": "form.description.account-targets placeholder",
+      "translation": "form.description.translation placeholder",
+      "user-targets": "form.description.user-targets placeholder"
+    },
+    "optional": "(Optional)"
+  },
+  "confirmation": {
+    "message": "Communication has been successfully published!",
+    "next-steps": {
+      "title": "Next Steps:",
+      "stepOne": "Send an email, to let the account users know the message has been published. (FEATURE IN DEVELOPMENT)"
+    },
+    "email-form": {
+      "title": "Published Communication  Message",
+      "acknowledgement": "I understand that submitting this form will notify all intended eligible users."
+    }
+  },
+  "dialog": {
+    "communication-admin-listing-help": {
+      "title": "Message Center Administration",
+      "message": "<strong>Create & Edit Communication Messages to Dealer and Partner Accounts</strong><p>This feature allows authorized users to create, edit, and publish communication messages targeted at specific dealer and partner accounts. You can tailor messages based on various account attributes such as:</p><ul><li><strong>Account Type:</strong> Dealer, Distributor, Subsidiary</li><li><strong>Product Line:</strong> Single or multiple product lines</li><li><strong>Customer Class:</strong> All or selected customer classes</li><li><strong>Sales Territory:</strong> Individual or multiple territories</li><li><strong>Geography:</strong> Country or state-specific targeting</li><li><strong>Specific Accounts:</strong> Individual dealers or partners</li></ul><strong>Key Capabilities</strong><ul><li><strong>Multi-language Support:</strong> Create and edit messages in languages other than English.</li><li><strong>Time Zone & Scheduling:</strong> Schedule communications for specific time zones and time frames.</li><li><strong>Message Customization:</strong> Define language, title, message body, keywords, notes, and visibility settings.</li><li><strong>Publishing Workflow:</strong> Save drafts, preview messages, and publish to selected audiences.</li></ul><p>You can search or filter communications with the available predefined filters in the display below.</p><p>You will be able to delete only draft communications which are not published. To disable a communication, edit and set the status to Inactive.</p>"
+    },
+    "add-edit-help": {
+      "title": "Create & Edit Communication Messages to Dealer and Partner Accounts",
+      "message": "<p>This feature allows authorized users to create, edit, and publish communication messages targeted at specific dealer and partner accounts. You can tailor messages based on various Account and User attributes.</p><strong>Instructions</strong><ul><li>Add or edit communication messages.</li><li>Complete all required and relevant attributes.</li><li>Communications will only appear to dealers once the Publish button is clicked in the final step.</li></ul>"
+    },
+    "communication-status": {
+      "title": "Communication Status",
+      "message": "<ul><li><strong>Draft:</strong> Message is saved but not visible to dealers.</li><li><strong>Active:</strong> Message is published and visible to targeted dealer accounts.</li><li><strong>Inactive:</strong> Message is hidden from dealers but retained for reference or future use.</li></ul>"
+    },
+    "group": {
+      "title": "Communication Groups",
+      "message": "<p>Messages can be categorized under the following groups:</p><p><strong>Dealer Home Page Communications</strong></p><ul><li>Alerts</li><li>Programs</li><li>Communications</li></ul><p><strong>Video:</strong> These communications will appear on Polaris Connect widget/app from dealer home page.</p><p><strong>Application-Specific Communications</strong></p><ul><li><strong>NorthStar:</strong> NorthStar certification dashboard</li><li><strong>Service:</strong> Certified Service dashboard</li></ul>"
+    },
+    "sub-group": {
+      "title": "Communication Sub-Groups",
+      "message": "<p>Messages can be further organized into sub-categories under the following groups:</p><ul><li><strong>Alerts:</strong> Recall or Update</li><li><strong>Video:</strong> Recall</li></ul>"
+    },
+    "timeframe": {
+      "title": "Timeframe & Scheduling",
+      "message": "<p>Communications can be scheduled based on time zone-specific timeframes, ensuring messages reach dealers at the most relevant local time.</p><p><strong>Example:</strong> When a communication is set to go live at 1 PM Central Standard Time, all dealers throughout the globe will see this message at 1 PM Central Standard Time.</p>"
+    },
+    "polaris-option-dealer-of-distributor": {
+      "title": "Send Communication to all Dealers of a Distributor",
+      "message": "<p><strong>Steps:</strong></p><ul><li>Select the check box “Dealer of Distributor” option.</li><li>Select the distributor(s) account by searching by name.</li><li>Continue to complete the other required communication attributes.</li></ul>"
+    },
+    "polaris-option-dealer-of-subsidiary": {
+      "title": "Send Communication to all Dealers of a Subsidiary",
+      "message": "<p><strong>Steps:</strong></p><ul><li>Select the check box “Dealer of Subsidiary” option.</li><li>Select the Subsidiary account by searching by name.</li><li>Continue to complete the other required communication attributes.</li></ul>"
+    },
+    "confirm-delete-selection": {
+      "title": "Are you sure you want to delete all selected data entries?",
+      "message": "This action cannot be undone."
+    },
+    "confirm-delete-draft": {
+      "title": "Are you sure you want to delete the selected communication?",
+      "message": "This communication will be permanently deleted in 30 days."
+    },
+    "skip-translation": {
+      "title": "Skip Translation?",
+      "message": "You're about to skip the translation step. You can return to this step at any saved point to complete it later."
+    },
+    "delete-translation": {
+      "title": "Are you sure you want to delete the {{0}} translation?",
+      "message": "This action will permanently delete the translated message and cannot be undone."
+    },
+    "revert-translation": {
+      "title": "Revert to Saved Message",
+      "message": "Are you sure you want to revert to saved message? Any unsaved changes will be lost."
+    },
+    "discard-edit-translation": {
+      "title": "Discard Changes",
+      "message": "Are you sure you want to cancel your updates to the translated message? Any unsaved changes will be lost."
+    },
+    "translation-saved": {
+      "title": "Translation Update Saved",
+      "message": "Your translation has been successfully saved. Please note that any additional languages will need to be updated separately."
+    },
+    "confirm-auto-translate": {
+      "title": "Are you sure you want to auto-translate?",
+      "message": "This will overwrite the current content with an auto-generated translation."
+    },
+    "account-target-required": {
+      "title": "Account Target Required",
+      "message": "You haven't selected a required <b>Account Target</b>. You can continue on, but you will need to return and complete this step before you can publish your communication.<br/><br/>Would you like to proceed?"
+    },
+    "discard-unsaved-changes": {
+      "title": "Discard Changes",
+      "message": "You have unsaved changes. Would you like to discard your changes and proceed?"
+    }
+  },
+  "notification": {
+    "translation-add": {
+      "success": "Translation Added Successfully",
+      "failed": "Failed to Add Translation"
+    },
+    "translation-delete": {
+      "success": "Translation Deleted Successfully",
+      "failed": "Failed to Delete Translation"
+    },
+    "translation-edit": {
+      "failed": "Failed to Update Translation"
+    },
+    "attachment-add": {
+      "warning": "Attachment(s) {{fileNames}} were not added because they are duplicates. Please delete the existing file and re-upload if you want to update.",
+      "failed": "Failed to Add Attachment: {{fileName}}"
+    },
+    "attachment-delete": {
+      "failed": "Failed to Delete Attachment: {{fileName}}"
+    },
+    "saved": {
+      "success": "Saved Communication",
+      "failed": "Failed to Save Communication"
+    },
+    "publish": {
+      "success": "Message Successfully Published!",
+      "failed": "Failed to Publish Communication"
+    },
+    "delete": {
+      "success": "Message deleted successfully",
+      "failed": "Failed to delete communication"
+    },
+    "get-communication": {
+      "failed": "Communication was not found. Please try again later."
+    }
+  },
+  "target-audience-summary": "Target Audience Summary",
+  "total-number-of-dealers": "Total Number of Dealers",
+  "countries": "Countries",
+  "customer-classes": "Customer Classes",
+  "communication": "Communication",
+  "communication-message": "Communication Message",
+  "default-language": "Default Language",
+  "edit": "Edit",
+  "create-new-message": "Create New Message",
+  "help": "Help",
+  "continue": "Continue",
+  "save": "Save",
+  "discard": "Discard",
+  "keep-editing": "Keep Editing",
+  "save-and-continue": "Save & Continue",
+  "delete": "Delete",
+  "skip": "Skip",
+  "go-back": "Go Back",
+  "back": "Back",
+  "cancel": "Cancel",
+  "confirm": "Confirm",
+  "publish": "Publish",
+  "proceed": "Proceed",
+  "required-fields-missing": "Required fields missing",
+  "view-all-communications": "View All Communications",
+  "message-confirmation": "Message Confirmation",
+  "select-all-apply": "Select all that apply",
+  "account-targets-help-text": "Select to indicate to whom the message should appear, for example to a specific dealer or group of dealers.",
+  "user-targets-help-text": "Select the audience for your message.",
+  "filters-help-text": "Filters apply when target categories are checked. Uncheck to view all.",
+  "generic-upload-error": "An error occurred while uploading the file.",
+  "generic-delete-error": "An error occurred while attempting to delete the file.",
+  "attachment-delete-success": "Successfully deleted {{0}}.",
+  "attachment-prerequisites": "You will be able to add attachments once the required fields have been completed and the communication has been saved.",
+  "text-title": "Title",
+  "message": "Message",
+  "keywords": "Keywords",
+  "keywords-placeholder": "Keyword examples \"RZR\"",
+  "internal-notes": "Internal Notes",
+  "attachments": "Attachments",
+  "uploaded-files": "Uploaded Files",
+  "comm-status": "Communication Status",
+  "translation-status": "Translation Status",
+  "translation-settings": "Translation Settings",
+  "settings": "Settings",
+  "communication-settings": "Communication Settings",
+  "date": "Date",
+  "time": "Time",
+  "group": "Group",
+  "sub-group": "Sub-Group",
+  "sub-group-option": {
+    "none": "None"
+  },
+  "timeframe": "Timeframe",
+  "start-date": "Start Date",
+  "end-date": "End Date",
+  "timezone": "Timezone",
+  "end-date-after-error": "End Date must be after Start Date",
+  "end-time-after-error": "End Time must be after Start Time",
+  "end-date-before-today-error": "End Date must be after today",
+  "select-all": "Select All",
+  "delete-all": "Delete Selected",
+  "select-one": "Select One",
+  "search-placeholder-text": "Search {{0}}",
+  "search-for-territory": "Search for a territory",
+  "search-for-country": "Search for a country",
+  "search-for-state": "Search for a state or province",
+  "specific-account": "Specific Account Selector goes here",
+  "default-language-detected": "Default Language Detected",
+  "auto-translate-action": "Auto Translate",
+  "auto-translate-disclaimer": "By selecting auto-translate, only your currently selected language will be updated. Existing translations in other languages won't change and must be updated individually.",
+  "translation-add-action": "Add Translation",
+  "editing-mode": "Editing Mode",
+  "translations-review-title": "TRANSLATIONS REVIEW",
+  "translation-confirmation-error": {
+    "title": "Error: Confirmation Required",
+    "message": "Please confirm that you have the required permissions or approvals"
+  },
+  "note": "Note",
+  "acknowledgement-approval": "By submitting this form, I confirm I have the required permissions or approvals from my supervisor/manager.",
+  "acknowledgement-user-notification": "I understand that submitting this form will notify all intended eligible users.",
+  "reset-action": "Reset",
+  "invalid-file-types": "The following files have unsupported file formats: {{0}}",
+  "invalid-file-size": "The following files exceed the maximum allowed size: {{0}}",
+  "timezone-option": {
+    "baker": "Baker Island, Howland Island (UTC-12:00)",
+    "american-samoa": "American Samoa, Niue (UTC-11:00)",
+    "hawaii-aleutian": "Hawaii-Aleutian Standard Time, Cook Islands (UTC-10:00)",
+    "marquesas": "Marquesas Islands (UTC-09:30)",
+    "alaska": "Alaska Standard Time, Gambier Islands (UTC-09:00)",
+    "pacific": "Pacific Standard Time, Clipperton Island (UTC-08:00)",
+    "mountain": "Mountain Standard Time (UTC-07:00)",
+    "central-standard": "Central Standard Time (UTC-06:00)",
+    "eastern": "Eastern Standard Time (UTC-05:00)",
+    "atlantic": "Atlantic Standard Time (UTC-04:00)",
+    "newfoundland": "Newfoundland Standard Time (UTC-03:30)",
+    "argentina": "Argentina, Brazil, French Guiana, Uruguay (UTC-03:00)",
+    "sandwich": "South Georgia/South Sandwich Islands (UTC-02:00)",
+    "azores": "Azores, Cape Verde (UTC-01:00)",
+    "greenwich": "Greenwich Mean Time, Western European Time (UTC+00:00)",
+    "central-european": "Central European Time, West Africa Time (UTC+01:00)",
+    "eastern-european": "Eastern European Time, Central Africa Time (UTC+02:00)",
+    "moscow": "Moscow Time, East Africa Time (UTC+03:00)",
+    "iran": "Iran Standard Time (UTC+03:30)",
+    "gulf": "Gulf Standard Time, Samara Time (UTC+04:00)",
+    "afghanistan": "Afghanistan Time (UTC+04:30)",
+    "pakistan": "Pakistan Standard Time, Yekaterinburg Time (UTC+05:00)",
+    "indian": "Indian Standard Time, Sri Lanka Time (UTC+05:30)",
+    "nepal": "Nepal Time (UTC+05:45)",
+    "bangladesh": "Bangladesh Standard Time, Bhutan Time (UTC+06:00)",
+    "cocos": "Cocos Islands, Myanmar (UTC+06:30)",
+    "indochina": "Indochina Time, Krasnoyarsk Time (UTC+07:00)",
+    "china": "China Standard Time, Australian Western Standard Time (UTC+08:00)",
+    "australian": "Australian Central Western Standard Time (UTC+08:45)",
+    "japan": "Japan Standard Time, Korea Standard Time (UTC+09:00)",
+    "australian-central": "Australian Central Standard Time (UTC+09:30)",
+    "australian-eastern": "Australian Eastern Standard Time, Vladivostok Time (UTC+10:00)",
+    "lord-howe": "Lord Howe Island (UTC+10:30)",
+    "solomon": "Solomon Islands, Vanuatu (UTC+11:00)",
+    "fiji": "Fiji, Gilbert Islands, Kamchatka Time (UTC+12:00)",
+    "chatham": "Chatham Islands (UTC+12:45)",
+    "samoa": "Samoa Time Zone, Phoenix Islands Time (UTC+13:00)",
+    "line": "Line Islands (UTC+14:00)"
+  },
+  "option": {
+    "department": "Department",
+    "role": "Role",
+    "staff-role": "Service Staff Role",
+    "permission": "Security/App Permissions",
+    "partner-type": "Partner Type",
+    "product-lines": "Product Lines",
+    "customer-class": "Account Class Code (Customer Class)",
+    "sales-territory": "Sales Territory/Region",
+    "country": "Country",
+    "state-province": "State/Province",
+    "by-specific-dealer": "By Specific Dealer/Partner",
+    "by-specific-user": "By Specific User List (Feature In Development)"
+  },
+  "search-category": {
+    "title": "Marketing",
+    "demo-ride-tracker": "Demo Ride Tracker",
+    "demo-ride-upload": "Demo Ride Upload"
+  },
+  "specific-accounts": {
+    "dealer": {
+      "upload-file": "Upload a CSV file of the relevant dealer numbers.",
+      "prefix-instruction": "Column A1 must start with \"Dealer#\"",
+      "file-format-instruction": "File format must be CSV"
+    },
+    "user": {
+      "upload-file": "Upload a CSV file of the relevant dealer numbers and user emails.",
+      "prefix-instruction": "Column A1 must start with \"DealerId\"",
+      "prefix-instruction-pt2": "Column B1 must start with \"UserEmail\"",
+      "file-format-instruction": "File format must be CSV"
+    },
+    "download-template": "Template.csv",
+    "download-target-template": "Download target template:",
+    "supported-file-formats": "Supported Formats: CSV, TXT",
+    "processing-file": "Processing File",
+    "upload-success": "File uploaded successfully.",
+    "review-failed-entries": "Please review the failed entries and try again.",
+    "uploaded-data": "Uploaded Data",
+    "upload-errors": {
+      "invalid-header": "Invalid file header. Column A1 must start with \"DealerId\" and Column A2 must start with \"UserEmail\".",
+      "invalidFileTypes": "Invalid file type provided.",
+      "fileSizeExceeded": "File size exceeded the limit."
+    }
+  },
+  "table": {
+    "col": {
+      "title": "Title",
+      "start-date": "Start Date",
+      "end-date": "End Date",
+      "group": "Group",
+      "sub-group": "Sub Group",
+      "created-on": "Created On",
+      "status": "Status",
+      "created-by": "Created By",
+      "language": "Language",
+      "actions": "Actions",
+      "dealer-number": "Dealer Account Number",
+      "account-name": "Account Name",
+      "city": "City",
+      "state-or-province": "State/Province",
+      "email-address": "Email Address",
+      "account-id": "Account ID"
+    }
+  }
+}

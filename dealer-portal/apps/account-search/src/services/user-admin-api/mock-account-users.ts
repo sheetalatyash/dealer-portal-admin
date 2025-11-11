@@ -1,0 +1,88 @@
+import { AccountUserResponse } from '@dealer-portal/polaris-core';
+
+export const mockAccountUsers: AccountUserResponse[] = [
+  {
+    "departmentString": "Service",
+    "employmentTypeString": "Full Time",
+    "roleString": "Manager",
+    "isPrimaryCommunicationContact": true,
+    "portalAuthenticationId": "5a668acd0a4ee25ddef148ff",
+    "firstName": "test",
+    "lastName": "test",
+    "emailAddress": "barbmcsorley4@Polaris.com",
+    "spiffEligible": true,
+    "pointsEligible": true,
+    "employeeStatusCode": 1,
+    "admin": true
+  },
+  {
+    "departmentString": "Service",
+    "employmentTypeString": "Full Time",
+    "roleString": "Manager",
+    "isPrimaryCommunicationContact": false,
+    "portalAuthenticationId": "60ff191509c0d4006f722316",
+    "firstName": "test",
+    "lastName": "test",
+    "emailAddress": "barbmcsorley2@Polaris.com",
+    "spiffEligible": false,
+    "pointsEligible": true,
+    "employeeStatusCode": 907760000,
+    "admin": true
+  },
+  {
+    "departmentString": "PG&A",
+    "employmentTypeString": "Full Time",
+    "roleString": "Staff",
+    "isPrimaryCommunicationContact": false,
+    "portalAuthenticationId": "servicehawkins7.1000101@Polaris.com",
+    "firstName": "test",
+    "lastName": "test",
+    "emailAddress": "servicehawkins7.1000101@Polaris.com",
+    "spiffEligible": true,
+    "pointsEligible": false,
+    "employeeStatusCode": 1,
+    "admin": false
+  },
+  {
+    "departmentString": "Office/Accounting, Service",
+    "employmentTypeString": "None",
+    "roleString": "Staff",
+    "isPrimaryCommunicationContact": false,
+    "portalAuthenticationId": "604250a8d966030070a2f727",
+    "firstName": "TLS",
+    "lastName": "TEST",
+    "emailAddress": "devtls@polaris.com",
+    "spiffEligible": true,
+    "pointsEligible": true,
+    "employeeStatusCode": 1,
+    "admin": true
+  },
+  {
+    "departmentString": "PG&A",
+    "employmentTypeString": "Full Time",
+    "roleString": "Manager",
+    "isPrimaryCommunicationContact": false,
+    "portalAuthenticationId": "6109aadd00cc2400717fbf69",
+    "firstName": "test",
+    "lastName": "test",
+    "emailAddress": "user82-3@polaris.com",
+    "spiffEligible": false,
+    "pointsEligible": true,
+    "employeeStatusCode": 907760000,
+    "admin": false
+  },
+  {
+    "departmentString": "PG&A",
+    "employmentTypeString": "Full Time",
+    "roleString": "Manager",
+    "isPrimaryCommunicationContact": false,
+    "portalAuthenticationId": "6109ab62405d64006aa82487",
+    "firstName": "test",
+    "lastName": "test",
+    "emailAddress": "user82-8@polaris.com",
+    "spiffEligible": false,
+    "pointsEligible": false,
+    "employeeStatusCode": 907760000,
+    "admin": true
+  },
+];

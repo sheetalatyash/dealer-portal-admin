@@ -1,0 +1,51 @@
+.widget {
+  &-training-title {
+    font-weight: var(--polaris-font-weight-600);
+  }
+
+  &-section {
+    &-header {
+      font-size: var(--polaris-font-size-lg);
+      font-weight: var(--polaris-font-weight-black);
+      text-transform: uppercase;
+    }
+
+    &-questions {
+      display: flex;
+      flex-direction: row;
+      margin-top: 0.25rem;
+
+      &-divider {
+        background-color: var(--polaris-border-color);
+        width: var(--polaris-border-width);
+      }
+
+      &-column {
+        align-items: center;
+        display: flex;
+        flex: 1;
+        flex-direction: column;
+        text-align: center;
+      }
+
+      &-image {
+        height: 45px;
+        width: auto;
+        margin: 0.25rem 0;
+      }
+
+      &-action {
+        align-items: center;
+        color: var(--polaris-primary);
+        display: flex;
+        flex-direction: column;
+        font-weight: var(--polaris-font-weight-600);
+        text-decoration: none;
+      }
+
+      &-tagline {
+        font-size: var(--polaris-font-size-sm);
+      }
+    }
+  }
+}

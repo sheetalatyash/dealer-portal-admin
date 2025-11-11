@@ -1,0 +1,5 @@
+// Place your material override for mat-progress-spinner element here.
+// Create separate files for each element/control as needed and import it in index.scss file.
+:root {
+  --mdc-circular-progress-active-indicator-color: var(--polaris-primary);
+}

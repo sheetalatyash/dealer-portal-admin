@@ -1,0 +1,183 @@
+{
+  "buttons": {
+    "add-as-primary": "Add As Primary",
+    "exit": "Exit",
+    "continue-editing": "Continue Editing",
+    "continue": "Continue",
+    "go-back": "Go Back",
+    "confirm": "Confirm"
+  },
+  "errors": {
+    "active-primary-communication-contact": "This user has been specified as the primary contact and may not be deactivated. Update Primary Contact to proceed.",
+    "at-least-one-department-selected": "At least one Department must be selected.",
+    "at-least-one-product-line-selected": "At least one Product Line must be selected.",
+    "at-least-one-service-staff-role-selected": "At least one Service Staff Role must be selected.",
+    "role-is-required": "A Role is required.",
+    "employment-type-is-required": "Employment Type is required.",
+    "request-timeout": "Request timed out. Please try again.",
+    "no-users-found": "No users found for this account."
+  },
+  "labels": {
+    "primary-contact": "Primary Contact:",
+    "select-primary-contact": "Select a Primary Contact"
+  },
+  "tooltips": {
+    "access-to-intl-dealer-portal-tooltip": "Only for distributor users, subsidiary users should not check this flag.",
+    "active-user-tooltip": "If an employee leaves your dealership please uncheck Active User to deactivate their Polaris Dealer Website account associated with your dealership in order to prevent access to website and communications.",
+    "departments-tooltip": "Select all departments that the employee has primary responsibility in. This selection will determine Polaris Portal menu link permission defaults, points eligibility for specific departments, and determine training requirements where applicable.",
+    "eligible-for-points-tooltip": "<div><p><b>IMPORTANT for Points Eligible:</b> It is important that only the employee earning points has access to this account for your Polaris dealer website (DEX) login and to the email inbox associated to the username of this user. Any individual with access to these credentials will be able to redeem points for this account.</p><p>Please note, in addition to Eligible for Points, to earn points for selling wholegood units, Sales Department must also be checked. To earn points for selling financial products (e.g. ESC), F&I Department must also be checked. To earn points for PG&A promotions, PG&A Department must also be checked.<p/> <div>",
+    "eligible-for-spiffs-tooltip": "<b>IMPORTANT for Spiff Eligible:</b> It is important that only the employee earning spiffs has access to this account for your Polaris dealer website (DEX) login and to the email inbox associated to the username of this user. Any individual with access to these credentials will be able to redeem Spiff payouts for this account. Employees that are Eligible for Spiffs will also be flagged as Sales Department and Eligible for Points.",
+    "primary-communication-contact-tooltip": "This is the primary person to contact at the dealership.",
+    "primary-contact": "Selecting this option designates the user as the primary contact for communications from Polaris.",
+    "permission-page": "Set user access at each category to: <br><strong>No Access</strong>, <br><strong>Read-Only</strong>, <br><strong>Add/Edit</strong>. <br><br>Permissions are inherited from top-level settings and apply to all items below. Selecting <strong>Add/Edit</strong> allows customization of access for individual items. <br><br><strong>Note:</strong> Some items may not support Read Only.",
+    "product-lines-tooltip": "Select all product lines that the employee has primary responsibility in. This selection will determine Polaris Portal menu link permission defaults, points eligibility for specific product lines, and determine training requirements where applicable.",
+    "security-admin-access-tooltip": "Admin users have full access to the Dealer Website and link access cannot be customized. Admins will also have the ability to add and maintain employees and their access for your dealership.",
+    "service-staff-roles-tooltip": "Select all service staff roles that the employee has primary responsibility for."
+  },
+  "title": {
+    "department-change-dialog-title": "Confirm Department Change",
+    "help-dialog": "Security Administration Help",
+    "departments": "Departments",
+    "user-admin": "Security Administration",
+    "security-administration": "Security Administration",
+    "unsaved-changes-dialog-title": "Unsaved Changes"
+  },
+  "training": {
+    "video": "Video",
+    "articles": "Training Articles",
+    "english": "English",
+    "french": "French"
+  },
+  "user-administration": "SECURITY ADMINISTRATION",
+  "help": "Help",
+  "add-user": "Add User",
+  "manage-permissions": "Manage Permissions by App",
+  "search-user": "Search User",
+  "search-users": "Search Users",
+  "none-selected": "None Selected",
+  "close": "close",
+  "service-staff-role": "Service Staff Role",
+  "service-staff-roles": "Service Staff Role(s)",
+  "permissions-by-app": "Permissions by App",
+  "select-permissions-category": "Select a permissions category. Then set permissions for individuals at your dealership.",
+  "access-level-updated-success": "Access level successfully updated",
+  "error-fetching-user-permissions": "Error fetching user permissions",
+  "account": "Account",
+  "category": "Category",
+  "communications": "Email Communications",
+  "email-communications-categories": "Email Communications Categories",
+  "email-communications-categories-tooltip": "Email Communications Categories tooltip content.",
+  "email-notifications": "Email Notifications",
+  "email-notifications-tooltip": "Email Notifications tooltip content.",
+  "default-permissions-note-title": "Default Permissions Selection:",
+  "default-permissions-note": " Selecting an option will recommend a predefined set of permissions for the user. These permissions may be modified later to suit specific needs.",
+  "department-change-dialog-message": "Please update the user's permissions to reflect the recent departmental changes by utilizing the Permissions tab.",
+  "copy-permissions": "COPY PERMISSIONS",
+  "inherited-permissions-tooltip": "Permissions set at this level are inherited from top to bottom. Changing permissions at a higher level affects all items below it.",
+  "info": "info",
+  "unsaved-changes-warning": "Changes you made may not be saved.",
+  "unsaved-changes-confirmation": "You have unsaved changes on this page. Do you want to leave this page and discard your changes or stay on this page?",
+  "active-users": "Active Users",
+  "pending-users-tab-name": "Pending Users",
+  "inactive-users": "Inactive Users",
+  "profile": "Profile",
+  "permissions": "Permissions",
+  "first-name": "First Name",
+  "last-name": "Last Name",
+  "username-email": "Username (Email)",
+  "role": "Role",
+  "employment-type": "Employment Type",
+  "form": {
+    "title": {
+      "activity": "Activity",
+      "contact-info": "Contact Info",
+      "product-lines-covered": "Product Lines Covered"
+    },
+    "instructions": {
+      "select-all": "Select All",
+      "select-all-that-apply": "Select all that apply",
+      "select-one": "Select One",
+      "select-account": "Select an Account",
+      "select-category": "Select a Category"
+    },
+    "job-title": "Job Title",
+    "job-title-optional": "Job Title (Optional)",
+    "phone": "Phone",
+    "username-email-tooltip": "The Username (Email) that is set-up with this new user will be the user",
+    "email": "Email",
+    "confirm-username-email": "Confirm Username (Email)",
+    "confirm-email": "Confirm Email",
+    "phone-optional": "Phone (Optional)",
+    "department": "Department",
+    "eligible-for-spiffs": "Eligible for Spiffs",
+    "eligible-for-points": "Eligible for Points",
+    "access-to-intl-dealer-portal": "Access to INTL dealer portal (Web Infinity)",
+    "primary-communication-contact": "Primary Communication Contact",
+    "employment": "Employment",
+    "active-user": "Active User",
+    "security-admin-access": "Security Admin Access",
+    "vendor-number": "Vendor #:"
+  },
+  "help-dialog": {
+    "desc": "Dealers must identify at least one Admin (it's recommended that each dealership have at least two admins) to set-up and maintain the users within each dealership.",
+    "add-user": "Add User: ",
+    "add-user-desc": "Admins use this to set-up a new employee with access to the DEX operations and Email communications needed to do their job. NOTE: The new user must have a valid Email address to be set-up.",
+    "edit-user": "Edit User: ",
+    "edit-user-desc": "Admins use this operation to add, change, or remove functionality or communications for a user already set-up. Also use this page to DEACTIVATE someone no longer employed by your dealership. NOTE: If you do not DEACTIVATE an employee who has left your dealership, he/she will still have access to your dealership DEX site, and will continue to receive Polaris communications, including email communications specific to your dealership.",
+    "primary-communication-contact": "Primary Communication Contact: ",
+    "pending-users": "Pending Users: ",
+    "pending-users-desc": "Users will remain in pending status until they create their password using a link that is sent to them when their account is created AND complete their first login. If a user no longer needs access or the email is invalid, please DEACTIVATE the user.",
+    "university-of-polaris": "University of Polaris: ",
+    "university-of-polaris-desc": "Please allow an overnight refresh after adding an account to DEX and seeing it listed on the Active User tab before accessing the University of Polaris."
+  },
+  "permissions-dialog": {
+    "title": "Menu Permissions Refresh",
+    "default-permissions-message": "Would you like to reset the Polaris Portal menu link permissions for this employee to the default menu access Polaris has suggested for the selected Department(s) or keep existing menu permissions the employee currently has?",
+    "copy-permissions-message": "Would you like to change the Polaris Portal menu link permissions for this employee to the menu access Polaris currently has selected for the selected employee or keep existing menu permissions the employee currently has?",
+    "confirm-default-permissions": "Refresh Default Menus",
+    "confirm-copy-permissions": "Change Menu Access",
+    "cancel": "Keep Existing Menus For Employee"
+  },
+  "notifications": {
+    "permission-copy-success": "Permissions copied successfully. Please save to apply these changes.",
+    "complete-required-fields": "Please complete all required fields.",
+    "user-info-reset": "All User Information Reset.",
+    "add-user-success": "User Added Successfully!",
+    "update-user-success": "User Details Updated Successfully!",
+    "no-changes-detected": "No Changes Detected",
+    "email-resent-success": "Email resent successfully.",
+    "email-resent-error": "Failed to resend email. Please try again later.",
+    "permissions-saved": "Permissions saved successfully.",
+    "communications-saved": "Communications saved successfully.",
+    "primary-contact-error": "Error updating primary contact. Please try again."
+  },
+  "table": {
+    "col": {
+      "departments": "Department(s)",
+      "no-access": "No Access",
+      "read-only": "Read Only",
+      "add-edit": "Add/Edit",
+      "primary-contact": "Primary Contact",
+      "admin": "Admin",
+      "points": "Points",
+      "spiff": "Spiff",
+      "verification": "Verification",
+      "actions": "Actions"
+    },
+    "resend-email": "Resend Email",
+    "view-edit": "View/Edit"
+  },
+  "claim": {
+    "claim-label": "claim",
+    "sales": "Sales",
+    "pg&a": "PG&A",
+    "service": "Service",
+    "accounting": "Accounting",
+    "dealerprincipal": "Dealer Principal"
+  },
+  "permissions-mode-label": {
+    "default": "Role and department<br><b>(Recommended)</b>",
+    "manual": "Manual Setup",
+    "copy": "Copy permissions from another user"
+  }
+}

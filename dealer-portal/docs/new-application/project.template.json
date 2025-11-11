@@ -1,0 +1,128 @@
+{
+   "name": "<APPLICATION-NAME>",
+   "$schema": "../../node_modules/nx/schemas/project-schema.json",
+   "projectType": "application",
+   "prefix": "<APPLICATION-PREFIX>",
+   "sourceRoot": "apps/<APPLICATION-NAME>/src",
+   "tags": ["app", "ui"],
+   "targets": {
+     "build": {
+       "executor": "@angular-devkit/build-angular:application",
+       "outputs": ["{options.outputPath}"],
+       "options": {
+         "outputPath": "dist/apps/<APPLICATION-NAME>",
+         "index": "apps/<APPLICATION-NAME>/src/index.html",
+         "browser": "apps/<APPLICATION-NAME>/src/main.ts",
+         "polyfills": ["zone.js"],
+         "tsConfig": "apps/<APPLICATION-NAME>/tsconfig.app.json",
+         "inlineStyleLanguage": "scss",
+         "assets": [
+           {
+             "glob": "**/*",
+             "input": "apps/<APPLICATION-NAME>/public"
+           },
+           {
+             "glob": "**/*",
+             "input": "dist/packages/dealer-portal-theme",
+             "output": "."
+           },
+           {
+            "glob": "**/*",
+            "input": "apps/<APPLICATION-NAME>/src/assets",
+            "output": "."
+           }
+         ],
+         "styles": ["apps/<APPLICATION-NAME>/src/styles.scss"],
+         "scripts": [],
+         "allowedCommonJsDependencies": [
+           "ua-parser-js",
+           "reflect-metadata"
+         ],
+         "budgets": [
+             {
+               "type": "initial",
+               "maximumWarning": "5mb",
+               "maximumError": "10mb"
+             },
+             {
+               "type": "anyComponentStyle",
+               "maximumWarning": "5kb",
+               "maximumError": "150kb"
+             }
+           ]
+       },
+       "configurations": {
+         "production": {
+           "fileReplacements": [
+             {
+               "replace": "apps/<APPLICATION-NAME>/src/_environments/environment.ts",
+               "with": "apps/<APPLICATION-NAME>/src/_environments/environment.production.ts"
+             }
+           ]
+         },
+         "staging": {
+           "fileReplacements": [
+             {
+               "replace": "apps/<APPLICATION-NAME>/src/_environments/environment.ts",
+               "with": "apps/<APPLICATION-NAME>/src/_environments/environment.staging.ts"
+             }
+           ]
+         },
+         "development": {
+           "fileReplacements": [
+             {
+               "replace": "apps/<APPLICATION-NAME>/src/_environments/environment.ts",
+               "with": "apps/<APPLICATION-NAME>/src/_environments/environment.development.ts"
+             }
+           ]
+         },
+         "local": {
+           "optimization": false,
+           "extractLicenses": false,
+           "sourceMap": true,
+           "fileReplacements": [
+             {
+               "replace": "apps/<APPLICATION-NAME>/src/_environments/environment.ts",
+               "with": "apps/<APPLICATION-NAME>/src/_environments/environment.local.ts"
+             }
+           ]
+         }
+       },
+       "defaultConfiguration": "production"
+     },
+     "serve": {
+       "executor": "@angular-devkit/build-angular:dev-server",
+       "configurations": {
+         "production": {
+           "buildTarget": "<APPLICATION-NAME>:build:production"
+         },
+         "staging": {
+           "buildTarget": "<APPLICATION-NAME>:build:staging"
+         },
+         "development": {
+           "buildTarget": "<APPLICATION-NAME>:build:development"
+         },
+         "local": {
+           "buildTarget": "<APPLICATION-NAME>:build:local"
+         }
+       },
+       "defaultConfiguration": "local"
+     },
+     "extract-i18n": {
+       "executor": "@angular-devkit/build-angular:extract-i18n",
+       "options": {
+         "buildTarget": "<APPLICATION-NAME>:build"
+       }
+     },
+     "lint": {
+       "executor": "@nx/eslint:lint"
+     },
+     "test": {
+       "executor": "@nx/jest:jest",
+       "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
+       "options": {
+         "jestConfig": "apps/<APPLICATION-NAME>/jest.config.ts"
+       }
+     }
+   }
+ }

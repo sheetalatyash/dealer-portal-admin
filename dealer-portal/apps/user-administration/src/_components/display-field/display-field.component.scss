@@ -1,0 +1,26 @@
+:host {
+  .display-field {
+    gap: 0.25rem;
+
+    &-label {
+      color: var(--theme-gray-400);
+      font-size: var(--polaris-font-size-sm);
+      white-space: nowrap;
+    }
+
+    &-value {
+      gap: 0.25rem;
+      white-space: nowrap;
+    }
+  }
+}
+
+::ng-deep .align-items-start leading-icon,
+::ng-deep .align-items-start trailing-icon {
+  transform: translateY(5px);
+}
+
+::ng-deep leading-icon,
+::ng-deep trailing-icon {
+  transform: translateY(1px);
+}

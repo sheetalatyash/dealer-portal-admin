@@ -1,0 +1,56 @@
+@if (displayedData$ | async; as displayedData) {
+  @if (!loading) {
+<div class="user-administration-table d-flex flex-column mt-4">
+  <polaris-table
+                 ui-test-id="user-listing-table"
+                 [data]="displayedData"
+                 [config]="tableConfig"
+                 (onLoadMore)="onLoadMore()">
+
+    <!-- Generate a new column for each column in tableConfig.columns -->
+    @for (column of tableConfig.columns; track (column.id)) {
+    <polaris-table-custom-cell [columnName]="column.id">
+      <ng-template let-user>
+
+        <!-- If columnType is 'text' -->
+        @if (column.columnType === 'text') {
+        <div [innerHTML]="getNestedValue(user, column.key)"></div>
+        }
+        <!-- If columnType is a link -->
+        @else if (column.columnType === 'link') {
+          <!-- View/Edit User link -->
+          @if (column.id === 'actions') {
+          <div class="d-flex gap-2">
+            <polaris-href (onClick)="navigateToUserPage(user, 'details')" ui-test-id="view-user-link">{{ 'view' | translate }}</polaris-href>
+            <polaris-href *accessControl="accessControlLevel.ReadWrite" (onClick)="navigateToUserPage(user, 'edit')" ui-test-id="edit-user-link">{{ 'edit' | translate }}</polaris-href>
+          </div>
+          }
+        }
+        <!-- If columnType is 'icon'-->
+        @else if (column.columnType === 'icon') {
+          @if (getNestedValue(user, column.key) === 'true') {
+              <polaris-status-icon
+                size="xl"
+                [condition]="true"
+               >
+              </polaris-status-icon>
+          }
+        }
+        <!-- custom column type for permission-->
+        @else if (column.columnType === 'custom') {
+          @if (getNestedValue(user, column.key) === accessControlLevel.Read ) {
+            <div>{{ 'r' | translate }} </div>
+          }
+          @else if (getNestedValue(user, column.key) === accessControlLevel.ReadWrite ) {
+            <div>{{ 'rw' | translate }}</div>
+          }
+        }
+      </ng-template>
+    </polaris-table-custom-cell>
+    }
+  </polaris-table>
+</div>
+  } @else {
+<polaris-loader></polaris-loader>
+  }
+}

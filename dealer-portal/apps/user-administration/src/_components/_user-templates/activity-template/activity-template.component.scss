@@ -1,0 +1,17 @@
+.activity-form {
+  max-width: 400px;
+
+  polaris-divider {
+    margin-bottom: 0.25rem;
+    margin-top: 0.75rem;
+  }
+}
+
+.active-primary-contact-template {
+  color: var(--polaris-warning);
+  font-size: var(--polaris-font-size-sm);
+}
+
+.vendor-number-template {
+  font-size: var(--polaris-font-size-sm);
+}

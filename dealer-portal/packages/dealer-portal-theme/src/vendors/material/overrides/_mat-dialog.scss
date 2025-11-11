@@ -1,0 +1,6 @@
+// Place your material override for mat-dialog element here.
+// Create separate files for each element/control as needed and import it in index.scss file.
+
+:root {
+  --mdc-dialog-supporting-text-color: var(--polaris-body-color);
+}

@@ -1,0 +1,26 @@
+
+// vars
+$widget-border: var(--polaris-border-style) var(--polaris-border-width) var(--polaris-border-color) !default;
+
+:host {
+
+  .edit-widgets-button {
+    right: 0;
+    top: -1.5rem;
+  }
+
+  .content-block {
+    border: $widget-border;
+    background: var(--polaris-white);
+    color: var(--polaris-gray-400);
+
+    &.widget {
+      text-align: center;
+      min-height: 10rem;
+      line-height: 10rem;
+      margin-bottom: 1.5rem;
+    }
+  }
+
+}
+

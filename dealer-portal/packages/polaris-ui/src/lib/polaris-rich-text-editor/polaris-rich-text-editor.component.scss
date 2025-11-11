@@ -1,0 +1,12 @@
+.outline {
+  &-primary {
+    border: var(--polaris-border-width) var(--polaris-border-style) var(--polaris-primary);
+    &:has(.tox-edit-focus) {
+      border-width: 2px;
+    }
+  }
+
+  &-error {
+    border: 2px var(--polaris-border-style) var(--polaris-danger) !important;
+  }
+}

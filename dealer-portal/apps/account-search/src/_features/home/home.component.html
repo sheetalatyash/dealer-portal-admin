@@ -1,0 +1,33 @@
+<div class="account-search container-fluid d-flex flex-column gap-4">
+
+  <!-- Header -->
+  <div class="d-flex flex-column gap-3">
+
+    <div class="d-flex align-items-center gap-2">
+      <!-- Title -->
+      <polaris-heading h3 ui-test-id="account-search-title">{{ title }}</polaris-heading>
+
+      <!-- Help Link -->
+      <polaris-href
+        (onClick)="openHelpDialog()"
+        [ui-test-id]="'account-search-help'"
+        [underline]="false">
+        <polaris-icon trailing-icon size="xl" class="pt-1">info</polaris-icon>
+      </polaris-href>
+    </div>
+
+    <polaris-divider></polaris-divider>
+  </div>
+
+
+  <!-- Content -->
+  <div class="account-search-content">
+    <div class="account-search-content-filters p-0">
+      <as-account-filters></as-account-filters>
+    </div>
+    <div class="w-100">
+      <as-account-results></as-account-results>
+    </div>
+  </div>
+
+</div>

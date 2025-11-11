@@ -1,0 +1,54 @@
+<div class="table-container">
+  <polaris-table [data]="(displayedData$ | async) || []" [config]="tableConfig" (onLoadMore)="onLoadMoreData()">
+    <polaris-table-custom-header-row customClass="actions-row">
+      <div class="dropdown d-flex align-items-center">
+        <polaris-checkbox [ui-form-control]="selectAllControl" (checkboxUpdated)="onSelectAllChange($event)">
+          {{ 'select-all' | translate }}
+        </polaris-checkbox>
+        <button class="status-filters-button" [matMenuTriggerFor]="selectMenu">
+          <polaris-icon size="lg">arrow-dropdown</polaris-icon>
+        </button>
+        <mat-menu #selectMenu="matMenu">
+          <ng-template matMenuContent>
+            @for (filter of filters; track filter) {
+            <button mat-menu-item (click)="onSelectAllByStatus(filter)">
+              <div class="d-flex align-items-center">
+                @if((filter$ | async) === filter) {
+                <polaris-icon>check</polaris-icon>
+                }
+                <span class="ms-2">{{ transformStatusText(filter) }}</span>
+              </div>
+            </button>
+            }
+          </ng-template>
+        </mat-menu>
+        @if (areMultipleRowsSelected) {
+        <polaris-button class="ms-auto" ui-theme="secondary" (click)="openDeleteDialog()">
+          {{ 'delete-all' | translate }}
+        </polaris-button>
+        }
+      </div>
+    </polaris-table-custom-header-row>
+    <polaris-table-custom-cell columnName="select">
+      <ng-template let-element let-index="index">
+        <polaris-checkbox [ui-form-control]="getRowControl(element.id)" (checkboxUpdated)="onRowSelectChange(element, $event)"></polaris-checkbox>
+      </ng-template>
+    </polaris-table-custom-cell>
+    @if(statusColumn) {
+    <polaris-table-custom-cell [columnName]="statusColumn">
+      <ng-template let-element>
+        <span [ngClass]="{'error-text': isStatusInactiveOrNotFound(element[statusColumn])}">
+          {{ transformStatusText(element[statusColumn]) }}
+        </span>
+      </ng-template>
+    </polaris-table-custom-cell>
+    }
+    <polaris-table-custom-cell columnName="delete">
+      <ng-template let-element>
+        <polaris-icon-button (click)="openDeleteDialog(element)" class="btn btn-danger">
+          <polaris-icon size="xl" color="dark">delete</polaris-icon>
+        </polaris-icon-button>
+      </ng-template>
+    </polaris-table-custom-cell>
+  </polaris-table>
+</div>

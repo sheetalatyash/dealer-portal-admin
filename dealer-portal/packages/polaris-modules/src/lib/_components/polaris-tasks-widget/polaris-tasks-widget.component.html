@@ -1,0 +1,20 @@
+@if (mockData.length > 0) {
+  <lib-polaris-base-widget>
+    <widget-title>{{'widgets.tasks.title' | translate}}</widget-title>
+
+    <div class="d-flex flex-column gap-3">
+      @for (item of mockData; track item) {
+        <polaris-href [underline]="false">
+          <div class="d-flex align-items-center gap-3">
+            <polaris-badge
+              [sizeSquare]="polarisBadgeSizeSquare.Medium"
+              [color]="PolarisBadgeColor.Danger">
+              {{ item['count'] }}
+            </polaris-badge>
+            <span>{{ item['label'] }}</span>
+          </div>
+        </polaris-href>
+      }
+    </div>
+  </lib-polaris-base-widget>
+}

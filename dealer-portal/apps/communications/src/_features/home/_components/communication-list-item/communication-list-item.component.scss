@@ -1,0 +1,72 @@
+@use '../../../../../../../packages/dealer-portal-theme/src/themes/polaris-base-theme/mixins/breakpoints' as breakpoints;
+
+.communication-list-item {
+  border-bottom: 1px solid var(--polaris-border-color);
+  color: var(--polaris-light-text-emphasis);
+
+  &-content {
+    all: unset;
+    min-width: 0;
+
+    @include breakpoints.media-breakpoint-down(md) {
+      display: -webkit-box;
+      -webkit-box-orient: vertical;
+      -webkit-line-clamp: 2;
+      line-clamp: 2;
+    }
+
+    &:focus {
+      outline: revert;
+    }
+
+    &-archived {
+      font-size: var(--polaris-font-size-xs);
+      font-style: italic;
+    }
+
+    &-title {
+      @include breakpoints.media-breakpoint-up(md) {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+      }
+
+      @include breakpoints.media-breakpoint-down(md) {
+        display: -webkit-box;
+        -webkit-box-orient: vertical;
+        -webkit-line-clamp: 2;
+        line-clamp: 2;
+        overflow: hidden;
+      }
+    }
+
+    &-expiration {
+      font-size: var(--polaris-font-size-xs);
+      font-style: italic;
+    }
+
+    &:hover {
+      cursor: pointer;
+
+      .communication-list-item-content-title {
+        text-decoration: underline;
+      }
+    }
+  }
+
+  &-trailing {
+    @include breakpoints.media-breakpoint-up(md) {
+      min-width: 95px;
+    }
+  }
+
+  &-unread {
+    font-weight: var(--polaris-font-weight-700);
+  }
+
+  &-focused {
+    background: rgb(from var(--polaris-primary) r g b / 0.06);
+    border: 1px solid black;
+    border-left: 4px solid var(--polaris-primary);
+  }
+}

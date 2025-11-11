@@ -1,0 +1,71 @@
+{
+  "title": {
+    "help-dialog": "User Administration - Internal Help",
+    "user-admin": "User Administration - Internal",
+    "permissions-details": "Permissions",
+    "permissions-edit": "Edit Permissions"
+  },
+  "user-administration": "USER ADMINISTRATION",
+  "help": "Help",
+  "yes": "Yes",
+  "no": "No",
+  "none":  "No",
+  "read": "Read",
+  "add-edit": "Add/Edit",
+  "active": "Active",
+  "inactive": "Inactive",
+  "manage-permissions": "Manage Permissions by App",
+  "permissions-by-app": "Permissions by App",
+  "select-permissions-category": "Select a permissions category. Then set permissions for individuals at your dealership.",
+  "account": "Account",
+  "inherited-permissions-tooltip": "Permissions set at this level are inherited from top to bottom. Changing permissions at a higher level affects all items below it.",
+  "info": "info",
+  "unsaved-changes-warning": "Changes you made may not be saved.",
+  "unsaved-changes-confirmation": "You have unsaved changes on this page. Do you want to leave this page and discard your changes or stay on this page?",
+  "profile": "Profile",
+  "permissions": "Permissions",
+  "username": "Username",
+  "email": "Email",
+  "first-name": "First Name",
+  "last-name": "Last Name",
+  "sales-role": "Sales Role",
+  "sales-rep-id": "Sales RepId",
+  "account-impersonation": "Account <br> Impersonation",
+  "internal-impersonation": "Internal <br> Impersonation",
+  "opti-admin": "Optimizely Admin",
+  "r": "Read-Only",
+  "rw": "Read/Write",
+  "view": "View",
+  "edit":  "Edit",
+  "help-dialog": {
+    "desc": "Dealers must identify at least one Admin (it's recommended that each dealership have at least two admins) to set-up and maintain the users within each dealership.",
+    "add-user": "Add User: ",
+    "add-user-desc": "Admins use this to set-up a new employee with access to the DEX operations and Email communications needed to do their job. NOTE: The new user must have a valid Email address to be set-up.",
+    "edit-user": "Edit User: ",
+    "edit-user-desc": "Admins use this operation to add, change, or remove functionality or communications for a user already set-up. Also use this page to DEACTIVATE someone no longer employed by your dealership. NOTE: If you do not DEACTIVATE an employee who has left your dealership, he/she will still have access to your dealership DEX site, and will continue to receive Polaris communications, including email communications specific to your dealership.",
+    "primary-communication-contact": "Primary Communication Contact: ",
+    "pending-users": "Pending Users: ",
+    "pending-users-desc": "Users will remain in pending status until they create their password using a link that is sent to them when their account is created AND complete their first login. If a user no longer needs access or the email is invalid, please DEACTIVATE the user.",
+    "university-of-polaris": "University of Polaris: ",
+    "university-of-polaris-desc": "Please allow an overnight refresh after adding an account to DEX and seeing it listed on the Active User tab before accessing the University of Polaris."
+  },
+  "notifications": {
+    "permissions-reset": "Permissions reset.",
+    "permissions-saved": "Permissions saved successfully!",
+    "no-changes-detected": "No Changes Detected"
+  },
+  "table": {
+    "col": {
+      "actions": "Actions"
+    }
+  },
+  "permissions-form": {
+    "account-impersonation-level": "Account Impersonation Level",
+    "internal-impersonation-level": "Internal Impersonation Level",
+    "account-status": "Account Status",
+    "help-desk-ticket-number": "Help Desk Ticket Number",
+    "optimizely-admin-access": "Optimizely Web Admin Access",
+    "optimizely-language-admin": "Optimizely Language Admin Access",
+    "optimizely-content-admin":  "Optimizely Content Admin Access"
+  }
+}

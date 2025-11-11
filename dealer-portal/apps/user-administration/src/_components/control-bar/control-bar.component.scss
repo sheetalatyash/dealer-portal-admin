@@ -1,0 +1,15 @@
+@use '../../../../../packages/dealer-portal-theme/src/themes/polaris-base-theme/mixins/breakpoints' as breakpoints;
+
+.control-bar {
+  padding-bottom: 1rem;
+}
+
+@include breakpoints.media-breakpoint-down(md) {
+  .control-bar {
+    &-row {
+      > * {
+          width: 100% !important;
+      }
+    }
+  }
+}

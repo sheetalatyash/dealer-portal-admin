@@ -1,0 +1,23 @@
+{
+  "name": "@dealer-portal/polaris-core",
+  "version": "0.0.1",
+  "peerDependencies": {
+    "@angular/common": "19.2.4",
+    "@angular/core": "19.2.4",
+    "@angular/forms": "19.2.4",
+    "@angular/router": "19.2.4",
+    "@dealer-portal/polaris-shared": "0.0.1",
+    "@microsoft/applicationinsights-web": "^3.3.3",
+    "@microsoft/applicationinsights-angularplugin-js": "^15.3.3",
+    "@ngneat/until-destroy": "^10.0.0",
+    "@ngx-translate/core": "^16.0.4",
+    "fuse.js": "^7.1.0",
+    "rxjs": "~7.8.0"
+  },
+  "sideEffects": [
+    "./src/lib/_polyfills/**/*"
+  ],
+  "publishConfig": {
+    "access": "public"
+  }
+}

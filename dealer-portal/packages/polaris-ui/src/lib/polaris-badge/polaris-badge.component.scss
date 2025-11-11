@@ -1,0 +1,62 @@
+@use 'sass:map';
+
+:host {
+
+  // Component Vars
+  $gap: 4px !default;
+  $base-size: 19px !default;
+  $badge-sizes: ( xs: 0, sm: 1, md: 2, lg: 3, xl: 4 ) !default;
+
+  $badge-colors: (
+    "primary": var(--theme-primary-500),
+    "secondary": var(--theme-primary-400),
+    "success": var(--polaris-success),
+    "info": var(--polaris-info),
+    "warning": var(--polaris-warning-bg),
+    "danger": var(--polaris-danger-dark),
+    "dark": var(--polaris-dark),
+    "light": var(--polaris-light),
+    "white": var(--polaris-white),
+  );
+
+  $badge-text-colors: (
+    "primary": white,
+    "secondary": white,
+    "success": white,
+    "info": white,
+    "warning": black,
+    "danger": white,
+    "dark": white,
+    "light": black,
+    "white": black,
+  );
+
+  display: flex;
+
+  .polaris-badge {
+    border-radius: var(--polaris-border-radius-sm);
+    font-size: var(--polaris-font-size-xs);
+    font-weight: var(--polaris-font-weight-700);
+    text-transform: uppercase;
+    height: $base-size;
+    line-height: $base-size;
+
+    @each $name, $color in $badge-colors {
+      $text: map.get($badge-text-colors, $name);
+
+      &-color-#{$name} {
+        background-color: $color;
+        color: $text;
+      }
+    }
+
+    @each $size, $multiplier in $badge-sizes {
+      &-size-square-#{$size} {
+        $calculated-size: $base-size + ($gap * $multiplier);
+        width: $calculated-size;
+        height: $calculated-size;
+        line-height: $calculated-size;
+      }
+    }
+  }
+}

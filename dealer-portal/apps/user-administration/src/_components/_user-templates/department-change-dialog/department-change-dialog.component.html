@@ -1,0 +1,23 @@
+<polaris-dialog [hideCloseButton]="true">
+  <div ngProjectAs="polaris-dialog-title">
+      {{ data.title }}
+  </div>
+
+  <span ngProjectAs="polaris-dialog-content">
+    <div [innerHTML]="data.htmlMessage"></div>
+  </span>
+
+  <div ngProjectAs="polaris-dialog-actions" class="d-flex gap-3">
+    @if (data.primaryButtonLabel) {
+      <polaris-button (click)="closeDialog(true)" ui-theme="primary">
+        {{ data.primaryButtonLabel }}
+      </polaris-button>
+    }
+
+    @if (data.secondaryButtonLabel) {
+      <polaris-button (click)="closeDialog(true)" ui-theme="secondary">
+        {{ data.secondaryButtonLabel }}
+      </polaris-button>
+    }
+  </div>
+</polaris-dialog>

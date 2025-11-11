@@ -1,0 +1,43 @@
+@if (permissionOptions()) {
+  <div class="d-flex flex-column gap-3 pb-4">
+
+    <div class="d-flex gap-3 flex-column">
+      <div class="d-flex gap-2 align-items-start">
+        <strong>{{ 'default-permissions-note-title' | translate }}</strong>
+        <span innerHTML="{{ 'default-permissions-note' | translate }}"></span>
+      </div>
+      <polaris-radio-group
+        #radioGroup
+        ui-class="gap-5"
+        [options]="permissionOptions()!"
+        [ui-form-control]="newPermissionsFormControl"
+        orientationClass="align-items-start"
+        alignItems="start"
+        ui-orientation="horizontal">
+      </polaris-radio-group>
+
+      @if (activePermissionMode() === 'copy') {
+        <div #copyPermissionsContainer class="d-flex gap-2 align-items-center">
+          <polaris-search-bar
+            ui-placeholder="{{ 'search-users' | translate }}"
+            ui-test-id="user-listing-search"
+            [searchResults]="userSearchResults"
+            (onSearch)="getUserSearchResults($event)"
+            (onSelectResult)="this.selectedUser = $event">
+          </polaris-search-bar>
+
+          <polaris-button
+            (onClick)="copyUserPermissions()"
+            [ui-disabled]="!selectedUser"
+            ui-test-id="copy-permissions-button"
+            ui-theme="secondary"
+            [compact]="true">
+            {{ 'copy-permissions' | translate }}
+          </polaris-button>
+
+        </div>
+      }
+    </div>
+  </div>
+}
+

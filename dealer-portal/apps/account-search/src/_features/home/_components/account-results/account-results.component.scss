@@ -1,0 +1,9 @@
+:host {
+  .account-search-result {
+    margin-top: 2.5rem;
+
+    &-count {
+      font-weight: var(--polaris-font-weight-700);
+    }
+  }
+}

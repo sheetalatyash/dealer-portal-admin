@@ -1,0 +1,11 @@
+<div class="row align-items-center ps-4 mb-4">
+  <div class="col-auto labeled-row font-size-sm" style="min-width: 220px;">
+    {{ label | translate }}
+  </div>
+  <div class="col">
+    <ng-content></ng-content>
+  </div>
+</div>
+@if (showDivider) {
+  <polaris-divider ui-class="col-auto mb-3"></polaris-divider>
+}

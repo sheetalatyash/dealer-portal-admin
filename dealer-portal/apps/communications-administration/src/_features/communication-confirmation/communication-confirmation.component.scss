@@ -1,0 +1,31 @@
+.communication-confirmation {
+  &-container {
+    background-color: var(--polaris-white);
+    border: var(--polaris-border-width) var(--polaris-border-style) var(--polaris-border-color);
+    margin: 1.5rem 1.25rem;
+  }
+
+  &-content {
+    padding: 0 1rem;
+
+    &-header {
+      > span {
+        font-weight: var(--polaris-font-weight-700);
+      }
+      > ul {
+        margin-top: 0.5rem;
+        > li {
+          font-weight: var(--polaris-font-weight-500);
+        }
+      }
+    }
+
+    &-form {
+      &-title {
+        color: var(--polaris-primary);
+        font-weight: var(--polaris-font-weight-600);
+        text-transform: uppercase;
+      }
+    }
+  }
+}

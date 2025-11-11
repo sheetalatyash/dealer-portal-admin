@@ -1,0 +1,197 @@
+<ca-communication-add-edit-targets
+  [stepTitle]="'form.step.account-targets'"
+  [stepDescription]="'account-targets-help-text'"
+  [templateFileName]="'specific-dealers-template.csv'"
+  [specificTargetsLabel]="'option.by-specific-dealer'"
+  [isLoading]="isLoading"
+  [tableData$]="allAccounts$"
+  [tableColumns]="accountsTableColumns"
+  [specificTargetsFormGroup]="accountTargetsFormGroup"
+  [isSpecificTargetsOptional]="true"
+  [isSpecificTargetsSelected]="isSpecificAccountsSelected"
+  [isAnyOptionalGeneralTargetSelected]="isAnyOptionalGeneralTargetSelected"
+  [uploadFiles]="uploadingFile ? [uploadingFile] : []"
+  [filePickerFormControl]="filePickerFormControl"
+  (fileSelected)="onFileSelected($event)"
+  (fileCanceled)="onFileCanceled($event)"
+  (rowsDeleted)="onRowsDeleted($event, allAccountsSubject)"
+>
+  <ng-container generalTargets>
+    <!-- Product Line -->
+    <div [ngClass]="[isProductLineSelected ? 'col-12' : 'col-12 col-md-6 col-lg-4']">
+      <polaris-checkbox-group [ui-form-group]="accountTargetsFormGroup" [options]="productLineSelection">
+      </polaris-checkbox-group>
+      @if(isProductLineSelected) {
+      <div class="col-12 form-content-option-ctr py-2 px-3">
+        <div class="form-content-option-ctr-options">
+          <div class="row gx-1 gy-3">
+            <!-- Top-Level Select All separate from the grouped product line checkboxes -->
+            <div class="col-12">
+              <polaris-checkbox-group
+                ui-class="col-12"
+                [ui-form-group]="productLineOptionsFormGroup"
+                [options]="[productLineSelectAllOption]"
+                ui-orientation="vertical"
+              >
+              </polaris-checkbox-group>
+            </div>
+            @for(options of productLineOptions; track $index) {
+            <div class="col-12 col-md-3 col-lg-2">
+              <polaris-checkbox-group
+                [ui-form-group]="productLineOptionsFormGroup"
+                [options]="options"
+                ui-orientation="vertical"
+              >
+              </polaris-checkbox-group>
+            </div>
+            }
+          </div>
+        </div>
+      </div>
+      }
+    </div>
+
+    @if(!isSpecificAccountsSelected) {
+    <!-- Partner Type -->
+    <div [ngClass]="[isPartnerTypeSelected ? 'col-12' : 'col-12 col-md-6 col-lg-4']">
+      <polaris-checkbox-group [ui-form-group]="accountTargetsFormGroup" [options]="partnerTypeSelection">
+      </polaris-checkbox-group>
+      @if(isPartnerTypeSelected) {
+      <div class="col-12 form-content-option-ctr py-2 px-3">
+        <div class="form-content-option-ctr-options">
+          <div class="row gx-3 gy-2">
+            @for(option of partnerTypeOptions; track option) {
+            <div class="col-12 col-md-4">
+              <section class="d-flex">
+                <polaris-checkbox
+                  [ui-form-group]="partnerTypeOptionsFormGroup"
+                  [ui-form-control]="getFormControl(partnerTypeOptionsFormGroup, option.formControlName)"
+                  [ui-label]="option.label"
+                  ui-orientation="vertical"
+                  [ui-tooltip-action]="useTooltipAction(option.formControlName)"
+                  (onTooltipClicked)="onTooltipClicked(option.testId)"
+                >
+                </polaris-checkbox>
+              </section>
+              @if(isPartnerTypeConditionMet(option.formControlName) | async) {
+              <div class="pt-2 px-2 mb-3">
+                <polaris-search-bar
+                  ui-class="w-75"
+                  ui-placeholder="{{ 'search-placeholder-text' | translate : { '0': option.value } }}"
+                  [ui-form-control]="getFormControl(parentAccountsFormGroup, option.value.toString())"
+                  [ui-form-group]="parentAccountsFormGroup"
+                  [searchResults]="getPartnerTypeObservable(option.value) | async"
+                  [addChipOnSelectResult]="true"
+                  [hideSearchIcon]="true"
+                  [showAutocompleteOnEmptySearch]="true"
+                  (onSearch)="onPartnerTypeSearch(option.value, $event)"
+                  (onScroll)="onPartnerTypeScroll(option.value)"
+                >
+                </polaris-search-bar>
+              </div>
+              }
+            </div>
+            }
+          </div>
+        </div>
+      </div>
+      }
+    </div>
+    <!-- Customer Class -->
+    <div [ngClass]="[isCustomerClassSelected ? 'col-12' : 'col-12 col-md-6 col-lg-4']">
+      <polaris-checkbox-group [ui-form-group]="accountTargetsFormGroup" [options]="customerClassSelection">
+      </polaris-checkbox-group>
+      @if(isCustomerClassSelected) {
+      <div class="col-12 form-content-option-ctr py-2 px-3">
+        <div class="form-content-option-ctr-options row row-gap-4">
+          @for(options of customerClassOptions; track $index) {
+          <div class="col-12 col-md-4 col-lg-3">
+            <polaris-checkbox-group
+              [ui-form-group]="customerClassOptionsFormGroup"
+              [options]="options"
+              ui-orientation="vertical"
+            ></polaris-checkbox-group>
+          </div>
+          }
+        </div>
+      </div>
+      }
+    </div>
+    <!-- Sales Territory or Region -->
+    <div class="ccol-12 col-md-6 col-lg-4">
+      <polaris-checkbox-group [ui-form-group]="accountTargetsFormGroup" [options]="salesTerritoryOrRegionSelection">
+      </polaris-checkbox-group>
+      @if(isSalesTerritoryOrRegionSelected) {
+      <div class="pt-2 px-2">
+        <polaris-search-bar
+          ui-class="w-75"
+          ui-form-control-name="salesTerritoryOrRegionOptions"
+          [ui-placeholder]="'search-for-territory' | translate"
+          [searchResults]="territorySearchResults$ | async"
+          [addChipOnSelectResult]="true"
+          [hideSearchIcon]="true"
+          [showAutocompleteOnEmptySearch]="true"
+          [ui-form-group]="accountTargetsFormGroup"
+          (onSearch)="onTerritorySearch($event)"
+          (onScroll)="onTerritoryScroll()"
+        >
+        </polaris-search-bar>
+      </div>
+      }
+    </div>
+    <!-- Country -->
+    <div class="col-12 col-md-6 col-lg-4">
+      <polaris-checkbox-group [ui-form-group]="accountTargetsFormGroup" [options]="countrySelection">
+      </polaris-checkbox-group>
+      @if(isCountrySelected) {
+      <div class="pt-2 px-2">
+        <polaris-search-bar
+          ui-class="w-75"
+          ui-form-control-name="countryOptions"
+          [ui-placeholder]="'search-for-country' | translate"
+          [searchResults]="countryOptions"
+          [searchResultsFilterFn]="countryOptionsFilterFn"
+          [addChipOnSelectResult]="true"
+          [hideSearchIcon]="true"
+          [showAutocompleteOnEmptySearch]="true"
+          [ui-form-group]="accountTargetsFormGroup"
+        >
+        </polaris-search-bar>
+      </div>
+      }
+    </div>
+    <!-- State or Province -->
+    <div class="col-12 col-md-6 col-lg-4">
+      <polaris-checkbox-group [ui-form-group]="accountTargetsFormGroup" [options]="stateOrProvinceSelection">
+      </polaris-checkbox-group>
+      @if(isStateOrProvinceSelected) {
+      <div class="pt-2 px-2">
+        <polaris-search-bar
+          ui-class="w-75"
+          ui-form-control-name="stateOrProvinceOptions"
+          [ui-placeholder]="'search-for-state' | translate"
+          [searchResults]="stateOrProvinceOptions"
+          [searchResultsFilterFn]="stateOrProvinceOptionsFilterFn"
+          [addChipOnSelectResult]="true"
+          [hideSearchIcon]="true"
+          [showAutocompleteOnEmptySearch]="true"
+          [ui-form-group]="accountTargetsFormGroup"
+        >
+        </polaris-search-bar>
+      </div>
+      }
+    </div>
+    }
+  </ng-container>
+
+  <ng-container specificAccountsInstructions>
+    <div class="account-targets-instructions">
+      <span>
+        {{ 'specific-accounts.dealer.upload-file' | translate }}
+      </span>
+      <span>
+        {{ 'specific-accounts.dealer.prefix-instruction' | translate }}
+      </span>
+    </div>
+  </ng-container>
+</ca-communication-add-edit-targets>

@@ -1,0 +1,88 @@
+<div class="account-filter">
+  <form class="d-flex flex-column gap-5" [formGroup]="filtersForm">
+
+    <!-- Search -->
+    <div class="account-filter-search-bar">
+      <polaris-search-bar
+        ui-placeholder="{{ 'search-placeholder' | translate }}"
+        ui-test-id="account-search-term"
+        [searchText]="searchTerm"
+        (onSearch)="applySearch($event)">
+      </polaris-search-bar>
+
+      @if(isSearchTermTooShort) {
+        <!-- TODO: This should be an option in the polaris-search-bar component -->
+        <div class="account-filter-search-bar-error">{{ minimumCharactersMessage }}</div>
+      }
+    </div>
+
+    <!-- Filter Panel -->
+    <div class="account-filter-panel">
+
+      <!-- Filter Panel Header -->
+      <div class="account-filter-panel-header d-flex align-items-center justify-content-between">
+        <div class="account-filter-panel-header-title">{{ 'filters-header' | translate }}</div>
+        <polaris-href (click)="clearAllFilters()">{{ 'clear-all' | translate }}</polaris-href>
+      </div>
+
+      <!-- Filter Panel Common Class Codes Checkbox -->
+      <div class="account-filter-panel-common-class-codes">
+        <polaris-checkbox
+          ui-label="{{ 'filters.select-common-class-codes' |  translate }}"
+          ui-orientation="vertical"
+          [ui-form-control]="commonClassCodeControl"
+          (checkboxUpdated)="commonClassCodeChange($event)">
+        </polaris-checkbox>
+      </div>
+
+      <!-- Filters -->
+      <as-filter-expansion-panel
+        filterTitle="{{ 'filters.partners' | translate }}"
+        [filterOptions]="partnerFilter!"
+        [filterGroup]="filtersForm">
+      </as-filter-expansion-panel>
+
+      <as-filter-expansion-panel
+        filterTitle="{{ 'filters.products' | translate }}"
+        [filterOptions]="productFamilyFilter!"
+        [filterGroup]="productsForm"
+        [optionsNested]="true">
+      </as-filter-expansion-panel>
+
+      <as-filter-expansion-panel
+        [filterPanelExpanded]="useCommonClassCodes"
+        filterTitle="{{ 'filters.classes' | translate }}"
+        [filterOptions]="classFilter!"
+        [filterGroup]="filtersForm">
+      </as-filter-expansion-panel>
+
+      <as-filter-expansion-panel
+        filterTitle="{{ 'filters.countries' | translate }}"
+        searchBarPlaceholder="{{ 'placeholders.countries' | translate }}"
+        [filterOptions]="countryFilter!"
+        [filterGroup]="filtersForm"
+        [dataFormat]="ExpansionPanelDataFormat.SearchBar">
+      </as-filter-expansion-panel>
+
+      <as-filter-expansion-panel
+        filterTitle="{{ 'filters.states' | translate }}"
+        searchBarPlaceholder="{{ 'placeholders.states' | translate }}"
+        [filterOptions]="stateFilter!"
+        [filterGroup]="filtersForm"
+        [dataFormat]="ExpansionPanelDataFormat.SearchBar">
+      </as-filter-expansion-panel>
+
+      <as-filter-expansion-panel
+        filterTitle="{{ 'filters.statuses' | translate }}"
+        [filterOptions]="statusFilter!"
+        [filterGroup]="filtersForm">
+      </as-filter-expansion-panel>
+
+      <!-- Filter Panel Footer -->
+      <div class="account-filter-panel-footer d-flex justify-content-end">
+        <polaris-button ui-test-id="apply-button" (onClick)="applyFilter()">{{ 'apply-filter' | translate }}</polaris-button>
+      </div>
+
+    </div>
+  </form>
+</div>
