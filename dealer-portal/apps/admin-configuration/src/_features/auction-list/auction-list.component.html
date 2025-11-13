@@ -1,0 +1,12 @@
+<div *ngFor="let auction of auctions">
+  <ac-auction-card
+    [title]="auction.title"
+    [location]="auction.location"
+    [startInfo]="auction.startInfo"
+    [status]="auction.status">
+  </ac-auction-card>
+</div>
+
+<div>
+
+

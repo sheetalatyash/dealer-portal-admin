@@ -1,0 +1,128 @@
+{
+   "name": "admin-configuration",
+   "$schema": "../../node_modules/nx/schemas/project-schema.json",
+   "projectType": "application",
+   "prefix": "ac",
+   "sourceRoot": "apps/admin-configuration/src",
+   "tags": ["app", "ui"],
+   "targets": {
+     "build": {
+       "executor": "@angular-devkit/build-angular:application",
+       "outputs": ["{options.outputPath}"],
+       "options": {
+         "outputPath": "dist/apps/admin-configuration",
+         "index": "apps/admin-configuration/src/index.html",
+         "browser": "apps/admin-configuration/src/main.ts",
+         "polyfills": ["zone.js"],
+         "tsConfig": "apps/admin-configuration/tsconfig.app.json",
+         "inlineStyleLanguage": "scss",
+         "assets": [
+           {
+             "glob": "**/*",
+             "input": "apps/admin-configuration/public"
+           },
+           {
+             "glob": "**/*",
+             "input": "dist/packages/dealer-portal-theme",
+             "output": "."
+           },
+           {
+            "glob": "**/*",
+            "input": "apps/admin-configuration/src/assets",
+            "output": "."
+           }
+         ],
+         "styles": ["apps/admin-configuration/src/styles.scss"],
+         "scripts": [],
+         "allowedCommonJsDependencies": [
+           "ua-parser-js",
+           "reflect-metadata"
+         ],
+         "budgets": [
+             {
+               "type": "initial",
+               "maximumWarning": "5mb",
+               "maximumError": "10mb"
+             },
+             {
+               "type": "anyComponentStyle",
+               "maximumWarning": "5kb",
+               "maximumError": "150kb"
+             }
+           ]
+       },
+       "configurations": {
+         "production": {
+           "fileReplacements": [
+             {
+               "replace": "apps/admin-configuration/src/_environments/environment.ts",
+               "with": "apps/admin-configuration/src/_environments/environment.production.ts"
+             }
+           ]
+         },
+         "staging": {
+           "fileReplacements": [
+             {
+               "replace": "apps/admin-configuration/src/_environments/environment.ts",
+               "with": "apps/admin-configuration/src/_environments/environment.staging.ts"
+             }
+           ]
+         },
+         "development": {
+           "fileReplacements": [
+             {
+               "replace": "apps/admin-configuration/src/_environments/environment.ts",
+               "with": "apps/admin-configuration/src/_environments/environment.development.ts"
+             }
+           ]
+         },
+         "local": {
+           "optimization": false,
+           "extractLicenses": false,
+           "sourceMap": true,
+           "fileReplacements": [
+             {
+               "replace": "apps/admin-configuration/src/_environments/environment.ts",
+               "with": "apps/admin-configuration/src/_environments/environment.local.ts"
+             }
+           ]
+         }
+       },
+       "defaultConfiguration": "production"
+     },
+     "serve": {
+       "executor": "@angular-devkit/build-angular:dev-server",
+       "configurations": {
+         "production": {
+           "buildTarget": "admin-configuration:build:production"
+         },
+         "staging": {
+           "buildTarget": "admin-configuration:build:staging"
+         },
+         "development": {
+           "buildTarget": "admin-configuration:build:development"
+         },
+         "local": {
+           "buildTarget": "admin-configuration:build:local"
+         }
+       },
+       "defaultConfiguration": "local"
+     },
+     "extract-i18n": {
+       "executor": "@angular-devkit/build-angular:extract-i18n",
+       "options": {
+         "buildTarget": "admin-configuration:build"
+       }
+     },
+     "lint": {
+       "executor": "@nx/eslint:lint"
+     },
+     "test": {
+       "executor": "@nx/jest:jest",
+       "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
+       "options": {
+         "jestConfig": "apps/admin-configuration/jest.config.ts"
+       }
+     }
+   }
+ }

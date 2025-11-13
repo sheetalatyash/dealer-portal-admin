@@ -1,0 +1,52 @@
+:host {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.auction-card {
+  margin-bottom: 12px;
+  height: 120px;
+  width: 500px;
+}
+
+.auction-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding:10px
+}
+
+.auction-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.auction-title {
+  color: var(--polaris-blue);
+  text-decoration: underline;
+  font-weight: bold;
+  font-size: 16px;
+}
+
+.auction-subtitle,
+.auction-start {
+  font-size: 14px;
+  color: var(--polaris-gray-500);
+  margin-top: 4px;
+}
+
+.auction-actions {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+.status-badge {
+  margin-top: 8px;
+  background-color: var(--polaris-gray-200);
+  padding: 1px 8px;
+  border-radius: 20px;
+  font-size: var(--polaris-font-size-sm);
+  font-weight: var(--polaris-font-weight-500);
+}

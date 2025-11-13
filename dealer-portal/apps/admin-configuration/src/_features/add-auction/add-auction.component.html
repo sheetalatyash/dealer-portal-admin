@@ -1,0 +1,144 @@
+<form [formGroup]="auctionForm" class="auction-form" (ngSubmit)="submitForm()">
+  <div class="row g-3">
+    <!-- Left Panel -->
+    <div class="col-md-6">
+      <div class="card p-3">
+        <h3 class="mb-3">Edit Details</h3>
+
+        <!-- Nickname -->
+        <div class="mb-3">
+          <label class="form-label fw-semibold">Nickname</label>
+          <polaris-input
+            [ui-label]="'Nickname'"
+            ui-form-control-name="nickname"
+            ui-test-id="add-auction-nickname-input"
+            [ui-show-label]="false"
+            class="form-control">
+          </polaris-input>
+        </div>
+
+        <!-- Number of Lanes -->
+        <div class="mb-3">
+          <label class="form-label fw-semibold">Specify Number of Lanes</label>
+          <polaris-input
+            [ui-label]="'Number of Lanes'"
+            ui-form-control-name="numberOfLanes"
+            ui-test-id="add-auction-numberOfLanes-input"
+            ui-type="number"
+            ui-minlength="1"
+            [ui-show-label]="false"
+            class="form-control">
+          </polaris-input>
+        </div>
+
+        <!-- Lane Stagger -->
+        <div class="mb-3">
+          <label class="form-label fw-semibold">Specify Lane Stagger Amount (optional)</label>
+          <polaris-input
+            [ui-label]="'Lane Stagger Amount'"
+            ui-form-control-name="laneStagger"
+            ui-test-id="add-auction-laneStagger-input"
+            ui-type="number"
+            [ui-show-label]="false"
+            class="form-control">
+          </polaris-input>
+        </div>
+
+        <!-- Country Toggle -->
+        <div class="mb-3">
+          <label class="form-label fw-semibold">Country:</label>
+          <div class="d-flex gap-2">
+            <polaris-button
+              ui-theme="secondary"
+              type="button"
+              [class.active]="auctionForm.get('country')?.value === 'US'"
+              (click)="auctionForm.get('country')?.setValue('US')">
+              US
+            </polaris-button>
+            <polaris-button
+              ui-theme="secondary"
+              type="button"
+              [class.active]="auctionForm.get('country')?.value === 'CAN'"
+              (click)="auctionForm.get('country')?.setValue('CAN')">
+              CAN
+            </polaris-button>
+          </div>
+        </div>
+
+        <!-- Listing Defaults -->
+        <div class="mt-4">
+          <h4 class="fw-bold mb-3">LISTING DEFAULTS</h4>
+
+          <div class="mb-3">
+            <label class="form-label fw-semibold">Minimum Bid Increment</label>
+            <polaris-input
+              [ui-label]="'Bid Increment'"
+              ui-form-control-name="bidIncrement"
+              ui-test-id="add-auction-bidIncrement-input"
+              ui-type="number"
+              [ui-show-label]="false"
+              class="form-control">
+            </polaris-input>
+          </div>
+
+          <div class="mb-3">
+            <label class="form-label fw-semibold">Duration (minutes)</label>
+            <polaris-input
+              [ui-label]="'Duration (minutes)'"
+              ui-form-control-name="duration"
+              ui-test-id="add-auction-duration-input"
+              ui-type="number"
+              [ui-show-label]="false"
+              class="form-control">
+            </polaris-input>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Right Panel -->
+    <div class="col-md-6">
+      <div class="card p-3">
+        <h3 class="mb-3">Schedule</h3>
+
+        <!-- Auction Date -->
+        <div class="mb-3">
+          <label class="form-label fw-semibold">Day of Auction</label>
+          <polaris-date-picker
+            ui-test-id="auction-date-input"
+            ui-placeholder="MM/DD/YYYY"
+            ui-form-control-name="auctionDate"
+            class="form-control">
+          </polaris-date-picker>
+        </div>
+
+        <!-- Time Zone -->
+<div class="mb-3">
+  <label class="form-label fw-semibold">Timezone the auction will run in</label>
+  <div class="timezone-grid">
+    <polaris-radio-group
+      ui-form-control-name="timeZone"
+      ui-test-id="add-auction-timeZone-input"
+      [options]="timezoneOptions">
+    </polaris-radio-group>
+  </div>
+</div>
+        <div class="mb-3">
+          <label class="form-label fw-semibold">Start Time</label>
+          <input type="time" formControlName="startTime" class="form-control" />
+        </div>
+
+        <!-- End Time -->
+        <div class="mb-3">
+          <label class="form-label fw-semibold">End Time</label>
+          <input type="time" formControlName="endTime" class="form-control" />
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Submit Button -->
+  <div class="mt-3 text-end">
+    <polaris-button ui-theme="primary" type="submit">Submit</polaris-button>
+  </div>
+</form>

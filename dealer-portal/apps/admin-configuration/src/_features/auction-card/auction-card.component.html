@@ -1,0 +1,15 @@
+<div class="d-flex justify-content-center align-items-center">
+  <mat-card appearance="outlined" class="auction-card">
+    <div class="auction-content">
+      <div class="auction-info">
+        <mat-card-title class="auction-title">{{ title }}</mat-card-title>
+        <mat-card-subtitle class="auction-subtitle">{{ location }}</mat-card-subtitle>
+        <p class="auction-start">{{ startInfo }}</p>
+      </div>
+      <div class="auction-actions">
+        <polaris-button ui-test-id="apply-button">View auction</polaris-button>
+        <span class="status-badge">{{ status }}</span>
+      </div>
+    </div>
+  </mat-card>
+</div>
