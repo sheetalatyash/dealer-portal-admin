@@ -10,7 +10,7 @@ import {
   PolarisCheckbox,
 } from '@dealer-portal/polaris-ui';
 import { TranslatePipe } from '@ngx-translate/core';
-
+import { rawAuctionRules, periodRawOptions, laneRawOptions, timezoneRawOptions } from '../../_constants';
 @Component({
   selector: 'ac-add-auction',
   imports: [
@@ -38,28 +38,6 @@ export class AddAuctionComponent {
   public laneOptions: PolarisGroupOption<number>[] = [];
   public auctionRulesOptions: PolarisGroupOption<string>[] = [];
   public selectedCountries: string[] = [];
-
-  private timezoneRawOptions = [
-    { offset: 480, label: 'Alaska Time' },
-    { offset: 420, label: 'Pacific Time' },
-    { offset: 360, label: 'Mountain Time' },
-    { offset: 300, label: 'Central Standard Time' },
-    { offset: 240, label: 'Eastern Time' },
-    { offset: 180, label: 'Atlantic Time' },
-    { offset: 150, label: 'Newfoundland Time' },
-  ];
-  private rawAuctionRules = [
-    { value: 'standard', label: 'Standard Auction (DC/PL/US)' },
-    { value: 'openPL', label: 'Open Auction with PL (PL/US)' },
-    { value: 'openFull', label: 'Open Auction Full (US)' },
-    { value: 'custom', label: 'Custom' },
-  ];
-
-  private periodRawOptions = [
-    { value: 'AM', label: 'AM' },
-    { value: 'PM', label: 'PM' },
-  ];
-  private laneRawOptions = Array.from({ length: 50 }, (_, i) => i + 1);
 
   public ngOnInit(): void {
     this._getHourOptions();
@@ -132,7 +110,7 @@ export class AddAuctionComponent {
   }
 
   private _getTimezoneOptions(): void {
-    this.timezoneOptions = this.timezoneRawOptions.map(
+    this.timezoneOptions = timezoneRawOptions.map(
       (timezone) =>
         new PolarisGroupOption<number>({
           value: timezone.offset,
@@ -141,7 +119,7 @@ export class AddAuctionComponent {
     );
   }
   private _getAuctionRulesOptions(): void {
-    this.auctionRulesOptions = this.rawAuctionRules.map(
+    this.auctionRulesOptions = rawAuctionRules.map(
       (rule) =>
         new PolarisGroupOption<string>({
           value: rule.value,
@@ -151,7 +129,7 @@ export class AddAuctionComponent {
   }
 
   private _getPeriodOptions(): void {
-    this.periodOptions = this.periodRawOptions.map(
+    this.periodOptions = periodRawOptions.map(
       (period) =>
         new PolarisGroupOption<string>({
           value: period.value,
@@ -178,7 +156,7 @@ export class AddAuctionComponent {
     );
   }
   private _getLaneOptions(): void {
-    this.laneOptions = this.laneRawOptions.map(
+    this.laneOptions = laneRawOptions.map(
       (lane) =>
         new PolarisGroupOption<number>({
           value: lane,
