@@ -1,5 +1,28 @@
 {
-  "welcome": "Welcome to the app!",
-  "language": "English",
-  "version": "1.0.0"
+  "auctionList": {
+    "title": "You are creating a new auction.",
+    "add-new-auction": "Add new auction",
+    "cancel": "Cancel",
+    "create-auction": "Create auction",
+    "new-auction": "New Auction",
+    "edit-details": "Edit Details",
+    "name": "Auction Name",
+    "specify-number-of-lanes": "Specify Number of Lanes",
+    "specify-lane-stagger-amount": "Specify Lane Stagger amount ",
+    "apply-rules": "Apply auction rules",
+    "dc": "DC",
+    "pl": "PL",
+    "country": "Country",
+    "us": "US",
+    "can": "CAN",
+    "listing-defaults": "Listing Defaults",
+    "min-bid-increment": "Min Bid Increment",
+    "duration": "Duration",
+    "schedule": "Schedule",
+    "auction-day": "Day of auction",
+    "start-time": "Start time (Central time)",
+    "end-time": "End time ",
+    "edit": "edit",
+    "buy-now": "Buy Now"
+  }
 }

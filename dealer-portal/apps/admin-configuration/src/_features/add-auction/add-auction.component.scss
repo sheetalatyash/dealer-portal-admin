@@ -1,62 +1,69 @@
-.timezone-grid {
-  width: 100%;
+:host {
+  background-color: #f8f9fa;
+}
 
-  ::ng-deep {
-    // Grid layout
-    mat-radio-group {
-      display: grid !important;
-      grid-template-columns: repeat(2, 1fr) !important;
-      gap: 1rem !important;
-          width: 100% !important;
+.auction-form {
+  .card {
+    background-color: var(--polaris-gray-100);
+    border: 1px solid #dee2e6;
+  }
+}
+.container-fluid {
+  background-color: #e3eff9;
+}
 
-    }
+.lanes-selection-wrap {
+  & ::ng-deep .mat-mdc-select-value {
+    width: 25px !important;
+  }
 
-    // Full width & left align
-    mat-radio-button,
-    .mat-mdc-radio-button {
-      width: 100% !important;
-      margin: 0 !important;
-    }
-
-    .d-flex.justify-content-center {
-      justify-content: flex-start !important;
-    }
-
-    // Box styling
-    .mdc-form-field {
-      width: 100% !important;
-      padding: 0.875rem 1rem !important;
-      border: 2px solid #d1d5db !important;
-      background: #fff !important;
-      min-height: 50px !important;
-      margin: 0 !important;
-      transition: all 0.2s !important;
-    }
-
-    // Hover & checked states
-    .mat-mdc-radio-button:hover .mdc-form-field {
-      border-color: #3b82f6 !important;
-      background: #f8fafc !important;
-    }
-
-    .mat-mdc-radio-checked .mdc-form-field {
-      border-color: #2563eb !important;
-      background: #dbeafe !important;
-      color: #1e40af !important;
-      font-weight: 700 !important;
-    }
-
-    // Hide input
-    input[type="radio"] {
-      position: absolute !important;
-      opacity: 0 !important;
-    }
+  polaris-select {
+    display: block;
+    width: 65px;
   }
 }
 
-// Responsive
+::ng-deep.primary-country-btn {
+  background-color: var(--polaris-primary) !important;
+  color: var(--polaris-gray-100) !important;
+  border-color: var(--polaris-primary) !important;
+}
+
+.auction-start-time {
+  ::ng-deep .mat-mdc-form-field-infix {
+    min-width: auto !important;
+  }
+}
+
+// --------------- Responsive Styles ---------------
+
+@media (max-width: 480px) {
+  .apply-auction-rules-wrap {
+    flex-direction: column;
+    align-items: flex-start;
+    text-align: left;
+  }
+  .apply-auction-rules-wrap label {
+    text-align: left;
+    width: 100%;
+  }
+  .auction-select {
+    width: 100%;
+    padding-left: 0;
+  }
+  polaris-select {
+    width: 100%;
+  }
+}
 @media (max-width: 768px) {
-  .timezone-grid ::ng-deep mat-radio-group {
-    grid-template-columns: 1fr !important;
+  .lanes-selection-wrap {
+    ::ng-deep .mat-mdc-form-field-infix {
+      min-width: auto !important;
+    }
+  }
+}
+@media only screen and (min-width: 768px) and (max-width: 915px) {
+  .apply-auction-rules-wrap {
+    display: block !important;
   }
 }

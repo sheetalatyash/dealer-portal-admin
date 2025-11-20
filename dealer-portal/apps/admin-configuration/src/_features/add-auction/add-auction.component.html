@@ -1,144 +1,259 @@
-<form [formGroup]="auctionForm" class="auction-form" (ngSubmit)="submitForm()">
-  <div class="row g-3">
-    <!-- Left Panel -->
-    <div class="col-md-6">
-      <div class="card p-3">
-        <h3 class="mb-3">Edit Details</h3>
-
-        <!-- Nickname -->
-        <div class="mb-3">
-          <label class="form-label fw-semibold">Nickname</label>
-          <polaris-input
-            [ui-label]="'Nickname'"
-            ui-form-control-name="nickname"
-            ui-test-id="add-auction-nickname-input"
-            [ui-show-label]="false"
-            class="form-control">
-          </polaris-input>
-        </div>
-
-        <!-- Number of Lanes -->
-        <div class="mb-3">
-          <label class="form-label fw-semibold">Specify Number of Lanes</label>
-          <polaris-input
-            [ui-label]="'Number of Lanes'"
-            ui-form-control-name="numberOfLanes"
-            ui-test-id="add-auction-numberOfLanes-input"
-            ui-type="number"
-            ui-minlength="1"
-            [ui-show-label]="false"
-            class="form-control">
-          </polaris-input>
-        </div>
-
-        <!-- Lane Stagger -->
-        <div class="mb-3">
-          <label class="form-label fw-semibold">Specify Lane Stagger Amount (optional)</label>
-          <polaris-input
-            [ui-label]="'Lane Stagger Amount'"
-            ui-form-control-name="laneStagger"
-            ui-test-id="add-auction-laneStagger-input"
-            ui-type="number"
-            [ui-show-label]="false"
-            class="form-control">
-          </polaris-input>
-        </div>
-
-        <!-- Country Toggle -->
-        <div class="mb-3">
-          <label class="form-label fw-semibold">Country:</label>
-          <div class="d-flex gap-2">
-            <polaris-button
-              ui-theme="secondary"
-              type="button"
-              [class.active]="auctionForm.get('country')?.value === 'US'"
-              (click)="auctionForm.get('country')?.setValue('US')">
-              US
-            </polaris-button>
-            <polaris-button
-              ui-theme="secondary"
-              type="button"
-              [class.active]="auctionForm.get('country')?.value === 'CAN'"
-              (click)="auctionForm.get('country')?.setValue('CAN')">
-              CAN
-            </polaris-button>
+<div class="d-block min-vh-100 p-3">
+  <form [formGroup]="auctionForm" class="auction-form" (ngSubmit)="submitForm()">
+    <div class="container-fluid p-0 m-0 position-absolute top-0 start-0 end-0">
+      <div class="alert alert-info d-flex align-items-center justify-content-between border px-3 py-2 m-0">
+        <div class="d-flex align-items-center gap-2">
+          <div class="border border-2 border-danger rounded-circle p-2">
+            <polaris-icon color="danger" size="xl">{{ 'auctionList.edit' | translate }}</polaris-icon>
           </div>
+          <p class="mb-0 small">{{ 'auctionList.title' | translate }}</p>
         </div>
 
-        <!-- Listing Defaults -->
-        <div class="mt-4">
-          <h4 class="fw-bold mb-3">LISTING DEFAULTS</h4>
-
-          <div class="mb-3">
-            <label class="form-label fw-semibold">Minimum Bid Increment</label>
-            <polaris-input
-              [ui-label]="'Bid Increment'"
-              ui-form-control-name="bidIncrement"
-              ui-test-id="add-auction-bidIncrement-input"
-              ui-type="number"
-              [ui-show-label]="false"
-              class="form-control">
-            </polaris-input>
-          </div>
-
-          <div class="mb-3">
-            <label class="form-label fw-semibold">Duration (minutes)</label>
-            <polaris-input
-              [ui-label]="'Duration (minutes)'"
-              ui-form-control-name="duration"
-              ui-test-id="add-auction-duration-input"
-              ui-type="number"
-              [ui-show-label]="false"
-              class="form-control">
-            </polaris-input>
-          </div>
+        <div class="d-flex align-items-center gap-3">
+          <polaris-button ui-theme="tertiary" [compact]="true" type="button">{{
+            'auctionList.cancel' | translate
+          }}</polaris-button>
+          <polaris-button ui-theme="primary" [compact]="true" type="submit">{{
+            'auctionList.add-new-auction' | translate
+          }}</polaris-button>
         </div>
       </div>
     </div>
 
-    <!-- Right Panel -->
-    <div class="col-md-6">
-      <div class="card p-3">
-        <h3 class="mb-3">Schedule</h3>
+    <div class="mb-5 mt-5">
+      <h3>{{ 'auctionList.new-auction' | translate }}</h3>
+    </div>
 
-        <!-- Auction Date -->
-        <div class="mb-3">
-          <label class="form-label fw-semibold">Day of Auction</label>
-          <polaris-date-picker
-            ui-test-id="auction-date-input"
-            ui-placeholder="MM/DD/YYYY"
-            ui-form-control-name="auctionDate"
-            class="form-control">
-          </polaris-date-picker>
+    <div class="row g-3">
+      <div class="col-md-6">
+        <div class="card p-3">
+          <div class="card-body">
+            <h5 class="card-title mb-4">{{ 'auctionList.edit-details' | translate }}</h5>
+            <polaris-divider ui-class="col-auto mb-3"></polaris-divider>
+
+            <div class="mb-3">
+              <label class="form-label">{{ 'auctionList.name' | translate }}</label>
+              <polaris-input
+                [ui-label]="'Nickname'"
+                ui-form-control-name="nickname"
+                ui-test-id="add-auction-nickname-input"
+                [ui-show-label]="false"
+              >
+              </polaris-input>
+            </div>
+
+            <div class="row lanes-selection-wrap mb-3">
+              <div class="col-lg-6 d-flex flex-wrap pr-0">
+                <div class="d-flex align-items-center">
+                  <label class="form-label pe-1">{{ 'auctionList.specify-number-of-lanes' | translate }}</label>
+                  <polaris-select
+                    ui-form-control-name="numberOfLanes"
+                    [ui-show-label]="false"
+                    ui-test-id="add-auction-numberOfLanes-select"
+                    [options]="laneOptions"
+                  ></polaris-select>
+                </div>
+              </div>
+              <div class="col-lg-6 d-flex flex-wrap pl-1 pt-3 pt-lg-0 mb-3">
+                <div class="d-flex align-items-center">
+                  <label class="form-label pe-1">{{ 'auctionList.specify-lane-stagger-amount' | translate }}</label>
+                  <polaris-select
+                    [ui-label]="'Lane Stagger'"
+                    ui-form-control-name="laneStagger"
+                    ui-test-id="add-auction-laneStagger-input"
+                    ui-type="number"
+                    [ui-show-label]="false"
+                    [options]="laneOptions"
+                  ></polaris-select>
+                </div>
+              </div>
+            </div>
+
+            <div class="d-flex align-items-center gap-2 mb-3 apply-auction-rules-wrap">
+              <label class="form-label mb-0 text-nowrap">{{ 'auctionList.apply-rules' | translate }}</label>
+              <div class="pl-1 auction-select">
+                <polaris-select
+                  ui-form-control-name="auctionRules"
+                  ui-test-id="add-auction-auctionRules-select"
+                  [ui-show-label]="false"
+                  [options]="auctionRulesOptions"
+                ></polaris-select>
+              </div>
+            </div>
+
+            <div *ngIf="isCustomRule" formGroupName="customOptions">
+              <div class="row align-items-center mb-2">
+                <div class="col-2">
+                  <label>{{ 'auctionList.dc' | translate }}</label>
+                </div>
+                <div class="col-8">
+                  <polaris-checkbox [ui-form-control]="dcControl" [ui-show-label]="false"></polaris-checkbox>
+                </div>
+              </div>
+              <div class="row align-items-center mb-2">
+                <div class="col-2">
+                  <label>{{ 'auctionList.pl' | translate }}</label>
+                </div>
+                <div class="col-8">
+                  <polaris-checkbox [ui-form-control]="plControl" [ui-show-label]="false"></polaris-checkbox>
+                </div>
+              </div>
+              <div class="row align-items-center mb-2">
+                <div class="col-2">
+                  <label>{{ 'auctionList.country' | translate }}</label>
+                </div>
+
+                <div class="col-8">
+                  <polaris-button
+                    [compact]="true"
+                    type="button"
+                    ui-theme="secondary"
+                    (click)="toggleCountryCode('US')"
+                    [ui-class]="selectedCountries.includes('US') ? 'primary-country-btn' : ''"
+                    class="me-2"
+                  >
+                    {{ 'auctionList.us' | translate }}
+                  </polaris-button>
+
+                  <polaris-button
+                    [compact]="true"
+                    type="button"
+                    ui-theme="secondary"
+                    [ui-class]="selectedCountries.includes('CA') ? 'primary-country-btn' : ''"
+                    (click)="toggleCountryCode('CA')"
+                  >
+                    {{ 'auctionList.can' | translate }}
+                  </polaris-button>
+                </div>
+              </div>
+            </div>
+
+            <div class="row align-items-center mb-2">
+              <div class="d-flex">
+                <label>{{ 'auctionList.buy-now' | translate }}</label>
+                <polaris-checkbox [ui-form-control]="buyNowControl" [ui-show-label]="false"></polaris-checkbox>
+              </div>
+            </div>
+
+            <div class="mt-4">
+              <h6 class="fw-bold text-uppercase mb-3">{{ 'auctionList.listing-defaults' | translate }}</h6>
+
+              <div class="mb-3">
+                <label class="form-label">{{ 'auctionList.min-bid-increment' | translate }}</label>
+                <polaris-input
+                  [ui-label]="'Bid Increment'"
+                  ui-form-control-name="bidIncrement"
+                  ui-test-id="add-auction-bidIncrement-input"
+                  ui-type="number"
+                  [ui-show-label]="false"
+                >
+                </polaris-input>
+              </div>
+
+              <div class="mb-3">
+                <label class="form-label">{{ 'auctionList.duration' | translate }}</label>
+                <polaris-input
+                  [ui-label]="'Duration'"
+                  ui-form-control-name="duration"
+                  ui-test-id="add-auction-duration-input"
+                  ui-type="number"
+                  [ui-show-label]="false"
+                >
+                </polaris-input>
+              </div>
+            </div>
+          </div>
         </div>
+      </div>
 
-        <!-- Time Zone -->
-<div class="mb-3">
-  <label class="form-label fw-semibold">Timezone the auction will run in</label>
-  <div class="timezone-grid">
-    <polaris-radio-group
-      ui-form-control-name="timeZone"
-      ui-test-id="add-auction-timeZone-input"
-      [options]="timezoneOptions">
-    </polaris-radio-group>
-  </div>
+      <div class="col-md-6">
+        <div class="card">
+          <div class="card-body p-3">
+            <h5 class="card-title mb-4">{{ 'auctionList.schedule' | translate }}</h5>
+            <polaris-divider ui-class="col-auto mb-3"></polaris-divider>
+
+            <div class="mb-3">
+              <label class="form-label">{{ 'auctionList.auction-day' | translate }}</label>
+              <polaris-date-picker
+                ui-test-id="auction-date-input"
+                ui-placeholder="MM/DD/YYYY"
+                ui-form-control-name="auctionDate"
+              >
+              </polaris-date-picker>
+            </div>
+
+            <div class="mb-3 time-select-wrapper">
+              <label class="form-label">{{ 'auctionList.start-time' | translate }}</label>
+              <div class="row auction-start-time mx-0">
+                <div class="col-12 col-sm-4 ps-0 pe-2 mb-2 mb-sm-0 d-flex">
+                  <div class="select-container w-100">
+                    <polaris-select
+                      [options]="hourOptions"
+                      [ui-show-label]="false"
+                      ui-placeholder="Hour"
+                    ></polaris-select>
+                  </div>
+                </div>
+                <div class="col-12 col-sm-4 ps-0 pe-2 mb-2 mb-sm-0 d-flex">
+                  <div class="select-container w-100">
+                    <polaris-select
+                      ui-form-control-name="startMinute"
+                      [options]="minuteOptions"
+                      [ui-show-label]="false"
+                      ui-placeholder="Minute"
+                    ></polaris-select>
+                  </div>
+                </div>
+                <div class="col-12 col-sm-4 ps-0 pe-0 d-flex">
+                  <div class="select-container w-100">
+                    <polaris-select
+                      [ui-label]="'startPeriod'"
+                      ui-form-control-name="startPeriod"
+                      ui-test-id="auction-start-period-select"
+                      [ui-show-label]="false"
+                      [options]="periodOptions"
+                    ></polaris-select>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="mb-3 d-none">
+              <label class="form-label">{{ 'auctionList.end-time' | translate }}</label>
+              <div class="row g-2">
+                <div class="col-4">
+                  <polaris-select
+                    ui-form-control-name="endHour"
+                    [options]="hourOptions"
+                    [ui-show-label]="false"
+                    ui-placeholder="Hour"
+                  >
+                  </polaris-select>
+                </div>
+                <div class="col-4">
+                  <polaris-select
+                    ui-form-control-name="endMinute"
+                    [options]="minuteOptions"
+                    [ui-show-label]="false"
+                    ui-placeholder="Minute"
+                  >
+                  </polaris-select>
+                </div>
+                <div class="col-4">
+                  <polaris-select
+                    [ui-label]="'endPeriod'"
+                    ui-form-control-name="endPeriod"
+                    dropdownWidth="auto"
+                    ui-test-id="auction-end-period-select"
+                    [ui-show-label]="false"
+                    [options]="periodOptions"
+                  ></polaris-select>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </form>
 </div>
-        <div class="mb-3">
-          <label class="form-label fw-semibold">Start Time</label>
-          <input type="time" formControlName="startTime" class="form-control" />
-        </div>
-
-        <!-- End Time -->
-        <div class="mb-3">
-          <label class="form-label fw-semibold">End Time</label>
-          <input type="time" formControlName="endTime" class="form-control" />
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- Submit Button -->
-  <div class="mt-3 text-end">
-    <polaris-button ui-theme="primary" type="submit">Submit</polaris-button>
-  </div>
-</form>
