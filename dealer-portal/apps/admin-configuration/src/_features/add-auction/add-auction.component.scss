@@ -1,34 +1,37 @@
-:host {
-  // background-color: var(--gray-light);
-}
-
 .create-auction-wrapper {
   background-color: var(--gray-light);
+
+  .auction-form .card {
+    background-color: var(--polaris-gray-100);
+    border: 1px solid var(--gray-border);
+  }
+
+  .container-fluid {
+    background-color: var(--blue-light);
+  }
+
+  .lanes-selection-wrap {
+    polaris-select {
+      width: 65px;
+    }
+  }
 }
 
-.auction-form .card {
-  background-color: var(--polaris-gray-100);
-  border: 1px solid var(--gray-border);
-}
-.container-fluid {
-  background-color: var(--blue-light);
-}
-
-.lanes-selection-wrap {
-  ::ng-deep .mat-mdc-select-value {
+::ng-deep {
+  .lanes-selection-wrap .mat-mdc-select-value {
     width: 25px !important;
   }
-  polaris-select {
-    width: 65px;
+
+  .primary-country-btn {
+    background-color: var(--polaris-primary) !important;
+    color: var(--polaris-gray-100) !important;
+    border-color: var(--polaris-primary) !important;
   }
-}
 
-::ng-deep .primary-country-btn {
-  background-color: var(--polaris-primary) !important;
-  color: var(--polaris-gray-100) !important;
-  border-color: var(--polaris-primary) !important;
-}
-
-.auction-start-time ::ng-deep .mat-mdc-form-field-infix {
-  min-width: auto !important;
+  .auction-start-time .mat-mdc-form-field-infix {
+    min-width: auto !important;
+  }
+  ::ng-deep.mat-mdc-form-field-error {
+    font-size: 12px !important;
+  }
 }

@@ -49,18 +49,15 @@ export class AddAuctionComponent {
 
   constructor(private fb: FormBuilder) {
     this.auctionForm = this.fb.group({
-      nickname: [''],
+      auctionName: ['', [Validators.required]],
       numberOfLanes: [1, [Validators.required, Validators.min(1)]],
       laneStagger: [1, [Validators.required, Validators.min(1)]],
       bidIncrement: [100],
       duration: [5, Validators.required],
-      auctionDate: [''],
-      startHour: ['8'],
-      startMinute: ['00'],
-      startPeriod: ['AM'],
-      endHour: ['1'],
-      endMinute: ['00'],
-      endPeriod: ['PM'],
+      auctionDate: ['', Validators.required],
+      startHour: ['8', Validators.required],
+      startMinute: ['00', Validators.required],
+      startPeriod: ['AM', Validators.required],
       auctionRules: ['standard', Validators.required],
       buyNow: [true],
       countries: [[]],
