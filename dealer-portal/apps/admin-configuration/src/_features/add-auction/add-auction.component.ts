@@ -37,7 +37,6 @@ export class AddAuctionComponent {
   public minuteOptions: PolarisGroupOption<string>[] = [];
   public laneOptions: PolarisGroupOption<number>[] = [];
   public auctionRulesOptions: PolarisGroupOption<string>[] = [];
-  public selectedCountries: string[] = [];
 
   public ngOnInit(): void {
     this._getHourOptions();
@@ -64,35 +63,32 @@ export class AddAuctionComponent {
       endPeriod: ['PM'],
       auctionRules: ['standard', Validators.required],
       buyNow: [true],
-      customOptions: this.fb.group({
-        dc: [false],
-        pl: [false],
-        countryCode: [false],
-      }),
+      countries: [[]],
+      dc: [false],
+      pl: [false],
     });
   }
 
   submitForm(): void {
     if (this.auctionForm.valid) {
-      console.log('Form Submitted:', this.auctionForm.value);
+      // TODO: Implement form submission logic here (e.g., send data to server)
     } else {
-      console.warn('Form is invalid');
+      // TODO: Handle invalid form (e.g., display validation errors to user)
     }
   }
   get isCustomRule(): boolean {
     return this.auctionForm.get('auctionRules')?.value === 'custom';
   }
+  get countriesControl(): FormControl {
+    return this.auctionForm.get('countries') as FormControl;
+  }
 
   get dcControl(): FormControl {
-    return this.auctionForm.get('customOptions.dc') as FormControl;
+    return this.auctionForm.get('dc') as FormControl;
   }
 
   get plControl(): FormControl {
-    return this.auctionForm.get('customOptions.pl') as FormControl;
-  }
-
-  get countryCodeControl(): FormControl {
-    return this.auctionForm.get('customOptions.countryCode') as FormControl;
+    return this.auctionForm.get('pl') as FormControl;
   }
 
   get buyNowControl(): FormControl {
@@ -165,12 +161,13 @@ export class AddAuctionComponent {
     );
   }
   toggleCountryCode(country: string): void {
-    const index = this.selectedCountries.indexOf(country);
+    const countries = this.auctionForm.get('countries')?.value || [];
+    const index = countries.indexOf(country);
     if (index === -1) {
-      this.selectedCountries.push(country);
+      countries.push(country);
     } else {
-      this.selectedCountries.splice(index, 1);
+      countries.splice(index, 1);
     }
-    this.countryCodeControl.setValue(this.selectedCountries);
+    this.auctionForm.get('countries')?.setValue([...countries]);
   }
 }

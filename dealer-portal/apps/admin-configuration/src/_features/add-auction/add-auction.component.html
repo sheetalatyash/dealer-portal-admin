@@ -1,4 +1,4 @@
-<div class="d-block min-vh-100 p-3">
+<div class="d-block min-vh-100 p-3 create-auction-wrapper">
   <form [formGroup]="auctionForm" class="auction-form" (ngSubmit)="submitForm()">
     <div class="container-fluid p-0 m-0 position-absolute top-0 start-0 end-0">
       <div class="alert alert-info d-flex align-items-center justify-content-between border px-3 py-2 m-0">
@@ -25,7 +25,7 @@
     </div>
 
     <div class="row g-3">
-      <div class="col-md-6">
+      <div class="col-12 col-md-6">
         <div class="card p-3">
           <div class="card-body">
             <h5 class="card-title mb-4">{{ 'auctionList.edit-details' | translate }}</h5>
@@ -38,12 +38,11 @@
                 ui-form-control-name="nickname"
                 ui-test-id="add-auction-nickname-input"
                 [ui-show-label]="false"
-              >
-              </polaris-input>
+              ></polaris-input>
             </div>
 
             <div class="row lanes-selection-wrap mb-3">
-              <div class="col-lg-6 d-flex flex-wrap pr-0">
+              <div class="col-12 col-lg-6 d-flex flex-wrap pr-0">
                 <div class="d-flex align-items-center">
                   <label class="form-label pe-1">{{ 'auctionList.specify-number-of-lanes' | translate }}</label>
                   <polaris-select
@@ -51,10 +50,11 @@
                     [ui-show-label]="false"
                     ui-test-id="add-auction-numberOfLanes-select"
                     [options]="laneOptions"
+                    [ui-class]="'d-block'"
                   ></polaris-select>
                 </div>
               </div>
-              <div class="col-lg-6 d-flex flex-wrap pl-1 pt-3 pt-lg-0 mb-3">
+              <div class="col-12 col-lg-6 d-flex flex-wrap pl-1 pt-3 pt-lg-0 mb-3">
                 <div class="d-flex align-items-center">
                   <label class="form-label pe-1">{{ 'auctionList.specify-lane-stagger-amount' | translate }}</label>
                   <polaris-select
@@ -64,24 +64,29 @@
                     ui-type="number"
                     [ui-show-label]="false"
                     [options]="laneOptions"
+                    [ui-class]="'d-block'"
                   ></polaris-select>
                 </div>
               </div>
             </div>
 
-            <div class="d-flex align-items-center gap-2 mb-3 apply-auction-rules-wrap">
-              <label class="form-label mb-0 text-nowrap">{{ 'auctionList.apply-rules' | translate }}</label>
-              <div class="pl-1 auction-select">
-                <polaris-select
-                  ui-form-control-name="auctionRules"
-                  ui-test-id="add-auction-auctionRules-select"
-                  [ui-show-label]="false"
-                  [options]="auctionRulesOptions"
-                ></polaris-select>
+            <div class="apply-auction-rules-wrap mb-3">
+              <div class="row align-items-center">
+                <div class="col-12 col-md-auto">
+                  <label class="form-label mb-0 text-nowrap">{{ 'auctionList.apply-rules' | translate }}</label>
+                </div>
+                <div class="col-12 col-md-auto">
+                  <polaris-select
+                    ui-form-control-name="auctionRules"
+                    ui-test-id="add-auction-auctionRules-select"
+                    [ui-show-label]="false"
+                    [options]="auctionRulesOptions"
+                  ></polaris-select>
+                </div>
               </div>
             </div>
 
-            <div *ngIf="isCustomRule" formGroupName="customOptions">
+            <div *ngIf="auctionForm.get('auctionRules')?.value === 'custom'">
               <div class="row align-items-center mb-2">
                 <div class="col-2">
                   <label>{{ 'auctionList.dc' | translate }}</label>
@@ -102,14 +107,13 @@
                 <div class="col-2">
                   <label>{{ 'auctionList.country' | translate }}</label>
                 </div>
-
                 <div class="col-8">
                   <polaris-button
                     [compact]="true"
                     type="button"
                     ui-theme="secondary"
                     (click)="toggleCountryCode('US')"
-                    [ui-class]="selectedCountries.includes('US') ? 'primary-country-btn' : ''"
+                    [ui-class]="auctionForm.get('countries')?.value.includes('US') ? 'primary-country-btn' : ''"
                     class="me-2"
                   >
                     {{ 'auctionList.us' | translate }}
@@ -119,8 +123,8 @@
                     [compact]="true"
                     type="button"
                     ui-theme="secondary"
-                    [ui-class]="selectedCountries.includes('CA') ? 'primary-country-btn' : ''"
                     (click)="toggleCountryCode('CA')"
+                    [ui-class]="auctionForm.get('countries')?.value.includes('CA') ? 'primary-country-btn' : ''"
                   >
                     {{ 'auctionList.can' | translate }}
                   </polaris-button>
@@ -166,7 +170,7 @@
         </div>
       </div>
 
-      <div class="col-md-6">
+      <div class="col-12 col-md-6">
         <div class="card">
           <div class="card-body p-3">
             <h5 class="card-title mb-4">{{ 'auctionList.schedule' | translate }}</h5>
