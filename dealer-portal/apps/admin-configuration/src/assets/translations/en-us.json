@@ -1,5 +1,5 @@
 {
-  "auctionList": {
+  "createAuction": {
     "title": "You are creating a new auction.",
     "add-new-auction": "Add new auction",
     "cancel": "Cancel",
