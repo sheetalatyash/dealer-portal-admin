@@ -116,7 +116,7 @@
                     [compact]="true"
                     type="button"
                     ui-theme="secondary"
-                    (click)="toggleCountryCode('US')"
+                    (click)="_toggleCountryCode('US')"
                     [ui-class]="auctionForm.get('countries')?.value.includes('US') ? 'primary-country-btn' : ''"
                     class="me-2"
                   >
@@ -127,7 +127,7 @@
                     [compact]="true"
                     type="button"
                     ui-theme="secondary"
-                    (click)="toggleCountryCode('CA')"
+                    (click)="_toggleCountryCode('CA')"
                     [ui-class]="auctionForm.get('countries')?.value.includes('CA') ? 'primary-country-btn' : ''"
                   >
                     {{ 'createAuction.can' | translate }}
