@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import {
   FormBuilder,
   FormGroup,
@@ -45,6 +45,10 @@ import { Router } from '@angular/router';
   // styleUrl: './create-auction.component.scss',
 })
 export class CreateAuctionComponent implements OnInit {
+  @Input() auctionData?: Record<string, unknown>;
+  isEditMode: boolean = false;
+  isReadOnly: boolean = false;
+
   auctionForm: FormGroup;
   public periodOptions: PolarisGroupOption<string>[] = [];
   public hourOptions: PolarisGroupOption<string>[] = [];
@@ -77,12 +81,26 @@ export class CreateAuctionComponent implements OnInit {
     this._getPeriodOptions();
     this._getLaneOptions();
     this._getAuctionRulesOptions();
+
+    if (this.auctionData) {
+      this._populateFormFromData(this.auctionData);
+      this.isReadOnly = true;
+      this.auctionForm.disable();
+    }
   }
 
   public submitForm(): void {
     if (this.auctionForm.valid) {
       const formValue = this.auctionForm.value;
-      this._buildPayload(formValue);
+      const payload = this._buildPayload(formValue);
+
+      // if (this.isEditMode) {
+      //   // Update logic
+      //   this._updateAuction(payload);
+      // } else {
+      //   // Create logic
+      //   this._createAuction(payload);
+      // }
     }
   }
 
@@ -141,15 +159,17 @@ export class CreateAuctionComponent implements OnInit {
   }
 
   private _convertTo24HourFormat(hour: string, minute: string, period: string): string {
-    const inputString = `2000-01-01 ${hour}:${minute}:00 ${period}`;
-    const dateObj = new Date(inputString);
+    let hours = parseInt(hour, 10);
 
-    return new Intl.DateTimeFormat('en-GB', {
-      hour: '2-digit',
-      minute: '2-digit',
-      second: '2-digit',
-      hour12: false, // ensures 24-hour format
-    }).format(dateObj);
+    // Convert to 24-hour format
+    if (period === 'PM' && hours !== 12) {
+      hours += 12;
+    } else if (period === 'AM' && hours === 12) {
+      hours = 0;
+    }
+
+    // Format as HH:MM:SS
+    return `${hours.toString().padStart(2, '0')}:${minute.padStart(2, '0')}:00`;
   }
 
   public get isCustomRule(): boolean {
@@ -219,6 +239,8 @@ export class CreateAuctionComponent implements OnInit {
     );
   }
   public _toggleCountryCode(country: string): void {
+    if (this.isReadOnly) return;
+
     const countries: string[] = this.auctionForm.get('countries')?.value || [];
     const index = countries.indexOf(country);
 
@@ -232,7 +254,7 @@ export class CreateAuctionComponent implements OnInit {
   }
 
   public _navigateToCreateLane() {
-    this._router.navigate(['/create-lane']);
+    // this._router.navigate(['/create-lane']);
   }
   private _dateTodayOrFutureValidator(): ValidatorFn {
     return (control: AbstractControl): ValidationErrors | null => {
@@ -246,4 +268,97 @@ export class CreateAuctionComponent implements OnInit {
       return selectedTimestamp < todayTimestamp ? { dateBeforeToday: true } : null;
     };
   }
+  private _populateFormFromData(data: Record<string, any>): void {
+    const timeComponents = this._parse24HourTime(data['startTime'] || '08:00:00');
+
+    const isCustomRule = !!data['customFilterSet'];
+    const auctionRulesValue = isCustomRule ? 4 : data['preconfiguredFilterSet'] ?? 1;
+
+    const countries = this._parseCountries(data);
+    const dcValue = data['customFilterSet']?.['UseStandardDealerDistributionCenterRules'] ?? false;
+    const plValue = data['customFilterSet']?.['UseStandardDealerProductLineRules'] ?? false;
+
+    this.auctionForm.patchValue({
+      auctionName: data['title'] || '',
+      numberOfLanes: data['numberOfLanes'] || 1,
+      laneStagger: data['laneIncrementTimeInMinutes'] || 1,
+      bidIncrement: data['defaultMinimumBidIncrement'] || 100,
+      duration: data['defaultListingDurationMinutes'] || 5,
+      auctionDate: data['startDate'] ? new Date(data['startDate']) : '',
+      startHour: timeComponents.hour,
+      startMinute: timeComponents.minute,
+      startPeriod: timeComponents.period,
+      auctionRules: auctionRulesValue,
+      buyNow: data['buyNow'] ?? true,
+      countries: countries,
+      dc: dcValue,
+      pl: plValue,
+    });
+  }
+
+  /**
+   * Parse 24-hour time format to 12-hour with AM/PM
+   */
+  private _parse24HourTime(time: string): { hour: string; minute: string; period: string } {
+    const [hoursStr, minutesStr] = time.split(':');
+    const hours = parseInt(hoursStr, 10);
+    const minutes = parseInt(minutesStr, 10);
+
+    const period = hours >= 12 ? 'PM' : 'AM';
+    const hour12 = hours % 12 || 12;
+
+    return {
+      hour: hour12.toString().padStart(2, '0'),
+      minute: minutes.toString().padStart(2, '0'),
+      period: period,
+    };
+  }
+
+  /**
+   * Parse countries from customFilterSet
+   */
+  private _parseCountries(data: Record<string, any>): string[] {
+    const countryCode = data['customFilterSet']?.['DealerCountryCode'];
+    if (!countryCode) return [];
+    if (typeof countryCode === 'string') {
+      return countryCode
+        .split(',')
+        .map((c: string) => c.trim())
+        .filter((c) => c);
+    }
+
+    return [];
+  }
+
+  public enableEditMode(): void {
+    this.isEditMode = true;
+    this.isReadOnly = false;
+    this.auctionForm.enable();
+  }
+
+  /**
+   * Cancel edit mode and restore original data
+   */
+  // public cancelEdit(): void {
+  //   this.isEditMode = false;
+  //   this.isReadOnly = true;
+
+  //   if (this.auctionData) {
+  //     this._populateFormFromData(this.auctionData);
+  //   }
+
+  //   this.auctionForm.disable();
+  // }
+  // private _createAuction(payload: Record<string, any>): void {
+  //   // Implement your create logic here
+  // }
+
+  // private _updateAuction(payload: Record<string, any>): void {
+  //   // Implement your update logic here
+
+  //   // After successful update, switch back to read-only mode
+  //   this.isEditMode = false;
+  //   this.isReadOnly = true;
+  //   this.auctionForm.disable();
+  // }
 }
