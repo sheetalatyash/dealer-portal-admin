@@ -61,7 +61,7 @@ export class CreateAuctionComponent implements OnInit {
       auctionName: ['', [Validators.required]],
       numberOfLanes: [1, [Validators.required, Validators.min(1)]],
       laneStagger: [1, [Validators.required, Validators.min(1)]],
-      bidIncrement: [100],
+      // bidIncrement: [100],
       duration: [5, [Validators.required, Validators.max(30)]],
       auctionDate: ['', [Validators.required, this._dateTodayOrFutureValidator()]],
       startHour: ['08', Validators.required],

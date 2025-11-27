@@ -10,3 +10,7 @@ export const periodRawOptions = [
   { value: 'PM', label: 'PM' },
 ];
 export const laneRawOptions = Array.from({ length: 50 }, (_, i) => i + 1);
+export const statusRawOptions = [
+  { value: 'change', label: 'Change' },
+  // { value: 'PM', label: 'PM' },
+];
