@@ -6,6 +6,7 @@ import { PolarisGroupOption, PolarisSelect, PolarisDivider } from '@dealer-porta
 import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
 import { PolarisButton, PolarisInput, PolarisIcon, PolarisTextarea } from '@dealer-portal/polaris-ui';
 import { statusRawOptions } from '../../_constants';
+import { MatMenuModule } from '@angular/material/menu';
 
 @Component({
   selector: 'ac-edit-auction-listing',
@@ -19,6 +20,7 @@ import { statusRawOptions } from '../../_constants';
     PolarisDivider,
     TranslatePipe,
     PolarisTextarea,
+    MatMenuModule,
   ],
   templateUrl: './edit-auction-listing.component.html',
   styleUrl: './edit-auction-listing.component.scss',

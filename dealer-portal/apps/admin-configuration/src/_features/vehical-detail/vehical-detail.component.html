@@ -1,0 +1,212 @@
+<div class="container-fluid py-4" style="background-color: #f5f5f5">
+  <div class="row mb-4 px-3">
+    <div class="col-12">
+      <div class="alert alert-info d-flex gap-3 align-items-start border-0 rounded-2 p-3">
+        <polaris-icon size="xl">info</polaris-icon>
+        <div>
+          <strong>Auction closed!</strong> Please contact the dealer with the winning bid to coordinate payment and
+          delivery.
+        </div>
+      </div>
+    </div>
+    <polaris-divider ui-class="col-auto mb-3"></polaris-divider>
+  </div>
+
+  <div class="row g-3 mb-4 px-3">
+    <div class="col-12 col-lg-7">
+      <div class="card border-0 rounded-2 p-4 mb-3">
+        <div class="d-flex justify-content-between align-items-start mb-3">
+          <div class="flex-grow-1">
+            <div class="row g-3">
+              <div class="col-6">
+                <div class="text-muted small fw-bold">Winning Bid</div>
+                <div class="fs-6 fw-bold"><span style="text-decoration: line-through">$7,600</span></div>
+                <div class="text-muted small">+ $150 Freight</div>
+              </div>
+              <div class="col-6" style="border-left: 1px solid #a8d8e8; padding-left: 1.5rem">
+                <div class="text-muted small fw-bold">Adjusted Price</div>
+                <div class="fs-6 fw-bold">$7,000</div>
+                <div class="text-muted small">+ $150 Freight</div>
+              </div>
+            </div>
+          </div>
+          <a href="#" class="text-primary text-decoration-none small fw-bold ms-3">Edit Price</a>
+        </div>
+        <div class="fw-bold text-center">Tousley Motorsports</div>
+      </div>
+
+      <div class="card border-0 rounded-2 p-4" style="background-color: #fff; border: 1px solid #e0e0e0">
+        <div class="row g-4 small">
+          <div class="col-6">
+            <div class="text-muted fw-bold text-uppercase" style="font-size: 0.7rem">Address</div>
+            <div class="fw-bold" style="color: #333">1400 Co Rd E East<br />Saint Paul MN 55110</div>
+          </div>
+          <div class="col-3">
+            <div class="text-muted fw-bold text-uppercase" style="font-size: 0.7rem">Phone Number</div>
+            <div class="fw-bold" style="color: #333">(651) 483-8296</div>
+          </div>
+          <div class="col-3">
+            <div class="text-muted fw-bold text-uppercase" style="font-size: 0.7rem">DEX ID</div>
+            <div class="fw-bold" style="color: #333">2993600</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-12 col-lg-5">
+      <div class="card border-0 rounded-2 p-4" style="background-color: #fff; border: 1px solid #e0e0e0">
+        <h6 class="fw-bold mb-2" style="color: #333">Runners-Up</h6>
+        <p class="small text-muted mb-3">
+          If the dealer with the winning bid cannot complete the purchase, you can set a runner-up so the winning bid
+          instead.
+        </p>
+
+        <div class="table-responsive mb-3">
+          <table class="table table-sm mb-0" style="font-size: 0.85rem">
+            <thead>
+              <tr style="border-bottom: 1px solid #ddd">
+                <th class="fw-bold text-muted pb-2" style="font-size: 0.75rem">Amount</th>
+                <th class="fw-bold text-muted pb-2" style="font-size: 0.75rem">Bidder</th>
+                <th class="fw-bold text-muted pb-2" style="font-size: 0.75rem">Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let runner of runnersUp" style="border-bottom: 1px solid #ddd">
+                <td>
+                  <span class="text-decoration-line-through" style="color: #999">{{ runner.amount }}</span>
+                </td>
+                <td>{{ runner.bidder }} <span class="text-info ms-1">ℹ️</span></td>
+                <td>
+                  <span style="color: #999">{{ runner.status }}</span>
+                  <span class="text-primary ms-1" role="button">🔗</span>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <button class="btn btn-outline-primary btn-sm w-100" style="font-size: 0.85rem">Mark as not sold</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="row g-3 px-3">
+    <div class="col-12 col-lg-8">
+      <div class="card border-0 rounded-2 p-4" style="background-color: #fff">
+        <h6 class="fw-bold mb-4">Vehicle Overview</h6>
+
+        <div class="row g-4 mb-4">
+          <div class="col-md-6">
+            <div
+              class="rounded-2 d-flex align-items-center justify-content-center"
+              style="height: 250px; background-color: #e8e8e8"
+            >
+              <div class="text-center">
+                <div style="font-size: 3rem; margin-bottom: 0.5rem">📸</div>
+                <div class="fw-bold text-secondary">Photos</div>
+                <div class="text-muted small mt-2" style="color: #999">Coming Soon</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-6">
+            <div class="text-center mb-4">
+              <div class="text-muted small fw-bold mb-2">Condition Score</div>
+              <svg width="140" height="140" viewBox="0 0 140 140" style="transform: rotate(-90deg); margin: 0 auto">
+                <circle cx="70" cy="70" r="55" fill="none" stroke="#e0e0e0" stroke-width="18" />
+                <circle
+                  cx="70"
+                  cy="70"
+                  r="55"
+                  fill="none"
+                  stroke="#ffc107"
+                  stroke-width="18"
+                  stroke-dasharray="61.6 346.36"
+                  stroke-linecap="round"
+                />
+                <circle
+                  cx="70"
+                  cy="70"
+                  r="55"
+                  fill="none"
+                  stroke="#4caf50"
+                  stroke-width="18"
+                  stroke-dasharray="123.1 346.36"
+                  stroke-dashoffset="-61.6"
+                  stroke-linecap="round"
+                />
+                <circle cx="70" cy="70" r="42" fill="white" />
+                <text x="70" y="73" text-anchor="middle" font-size="11" fill="#666" font-weight="bold">
+                  Unavailable
+                </text>
+              </svg>
+            </div>
+            <div class="text-center">
+              <div class="fw-bold text-danger mb-2">J.D. POWER</div>
+              <div class="small text-muted">
+                Average Retail Value: $21,375<br />
+                Wholesale Range: $14,785 - $17,125
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="row g-0" style="border-top: 1px solid #ddd">
+          <ng-container *ngFor="let spec of vehicleSpecs; let i = index">
+            <div
+              class="col-6 py-2 px-2"
+              [ngClass]="{ 'border-end': (i + 1) % 2 !== 0, 'border-bottom': i < vehicleSpecs.length - 2 }"
+            >
+              <div class="text-muted fw-bold text-uppercase" style="font-size: 0.7rem">{{ spec.label }}</div>
+              <div class="fw-bold small mt-1">{{ spec.value }}</div>
+            </div>
+          </ng-container>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-12 col-lg-4">
+      <div
+        class="alert alert-info d-flex gap-2 align-items-start mb-4 border-0 rounded-2 p-3"
+        style="background-color: #e3f2fd; color: #1565c0"
+      >
+        <span class="fs-6">ℹ️</span>
+        <span class="small"><strong>This auction has ended.</strong></span>
+      </div>
+
+      <div class="card border-0 rounded-2 p-4 mb-3 text-center" style="background-color: #e8f5e9">
+        <div class="text-muted small fw-bold">Adjusted Price</div>
+        <div class="fs-3 fw-bold my-2">$7,000</div>
+      </div>
+
+      <div class="card border-0 rounded-2 p-4 mb-3 text-center" style="background-color: #e1f5fe">
+        <div class="text-muted small fw-bold">Winning Bid</div>
+        <div class="fs-4 fw-bold my-2" style="text-decoration: line-through; color: #999">$7,600</div>
+        <div class="text-muted small">+ $150 Freight</div>
+        <div class="small my-2">
+          5 Bids <a href="#" class="text-primary text-decoration-none fw-bold">(View bidding history)</a>
+        </div>
+        <div class="small text-danger d-flex gap-2 align-items-center justify-content-center">
+          <span>⏱️</span>
+          <span>Ended on 5:00 PM IST on 10/05/2022</span>
+        </div>
+      </div>
+
+      <button class="btn btn-outline-primary w-100 mb-4 small fw-bold">View bidding history</button>
+
+      <div class="card border-0 rounded-2 p-4 mb-4" style="background-color: #fff">
+        <div class="d-flex justify-content-between align-items-center">
+          <h6 class="fw-bold mb-0">Auction Details</h6>
+          <span class="text-muted" role="button">▼</span>
+        </div>
+      </div>
+
+      <div class="rounded-2 p-3" style="background-color: #fff3e0; border-left: 4px solid #ff9800">
+        <div class="fw-bold text-uppercase mb-2" style="font-size: 0.7rem; color: #ff9800">Disclosure Statement</div>
+        <p class="small text-muted mb-0">
+          Polaris discloses any and all implied warranties regarding the unit including, but not limited to, the implied
+          warranties of the title or fitness...
+        </p>
+      </div>
+    </div>
+  </div>
+</div>

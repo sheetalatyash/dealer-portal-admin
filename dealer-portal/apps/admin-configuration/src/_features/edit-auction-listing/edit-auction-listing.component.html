@@ -113,7 +113,6 @@
                 <div *ngFor="let vehicle of vehicles" class="card border mb-3">
                   <div class="card-body p-3">
                     <div class="row align-items-start">
-                      <!-- Vehicle Image -->
                       <div class="col-auto">
                         <div
                           class="bg-light rounded d-flex align-items-center justify-content-center"
@@ -138,24 +137,21 @@
                       </div>
 
                       <div class="col-auto">
-                        <div class="vehicle-dropdown-wrapper">
-                          <button
-                            class="vehicle-menu-button"
-                            type="button"
-                            [attr.aria-label]="'Vehicle menu for ' + vehicle.name"
-                            (click)="toggleVehicleMenu($event, vehicle.id)"
-                          >
-                            <polaris-icon size="lg">more-horiz</polaris-icon>
-                          </button>
-                          <div
-                            class="vehicle-dropdown-menu"
-                            [class.show]="openMenuId === vehicle.id"
-                            (click)="$event.stopPropagation()"
-                          >
-                            <a href="#" class="dropdown-item">View vehicle</a>
-                            <a href="#" class="dropdown-item">Manage photos</a>
-                          </div>
-                        </div>
+                        <button
+                          class="vehicle-menu-button"
+                          type="button"
+                          [attr.aria-label]="'Vehicle menu for ' + vehicle.name"
+                          [matMenuTriggerFor]="vehicleMenu"
+                        >
+                          <polaris-icon size="lg">more-horiz</polaris-icon>
+                        </button>
+
+                        <mat-menu #vehicleMenu="matMenu">
+                          <ng-template matMenuContent>
+                            <button mat-menu-item><polaris-icon size="lg">link</polaris-icon> View vehicle</button>
+                            <button mat-menu-item><polaris-icon size="lg">link</polaris-icon>Manage photos</button>
+                          </ng-template>
+                        </mat-menu>
                       </div>
                     </div>
                   </div>
