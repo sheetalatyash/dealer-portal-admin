@@ -189,6 +189,40 @@
           </div>
         </div>
       </div>
+      <div class="row g4 pb-4">
+        <polaris-accordion [ui-test-id]="testId" [showToggle]="showToggle">
+          <mat-expansion-panel class="card border mb-3">
+            <mat-expansion-panel-header>
+              <mat-panel-title>
+                <h5 class="fw-bold">Condition Report</h5>
+              </mat-panel-title>
+            </mat-expansion-panel-header>
+            <div class="mt-12">
+              <ng-container *ngFor="let item of conditionSummary['categories']">
+                <p class="fw-bold text-deepCove fs-9 mb-0 lh-24 fs-lg-6 fs-md-6 border-bottom">
+                  {{ item?.categoryName }}
+                </p>
+                <!-- dynamic button grp base on API response and set their init value -->
+                <div *ngFor="let question of item['questions']" class="mb-4">
+                  <p class="fw-bold my-2">{{ question.title }}</p>
+                  <div class="btn-group w-100" role="group">
+                    <button
+                      *ngFor="let answer of question['answers']"
+                      :key="answer?.answerText"
+                      type="button"
+                      class="btn btn-md py-2 text-deepCove fs-lg-6 fs-md-6 cursor-default w-25"
+                      [ngClass]="{ 'fw-bold': answer?.isSelected, 'fw-medium': !answer?.isSelected }"
+                      [ngStyle]="{ 'background-color': answer?.isSelected ? answer.selectedBackgroundColor : 'white' }"
+                    >
+                      {{ answer?.answerText }}
+                    </button>
+                  </div>
+                </div>
+              </ng-container>
+            </div>
+          </mat-expansion-panel>
+        </polaris-accordion>
+      </div>
     </div>
 
     <div class="col-12 col-lg-4">
@@ -243,31 +277,5 @@
       </div>
     </div>
   </div>
+  <!-- Show condition statement button -->
 </div>
-
-<!-- Modal -->
-<!-- <div
-  class="modal fade"
-  id="staticBackdrop"
-  data-backdrop="static"
-  tabindex="-1"
-  role="dialog"
-  aria-labelledby="staticBackdropLabel"
-  aria-hidden="true"
->
-  <div class="modal-dialog modal-dialog-centered" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="staticBackdropLabel">Modal title</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">...</div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Understood</button>
-      </div>
-    </div>
-  </div>
-</div> -->
