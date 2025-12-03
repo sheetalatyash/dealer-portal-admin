@@ -1,12 +1,35 @@
-/* listing-details.component.css */
-:host {
-  --bs-body-bg: #f5f5f5;
+.cursor-pointer {
+  cursor: pointer;
 }
-
+.background-blue {
+  background-color: #e1f5fe;
+}
 .card {
-  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+  border: 1px solid var(--polaris-border-color-translucent);
 }
-
-.alert {
-  margin-bottom: 0;
+.view-details-wrapper {
+  background-color: var(--gray-light);
+}
+.adjusted-price-card {
+  background-color: #e8f5e9;
+}
+::ng-deep {
+  polaris-button {
+    width: 100% !important;
+  }
+}
+.disclosure-card {
+  background-color: #fff3e0;
+  border-left: 4px solid #ff9800;
+}
+.color-orange {
+  font-size: 0.75;
+  color: #ff9800;
+}
+.photos-card {
+  height: 300px;
+  background-color: #e8e8e8;
+}
+.jd-power-card {
+  background-color: #e8e8e8;
 }

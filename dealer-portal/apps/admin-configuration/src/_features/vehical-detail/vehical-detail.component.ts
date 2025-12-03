@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { PolarisDivider, PolarisIcon } from '@dealer-portal/polaris-ui';
+import { PolarisDivider, PolarisIcon, PolarisButton } from '@dealer-portal/polaris-ui';
+import { TranslatePipe } from '@ngx-translate/core';
 
 interface VehicleSpec {
   label: string;
@@ -15,7 +16,7 @@ interface RunnerUp {
 
 @Component({
   selector: 'ac-vehical-detail',
-  imports: [CommonModule, PolarisDivider, PolarisIcon],
+  imports: [CommonModule, PolarisDivider, PolarisIcon, PolarisButton, TranslatePipe],
   templateUrl: './vehical-detail.component.html',
   styleUrl: './vehical-detail.component.scss',
 })
