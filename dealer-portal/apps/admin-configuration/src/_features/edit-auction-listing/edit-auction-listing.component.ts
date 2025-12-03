@@ -1,15 +1,18 @@
-import { Component, HostListener } from '@angular/core';
+import { Component, HostListener, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { TranslatePipe } from '@ngx-translate/core';
-import { PolarisGroupOption, PolarisSelect, PolarisDivider } from '@dealer-portal/polaris-ui';
+import { PolarisGroupOption, PolarisSelect, PolarisDivider, PolarisAccordion } from '@dealer-portal/polaris-ui';
 import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
 import { PolarisButton, PolarisInput, PolarisIcon, PolarisTextarea } from '@dealer-portal/polaris-ui';
-import { statusRawOptions } from '../../_constants';
 import { MatMenuModule } from '@angular/material/menu';
+import { statusRawOptions } from '../../_constants/constant';
+import { Router } from '@angular/router';
+import { MatExpansionModule } from '@angular/material/expansion';
+import { ListingDetailsComponent } from '../vehical-detail/vehical-detail.component';
 
 @Component({
-  selector: 'ac-edit-auction-listing',
+  selector: 'auctions-edit-auction-listing',
   imports: [
     CommonModule,
     ReactiveFormsModule,
@@ -21,13 +24,23 @@ import { MatMenuModule } from '@angular/material/menu';
     TranslatePipe,
     PolarisTextarea,
     MatMenuModule,
+    MatExpansionModule,
+    PolarisAccordion,
+    ListingDetailsComponent,
   ],
   templateUrl: './edit-auction-listing.component.html',
   styleUrl: './edit-auction-listing.component.scss',
 })
-export class EditAuctionListingComponent {
+export class EditAuctionListingComponent implements OnInit {
   listingForm: FormGroup;
   openMenuId: string | null = null;
+  // setting up flags
+  isFormSubmitted = false;
+  isEditAuctionSet = false;
+  isChangeAuctionSet = false;
+  isCancelEdit = false;
+  isEditSchedule = false;
+  testId = 'vehicle-menu';
 
   public statusOptions: PolarisGroupOption<string>[] = [];
   vehicles = [
@@ -51,7 +64,7 @@ export class EditAuctionListingComponent {
     },
   ];
 
-  constructor(private formBuilder: FormBuilder) {
+  constructor(public formBuilder: FormBuilder, public router: Router) {
     this.listingForm = this.formBuilder.group({
       title: ['2024 Polaris GENERAL XP 4 1000: Ultimate Polaris Blue (49ST)', Validators.required],
       description: ['', Validators.required],
@@ -61,38 +74,43 @@ export class EditAuctionListingComponent {
     });
   }
 
-  ngOnInit(): void {
+  public ngOnInit(): void {
     this._getPeriodOptions();
   }
 
-  submitForm(): void {
+  public submitForm(): void {
     if (this.listingForm.valid) {
-      console.log('Form Value:', this.listingForm.value);
+      // call API to update the listing
+      this.isFormSubmitted = true;
     }
   }
-  toggleVehicleMenu(event: Event, vehicleId: string): void {
+  public toggleVehicleMenu(event: Event, vehicleId: string): void {
     event.stopPropagation();
     this.openMenuId = this.openMenuId === vehicleId ? null : vehicleId;
   }
 
-  cancelEdit(): void {
-    console.log('Edit cancelled');
+  public cancelEdit(): void {
+    // set is cancel flag to true
+    this.isCancelEdit = true;
   }
 
-  saveChanges(): void {
+  public saveChanges(): void {
     this.submitForm();
   }
 
-  editSchedule(): void {
-    console.log('Edit schedule');
+  public editSchedule(): void {
+    // set edit schedule flag to true
+    this.isEditSchedule = true;
   }
 
-  editAuction(): void {
-    console.log('Edit auction');
+  public editAuction(): void {
+    // set edit Auction flag to true
+    this.isEditAuctionSet = true;
   }
 
-  changeAuction(): void {
-    console.log('Change auction');
+  public changeAuction(): void {
+    // set change Auction flag to true
+    this.isChangeAuctionSet = true;
   }
   private _getPeriodOptions(): void {
     this.statusOptions = statusRawOptions.map(
@@ -103,13 +121,22 @@ export class EditAuctionListingComponent {
         }),
     );
   }
+
+  public navigateToDetails() {
+    // TODO: Navigate to details page
+    this.router.navigate(['/vehicle-details']);
+  }
+
+  public toggleAccordion(event: Event) {
+    event.preventDefault();
+  }
   @HostListener('document:click')
-  closeMenu(): void {
+  public closeMenu(): void {
     this.openMenuId = null;
   }
 
   @HostListener('document:keydown.escape')
-  onEscape(): void {
+  public onEscape(): void {
     this.openMenuId = null;
   }
 }

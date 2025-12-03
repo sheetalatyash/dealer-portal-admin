@@ -110,52 +110,18 @@
               <polaris-divider ui-class="col-auto mb-3"></polaris-divider>
 
               <div class="vehicle-list">
-                <div *ngFor="let vehicle of vehicles" class="card border mb-3">
-                  <div class="card-body p-3">
-                    <div class="row align-items-start">
-                      <div class="col-auto">
-                        <div
-                          class="bg-light rounded d-flex align-items-center justify-content-center"
-                          style="width: 80px; height: 80px"
-                        >
-                          <span class="text-muted small">Vehicle</span>
-                        </div>
-                      </div>
-
-                      <div class="col">
-                        <div class="fw-600 mb-2">{{ vehicle.name }}</div>
-                        <div class="row g-2 small">
-                          <div class="col-auto">
-                            <span class="text-muted">Type:</span>
-                            <span class="fw-500">{{ vehicle.type }}</span>
-                          </div>
-                          <div class="col-auto">
-                            <span class="text-muted">Condition:</span>
-                            <span class="ms-1">{{ vehicle.condition }}</span>
-                          </div>
-                        </div>
-                      </div>
-
-                      <div class="col-auto">
-                        <button
-                          class="vehicle-menu-button"
-                          type="button"
-                          [attr.aria-label]="'Vehicle menu for ' + vehicle.name"
-                          [matMenuTriggerFor]="vehicleMenu"
-                        >
-                          <polaris-icon size="lg">more-horiz</polaris-icon>
-                        </button>
-
-                        <mat-menu #vehicleMenu="matMenu">
-                          <ng-template matMenuContent>
-                            <button mat-menu-item><polaris-icon size="lg">link</polaris-icon> View vehicle</button>
-                            <button mat-menu-item><polaris-icon size="lg">link</polaris-icon>Manage photos</button>
-                          </ng-template>
-                        </mat-menu>
-                      </div>
-                    </div>
-                  </div>
-                </div>
+                <polaris-accordion [ui-test-id]="testId" (onClick)="toggleAccordion($event)">
+                  <mat-expansion-panel *ngFor="let vehicle of vehicles" class="card border mb-3">
+                    <mat-expansion-panel-header>
+                      <mat-panel-title>
+                        <span class="fw-bold">{{ vehicle.name }}</span>
+                        <span class="px-3">Type: {{ vehicle.type }}</span>
+                        <span> condition report </span>
+                      </mat-panel-title>
+                    </mat-expansion-panel-header>
+                    <ac-vehical-detail></ac-vehical-detail>
+                  </mat-expansion-panel>
+                </polaris-accordion>
               </div>
             </div>
           </div>

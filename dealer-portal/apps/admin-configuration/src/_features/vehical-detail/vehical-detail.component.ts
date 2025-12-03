@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { PolarisDivider, PolarisIcon, PolarisButton } from '@dealer-portal/polaris-ui';
+import { PolarisDivider, PolarisIcon, PolarisButton, PolarisAccordion } from '@dealer-portal/polaris-ui';
 import { TranslatePipe } from '@ngx-translate/core';
 
 interface VehicleSpec {
@@ -20,7 +20,7 @@ interface RunnerUp {
   templateUrl: './vehical-detail.component.html',
   styleUrl: './vehical-detail.component.scss',
 })
-export class ListingDetailsComponent implements OnInit {
+export class ListingDetailsComponent {
   vehicleSpecs: VehicleSpec[] = [
     { label: 'Vehicle Type', value: 'Side By Side' },
     { label: 'Year', value: '2021' },
@@ -44,7 +44,9 @@ export class ListingDetailsComponent implements OnInit {
     },
   ];
 
-  constructor() {}
-
-  ngOnInit(): void {}
+  // openManualBid() {
+  //   var modal = document.querySelector('#staticBackdrop');
+  //   if (modal)
+  //   modal.modal('show')
+  // }
 }
